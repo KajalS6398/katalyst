@@ -1,3 +1,3 @@
 export default function Home() {
-  return <>Katalyst</>;
+  return <h1 className="text-xl font-bold">Katalyst</h1>;
 }
