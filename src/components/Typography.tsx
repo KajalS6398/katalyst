@@ -1,7 +1,7 @@
 import React from "react";
 
 const Typography = () => {
-  return <div className="">Typography</div>;
+  return <div>Typography</div>;
 };
 
 export default Typography;

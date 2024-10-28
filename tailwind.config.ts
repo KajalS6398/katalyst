@@ -58,6 +58,10 @@ const config: Config = {
         "spacing-xl": "64px",
         "spacing-xxl": "128px",
       },
+      fontFamily: {
+        karla: "var(--font-karla)",
+        montserrat: "var(--font-montserrat)",
+      },
     },
   },
   plugins: [],
