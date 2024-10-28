@@ -11,9 +11,9 @@ const config: Config = {
       colors: {
         light: "#ffffff",
         dark: "#070707",
-        bgError: "#EA4335",
-        bgSuccess: "#34A853",
-        bgWarning: "#FBBC05",
+        error: "#EA4335",
+        success: "#34A853",
+        warning: "#FBBC05",
 
         gray: {
           25: "#fff",
