@@ -43,8 +43,6 @@ const config: Config = {
           900: "#0D1B31",
         },
       },
-    },
-    extend: {
       borderRadius: {
         "radius-sm": "4px",
         "radius-md": "8px",
