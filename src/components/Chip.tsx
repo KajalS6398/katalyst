@@ -1,10 +1,10 @@
-import React, { HTMLAttributes, ReactNode } from "react";
-import { cva, VariantProps } from "class-variance-authority";
+import React, { type HTMLAttributes, type ReactNode } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/util";
 
 interface ButtonProps
-extends HTMLAttributes<HTMLDivElement>,
-VariantProps<typeof chipVariants>  {
+  extends HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof chipVariants> {
   children?: ReactNode;
   startIcon?: JSX.Element;
   endIcon?: JSX.Element;
@@ -51,7 +51,7 @@ const chipVariants = cva(
       variant: "primary",
       size: "md",
     },
-  }
+  },
 );
 
 const Chip = ({
@@ -70,7 +70,7 @@ const Chip = ({
       className={cn(
         "w-full",
         chipVariants({ className, variant, size }),
-        "flex items-center text-center justify-center gap-2"
+        "flex items-center text-center justify-center gap-2",
       )}
     >
       {startIcon}

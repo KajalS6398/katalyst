@@ -1,6 +1,10 @@
 import { cn } from "@/utils/util";
-import { cva, VariantProps } from "class-variance-authority";
-import React, { ElementType, HTMLAttributes, ReactNode } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import React, {
+  type ElementType,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react";
 
 interface TypographyProps
   extends HTMLAttributes<HTMLHeadingElement>,
