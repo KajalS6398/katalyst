@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import "./globals.css";
 import { cn } from "@/utils/util";
 import { karla, montserrat } from "./font";
+import ThemeProvider from "@/context/ThemeContext";
 
 export const metadata: Metadata = {
   title: "Katalyst",
@@ -22,7 +23,7 @@ export default function RootLayout({
           karla.variable,
         )}
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
