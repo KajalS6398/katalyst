@@ -1,6 +1,6 @@
 "use client";
-
 import { Caption, Paragraph, Typography } from "@/components";
+import Label from "@/components/Label";
 import { useTheme } from "@/context/ThemeContext";
 import React from "react";
 
@@ -49,6 +49,14 @@ const Test = () => {
         </Caption>
         <br />
         <Caption>The quick brown fox jumps over the lazy dog</Caption>
+        <br />
+        <Label size={"sm"}>This is a Label</Label>
+        <br />
+        <Label size={"md"}>This is a Label</Label>
+        <br />
+        <Label size={"lg"} required>
+          This is a Label
+        </Label>
       </main>
     </div>
   );
