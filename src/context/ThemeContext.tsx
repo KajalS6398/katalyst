@@ -1,6 +1,10 @@
 "use client";
-
-import React, { createContext, useState, ReactNode, useContext } from 'react';
+import React, {
+  createContext,
+  useState,
+  type ReactNode,
+  useContext,
+} from "react";
 
 interface ThemeContextProps {
   theme: string;
@@ -8,25 +12,26 @@ interface ThemeContextProps {
   switchLight: () => void;
 }
 
-export const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
+export const ThemeContext = createContext<ThemeContextProps | undefined>(
+  undefined,
+);
 
 interface ThemeProviderProps {
   children: ReactNode;
 }
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<string>('light');
+  const [theme, setTheme] = useState<string>("light");
 
   const switchDark = () => {
-    document.documentElement.classList.add('dark');
-    setTheme('dark');
+    document.documentElement.classList.add("dark");
+    setTheme("dark");
   };
-  
+
   const switchLight = () => {
-    document.documentElement.classList.remove('dark');
-    setTheme('light');
+    document.documentElement.classList.remove("dark");
+    setTheme("light");
   };
-  
 
   return (
     <ThemeContext.Provider value={{ theme, switchDark, switchLight }}>
@@ -38,7 +43,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 export const useTheme = (): ThemeContextProps => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
+    throw new Error("useTheme must be used within a ThemeProvider");
   }
   return context;
 };

@@ -1,7 +1,7 @@
-import { cn } from '@/utils/util';
-import { cva, VariantProps } from 'class-variance-authority';
-import Image, { ImageProps } from 'next/image';
-import React, { HTMLAttributes, ReactNode } from 'react';
+import { cn } from "@/utils/util";
+import { cva, type VariantProps } from "class-variance-authority";
+import Image from "next/image";
+import React, { type HTMLAttributes, type ReactNode } from "react";
 
 interface ImagePlaceholderProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -14,12 +14,12 @@ interface ImagePlaceholderProps
   fill?: boolean; // Add fill prop to the interface
 }
 
-const imageVariant = cva('', {
+const imageVariant = cva("", {
   variants: {
     size: {
-      sm: 'w-[210px] h-[140px] rounded-lg',
-      md: 'w-[351px] h-[233px] rounded-2xl',
-      lg: 'w-[499px] h-[331px] rounded-[32px]',
+      sm: "w-[210px] h-[140px] rounded-lg",
+      md: "w-[351px] h-[233px] rounded-2xl",
+      lg: "w-[499px] h-[331px] rounded-[32px]",
     },
   },
 });
@@ -27,7 +27,7 @@ const imageVariant = cva('', {
 const ImagePlaceholder = ({
   children,
   className,
-  size = 'sm',
+  size = "sm",
   src,
   alt,
   width,
@@ -38,9 +38,9 @@ const ImagePlaceholder = ({
   return (
     <div
       className={cn(
-        'flex items-center text-center justify-center gap-2',
+        "flex items-center text-center justify-center gap-2",
         imageVariant({ size }),
-        className
+        className,
       )}
       {...props}
     >

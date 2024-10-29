@@ -1,5 +1,6 @@
 "use client";
 
+import { Caption, Paragraph, Typography } from "@/components";
 import { useTheme } from "@/context/ThemeContext";
 import React from "react";
 
@@ -7,12 +8,10 @@ const Test = () => {
   const { theme, switchDark, switchLight } = useTheme();
 
   return (
-    <div className="p-4 bg-light dark:bg-black h-[100vh]">
+    <div className="p-4 bg-light dark:bg-black min-h-screen">
       <header className="p-4 transition-colors duration-300 flex justify-between items-center">
-        <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-25">Katalyst:</h2>
-        <p className="mb-4 dark:text-gray-25 text-gray-900">
-          Current theme: {theme}
-        </p>
+        <Typography variant={"h6"}>Katalyst:</Typography>
+        <Paragraph variant={"b2"}>Current theme: {theme}</Paragraph>
         <div className="space-x-2">
           <button
             onClick={switchLight}
@@ -28,6 +27,29 @@ const Test = () => {
           </button>
         </div>
       </header>
+      <main className="space-y-5">
+        <Typography variant="h1">H1 Headline</Typography>
+        <Typography variant="h2">H2 Headline</Typography>
+        <Typography variant="h3">H3 Headline</Typography>
+        <Typography variant="h4">H4 Headline</Typography>
+        <Typography variant="h5">H5 Headline</Typography>
+        <Typography variant="h6">H6 Headline</Typography>
+        <Paragraph>The quick brown fox jumps over the lazy dog</Paragraph>
+        <Paragraph variant="b2">
+          The quick brown fox jumps over the lazy dog
+        </Paragraph>
+        <Paragraph variant="b3">
+          The quick brown fox jumps over the lazy dog
+        </Paragraph>
+        <Paragraph variant="b4">
+          The quick brown fox jumps over the lazy dog
+        </Paragraph>
+        <Caption variant="md">
+          The quick brown fox jumps over the lazy dog
+        </Caption>
+        <br />
+        <Caption>The quick brown fox jumps over the lazy dog</Caption>
+      </main>
     </div>
   );
 };
