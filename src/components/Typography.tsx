@@ -9,15 +9,15 @@ interface TypographyProps
   children: ReactNode;
 }
 
-const typographyVariant = cva("text-dark font-bold", {
+const typographyVariant = cva("text-dark dark:text-light font-bold", {
   variants: {
     variant: {
-      h1: "text-8xl",
-      h2: "text-7xl",
-      h3: "text-5xl",
-      h4: "text-[32px]",
-      h5: "text-2xl",
-      h6: "text-xl font-semibold",
+      h1: "text-8xl leading-[144px]",
+      h2: "text-7xl leading-[90px]",
+      h3: "text-5xl leading-[72px]",
+      h4: "text-[32px] leading-[48px]",
+      h5: "text-2xl leading-9",
+      h6: "text-xl font-semibold leading-[30px]",
     },
   },
   defaultVariants: {
@@ -35,7 +35,7 @@ const Typography = ({
   const Component = as || (variant as ElementType);
   return (
     <Component
-      className={cn(typographyVariant({ variant }), className)}
+      className={cn(typographyVariant({ variant, className }))}
       {...props}
     >
       {children}

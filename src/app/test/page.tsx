@@ -1,3 +1,4 @@
+import { Paragraph } from "@/components";
 import Typography from "@/components/Typography";
 import React from "react";
 
@@ -10,6 +11,16 @@ const Test = () => {
       <Typography variant="h4">H4 Headline</Typography>
       <Typography variant="h5">H5 Headline</Typography>
       <Typography variant="h6">H6 Headline</Typography>
+      <Paragraph>The quick brown fox jumps over the lazy dog</Paragraph>
+      <Paragraph variant={"b2"}>
+        The quick brown fox jumps over the lazy dog
+      </Paragraph>
+      <Paragraph variant={"b3"}>
+        The quick brown fox jumps over the lazy dog
+      </Paragraph>
+      <Paragraph variant={"b4"}>
+        The quick brown fox jumps over the lazy dog
+      </Paragraph>
     </div>
   );
 };
