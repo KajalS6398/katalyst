@@ -3,5 +3,14 @@
 @tailwind utilities;
 
 .test {
-    border: 1px solid red;
+  border: 1px solid red;
+}
+
+.div-glass {
+  background-image: url("/assets/image.png"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 300px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
 }
