@@ -63,6 +63,10 @@ const config: Config = {
         karla: "var(--font-karla)",
         montserrat: "var(--font-montserrat)",
       },
+      screens: {
+        tablet: { max: "800px" },
+        mobile: { max: "480px" },
+      },
     },
   },
   plugins: [],

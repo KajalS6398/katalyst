@@ -68,8 +68,8 @@
 
 // export default Chip;
 
-import React, { HTMLAttributes, ReactNode } from "react";
-import { cva, VariantProps } from "class-variance-authority";
+import React, { type HTMLAttributes, type ReactNode } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/util";
 
 interface ButtonProps

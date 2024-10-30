@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useState, ReactNode, useContext } from 'react';
+import React, { createContext, useState, type ReactNode, useContext } from 'react';
 
 interface ThemeContextProps {
   theme: string;
