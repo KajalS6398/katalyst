@@ -1,5 +1,6 @@
 "use client";
 import { Caption, Paragraph, Textarea, Typography } from "@/components";
+import Checkbox from "@/components/Checkbox";
 import Input from "@/components/Input";
 import Label from "@/components/Label";
 import { useTheme } from "@/context/ThemeContext";
@@ -11,7 +12,7 @@ const Test = () => {
 
   return (
     <div className="p-4 bg-light dark:bg-dark min-h-screen">
-      <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full">
+      <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full z-[1000000]">
         <Typography variant={"h6"}>Katalyst:</Typography>
         <Paragraph variant={"b2"}>Current theme: {theme}</Paragraph>
         <div className="space-x-2">
@@ -126,6 +127,27 @@ const Test = () => {
               className="resize-none"
               rows={4}
             />
+          </div>
+        </section>
+        <section className="space-y-5">
+          <Typography variant="h6">Checkbox</Typography>
+          <div className="flex items-center gap-2">
+            <Checkbox id="check1" />
+            <Label size={"md"} htmlFor="check1">
+              This is a default state
+            </Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Checkbox checked readOnly id="check2" />
+            <Label size={"md"} htmlFor="check2">
+              This is a checked state
+            </Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Checkbox checked readOnly disabled id="check3" />
+            <Label size={"md"} htmlFor="check3" disabled>
+              This is a disabled state
+            </Label>
           </div>
         </section>
       </main>
