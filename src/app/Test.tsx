@@ -1,5 +1,5 @@
 "use client";
-import { Caption, Paragraph, Typography } from "@/components";
+import { Caption, Paragraph, Textarea, Typography } from "@/components";
 import Input from "@/components/Input";
 import Label from "@/components/Label";
 import { useTheme } from "@/context/ThemeContext";
@@ -11,7 +11,7 @@ const Test = () => {
 
   return (
     <div className="p-4 bg-light dark:bg-dark min-h-screen">
-      <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 bg-light dark:bg-dark mx-4 rounded-full border">
+      <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full">
         <Typography variant={"h6"}>Katalyst:</Typography>
         <Paragraph variant={"b2"}>Current theme: {theme}</Paragraph>
         <div className="space-x-2">
@@ -86,7 +86,17 @@ const Test = () => {
             startIcon={<RiAddCircleLine />}
             endIcon={<RiAddCircleLine />}
           />
-
+          <Textarea
+            placeholder="Enter your text here"
+            className="resize-none"
+            rows={4}
+          />
+          <Textarea
+            disabled
+            placeholder="Enter your text here"
+            className="resize-none"
+            rows={4}
+          />
           <div className="space-y-5 min-h-[200px] p-10 div-glass">
             <Input
               type="text"
@@ -102,6 +112,19 @@ const Test = () => {
               startIcon={<RiAddCircleLine />}
               placeholder="Enter your text here"
               endIcon={<RiAddCircleLine />}
+            />
+            <Textarea
+              variant={"glass"}
+              placeholder="Enter your text here"
+              className="resize-none"
+              rows={4}
+            />
+            <Textarea
+              variant={"glass"}
+              disabled
+              placeholder="Enter your text here"
+              className="resize-none"
+              rows={4}
             />
           </div>
         </section>

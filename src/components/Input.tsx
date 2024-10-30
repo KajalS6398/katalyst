@@ -12,7 +12,7 @@ interface InputProps
 }
 
 const inputVariants = cva(
-  "group flex items-center gap-2 py-2 px-4 rounded-radius-md border font-karla has-[:disabled]:opacity-30 has-[:disabled]:select-none has-[:disabled]:pointer-events-none",
+  "flex items-center text-sm gap-2 py-2 px-4 rounded-radius-md border font-karla has-[:disabled]:opacity-30 has-[:disabled]:select-none has-[:disabled]:pointer-events-none",
   {
     variants: {
       variant: {
