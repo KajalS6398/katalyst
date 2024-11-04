@@ -19,6 +19,12 @@ export const Card = ({ children, className }: CardProps) => (
   </div>
 );
 
+export const CardIcon = ({ children, className }: CardProps) => (
+  <span className={`${className}`}>
+    {children}
+  </span>
+);
+
 export const CardHeader = ({ children, className }: CardProps) => (
   <div className={`${className}`}>{children}</div>
 );

@@ -1,5 +1,10 @@
 "use client";
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/Accordion";
 import {
   Card,
   CardBg,
@@ -11,6 +16,7 @@ import {
 } from "@/components/Card";
 import Chip from "@/components/Chip";
 import ImageCard from "@/components/ImageCard";
+import StatsCard from "@/components/StatsCard";
 import { useTheme } from "@/context/ThemeContext";
 import React from "react";
 import { LuAngry, LuAnnoyed, LuHeart } from "react-icons/lu";
@@ -164,6 +170,90 @@ const Test = () => {
             </Chip>
           </div>
         </ImageCard>
+      </div>
+
+      <div className="my-5">
+        <section>
+          <h1 className="dark:text-gray-25 text-gray-900">Default</h1>
+          <StatsCard
+            className="w-[400px] h-[400px]"
+            statTitle="Number"
+            statDesc="Value Descritpion and other data Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, quos?"
+            cardIcon={<LuAngry size={40} />}
+          />
+        </section>
+        <section>
+          <h1 className="dark:text-gray-25 text-gray-900">Customise</h1>
+          <StatsCard
+            className="w-[400px] h-[400px] bg-gradient-to-b from-indigo-500 dark:from-cyan-500 dark:to-blue-500"
+            statTitle="Number"
+            statDesc="Value Descritpion and other data Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, quos?"
+            cardIcon={<LuAngry size={40} />}
+          />
+        </section>
+      </div>
+
+      {/* accordion */}
+      <div className="my-5">
+        <h1 className="dark:text-gray-25 text-gray-900">Accordion Single</h1>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>
+              What is your favorite template from BRIX Templates?
+            </AccordionTrigger>
+            <AccordionContent>
+             {` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.`}
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Is it styled?</AccordionTrigger>
+            <AccordionContent>
+             {` Yes. It comes with default styles that match the other components'
+              aesthetic.`}
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionContent>
+             {` Yes. It's animated by default, but you can disable it if you
+              prefer.`}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
+
+      <div className="my-5">
+        <h1 className="dark:text-gray-25 text-gray-900">Accordion Multiple</h1>
+        <Accordion type="multiple" collapsible className="w-full">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>
+              What is your favorite template from BRIX Templates?
+            </AccordionTrigger>
+            <AccordionContent>
+             {` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.`}
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2" disabled>
+            <AccordionTrigger>Is it styled?</AccordionTrigger>
+            <AccordionContent>
+             {` Yes. It comes with default styles that match the other components'
+              aesthetic.`}
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionContent>
+             {` Yes. It's animated by default, but you can disable it if you
+              prefer.`}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     </div>
   );

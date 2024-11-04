@@ -67,6 +67,9 @@ const config: Config = {
         tablet: { max: "800px" },
         mobile: { max: "480px" },
       },
+      boxShadow: {
+        'cardShadow': '0px 5px 16px 0px #080F340F',
+      }
     },
   },
   plugins: [],
