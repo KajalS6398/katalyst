@@ -63,6 +63,13 @@ const config: Config = {
         karla: "var(--font-karla)",
         montserrat: "var(--font-montserrat)",
       },
+      screens: {
+        tablet: { max: "800px" },
+        mobile: { max: "480px" },
+      },
+      boxShadow: {
+        'cardShadow': '0px 5px 16px 0px #080F340F',
+      }
     },
   },
   plugins: [],
