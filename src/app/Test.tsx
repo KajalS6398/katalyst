@@ -5,11 +5,13 @@ import Input from "@/components/Input";
 import Label from "@/components/Label";
 import Toggle from "@/components/Toggle";
 import { useTheme } from "@/context/ThemeContext";
-import React from "react";
-import { RiAddCircleLine } from "react-icons/ri";
+import React, { useState } from "react";
+import { RiAddCircleLine, RiCheckLine, RiCloseLine } from "react-icons/ri";
 
 const Test = () => {
   const { theme, switchDark, switchLight } = useTheme();
+
+  const [isChecked, setIsChecked] = useState(false);
 
   return (
     <div className="p-4 bg-light dark:bg-dark min-h-screen">
@@ -32,37 +34,6 @@ const Test = () => {
         </div>
       </header>
       <main className="space-y-5">
-        <section className="space-y-5">
-          <Typography variant="h6">Toggle</Typography>
-          <div className="flex items-center gap-2">
-            <Toggle id="check1" size="sm" />
-            <Label size={"md"} htmlFor="check1">
-              Small Toggle
-            </Label>
-          </div>
-          <div className="flex items-center gap-2">
-            <Toggle id="check2" size="lg" />
-            <Label size={"md"} htmlFor="check2">
-              Large Toggle
-            </Label>
-          </div>
-          <div className="flex items-center gap-2">
-            <Toggle checked readOnly />
-            <Label size={"md"}>This is a checked state</Label>
-          </div>
-          <div className="flex items-center gap-2">
-            <Toggle disabled readOnly />
-            <Label size={"md"} disabled>
-              This is a OFF disabled state
-            </Label>
-          </div>
-          <div className="flex items-center gap-2">
-            <Toggle checked readOnly disabled />
-            <Label size={"md"} disabled>
-              This is a ON disabled state
-            </Label>
-          </div>
-        </section>
         <section className="space-y-3">
           <Typography variant="h6">Typography</Typography>
           <Typography variant="h1">H1 Headline</Typography>
@@ -179,6 +150,58 @@ const Test = () => {
             <Checkbox checked readOnly disabled id="check3" />
             <Label size={"md"} htmlFor="check3" disabled>
               This is a disabled state
+            </Label>
+          </div>
+        </section>
+        <section className="space-y-5">
+          <Typography variant="h6">Toggle</Typography>
+          <div className="flex items-center gap-2">
+            <Toggle id="check1" size="sm" />
+            <Label size={"md"} htmlFor="check1">
+              Small Toggle
+            </Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Toggle id="check2" size="lg" />
+            <Label size={"md"} htmlFor="check2">
+              Large Toggle
+            </Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Toggle checked readOnly />
+            <Label size={"md"}>This is a checked state</Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Toggle disabled readOnly />
+            <Label size={"md"} disabled>
+              This is a OFF disabled state
+            </Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Toggle checked readOnly disabled />
+            <Label size={"md"} disabled>
+              This is a ON disabled state
+            </Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Toggle
+              readOnly
+              id="icon"
+              icon={<RiCheckLine className="text-brand-400" />}
+            />
+            <Label size={"md"} htmlFor="icon">
+              Toggle With Icon
+            </Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Toggle
+              id="icon2"
+              checked={isChecked}
+              onChange={() => setIsChecked(!isChecked)}
+              icon={isChecked ? <RiCheckLine /> : <RiCloseLine />}
+            />
+            <Label size={"md"} htmlFor="icon2">
+              Toggle With Icon
             </Label>
           </div>
         </section>
