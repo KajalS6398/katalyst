@@ -175,14 +175,14 @@ const Test = () => {
         <section className="space-y-5">
           <Typography variant="h6">Toggle</Typography>
           <div className="flex items-center gap-2">
-            <Toggle id="check1" size="sm" />
-            <Label size={"md"} htmlFor="check1">
+            <Toggle id="smallToggle" size="sm" />
+            <Label size={"md"} htmlFor="smallToggle">
               Small Toggle
             </Label>
           </div>
           <div className="flex items-center gap-2">
-            <Toggle id="check2" size="lg" />
-            <Label size={"md"} htmlFor="check2">
+            <Toggle id="largeToggle" size="lg" />
+            <Label size={"md"} htmlFor="largeToggle">
               Large Toggle
             </Label>
           </div>
