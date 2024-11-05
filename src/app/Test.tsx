@@ -32,6 +32,65 @@ import {
   RiCloseLine,
 } from "react-icons/ri";
 import Button from "@/components/Button";
+import {
+  Footer,
+  FooterContent,
+  FooterHeader,
+  FooterIcons,
+  FooterList,
+} from "@/components/Footer";
+import {
+  RiFacebookLine,
+  RiInstagramLine,
+  RiLinkedinLine,
+  RiTwitterLine,
+} from "react-icons/ri";
+
+const footerItems = [
+  {
+    label: "Company Info",
+    content: [
+      { text: "About Us", link: "/about-us" },
+      { text: "Career", link: "/career" },
+      { text: "We are hiring", link: "/we-are-hiring" },
+      { text: "Blog", link: "/blog" },
+    ],
+  },
+  {
+    label: "Features",
+    content: [
+      { text: "Business Marketing", link: "/business-marketing" },
+      { text: "User Analytic", link: "/user-analytic" },
+      { text: "Live Chat", link: "/live-chat" },
+      { text: "Unlimited Support", link: "/unlimited-support" },
+    ],
+  },
+  {
+    label: "Resources",
+    content: [
+      { text: "Help Center", link: "/help-center" },
+      { text: "Community", link: "/community" },
+      { text: "Developers", link: "/developers" },
+      { text: "Partners", link: "/partners" },
+    ],
+  },
+  {
+    label: "Legal",
+    content: [
+      { text: "Privacy Policy", link: "/privacy-policy" },
+      { text: "Terms of Service", link: "/terms-of-service" },
+      { text: "Cookie Policy", link: "/cookie-policy" },
+      { text: "Security", link: "/security" },
+    ],
+  },
+];
+
+const iconsArray = [
+  { icon: <RiTwitterLine />, link: "https://twitter.com" },
+  { icon: <RiInstagramLine />, link: "https://instagram.com" },
+  { icon: <RiFacebookLine />, link: "https://facebook.com" },
+  { icon: <RiLinkedinLine />, link: "https://linkedin.com" },
+];
 
 const Test = () => {
   const { theme, switchDark, switchLight } = useTheme();
@@ -39,7 +98,7 @@ const Test = () => {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
-    <div className="p-4 bg-light dark:bg-dark min-h-screen">
+    <div className="bg-light dark:bg-dark min-h-screen">
       <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full z-[1000000]">
         <Typography variant={"h6"}>Katalyst:</Typography>
         <Paragraph variant={"b2"}>Current theme: {theme}</Paragraph>
@@ -58,7 +117,7 @@ const Test = () => {
           </button>
         </div>
       </header>
-      <main className="space-y-5">
+      <main className="space-y-5 p-4">
         <section className="space-y-3">
           <Typography variant="h6">Typography</Typography>
           <Typography variant="h1">H1 Headline</Typography>
@@ -651,6 +710,25 @@ const Test = () => {
           </div>
         </section>
       </main>
+      <Footer
+        footerBottomText={
+          <Caption variant={"md"}>
+            Made With Love By Atomos Tech All Right Reserved
+          </Caption>
+        }
+      >
+        <FooterContent>
+          <FooterHeader>
+            <div className="w-[124px] h-[54px] bg-brand-300"></div>
+            <Paragraph variant={"b3"}>
+              Atomos Technologies, backed by Mirats, delivers innovative digital
+              services, IT solutions, and business consulting
+            </Paragraph>
+            <FooterIcons icons={iconsArray} />
+          </FooterHeader>
+          <FooterList footerItems={footerItems} />
+        </FooterContent>
+      </Footer>
     </div>
   );
 };
