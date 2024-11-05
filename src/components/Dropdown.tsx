@@ -31,9 +31,9 @@ export const Dropdown: React.FC<DropdownProps> = ({
   }, []);
 
   return (
-    <div style={{ width }} className={`relative w-fit font-karla`} ref={dropdownRef}>
+    <div className={`relative w-full font-karla`} ref={dropdownRef}>
       <div
-        className="inline-flex cursor-pointer items-center justify-center rounded-full bg-white text-gray-800 focus:outline-none"
+        className="cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Open menu"
       >
@@ -41,6 +41,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
       </div>
       {isOpen && (
         <div
+          style={{ width }}
           className={`border border-gray-200 dark:bg-gray-800 dark:border-gray-600 dark:text-white rounded-t-radius-md absolute left-0 mt-1 z-[100000] w-full bg-white shadow-sm`}
         >
           {children}
@@ -90,13 +91,13 @@ export const MenuSubItem: React.FC<MenuSubItemProps> = ({
     <div className="relative">
       <section
         onClick={() => setIsSubOpen(!isSubOpen)}
-        className="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 border-t border-gray-200 p-4 flex justify-between items-center gap-1 w-full text-left"
+        className="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 border-t border-b border-gray-200 p-4 flex justify-between items-center gap-1 w-full text-left"
       >
-        <button className="">{label}</button>
+        <span className="">{label}</span>
         {isSubOpen ? <HiChevronUp /> : <HiChevronDown />}
       </section>
       {isSubOpen && (
-        <div className="bg-gray-100 rounded-b-radius-md border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+        <div className="bg-gray-100 border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
           {children}
         </div>
       )}

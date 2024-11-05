@@ -23,17 +23,22 @@ import Checkbox from "@/components/Checkbox";
 import Input from "@/components/Input";
 import Label from "@/components/Label";
 import { useTheme } from "@/context/ThemeContext";
-import React from "react";
+import React, { useState } from "react";
 import { RiAddCircleLine } from "react-icons/ri";
 import { Dropdown, MenuItem, MenuSubItem } from "@/components/Dropdown";
 import Link from "next/link";
+import Image from "next/image";
+import ListItem from "@/components/ListItem";
+import { HiMiniBars3BottomRight, HiXMark } from "react-icons/hi2";
 
 const Test = () => {
-  const { theme, switchDark, switchLight } = useTheme();
+  const { switchDark, switchLight } = useTheme();
+
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <div className="p-4 bg-light dark:bg-dark min-h-screen">
-      <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full z-[1000000]">
+    <div className="bg-light dark:bg-dark min-h-screen">
+      {/* <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full z-[1000000]">
         <Typography variant={"h6"}>Katalyst:</Typography>
         <Paragraph variant={"b2"}>Current theme: {theme}</Paragraph>
         <div className="space-x-2">
@@ -50,7 +55,209 @@ const Test = () => {
             Dark Mode
           </button>
         </div>
-      </header>
+      </header> */}
+
+      {/* navigation */}
+      <div className="mx-[130px] sticky top-4 backdrop-blur-md p-4 transition-colors duration-300 rounded-full z-[1000000] border shadow-sm h-[62px] tablet:h-[56px]">
+        <header className="w-full flex justify-between items-center">
+          <Image
+            src="/ImgPlaceholder.svg"
+            alt="placeholder"
+            width={84}
+            height={29}
+          />
+          <nav className="flex items-center gap-[10px] tablet:hidden tablet:justify-end">
+            <Dropdown
+              triggerIcon={
+                <ListItem
+                  as="button"
+                  title="Products"
+                  // href="/primitives/docs/overview/introduction"
+                />
+              }
+            >
+              <Link
+                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+                target="_blank"
+              >
+                <MenuItem label="Redirect Link" />
+              </Link>
+              <MenuSubItem label="More Tools">
+                <MenuItem
+                  label="Save Page As..."
+                  onClick={() => alert("Save Page As clicked")}
+                />
+                <MenuItem
+                  label="Create Shortcut..."
+                  onClick={() => alert("Create Shortcut clicked")}
+                />
+              </MenuSubItem>
+            </Dropdown>
+            <ListItem
+              as="link"
+              title="Resources"
+              href="/primitives/docs/overview/introduction"
+            />
+            <ListItem
+              as="link"
+              title="Pricing"
+              href="/primitives/docs/overview/introduction"
+            />
+            <ListItem
+              as="link"
+              title="Solutions"
+              href="/primitives/docs/overview/introduction"
+            />
+          </nav>
+          <div className="flex gap-4 items-center">
+            <section className="flex gap-1 items-center">
+              <Chip
+                className="cursor-pointer"
+                size="sm"
+                variant="primary"
+                onClick={switchLight}
+              >
+                Light Mode
+              </Chip>
+              <Chip
+                className="cursor-pointer"
+                variant="glass"
+                size="sm"
+                onClick={switchDark}
+              >
+                Dark Mode
+              </Chip>
+            </section>
+            <span
+              className="hidden tablet:inline-block"
+              onClick={() => setShowMenu((prev) => !prev)}
+            >
+              {!showMenu ? (
+                <HiMiniBars3BottomRight size={24} />
+              ) : (
+                <HiXMark size={24} />
+              )}
+            </span>
+          </div>
+
+          <div
+            className={`fixed z-10 top-[65px] hidden tablet:block right-0 h-full w-full bg-white text-black transition-transform duration-300 transform shadow-sm ${
+              showMenu ? "translate-x-0" : "translate-x-full"
+            }`}
+            // className={`fixed z-10 top-[65px] hidden tablet:block right-0 h-full w-full bg-white text-black transition-transform duration-300 transform shadow-sm`}
+          >
+            <nav className="w-full gap-[10px] hidden tablet:block tablet:justify-end text-dark dark:text-white font-medium">
+              <Dropdown
+                width="400px"
+                triggerIcon={
+                  <section className="p-4 border-b dark:border-gray-600">
+                    <ListItem as="button" title="Products" className="" />
+                  </section>
+                }
+              >
+                <Link
+                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+                  target="_blank"
+                >
+                  <MenuItem label="Redirect Link" />
+                </Link>
+                <MenuSubItem label="More Tools">
+                  <MenuItem
+                    label="Save Page As..."
+                    onClick={() => alert("Save Page As clicked")}
+                  />
+                  <MenuItem
+                    label="Create Shortcut..."
+                    onClick={() => alert("Create Shortcut clicked")}
+                  />
+                </MenuSubItem>
+              </Dropdown>
+              <ListItem
+                as="link"
+                title="Resources"
+                href="/primitives/docs/overview/introduction"
+                className="p-4 border-b dark:border-gray-600"
+              />
+              <ListItem
+                as="link"
+                title="Pricing"
+                href="/primitives/docs/overview/introduction"
+                className="p-4 border-b dark:border-gray-600"
+              />
+              <ListItem
+                as="link"
+                title="Solutions"
+                href="/primitives/docs/overview/introduction"
+                className="p-4 border-b dark:border-gray-600"
+              />
+            </nav>
+          </div>
+        </header>
+      </div>
+
+      <div className="mx-[130px] mt-10 bg-[#FFFFFFD1] p-4 transition-colors duration-300 rounded-full z-[1000000] border shadow-sm h-[62px] tablet:h-[56px]">
+        <header className="w-full flex justify-between items-center">
+          <Image
+            src="/ImgPlaceholder.svg"
+            alt="placeholder"
+            width={84}
+            height={29}
+          />
+          <nav className="flex items-center gap-[10px] tablet:hidden tablet:justify-end">
+          <ListItem
+              as="link"
+              title="Products"
+              href="/primitives/docs/overview/introduction"
+            />
+            <ListItem
+              as="link"
+              title="Resources"
+              href="/primitives/docs/overview/introduction"
+            />
+            <ListItem
+              as="link"
+              title="Pricing"
+              href="/primitives/docs/overview/introduction"
+            />
+            <ListItem
+              as="link"
+              title="Solutions"
+              href="/primitives/docs/overview/introduction"
+            />
+          </nav>
+          <div className="flex gap-4 items-center">
+            <section className="flex gap-1 items-center">
+              <Chip
+                className="cursor-pointer"
+                size="sm"
+                variant="primary"
+                onClick={switchLight}
+              >
+                Light Mode
+              </Chip>
+              <Chip
+                className="cursor-pointer"
+                variant="glass"
+                size="sm"
+                onClick={switchDark}
+              >
+                Dark Mode
+              </Chip>
+            </section>
+            <span
+              className="hidden tablet:inline-block"
+              onClick={() => setShowMenu((prev) => !prev)}
+            >
+              {!showMenu ? (
+                <HiMiniBars3BottomRight size={24} />
+              ) : (
+                <HiXMark size={24} />
+              )}
+            </span>
+          </div>
+        </header>
+      </div>
+
       <div className="flex gap-4 items-center my-4">
         <h1 className="dark:text-gray-25 text-gray-900">Variants - </h1>
         <Chip
@@ -251,64 +458,94 @@ const Test = () => {
       </div>
 
       {/* dropdown */}
-      <div className="py-32 mb-32">
-        <h1 className="dark:text-gray-25 text-gray-900">Dropdown/List Menu</h1>
-        <Dropdown
-          triggerIcon={
-            <Chip endIcon={<LuHeart />} variant="primary" size="md">
-              Open Dropdown
-            </Chip>
-          }
-        >
-          <Link
-            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-            target="_blank"
+      <div className="py-32 mb-32 flex gap-10 items-start">
+        <section>
+          <h1 className="dark:text-gray-25 text-gray-900">
+            Dropdown/List Menu
+          </h1>
+          <Dropdown
+            triggerIcon={
+              <Chip endIcon={<LuHeart />} variant="primary" size="md">
+                Open Dropdown
+              </Chip>
+            }
           >
-            <MenuItem label="Redirect Link" />
-          </Link>
-          <MenuItem label="New Tab" onClick={() => alert("New Tab clicked")} />
-          <MenuItem label="New Private Window" disabled />
-          <MenuItem label="New Private Window" onClick={() => alert("sab chal rha hai")}>
-            <div>
-              <Caption variant="md">User can add anything here</Caption>
-              <Chip size="sm">testing</Chip>
-            </div>
-          </MenuItem>
-          <MenuSubItem label="More Tools">
+            <Link
+              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+              target="_blank"
+            >
+              <MenuItem label="Redirect Link" />
+            </Link>
             <MenuItem
-              label="Save Page As..."
-              onClick={() => alert("Save Page As clicked")}
+              label="New Tab"
+              onClick={() => alert("New Tab clicked")}
             />
+            <MenuItem label="New Private Window" disabled />
             <MenuItem
-              label="Create Shortcut..."
-              onClick={() => alert("Create Shortcut clicked")}
-            />
-          </MenuSubItem>
-          <MenuItem label="Sooraj" />
-          <MenuItem label="Katalyst" />
-          {/* <MenuCheckboxItem
-          label="Show Bookmarks"
-          checked={bookmarksChecked}
-          onCheckedChange={setBookmarksChecked}
-        />
-        <MenuCheckboxItem
-          label="Show Full URLs"
-          checked={urlsChecked}
-          onCheckedChange={setUrlsChecked}
-        /> */}
-          {/* <MenuRadioItem
-          label="Pedro Duarte"
-          value="pedro"
-          selectedValue={person}
-          onSelect={setPerson}
-        />
-        <MenuRadioItem
-          label="Colm Tuite"
-          value="colm"
-          selectedValue={person}
-          onSelect={setPerson}
-        /> */}
-        </Dropdown>
+              label="New Private Window"
+              onClick={() => alert("sab chal rha hai")}
+            >
+              <div>
+                <Caption variant="md">User can add anything here</Caption>
+                <Chip size="sm">testing</Chip>
+              </div>
+            </MenuItem>
+            <MenuSubItem label="More Tools">
+              <MenuItem
+                label="Save Page As..."
+                onClick={() => alert("Save Page As clicked")}
+              />
+              <MenuItem
+                label="Create Shortcut..."
+                onClick={() => alert("Create Shortcut clicked")}
+              />
+            </MenuSubItem>
+            <MenuItem label="Sooraj" />
+            <MenuItem label="Katalyst" />
+          </Dropdown>
+        </section>
+
+        <section>
+          <h1 className="dark:text-gray-25 text-gray-900">
+            Dropdown/List Menu
+          </h1>
+          <Dropdown
+            triggerIcon={
+              <Chip endIcon={<LuHeart />} variant="primary" size="md">
+                Open Dropdown
+              </Chip>
+            }
+          >
+            <Link
+              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+              target="_blank"
+            >
+              <MenuItem label="Redirect Link" />
+            </Link>
+            <MenuItem
+              label="New Private Window"
+              onClick={() => alert("sab chal rha hai")}
+            >
+              <div>
+                <Caption variant="md">User can add anything here</Caption>
+                <Chip size="sm">testing</Chip>
+              </div>
+            </MenuItem>
+            <MenuSubItem label="More Tools">
+              <MenuItem label="Sooraj">
+                <div>
+                  <Caption variant="md">User can add anything here</Caption>
+                  <Chip size="sm">testing</Chip>
+                </div>
+              </MenuItem>
+              <MenuItem
+                label="Create Shortcut..."
+                onClick={() => alert("Create Shortcut clicked")}
+              />
+            </MenuSubItem>
+            <MenuItem label="Katalyst" />
+          </Dropdown>
+        </section>
       </div>
       <main className="space-y-5">
         <section className="space-y-3">
