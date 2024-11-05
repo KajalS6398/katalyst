@@ -25,7 +25,13 @@ import Label from "@/components/Label";
 import Toggle from "@/components/Toggle";
 import { useTheme } from "@/context/ThemeContext";
 import React, { useState } from "react";
-import { RiAddCircleLine, RiCheckLine, RiCloseLine } from "react-icons/ri";
+import {
+  RiAddCircleLine,
+  RiAddLine,
+  RiCheckLine,
+  RiCloseLine,
+} from "react-icons/ri";
+import Button from "@/components/Button";
 
 const Test = () => {
   const { theme, switchDark, switchLight } = useTheme();
@@ -175,14 +181,14 @@ const Test = () => {
         <section className="space-y-5">
           <Typography variant="h6">Toggle</Typography>
           <div className="flex items-center gap-2">
-            <Toggle id="check1" size="sm" />
-            <Label size={"md"} htmlFor="check1">
+            <Toggle id="smallToggle" size="sm" />
+            <Label size={"md"} htmlFor="smallToggle">
               Small Toggle
             </Label>
           </div>
           <div className="flex items-center gap-2">
-            <Toggle id="check2" size="lg" />
-            <Label size={"md"} htmlFor="check2">
+            <Toggle id="largeToggle" size="lg" />
+            <Label size={"md"} htmlFor="largeToggle">
               Large Toggle
             </Label>
           </div>
@@ -419,6 +425,230 @@ const Test = () => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+        </section>
+        <section className="space-y-3">
+          <Typography variant="h6">Buttons</Typography>
+          <div className="flex items-center gap-3">
+            <Paragraph variant="b2">Primary:</Paragraph>
+            <Button
+              size={"sm"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"md"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"lg"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+          </div>
+          <div className="flex items-center gap-3">
+            <Paragraph variant="b2">Primary Light:</Paragraph>
+            <Button
+              size={"sm"}
+              variant={"primary-light"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"md"}
+              variant={"primary-light"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"lg"}
+              variant={"primary-light"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+          </div>
+          <div className="flex items-center gap-3">
+            <Paragraph variant="b2">Secondary:</Paragraph>
+            <Button
+              size={"sm"}
+              variant={"secondary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"md"}
+              variant={"secondary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"lg"}
+              variant={"secondary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+          </div>
+          <div className="flex items-center gap-3">
+            <Paragraph variant="b2">Tertiary:</Paragraph>
+            <Button
+              size={"sm"}
+              variant={"tertiary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"md"}
+              variant={"tertiary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"lg"}
+              variant={"tertiary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+          </div>
+          <div className="flex items-center gap-3 div-glass2 px-4">
+            <Paragraph variant="b2" className="text-light">
+              Quaternary:
+            </Paragraph>
+            <Button
+              size={"sm"}
+              variant={"quaternary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"md"}
+              variant={"quaternary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"lg"}
+              variant={"quaternary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+          </div>
+          <div className="flex items-center gap-3">
+            <Paragraph variant="b2">Disabled:</Paragraph>
+            <Button
+              size={"sm"}
+              disabled
+              variant={"primary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"sm"}
+              disabled
+              variant={"primary-light"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"sm"}
+              disabled
+              variant={"quaternary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"sm"}
+              disabled
+              variant={"secondary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"sm"}
+              disabled
+              variant={"tertiary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+          </div>
+          <div className="flex items-center gap-3">
+            <Paragraph variant="b2">Rounded:</Paragraph>
+            <Button
+              size={"sm"}
+              rounded
+              variant={"primary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"sm"}
+              rounded
+              variant={"primary-light"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"sm"}
+              rounded
+              variant={"secondary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
+              size={"sm"}
+              rounded
+              variant={"tertiary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+          </div>
         </section>
       </main>
     </div>

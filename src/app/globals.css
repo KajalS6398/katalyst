@@ -32,3 +32,11 @@
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
 }
+.div-glass2 {
+  background-image: url("/assets/image2.png"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 100px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
