@@ -1,3 +1,4 @@
+import { cn } from "@/utils/util";
 import React, { useState } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
@@ -31,7 +32,7 @@ export function Accordion({
   };
 
   return (
-    <div className={`w-[40%] ${className}`}>
+    <div className={`${className}`}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(
@@ -76,12 +77,12 @@ export function AccordionItem({
 
   return (
     <div
-      className={`rounded-radius-lg mb-3 shadow-cardShadow dark:shadow-none border dark:border-gray-900 ${isOpen ? "border border-brand-500 dark:bg-gray-900 dark:border-gray-100" : ""} ${
+      className={`rounded-radius-lg mb-3 shadow-cardShadow dark:shadow-none border dark:border-gray-900 ${isOpen ? "border border-brand-500 shadow-cardShadowActive dark:bg-gray-900 dark:border-gray-100" : ""} ${
         disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
       }`}
     >
       <div
-        className="font-semibold transition-colors p-[32px] duration-200 ease-in-out"
+        className="font-semibold transition-colors p-[32px] mobile:p-4 duration-200 ease-in-out"
         onClick={toggle}
       >
         {children && Array.isArray(children) ? (
@@ -104,7 +105,7 @@ type AccordionTriggerProps = {
 
 export function AccordionTrigger({ isOpen, children }: AccordionTriggerProps) {
   return (
-    <div className="accordion-trigger font-montserrat text-[20px] text-dark dark:text-white flex justify-between items-center font-semibold">
+    <div className="accordion-trigger transition-all delay-150 ease-in font-montserrat text-[20px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-white flex justify-between items-center font-semibold">
       {children}
       <span className="">
         {isOpen ? <FiChevronUp size={20} /> : <FiChevronDown size={20} />}
@@ -120,15 +121,13 @@ type AccordionContentProps = {
 
 export function AccordionContent({ isOpen, children }: AccordionContentProps) {
   return (
-    // <div
-    //   className={`accordion-content font-karla text-[18px] text-dark dark:text-white pt-[32px] transition-all duration-300 delay-75 ease-in-out ${
-    //     !isOpen ? "h-fit" : "h-0"
-    //   }`}
-    // >
-    //   {children}
-    // </div>
     <div
-      className={`accordion-content font-normal font-karla text-[18px] text-dark dark:text-white pt-[32px] overflow-hidden max-h-0 duration-500 transition-all ${!isOpen ? "max-h-40" : "max-h-0"}`}
+      // className={`accordion-content font-normal font-karla text-[18px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-gray-600 pt-[32px] mobile:pt-[10px] overflow-hidden max-h-0 duration-500 transition-all ${!isOpen ? "max-h-fit" : "max-h-0"}`}
+      className={cn(
+        "opacity-0 w-full accordion-content font-normal font-karla text-[18px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-gray-600 pt-[32px] mobile:pt-[10px] overflow-hidden max-h-0 duration-500 transition-all delay-100 ease-in",
+        !isOpen &&
+          "max-h-fit opacity-[1] transition-all ease-in duration-150"
+      )}
     >
       {children}
     </div>

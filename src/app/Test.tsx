@@ -25,6 +25,8 @@ import Label from "@/components/Label";
 import { useTheme } from "@/context/ThemeContext";
 import React from "react";
 import { RiAddCircleLine } from "react-icons/ri";
+import { Dropdown, MenuItem, MenuSubItem } from "@/components/Dropdown";
+import Link from "next/link";
 
 const Test = () => {
   const { theme, switchDark, switchLight } = useTheme();
@@ -49,11 +51,6 @@ const Test = () => {
           </button>
         </div>
       </header>
-
-      {/* <div className="bg-gradient-to-r from-green-400 to-blue-500 p-4">
-        <div className="bg-white p-4">asdfghjk</div>
-      </div> */}
-
       <div className="flex gap-4 items-center my-4">
         <h1 className="dark:text-gray-25 text-gray-900">Variants - </h1>
         <Chip
@@ -71,7 +68,6 @@ const Test = () => {
           Glass
         </Chip>
       </div>
-
       <div className="flex gap-4 items-center my-4">
         <h1 className="dark:text-gray-25 text-gray-900">Sizes - </h1>
         <Chip endIcon={<LuHeart />} variant="primary" size="sm">
@@ -84,7 +80,6 @@ const Test = () => {
           Secondary
         </Chip>
       </div>
-
       <div>
         <h1 className="dark:text-gray-25 text-gray-900">Cards: </h1>
         <div className="my-5">
@@ -157,7 +152,6 @@ const Test = () => {
           </div>
         </ImageCard>
       </div>
-
       <div className="my-5">
         <ImageCard
           cardTitle="Modal Card Title"
@@ -172,7 +166,6 @@ const Test = () => {
           </div>
         </ImageCard>
       </div>
-
       <div className="my-5">
         <section>
           <h1 className="dark:text-gray-25 text-gray-900">Default</h1>
@@ -193,7 +186,6 @@ const Test = () => {
           />
         </section>
       </div>
-
       {/* accordion */}
       <div className="my-5">
         <h1 className="dark:text-gray-25 text-gray-900">Accordion Single</h1>
@@ -203,7 +195,7 @@ const Test = () => {
               What is your favorite template from BRIX Templates?
             </AccordionTrigger>
             <AccordionContent>
-             {` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              {` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
               nisi ut aliquip ex ea commodo consequat.`}
@@ -212,20 +204,21 @@ const Test = () => {
           <AccordionItem value="item-2">
             <AccordionTrigger>Is it styled?</AccordionTrigger>
             <AccordionContent>
-             {` Yes. It comes with default styles that match the other components'
+              {` Yes. It comes with default styles that match the other components'
               aesthetic.`}
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
-            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionTrigger>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat,
+              velit.?
+            </AccordionTrigger>
             <AccordionContent>
-             {` Yes. It's animated by default, but you can disable it if you
-              prefer.`}
+              {` Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam iure aspernatur quibusdam laudantium a sed deleniti fugit ullam quae id.`}
             </AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
-
       <div className="my-5">
         <h1 className="dark:text-gray-25 text-gray-900">Accordion Multiple</h1>
         <Accordion type="multiple" collapsible className="w-full">
@@ -234,7 +227,7 @@ const Test = () => {
               What is your favorite template from BRIX Templates?
             </AccordionTrigger>
             <AccordionContent>
-             {` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              {` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
               nisi ut aliquip ex ea commodo consequat.`}
@@ -243,18 +236,79 @@ const Test = () => {
           <AccordionItem value="item-2" disabled>
             <AccordionTrigger>Is it styled?</AccordionTrigger>
             <AccordionContent>
-             {` Yes. It comes with default styles that match the other components'
+              {` Yes. It comes with default styles that match the other components'
               aesthetic.`}
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
             <AccordionTrigger>Is it animated?</AccordionTrigger>
             <AccordionContent>
-             {` Yes. It's animated by default, but you can disable it if you
+              {` Yes. It's animated by default, but you can disable it if you
               prefer.`}
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+      </div>
+
+      {/* dropdown */}
+      <div className="py-32 mb-32">
+        <h1 className="dark:text-gray-25 text-gray-900">Dropdown/List Menu</h1>
+        <Dropdown
+          triggerIcon={
+            <Chip endIcon={<LuHeart />} variant="primary" size="md">
+              Open Dropdown
+            </Chip>
+          }
+        >
+          <Link
+            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+            target="_blank"
+          >
+            <MenuItem label="Redirect Link" />
+          </Link>
+          <MenuItem label="New Tab" onClick={() => alert("New Tab clicked")} />
+          <MenuItem label="New Private Window" disabled />
+          <MenuItem label="New Private Window" onClick={() => alert("sab chal rha hai")}>
+            <div>
+              <Caption variant="md">User can add anything here</Caption>
+              <Chip size="sm">testing</Chip>
+            </div>
+          </MenuItem>
+          <MenuSubItem label="More Tools">
+            <MenuItem
+              label="Save Page As..."
+              onClick={() => alert("Save Page As clicked")}
+            />
+            <MenuItem
+              label="Create Shortcut..."
+              onClick={() => alert("Create Shortcut clicked")}
+            />
+          </MenuSubItem>
+          <MenuItem label="Sooraj" />
+          <MenuItem label="Katalyst" />
+          {/* <MenuCheckboxItem
+          label="Show Bookmarks"
+          checked={bookmarksChecked}
+          onCheckedChange={setBookmarksChecked}
+        />
+        <MenuCheckboxItem
+          label="Show Full URLs"
+          checked={urlsChecked}
+          onCheckedChange={setUrlsChecked}
+        /> */}
+          {/* <MenuRadioItem
+          label="Pedro Duarte"
+          value="pedro"
+          selectedValue={person}
+          onSelect={setPerson}
+        />
+        <MenuRadioItem
+          label="Colm Tuite"
+          value="colm"
+          selectedValue={person}
+          onSelect={setPerson}
+        /> */}
+        </Dropdown>
       </div>
       <main className="space-y-5">
         <section className="space-y-3">

@@ -23,7 +23,7 @@ const StatsCard = ({
       <CardTitle className="group-hover:text-white text-[48px] font-bold text-brand-500 dark:text-white my-4">
         {statTitle}
       </CardTitle>
-      <CardDescription className="group-hover:text-white text-[24px] leading-[25px] text-black">
+      <CardDescription className="group-hover:text-white text-[24px] leading-[25px] !text-dark dark:!text-white">
         {statDesc}
       </CardDescription>
     </Card>
