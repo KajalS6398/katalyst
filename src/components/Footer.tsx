@@ -7,7 +7,7 @@ import Link from "next/link";
 interface FooterProps {
   children: ReactNode;
   className?: string;
-  footerBottomText?: JSX.Element;
+  footerBottom?: JSX.Element;
 }
 
 interface FooterHeaderProps {
@@ -42,11 +42,7 @@ interface FooterIconsProps {
   icons: FooterIconType[];
 }
 
-export const Footer = ({
-  children,
-  className,
-  footerBottomText,
-}: FooterProps) => {
+export const Footer = ({ children, className, footerBottom }: FooterProps) => {
   return (
     <footer
       className={cn(
@@ -55,9 +51,9 @@ export const Footer = ({
       )}
     >
       {children}
-      {footerBottomText && (
+      {footerBottom && (
         <section className="border-t border-brand-500 dark:border-brand-800 text-center py-spacing-md">
-          {footerBottomText}
+          {footerBottom}
         </section>
       )}
     </footer>
@@ -123,6 +119,7 @@ export const FooterIcons = ({ icons }: FooterIconsProps) => {
         <Link
           href={icon.link}
           key={index}
+          target="_blank"
           className="hover:bg-brand-100 dark:hover:bg-brand-800 p-1 rounded-radius-sm"
         >
           {icon.icon}

@@ -35,6 +35,16 @@ import {
   RiLinkedinLine,
   RiTwitterLine,
 } from "react-icons/ri";
+import {
+  RiAddCircleLine,
+  RiAddLine,
+  RiCheckLine,
+  RiCloseLine,
+  RiFacebookLine,
+  RiInstagramLine,
+  RiLinkedinLine,
+  RiTwitterLine,
+} from "react-icons/ri";
 import Button from "@/components/Button";
 import {
   Footer,
@@ -97,11 +107,19 @@ const iconsArray = [
 
 const Test = () => {
   const { switchDark, switchLight } = useTheme();
+
+  // toggle
   const [isChecked, setIsChecked] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  // slider
+  const [sliderValue, setSliderValue] = useState<number>(50);
+
+  const handleSliderChange = (value: number) => {
+    setSliderValue(value);
+  };
 
   return (
-    <div className="p-4 bg-light dark:bg-dark min-h-screen">
+    <div className="bg-light dark:bg-dark min-h-screen">
       {/* <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full z-[1000000]">
         <Typography variant={"h6"}>Katalyst:</Typography>
         <Paragraph variant={"b2"}>Current theme: {theme}</Paragraph>
@@ -750,6 +768,70 @@ const Test = () => {
             </AccordionItem>
           </Accordion>
         </section>
+        {/* accordion */}
+        <div className="my-5">
+          <h1 className="dark:text-gray-25 text-gray-900">Accordion Single</h1>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>
+                What is your favorite template from BRIX Templates?
+              </AccordionTrigger>
+              <AccordionContent>
+                {` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.`}
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>Is it styled?</AccordionTrigger>
+              <AccordionContent>
+                {` Yes. It comes with default styles that match the other components'
+              aesthetic.`}
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>Is it animated?</AccordionTrigger>
+              <AccordionContent>
+                {` Yes. It's animated by default, but you can disable it if you
+              prefer.`}
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+
+        <div className="my-5">
+          <h1 className="dark:text-gray-25 text-gray-900">
+            Accordion Multiple
+          </h1>
+          <Accordion type="multiple" collapsible className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>
+                What is your favorite template from BRIX Templates?
+              </AccordionTrigger>
+              <AccordionContent>
+                {` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.`}
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2" disabled>
+              <AccordionTrigger>Is it styled?</AccordionTrigger>
+              <AccordionContent>
+                {` Yes. It comes with default styles that match the other components'
+              aesthetic.`}
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>Is it animated?</AccordionTrigger>
+              <AccordionContent>
+                {` Yes. It's animated by default, but you can disable it if you
+              prefer.`}
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
         <section className="space-y-3">
           <Typography variant="h6">Buttons</Typography>
           <div className="flex items-center gap-3">
@@ -974,6 +1056,23 @@ const Test = () => {
             </Button>
           </div>
         </section>
+        <section className="space-y-5">
+          <Typography variant={"h6"}>Slider: </Typography>
+          <Slider
+            value={sliderValue}
+            min={10}
+            max={200}
+            onChange={(e) => handleSliderChange(Number(e.target.value))}
+          />
+          <Slider
+            value={sliderValue}
+            min={10}
+            max={200}
+            size="lg"
+            sliderColor="#8eb6f8"
+            onChange={(e) => handleSliderChange(Number(e.target.value))}
+          />
+        </section>
       </main>
       <div className="my-5">
         <h1 className="dark:text-gray-25 text-gray-900">Accordion Multiple</h1>
@@ -1006,7 +1105,7 @@ const Test = () => {
         </Accordion>
       </div>
       <Footer
-        footerBottomText={
+        footerBottom={
           <Caption variant={"md"}>
             Made With Love By Atomos Tech All Right Reserved
           </Caption>
