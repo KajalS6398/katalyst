@@ -42,7 +42,11 @@ interface FooterIconsProps {
   icons: FooterIconType[];
 }
 
-export const Footer = ({ children, className, footerBottom }: FooterProps) => {
+export default function Footer({
+  children,
+  className,
+  footerBottom,
+}: FooterProps) {
   return (
     <footer
       className={cn(
@@ -58,7 +62,7 @@ export const Footer = ({ children, className, footerBottom }: FooterProps) => {
       )}
     </footer>
   );
-};
+}
 
 export const FooterHeader = ({ children, className }: FooterHeaderProps) => {
   return (
