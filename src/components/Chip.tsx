@@ -85,7 +85,6 @@ const chipVariants = cva("", {
     variant: {
       primary: "bg-white text-brand-500 hover:text-white hover:bg-gradient-to-r hover:from-[#4285F4] hover:to-[#264D8E]",
       secondary: "bg-brand-500 text-white hover:text-white hover:bg-gradient-to-r hover:from-[#4285F4] hover:to-[#285092]",
-      // glass: "bg-transparent text-brand-500 hover:text-white hover:bg-gradient-to-r hover:from-[#B3CEFB] hover:to-[#4285F4]",
       glass: "text-brand-500",
     },
     size: {
