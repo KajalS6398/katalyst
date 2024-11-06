@@ -38,7 +38,7 @@ export const CardBg = ({
   height = 200,
 }: CardBgProps) => (
   <div className={`relative ${className}`}>
-    {src && ( // Only render the image if `src` is provided
+    {src && (
       <Image src={src} alt={alt} width={width} height={height} layout="responsive" />
     )}
     <div className="absolute inset-0">{children}</div>
