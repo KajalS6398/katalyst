@@ -1,12 +1,10 @@
 "use client";
-import {
-  Accordion,
+import Accordion, {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/Accordion";
-import {
-  Card,
+import Card, {
   CardBg,
   CardContent,
   CardDescription,
@@ -39,15 +37,14 @@ import {
   RiTwitterLine,
 } from "react-icons/ri";
 import Button from "@/components/Button";
-import {
-  Footer,
+import Footer, {
   FooterContent,
   FooterHeader,
   FooterIcons,
   FooterList,
 } from "@/components/Footer";
 import Image from "next/image";
-import { Dropdown, MenuItem, MenuSubItem } from "@/components/Dropdown";
+import Dropdown, { MenuItem, MenuSubItem } from "@/components/Dropdown";
 import ListItem from "@/components/ListItem";
 import Link from "next/link";
 import { HiMiniBars3BottomRight, HiXMark } from "react-icons/hi2";

@@ -1,3 +1,4 @@
+import { cn } from "@/utils/util";
 import React, { useState, useRef, useEffect } from "react";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi2";
 
@@ -7,11 +8,11 @@ interface DropdownProps {
   width?: string;
 }
 
-export const Dropdown: React.FC<DropdownProps> = ({
+export default function Dropdown({
   triggerIcon,
   children,
   width = "250px",
-}) => {
+}: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -31,7 +32,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   }, []);
 
   return (
-    <div className={`relative w-full font-karla`} ref={dropdownRef}>
+    <div className={"relative w-full font-karla"} ref={dropdownRef}>
       <div
         className="cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
@@ -42,14 +43,16 @@ export const Dropdown: React.FC<DropdownProps> = ({
       {isOpen && (
         <div
           style={{ width }}
-          className={`border border-gray-200 dark:bg-gray-800 dark:border-gray-600 dark:text-white rounded-t-radius-md absolute left-0 mt-1 z-[100000] w-full bg-white shadow-sm`}
+          className={
+            "border border-gray-200 dark:bg-gray-800 dark:border-gray-600 dark:text-white rounded-t-radius-md absolute left-0 mt-1 z-[100000] w-full bg-white shadow-sm"
+          }
         >
           {children}
         </div>
       )}
     </div>
   );
-};
+}
 
 interface MenuItemProps {
   label: string;
@@ -65,14 +68,15 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   children,
 }) => (
   <button
-    className={`w-full text-left p-4 border-t border-gray-200 last:border-none hover:bg-gray-200 dark:hover:bg-gray-600 ${
-      disabled ? "opacity-50 cursor-not-allowed" : ""
-    }`}
+    className={cn(
+      "w-full text-left p-4 border-t border-gray-200 last:border-none hover:bg-gray-200 dark:hover:bg-gray-600",
+      disabled ? "opacity-50 cursor-not-allowed" : "",
+    )}
     onClick={onClick}
     disabled={disabled}
   >
     {label}
-    {children && <div className="">{children}</div>}
+    {children && <>{children}</>}
   </button>
 );
 
@@ -93,7 +97,7 @@ export const MenuSubItem: React.FC<MenuSubItemProps> = ({
         onClick={() => setIsSubOpen(!isSubOpen)}
         className="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 border-t border-b border-gray-200 p-4 flex justify-between items-center gap-1 w-full text-left"
       >
-        <span className="">{label}</span>
+        <span>{label}</span>
         {isSubOpen ? <HiChevronUp /> : <HiChevronDown />}
       </section>
       {isSubOpen && (

@@ -16,9 +16,9 @@ interface CardBgProps extends CardProps {
   height?: number;
 }
 
-export const Card = ({ children, className }: CardProps) => (
-  <article className={className}>{children}</article>
-);
+export default function Card({ children, className }: CardProps) {
+  return <article className={className}>{children}</article>;
+}
 
 export const CardIcon = ({ children, className }: CardProps) => (
   <span className={className}>{children}</span>
