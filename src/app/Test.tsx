@@ -1,12 +1,10 @@
 "use client";
-import {
-  Accordion,
+import Accordion, {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/Accordion";
-import {
-  Card,
+import Card, {
   CardBg,
   CardContent,
   CardDescription,
@@ -25,27 +23,28 @@ import Label from "@/components/Label";
 import Toggle from "@/components/Toggle";
 import { useTheme } from "@/context/ThemeContext";
 import React, { useState } from "react";
- 
+
 import {
   RiAddCircleLine,
   RiAddLine,
+  RiCheckboxCircleFill,
   RiCheckLine,
   RiCloseLine,
   RiFacebookLine,
+  RiHexagonLine,
   RiInstagramLine,
   RiLinkedinLine,
   RiTwitterLine,
 } from "react-icons/ri";
 import Button from "@/components/Button";
-import {
-  Footer,
+import Footer, {
   FooterContent,
   FooterHeader,
   FooterIcons,
   FooterList,
 } from "@/components/Footer";
 import Image from "next/image";
-import { Dropdown, MenuItem, MenuSubItem } from "@/components/Dropdown";
+import Dropdown, { MenuItem, MenuSubItem } from "@/components/Dropdown";
 import ListItem from "@/components/ListItem";
 import Link from "next/link";
 import { HiMiniBars3BottomRight, HiXMark } from "react-icons/hi2";
@@ -141,14 +140,7 @@ const Test = () => {
             height={29}
           />
           <nav className="flex items-center gap-[10px] tablet:hidden tablet:justify-end">
-            <Dropdown
-              triggerIcon={
-                <ListItem
-                  as="button"
-                  title="Products"
-                />
-              }
-            >
+            <Dropdown triggerIcon={<ListItem as="button" title="Products" />}>
               <Link
                 href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
                 target="_blank"
@@ -267,13 +259,13 @@ const Test = () => {
           </div>
         </section>
       </div>
-
+      {/* 
       <div className="bg-brand-200 test h-[100vh] my-5">one</div>
       <div className="bg-brand-300 test h-[100vh] my-5">two</div>
 
-      
+       */}
       <main className="space-y-5 p-4">
-         <section className="space-y-3">
+        <section className="space-y-3">
           <Typography variant="h6">Typography</Typography>
           <Typography variant="h1">H1 Headline</Typography>
           <Typography variant="h2">H2 Headline</Typography>
@@ -372,95 +364,95 @@ const Test = () => {
           </div>
         </section>
         {/* dropdown */}
-      <div className="py-32 mb-32 flex gap-10 items-start">
-        <section>
-          <h1 className="dark:text-gray-25 text-gray-900">
-            Dropdown/List Menu
-          </h1>
-          <Dropdown
-            triggerIcon={
-              <Chip endIcon={<LuHeart />} variant="primary" size="md">
-                Open Dropdown
-              </Chip>
-            }
-          >
-            <Link
-              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-              target="_blank"
+        <div className="py-32 mb-32 flex gap-10 items-start">
+          <section>
+            <h1 className="dark:text-gray-25 text-gray-900">
+              Dropdown/List Menu
+            </h1>
+            <Dropdown
+              triggerIcon={
+                <Chip endIcon={<LuHeart />} variant="primary" size="md">
+                  Open Dropdown
+                </Chip>
+              }
             >
-              <MenuItem label="Redirect Link" />
-            </Link>
-            <MenuItem
-              label="New Tab"
-              onClick={() => alert("New Tab clicked")}
-            />
-            <MenuItem label="New Private Window" disabled />
-            <MenuItem
-              label="New Private Window"
-              onClick={() => alert("sab chal rha hai")}
-            >
-              <div>
-                <Caption variant="md">User can add anything here</Caption>
-                <Chip size="sm">testing</Chip>
-              </div>
-            </MenuItem>
-            <MenuSubItem label="More Tools">
+              <Link
+                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+                target="_blank"
+              >
+                <MenuItem label="Redirect Link" />
+              </Link>
               <MenuItem
-                label="Save Page As..."
-                onClick={() => alert("Save Page As clicked")}
+                label="New Tab"
+                onClick={() => alert("New Tab clicked")}
               />
+              <MenuItem label="New Private Window" disabled />
               <MenuItem
-                label="Create Shortcut..."
-                onClick={() => alert("Create Shortcut clicked")}
-              />
-            </MenuSubItem>
-            <MenuItem label="Sooraj" />
-            <MenuItem label="Katalyst" />
-          </Dropdown>
-        </section>
-
-        <section>
-          <h1 className="dark:text-gray-25 text-gray-900">
-            Dropdown/List Menu
-          </h1>
-          <Dropdown
-            triggerIcon={
-              <Chip endIcon={<LuHeart />} variant="primary" size="md">
-                Open Dropdown
-              </Chip>
-            }
-          >
-            <Link
-              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-              target="_blank"
-            >
-              <MenuItem label="Redirect Link" />
-            </Link>
-            <MenuItem
-              label="New Private Window"
-              onClick={() => alert("sab chal rha hai")}
-            >
-              <div>
-                <Caption variant="md">User can add anything here</Caption>
-                <Chip size="sm">testing</Chip>
-              </div>
-            </MenuItem>
-            <MenuSubItem label="More Tools">
-              <MenuItem label="Sooraj">
+                label="New Private Window"
+                onClick={() => alert("sab chal rha hai")}
+              >
                 <div>
                   <Caption variant="md">User can add anything here</Caption>
                   <Chip size="sm">testing</Chip>
                 </div>
               </MenuItem>
+              <MenuSubItem label="More Tools">
+                <MenuItem
+                  label="Save Page As..."
+                  onClick={() => alert("Save Page As clicked")}
+                />
+                <MenuItem
+                  label="Create Shortcut..."
+                  onClick={() => alert("Create Shortcut clicked")}
+                />
+              </MenuSubItem>
+              <MenuItem label="Sooraj" />
+              <MenuItem label="Katalyst" />
+            </Dropdown>
+          </section>
+
+          <section>
+            <h1 className="dark:text-gray-25 text-gray-900">
+              Dropdown/List Menu
+            </h1>
+            <Dropdown
+              triggerIcon={
+                <Chip endIcon={<LuHeart />} variant="primary" size="md">
+                  Open Dropdown
+                </Chip>
+              }
+            >
+              <Link
+                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+                target="_blank"
+              >
+                <MenuItem label="Redirect Link" />
+              </Link>
               <MenuItem
-                label="Create Shortcut..."
-                onClick={() => alert("Create Shortcut clicked")}
-              />
-            </MenuSubItem>
-            <MenuItem label="Katalyst" />
-          </Dropdown>
-        </section>
-      </div>
+                label="New Private Window"
+                onClick={() => alert("sab chal rha hai")}
+              >
+                <div>
+                  <Caption variant="md">User can add anything here</Caption>
+                  <Chip size="sm">testing</Chip>
+                </div>
+              </MenuItem>
+              <MenuSubItem label="More Tools">
+                <MenuItem label="Sooraj">
+                  <div>
+                    <Caption variant="md">User can add anything here</Caption>
+                    <Chip size="sm">testing</Chip>
+                  </div>
+                </MenuItem>
+                <MenuItem
+                  label="Create Shortcut..."
+                  onClick={() => alert("Create Shortcut clicked")}
+                />
+              </MenuSubItem>
+              <MenuItem label="Katalyst" />
+            </Dropdown>
+          </section>
+        </div>
         <section className="space-y-5">
           <Typography variant="h6">Checkbox</Typography>
           <div className="flex items-center gap-2">
@@ -562,6 +554,255 @@ const Test = () => {
           <Chip variant="primary" size="lg">
             Secondary
           </Chip>
+        </section>
+        <section className="space-y-4">
+          <Typography variant={"h6"}>Pricing Cards</Typography>
+          <div className="flex flex-wrap items-center gap-spacing-lg">
+            <Card className="w-full p-spacing-md md:p-spacing-lg max-w-[333px] space-y-spacing-md bg-light border-2 border-brand-200 rounded-radius-xl">
+              <CardHeader className="space-y-3.5">
+                <div className="flex items-center gap-spacing-md">
+                  <p className="bg-brand-400 p-3 rounded-radius-lg">
+                    <RiHexagonLine size={60} className="text-light" />
+                  </p>
+                  <div>
+                    <CardTitle className="text-xl font-semibold dark:text-dark">
+                      Label
+                    </CardTitle>
+                    <CardDescription className="text-xl text-gray-800 dark:text-gray-800">
+                      Caption for label
+                    </CardDescription>
+                  </div>
+                </div>
+                <Paragraph
+                  variant={"b3"}
+                  className="text-gray-600 dark:text-gray-600"
+                >
+                  Lorem ipsum dolor sit amet doloroli sitiol conse ctetur
+                  adipiscing elit.{" "}
+                </Paragraph>
+              </CardHeader>
+              <CardContent className="space-y-spacing-md">
+                <div className="flex items-end">
+                  <Typography variant={"h3"} className="dark:text-dark">
+                    $399
+                  </Typography>
+                  <Paragraph
+                    variant={"b2"}
+                    className="text-gray-600 dark:text-gray-600 mb-3"
+                  >
+                    /monthly
+                  </Paragraph>
+                </div>
+                <div className="space-y-spacing-sm">
+                  <Typography
+                    variant={"h6"}
+                    className="text-gray-800 dark:text-gray-800"
+                  >
+                    What&apos;s included
+                  </Typography>
+                  <ul className="text-brand-500">
+                    <li className="flex items-start gap-spacing-sm">
+                      <RiCheckboxCircleFill size={24} className="mt-1" />
+                      <Paragraph
+                        variant={"b2"}
+                        className="text-gray-800 dark:text-gray-800"
+                      >
+                        All analytics features
+                      </Paragraph>
+                    </li>
+                    <li className="flex items-start gap-spacing-sm">
+                      <RiCheckboxCircleFill size={24} className="mt-1" />
+                      <Paragraph
+                        variant={"b2"}
+                        className="text-gray-800 dark:text-gray-800"
+                      >
+                        All analytics features
+                      </Paragraph>
+                    </li>
+                    <li className="flex items-start gap-spacing-sm">
+                      <RiCheckboxCircleFill size={24} className="mt-1" />
+                      <Paragraph
+                        variant={"b2"}
+                        className="text-gray-800 dark:text-gray-800"
+                      >
+                        All analytics features
+                      </Paragraph>
+                    </li>
+                    <li className="flex items-start gap-spacing-sm">
+                      <RiCheckboxCircleFill size={24} className="mt-1" />
+                      <Paragraph
+                        variant={"b2"}
+                        className="text-gray-800 dark:text-gray-800"
+                      >
+                        All analytics features
+                      </Paragraph>
+                    </li>
+                  </ul>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button fullWidth size={"md"} endIcon={<RiAddLine />}>
+                  Button
+                </Button>
+              </CardFooter>
+            </Card>
+            <Card className="w-full text-light p-spacing-md md:p-spacing-lg max-w-[333px] space-y-spacing-md border-2 border-brand-200 rounded-radius-xl bg-gradient-to-r from-brand-700 from-[-10.81%] to-brand-900 to-[93.83%]">
+              <CardHeader className="space-y-3.5">
+                <div className="flex items-center gap-spacing-md">
+                  <p className="bg-brand-400 p-3 rounded-radius-lg">
+                    <RiHexagonLine size={60} className="text-light" />
+                  </p>
+                  <div>
+                    <CardTitle className="text-xl font-semibold text-light">
+                      Label
+                    </CardTitle>
+                    <CardDescription className="text-xl text-light">
+                      Caption for label
+                    </CardDescription>
+                  </div>
+                </div>
+                <Paragraph variant={"b3"} className="text-light">
+                  Lorem ipsum dolor sit amet doloroli sitiol conse ctetur
+                  adipiscing elit.{" "}
+                </Paragraph>
+              </CardHeader>
+              <CardContent className="space-y-spacing-md">
+                <div className="flex items-end">
+                  <Typography variant={"h3"} className="text-light">
+                    $399
+                  </Typography>
+                  <Paragraph variant={"b2"} className="text-gray-400 mb-3">
+                    /monthly
+                  </Paragraph>
+                </div>
+                <div className="space-y-spacing-sm">
+                  <Typography variant={"h6"} className="text-light">
+                    What&apos;s included
+                  </Typography>
+                  <ul className="text-brand-500">
+                    <li className="flex items-start gap-spacing-sm">
+                      <RiCheckboxCircleFill size={24} className="mt-1" />
+                      <Paragraph variant={"b2"} className="text-light">
+                        All analytics features
+                      </Paragraph>
+                    </li>
+                    <li className="flex items-start gap-spacing-sm">
+                      <RiCheckboxCircleFill size={24} className="mt-1" />
+                      <Paragraph variant={"b2"} className="text-light">
+                        All analytics features
+                      </Paragraph>
+                    </li>
+                    <li className="flex items-start gap-spacing-sm">
+                      <RiCheckboxCircleFill size={24} className="mt-1" />
+                      <Paragraph variant={"b2"} className="text-light">
+                        All analytics features
+                      </Paragraph>
+                    </li>
+                    <li className="flex items-start gap-spacing-sm">
+                      <RiCheckboxCircleFill size={24} className="mt-1" />
+                      <Paragraph variant={"b2"} className="text-light">
+                        All analytics features
+                      </Paragraph>
+                    </li>
+                  </ul>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button
+                  fullWidth
+                  size={"md"}
+                  variant={"primary-light"}
+                  endIcon={<RiAddLine />}
+                >
+                  Button
+                </Button>
+              </CardFooter>
+            </Card>
+            <Card className="w-full p-spacing-md md:p-spacing-lg max-w-[717px] space-y-spacing-md bg-light border-2 border-brand-200 rounded-radius-xl flex md:flex-row flex-col items-center gap-spacing-md">
+              <CardHeader className="space-y-3.5 pr-spacing-md md:border-r md:border-gray-400 flex-[0.6]">
+                <div className="flex items-center gap-spacing-md">
+                  <p className="bg-brand-400 p-3 rounded-radius-lg">
+                    <RiHexagonLine size={60} className="text-light" />
+                  </p>
+                  <div>
+                    <CardTitle className="text-xl font-semibold dark:text-dark">
+                      Label
+                    </CardTitle>
+                    <CardDescription className="text-xl text-gray-800 dark:text-gray-800">
+                      Caption for label
+                    </CardDescription>
+                  </div>
+                </div>
+                <Paragraph
+                  variant={"b3"}
+                  className="text-gray-600 dark:text-gray-600"
+                >
+                  Lorem ipsum dolor sit amet doloroli sitiol conse ctetur
+                  adipiscing elit.{" "}
+                </Paragraph>
+                <div className="flex items-end">
+                  <Typography variant={"h3"} className="dark:text-dark">
+                    $399
+                  </Typography>
+                  <Paragraph
+                    variant={"b2"}
+                    className="text-gray-600 dark:text-gray-600 mb-3"
+                  >
+                    /monthly
+                  </Paragraph>
+                </div>
+                <Button fullWidth size={"md"} endIcon={<RiAddLine />}>
+                  Button
+                </Button>
+              </CardHeader>
+              <CardContent className="space-y-spacing-sm w-full flex-[0.4]">
+                <Typography
+                  variant={"h6"}
+                  className="text-gray-800 dark:text-gray-800"
+                >
+                  What&apos;s included
+                </Typography>
+                <ul className="text-brand-500 space-y-2.5">
+                  <li className="flex items-start gap-spacing-sm">
+                    <RiCheckboxCircleFill size={24} className="mt-1" />
+                    <Paragraph
+                      variant={"b2"}
+                      className="text-gray-800 dark:text-gray-800"
+                    >
+                      All analytics features
+                    </Paragraph>
+                  </li>
+                  <li className="flex items-start gap-spacing-sm">
+                    <RiCheckboxCircleFill size={24} className="mt-1" />
+                    <Paragraph
+                      variant={"b2"}
+                      className="text-gray-800 dark:text-gray-800"
+                    >
+                      All analytics features
+                    </Paragraph>
+                  </li>
+                  <li className="flex items-start gap-spacing-sm">
+                    <RiCheckboxCircleFill size={24} className="mt-1" />
+                    <Paragraph
+                      variant={"b2"}
+                      className="text-gray-800 dark:text-gray-800"
+                    >
+                      All analytics features
+                    </Paragraph>
+                  </li>
+                  <li className="flex items-start gap-spacing-sm">
+                    <RiCheckboxCircleFill size={24} className="mt-1" />
+                    <Paragraph
+                      variant={"b2"}
+                      className="text-gray-800 dark:text-gray-800"
+                    >
+                      All analytics features
+                    </Paragraph>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
         </section>
         <section>
           <Typography variant={"h6"}>Cards: </Typography>
