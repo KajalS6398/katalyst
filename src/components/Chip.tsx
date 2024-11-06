@@ -14,9 +14,9 @@ const chipVariants = cva("", {
   variants: {
     variant: {
       primary:
-        "bg-white text-brand-500 hover:text-white hover:bg-gradient-to-r hover:from-[#4285F4] hover:to-[#264D8E]",
+        "bg-white text-brand-500 hover:text-white hover:bg-gradient-to-r hover:from-brand-500 hover:to-[#264D8E]",
       secondary:
-        "bg-brand-500 text-white hover:text-white hover:bg-gradient-to-r hover:from-[#4285F4] hover:to-[#285092]",
+        "bg-brand-500 text-white hover:text-white hover:bg-gradient-to-r hover:from-brand-500 hover:to-[#285092]",
       glass: "text-brand-500",
     },
     size: {
@@ -45,10 +45,10 @@ const Chip = ({
       className={cn(
         "rounded-radius-xl bg-gradient-to-r",
         {
-          solid: "from-[#B3CEFB] to-[#4285F4]",
-          primary: "from-[#B3CEFB] to-[#4285F4]",
-          secondary: "from-[#B3CEFB] to-[#4285F4]",
-          glass: "border border-[#4285F4]",
+          solid: "from-brand-200 to-brand-500",
+          primary: "from-brand-200 to-brand-500",
+          secondary: "from-brand-200 to-brand-500",
+          glass: "border border-brand-500",
         }[variant || "primary"],
         "p-[1px]",
       )}
