@@ -22,7 +22,7 @@ import Input from "@/components/Input";
 import Label from "@/components/Label";
 import Toggle from "@/components/Toggle";
 import { useTheme } from "@/context/ThemeContext";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   RiAddCircleLine,
@@ -109,6 +109,17 @@ const Test = () => {
     setSliderValue(value);
   };
 
+  {
+    useEffect(() => {
+      if (showMenu) {
+        document.body.classList.add("overflow-hidden");
+      } else {
+        document.body.classList.remove("overflow-hidden");
+      }
+      return () => document.body.classList.remove("overflow-hidden");
+    }, [showMenu]);
+  }
+
   return (
     <div className="bg-light dark:bg-dark min-h-screen">
       {/* <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full z-[1000000]">
@@ -131,8 +142,9 @@ const Test = () => {
       </header> */}
 
       {/* navigation */}
-      <div className="sticky top-4 backdrop-blur-md transition-colors duration-300 rounded-full z-[1000000] border shadow-sm">
-        <header className="w-full flex justify-between items-center p-4 h-[62px] tablet:h-[56px]">
+      <Typography variant="h6">Top Nav Glass</Typography>
+      <div className="p-4 mx-[30px] rounded-radius-md transition-colors duration-300 flex justify-between items-center sticky top-2 backdrop-blur-md z-[100] h-[62px] tablet:h-[56px]">
+        <header className="w-full flex justify-between items-center">
           <Image
             src="/ImgPlaceholder.svg"
             alt="placeholder"
@@ -194,7 +206,7 @@ const Test = () => {
               </Chip>
             </section>
             <span
-              className="hidden tablet:inline-block"
+              className="hidden tablet:inline-block text-dark dark:text-light"
               onClick={() => setShowMenu((prev) => !prev)}
             >
               {!showMenu ? (
@@ -205,18 +217,23 @@ const Test = () => {
             </span>
           </div>
         </header>
-        <section className="bg-gray-500">
+        <section className={`overflow-hidden`}>
           <div
-            className={`fixed top-[65px] hidden tablet:block right-0 h-full w-full text-black transition-transform duration-300 transform shadow-sm ${
-              showMenu ? "translate-x-0 hidden" : "translate-x-full"
-            }`}
+            className={`h-[100vh] sticky top-[56px] flex flex-col justify-around items-center w-full md:hidden bg-light dark:bg-dark z-40 transition-all duration-300 transform ${
+              showMenu ? "left-[0px]" : "left-[-100vw]"
+            } `}
           >
-            <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium test bg-brand-100 h-[88dvh]">
+            <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium h-[100dvh]">
               <Dropdown
                 width="400px"
                 triggerIcon={
                   <section className="p-4 border-b dark:border-gray-600">
-                    <ListItem as="button" title="Products" className="" />
+                    <ListItem
+                      variant="glass"
+                      as="button"
+                      title="Products"
+                      className=""
+                    />
                   </section>
                 }
               >
@@ -237,33 +254,34 @@ const Test = () => {
                   />
                 </MenuSubItem>
               </Dropdown>
-              <ListItem
-                as="link"
-                title="Resources"
-                href="/primitives/docs/overview/introduction"
-                className="p-4 border-b dark:border-gray-600"
-              />
-              <ListItem
-                as="link"
-                title="Pricing"
-                href="/primitives/docs/overview/introduction"
-                className="p-4 border-b dark:border-gray-600"
-              />
-              <ListItem
-                as="link"
-                title="Solutions"
-                href="/primitives/docs/overview/introduction"
-                className="p-4 border-b dark:border-gray-600"
-              />
+              <section className="px-8 border-b dark:border-gray-600">
+                <ListItem
+                  as="link"
+                  title="Resources"
+                  href="/primitives/docs/overview/introduction"
+                  variant="glass"
+                />
+              </section>
+              <section className="px-8 border-b dark:border-gray-600">
+                <ListItem
+                  as="link"
+                  title="Pricing"
+                  href="/primitives/docs/overview/introduction"
+                  variant="glass"
+                />
+              </section>
+              <section className="px-8 border-b dark:border-gray-600">
+                <ListItem
+                  as="link"
+                  title="Solutions"
+                  href="/primitives/docs/overview/introduction"
+                  variant="glass"
+                />
+              </section>
             </nav>
           </div>
         </section>
       </div>
-      {/* 
-      <div className="bg-brand-200 test h-[100vh] my-5">one</div>
-      <div className="bg-brand-300 test h-[100vh] my-5">two</div>
-
-       */}
       <main className="space-y-5 p-4">
         <section className="space-y-3">
           <Typography variant="h6">Typography</Typography>
