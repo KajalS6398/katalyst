@@ -68,7 +68,8 @@ const config: Config = {
         mobile: { max: "480px" },
       },
       boxShadow: {
-        'cardShadow': '0px 5px 16px 0px #080F340F',
+        "cardShadow": "0px 5px 16px 0px rgba(8, 15, 52, 0.06)",
+        'cardShadowActive': '0px 5px 15px 0px rgba(66, 133, 244, 0.32)',
       }
     },
   },

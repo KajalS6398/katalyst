@@ -25,26 +25,9 @@ import Label from "@/components/Label";
 import Toggle from "@/components/Toggle";
 import { useTheme } from "@/context/ThemeContext";
 import React, { useState } from "react";
-import {
-  RiAddCircleLine,
-  RiAddLine,
-  RiCheckLine,
-  RiCloseLine,
-} from "react-icons/ri";
+import { RiAddCircleLine, RiAddLine, RiCheckLine, RiCloseLine, RiFacebookLine, RiInstagramLine, RiLinkedinLine, RiTwitterLine } from "react-icons/ri";
 import Button from "@/components/Button";
-import {
-  Footer,
-  FooterContent,
-  FooterHeader,
-  FooterIcons,
-  FooterList,
-} from "@/components/Footer";
-import {
-  RiFacebookLine,
-  RiInstagramLine,
-  RiLinkedinLine,
-  RiTwitterLine,
-} from "react-icons/ri";
+import { Footer, FooterContent, FooterHeader, FooterIcons, FooterList } from "@/components/Footer";
 
 const footerItems = [
   {
@@ -92,13 +75,14 @@ const iconsArray = [
   { icon: <RiLinkedinLine />, link: "https://linkedin.com" },
 ];
 
+
 const Test = () => {
   const { theme, switchDark, switchLight } = useTheme();
-
   const [isChecked, setIsChecked] = useState(false);
 
+
   return (
-    <div className="bg-light dark:bg-dark min-h-screen">
+    <div className="p-4 bg-light dark:bg-dark min-h-screen">
       <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full z-[1000000]">
         <Typography variant={"h6"}>Katalyst:</Typography>
         <Paragraph variant={"b2"}>Current theme: {theme}</Paragraph>
@@ -117,7 +101,42 @@ const Test = () => {
           </button>
         </div>
       </header>
-      <main className="space-y-5 p-4">
+
+      {/* <div className="bg-gradient-to-r from-green-400 to-blue-500 p-4">
+        <div className="bg-white p-4">asdfghjk</div>
+      </div> */}
+
+      <div className="flex gap-4 items-center my-4">
+        <h1 className="dark:text-gray-25 text-gray-900">Variants - </h1>
+        <Chip
+          startIcon={<LuAnnoyed />}
+          endIcon={<LuAngry />}
+          variant="primary"
+          size="md"
+        >
+          Primary
+        </Chip>
+        <Chip variant="secondary" size="md">
+          Secondary
+        </Chip>
+        <Chip variant="glass" size="md">
+          Glass
+        </Chip>
+      </div>
+
+      <div className="flex gap-4 items-center my-4">
+        <h1 className="dark:text-gray-25 text-gray-900">Sizes - </h1>
+        <Chip endIcon={<LuHeart />} variant="primary" size="sm">
+          Solid
+        </Chip>
+        <Chip variant="primary" size="md">
+          Primary
+        </Chip>
+        <Chip variant="primary" size="lg">
+          Secondary
+        </Chip>
+      </div>
+      <main className="space-y-5">
         <section className="space-y-3">
           <Typography variant="h6">Typography</Typography>
           <Typography variant="h1">H1 Headline</Typography>
@@ -710,6 +729,68 @@ const Test = () => {
           </div>
         </section>
       </main>
+       {/* accordion */}
+       <div className="my-5">
+        <h1 className="dark:text-gray-25 text-gray-900">Accordion Single</h1>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>
+              What is your favorite template from BRIX Templates?
+            </AccordionTrigger>
+            <AccordionContent>
+             {` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.`}
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Is it styled?</AccordionTrigger>
+            <AccordionContent>
+             {` Yes. It comes with default styles that match the other components'
+              aesthetic.`}
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionContent>
+             {` Yes. It's animated by default, but you can disable it if you
+              prefer.`}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
+
+      <div className="my-5">
+        <h1 className="dark:text-gray-25 text-gray-900">Accordion Multiple</h1>
+        <Accordion type="multiple" collapsible className="w-full">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>
+              What is your favorite template from BRIX Templates?
+            </AccordionTrigger>
+            <AccordionContent>
+             {` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.`}
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2" disabled>
+            <AccordionTrigger>Is it styled?</AccordionTrigger>
+            <AccordionContent>
+             {` Yes. It comes with default styles that match the other components'
+              aesthetic.`}
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionContent>
+             {` Yes. It's animated by default, but you can disable it if you
+              prefer.`}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
       <Footer
         footerBottomText={
           <Caption variant={"md"}>
