@@ -45,6 +45,7 @@ import {
   RiLinkedinLine,
   RiTwitterLine,
 } from "react-icons/ri";
+import Slider from "@/components/Slider";
 
 const footerItems = [
   {
@@ -96,6 +97,11 @@ const Test = () => {
   const { theme, switchDark, switchLight } = useTheme();
 
   const [isChecked, setIsChecked] = useState(false);
+  const [sliderValue, setSliderValue] = useState<number>(50);
+
+  const handleSliderChange = (value: number) => {
+    setSliderValue(value);
+  };
 
   return (
     <div className="bg-light dark:bg-dark min-h-screen">
@@ -709,9 +715,25 @@ const Test = () => {
             </Button>
           </div>
         </section>
+        <section className="space-y-5">
+          <Typography variant={"h6"}>Slider: </Typography>
+          <Slider
+            value={sliderValue}
+            min={10}
+            max={200}
+            onChange={(e) => handleSliderChange(Number(e.target.value))}
+          />
+          <Slider
+            value={sliderValue}
+            min={10}
+            max={200}
+            size="lg"
+            onChange={(e) => handleSliderChange(Number(e.target.value))}
+          />
+        </section>
       </main>
       <Footer
-        footerBottomText={
+        footerBottom={
           <Caption variant={"md"}>
             Made With Love By Atomos Tech All Right Reserved
           </Caption>
