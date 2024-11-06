@@ -25,16 +25,7 @@ import Label from "@/components/Label";
 import Toggle from "@/components/Toggle";
 import { useTheme } from "@/context/ThemeContext";
 import React, { useState } from "react";
-import {
-  RiAddCircleLine,
-  RiAddLine,
-  RiCheckLine,
-  RiCloseLine,
-  RiFacebookLine,
-  RiInstagramLine,
-  RiLinkedinLine,
-  RiTwitterLine,
-} from "react-icons/ri";
+ 
 import {
   RiAddCircleLine,
   RiAddLine,
@@ -58,6 +49,7 @@ import { Dropdown, MenuItem, MenuSubItem } from "@/components/Dropdown";
 import ListItem from "@/components/ListItem";
 import Link from "next/link";
 import { HiMiniBars3BottomRight, HiXMark } from "react-icons/hi2";
+import Slider from "@/components/Slider";
 
 const footerItems = [
   {
@@ -279,128 +271,8 @@ const Test = () => {
       <div className="bg-brand-200 test h-[100vh] my-5">one</div>
       <div className="bg-brand-300 test h-[100vh] my-5">two</div>
 
-      {/* dropdown */}
-      <div className="py-32 mb-32 flex gap-10 items-start">
-        <section>
-          <h1 className="dark:text-gray-25 text-gray-900">
-            Dropdown/List Menu
-          </h1>
-          <Dropdown
-            triggerIcon={
-              <Chip endIcon={<LuHeart />} variant="primary" size="md">
-                Open Dropdown
-              </Chip>
-            }
-          >
-            <Link
-              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-              target="_blank"
-            >
-              <MenuItem label="Redirect Link" />
-            </Link>
-            <MenuItem
-              label="New Tab"
-              onClick={() => alert("New Tab clicked")}
-            />
-            <MenuItem label="New Private Window" disabled />
-            <MenuItem
-              label="New Private Window"
-              onClick={() => alert("sab chal rha hai")}
-            >
-              <div>
-                <Caption variant="md">User can add anything here</Caption>
-                <Chip size="sm">testing</Chip>
-              </div>
-            </MenuItem>
-            <MenuSubItem label="More Tools">
-              <MenuItem
-                label="Save Page As..."
-                onClick={() => alert("Save Page As clicked")}
-              />
-              <MenuItem
-                label="Create Shortcut..."
-                onClick={() => alert("Create Shortcut clicked")}
-              />
-            </MenuSubItem>
-            <MenuItem label="Sooraj" />
-            <MenuItem label="Katalyst" />
-          </Dropdown>
-        </section>
-
-        <section>
-          <h1 className="dark:text-gray-25 text-gray-900">
-            Dropdown/List Menu
-          </h1>
-          <Dropdown
-            triggerIcon={
-              <Chip endIcon={<LuHeart />} variant="primary" size="md">
-                Open Dropdown
-              </Chip>
-            }
-          >
-            <Link
-              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-              target="_blank"
-            >
-              <MenuItem label="Redirect Link" />
-            </Link>
-            <MenuItem
-              label="New Private Window"
-              onClick={() => alert("sab chal rha hai")}
-            >
-              <div>
-                <Caption variant="md">User can add anything here</Caption>
-                <Chip size="sm">testing</Chip>
-              </div>
-            </MenuItem>
-            <MenuSubItem label="More Tools">
-              <MenuItem label="Sooraj">
-                <div>
-                  <Caption variant="md">User can add anything here</Caption>
-                  <Chip size="sm">testing</Chip>
-                </div>
-              </MenuItem>
-              <MenuItem
-                label="Create Shortcut..."
-                onClick={() => alert("Create Shortcut clicked")}
-              />
-            </MenuSubItem>
-            <MenuItem label="Katalyst" />
-          </Dropdown>
-        </section>
-      </div>
-
-      <div className="flex gap-4 items-center my-4">
-        <h1 className="dark:text-gray-25 text-gray-900">Variants - </h1>
-        <Chip
-          startIcon={<LuAnnoyed />}
-          endIcon={<LuAngry />}
-          variant="primary"
-          size="md"
-        >
-          Primary
-        </Chip>
-        <Chip variant="secondary" size="md">
-          Secondary
-        </Chip>
-        <Chip variant="glass" size="md">
-          Glass
-        </Chip>
-      </div>
-
-      <div className="flex gap-4 items-center my-4">
-        <h1 className="dark:text-gray-25 text-gray-900">Sizes - </h1>
-        <Chip endIcon={<LuHeart />} variant="primary" size="sm">
-          Solid
-        </Chip>
-        <Chip variant="primary" size="md">
-          Primary
-        </Chip>
-        <Chip variant="primary" size="lg">
-          Secondary
-        </Chip>
-      </div>
-      <main className="space-y-5">
+      
+      <main className="space-y-5 p-4">
          <section className="space-y-3">
           <Typography variant="h6">Typography</Typography>
           <Typography variant="h1">H1 Headline</Typography>
@@ -499,6 +371,96 @@ const Test = () => {
             />
           </div>
         </section>
+        {/* dropdown */}
+      <div className="py-32 mb-32 flex gap-10 items-start">
+        <section>
+          <h1 className="dark:text-gray-25 text-gray-900">
+            Dropdown/List Menu
+          </h1>
+          <Dropdown
+            triggerIcon={
+              <Chip endIcon={<LuHeart />} variant="primary" size="md">
+                Open Dropdown
+              </Chip>
+            }
+          >
+            <Link
+              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+              target="_blank"
+            >
+              <MenuItem label="Redirect Link" />
+            </Link>
+            <MenuItem
+              label="New Tab"
+              onClick={() => alert("New Tab clicked")}
+            />
+            <MenuItem label="New Private Window" disabled />
+            <MenuItem
+              label="New Private Window"
+              onClick={() => alert("sab chal rha hai")}
+            >
+              <div>
+                <Caption variant="md">User can add anything here</Caption>
+                <Chip size="sm">testing</Chip>
+              </div>
+            </MenuItem>
+            <MenuSubItem label="More Tools">
+              <MenuItem
+                label="Save Page As..."
+                onClick={() => alert("Save Page As clicked")}
+              />
+              <MenuItem
+                label="Create Shortcut..."
+                onClick={() => alert("Create Shortcut clicked")}
+              />
+            </MenuSubItem>
+            <MenuItem label="Sooraj" />
+            <MenuItem label="Katalyst" />
+          </Dropdown>
+        </section>
+
+        <section>
+          <h1 className="dark:text-gray-25 text-gray-900">
+            Dropdown/List Menu
+          </h1>
+          <Dropdown
+            triggerIcon={
+              <Chip endIcon={<LuHeart />} variant="primary" size="md">
+                Open Dropdown
+              </Chip>
+            }
+          >
+            <Link
+              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+              target="_blank"
+            >
+              <MenuItem label="Redirect Link" />
+            </Link>
+            <MenuItem
+              label="New Private Window"
+              onClick={() => alert("sab chal rha hai")}
+            >
+              <div>
+                <Caption variant="md">User can add anything here</Caption>
+                <Chip size="sm">testing</Chip>
+              </div>
+            </MenuItem>
+            <MenuSubItem label="More Tools">
+              <MenuItem label="Sooraj">
+                <div>
+                  <Caption variant="md">User can add anything here</Caption>
+                  <Chip size="sm">testing</Chip>
+                </div>
+              </MenuItem>
+              <MenuItem
+                label="Create Shortcut..."
+                onClick={() => alert("Create Shortcut clicked")}
+              />
+            </MenuSubItem>
+            <MenuItem label="Katalyst" />
+          </Dropdown>
+        </section>
+      </div>
         <section className="space-y-5">
           <Typography variant="h6">Checkbox</Typography>
           <div className="flex items-center gap-2">
@@ -768,70 +730,6 @@ const Test = () => {
             </AccordionItem>
           </Accordion>
         </section>
-        {/* accordion */}
-        <div className="my-5">
-          <h1 className="dark:text-gray-25 text-gray-900">Accordion Single</h1>
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger>
-                What is your favorite template from BRIX Templates?
-              </AccordionTrigger>
-              <AccordionContent>
-                {` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.`}
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger>Is it styled?</AccordionTrigger>
-              <AccordionContent>
-                {` Yes. It comes with default styles that match the other components'
-              aesthetic.`}
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger>Is it animated?</AccordionTrigger>
-              <AccordionContent>
-                {` Yes. It's animated by default, but you can disable it if you
-              prefer.`}
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-
-        <div className="my-5">
-          <h1 className="dark:text-gray-25 text-gray-900">
-            Accordion Multiple
-          </h1>
-          <Accordion type="multiple" collapsible className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger>
-                What is your favorite template from BRIX Templates?
-              </AccordionTrigger>
-              <AccordionContent>
-                {` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.`}
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2" disabled>
-              <AccordionTrigger>Is it styled?</AccordionTrigger>
-              <AccordionContent>
-                {` Yes. It comes with default styles that match the other components'
-              aesthetic.`}
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger>Is it animated?</AccordionTrigger>
-              <AccordionContent>
-                {` Yes. It's animated by default, but you can disable it if you
-              prefer.`}
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
         <section className="space-y-3">
           <Typography variant="h6">Buttons</Typography>
           <div className="flex items-center gap-3">
@@ -1074,36 +972,6 @@ const Test = () => {
           />
         </section>
       </main>
-      <div className="my-5">
-        <h1 className="dark:text-gray-25 text-gray-900">Accordion Multiple</h1>
-        <Accordion type="multiple" collapsible className="w-full">
-          <AccordionItem value="item-1">
-            <AccordionTrigger>
-              What is your favorite template from BRIX Templates?
-            </AccordionTrigger>
-            <AccordionContent>
-              {` Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.`}
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-2" disabled>
-            <AccordionTrigger>Is it styled?</AccordionTrigger>
-            <AccordionContent>
-              {` Yes. It comes with default styles that match the other components'
-              aesthetic.`}
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-3">
-            <AccordionTrigger>Is it animated?</AccordionTrigger>
-            <AccordionContent>
-              {` Yes. It's animated by default, but you can disable it if you
-              prefer.`}
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      </div>
       <Footer
         footerBottom={
           <Caption variant={"md"}>
