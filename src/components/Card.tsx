@@ -21,11 +21,11 @@ export const Card = ({ children, className }: CardProps) => (
 );
 
 export const CardIcon = ({ children, className }: CardProps) => (
-  <span className={`${className}`}>{children}</span>
+  <span className={className}>{children}</span>
 );
 
 export const CardHeader = ({ children, className }: CardProps) => (
-  <div className={`${className}`}>{children}</div>
+  <div className={className}>{children}</div>
 );
 
 export const CardBg = ({
@@ -36,7 +36,7 @@ export const CardBg = ({
   width = 300,
   height = 200,
 }: CardBgProps) => (
-  <div className={`relative ${className}`}>
+  <div className={cn("relative", className)}>
     {src && (
       <Image
         src={src}
@@ -63,9 +63,9 @@ export const CardDescription = ({ children, className }: CardProps) => (
 );
 
 export const CardContent = ({ children, className }: CardProps) => (
-  <div className={`font-karla text-white ${className}`}>{children}</div>
+  <div className={cn("font-karla text-white", className)}>{children}</div>
 );
 
 export const CardFooter = ({ children, className }: CardProps) => (
-  <div className={`font-karla text-white ${className}`}>{children}</div>
+  <div className={cn("font-karla text-white", className)}>{children}</div>
 );
