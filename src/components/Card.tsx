@@ -1,5 +1,8 @@
 import Image from 'next/image';
 import type { ReactNode } from 'react';
+import Typography from './Typography';
+import Paragraph from './Paragraph';
+import { cn } from '@/utils/util';
 
 interface CardProps {
   children?: ReactNode;
@@ -38,7 +41,7 @@ export const CardBg = ({
   height = 200,
 }: CardBgProps) => (
   <div className={`relative ${className}`}>
-    {src && ( // Only render the image if `src` is provided
+    {src && (
       <Image src={src} alt={alt} width={width} height={height} layout="responsive" />
     )}
     <div className="absolute inset-0">{children}</div>
@@ -46,11 +49,11 @@ export const CardBg = ({
 );
 
 export const CardTitle = ({ children, className }: CardProps) => (
-  <h2 className={`font-montserrat ${className}`}>{children}</h2>
+  <Typography variant="h4" className={className}>{children}</Typography>
 );
 
 export const CardDescription = ({ children, className }: CardProps) => (
-  <p className={`font-karla leading-[38px] text-white ${className}`}>{children}</p>
+  <Paragraph variant="b1" className={cn("text-light", className)}>{children}</Paragraph>
 );
 
 export const CardContent = ({ children, className }: CardProps) => (
