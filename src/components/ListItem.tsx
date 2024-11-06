@@ -1,6 +1,7 @@
 // import { cn } from "@/utils/util";
 // import Link from "next/link";
 // import React from "react";
+// import Typography from "./Typography";
 
 // interface BaseProps {
 //   className?: string;
@@ -23,41 +24,45 @@
 
 // type ListItemProps = LinkProps | ButtonProps;
 
-// const ListItem = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, ListItemProps>(
-//   ({ className, children, title, href, onClick, as = "link" }, ref) => {
-//     if (as === "button") {
-//       return (
-//         <button
-//           className={cn(
-//             "block select-none font-karla rounded-md leading-none no-underline outline-none transition-colors hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-violet7",
-//             className
-//           )}
-//           onClick={onClick}
-//           ref={ref as React.Ref<HTMLButtonElement>}
-//         >
-//           <div className="font-karla">{title}</div>
-//           {/* {children && <p className="leading-[1.4] text-mauve11">{children}</p>} */}
-//         </button>
-//       );
-//     }
-
+// const ListItem = React.forwardRef<
+//   HTMLAnchorElement | HTMLButtonElement,
+//   ListItemProps
+// >(({ className, title, href, onClick, as = "link" }, ref) => {
+//   if (as === "button") {
 //     return (
-//       <Link
-//         href={href!}
-//         passHref
-//         legacyBehavior
+//       <button
 //         className={cn(
-//           "block select-none font-karla rounded-md leading-none no-underline outline-none transition-colors hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-violet7",
-//           className
+//           "px-4 py-[8px] font-karla rounded-radius-lg hover:bg-brand-50 border border-transparent hover:border-brand-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:shadow-inner leading-none no-underline outline-none transition-colors",
+//           className,
 //         )}
-//         ref={ref as React.Ref<HTMLAnchorElement>}
+//         onClick={onClick}
+//         ref={ref as React.Ref<HTMLButtonElement>}
 //       >
-//         <div className="font-karla">{title}</div>
+//         <Typography variant="h6" className="font-karla">
+//           {title}
+//         </Typography>
 //         {/* {children && <p className="leading-[1.4] text-mauve11">{children}</p>} */}
-//       </Link>
+//       </button>
 //     );
 //   }
-// );
+
+//   return (
+//     <Link
+//       href={href!}
+//       passHref
+//       className={cn(
+//         "px-4 py-[8px] font-karla rounded-radius-lg hover:bg-brand-400 hover:border hover:border-brand-200 leading-none no-underline outline-none transition-colors",
+//         className,
+//       )}
+//       ref={ref as React.Ref<HTMLAnchorElement>}
+//     >
+//       <Typography variant="h6" className="font-karla">
+//         {title}
+//       </Typography>
+//       {/* {children && <p className="leading-[1.4] text-mauve11">{children}</p>} */}
+//     </Link>
+//   );
+// });
 
 // ListItem.displayName = "ListItem";
 
@@ -67,6 +72,7 @@ import { cn } from "@/utils/util";
 import Link from "next/link";
 import React from "react";
 import Typography from "./Typography";
+import { usePathname } from "next/navigation";
 
 interface BaseProps {
   className?: string;
@@ -93,12 +99,15 @@ const ListItem = React.forwardRef<
   HTMLAnchorElement | HTMLButtonElement,
   ListItemProps
 >(({ className, title, href, onClick, as = "link" }, ref) => {
+  const pathname = usePathname();
+  const isActive = as === "link" && href === pathname;
+
   if (as === "button") {
     return (
       <button
         className={cn(
           "px-4 py-[8px] font-karla rounded-radius-lg hover:bg-brand-50 border border-transparent hover:border-brand-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:shadow-inner leading-none no-underline outline-none transition-colors",
-          className,
+          className
         )}
         onClick={onClick}
         ref={ref as React.Ref<HTMLButtonElement>}
@@ -116,8 +125,9 @@ const ListItem = React.forwardRef<
       href={href!}
       passHref
       className={cn(
-        "px-4 py-[8px] font-karla rounded-radius-lg hover:bg-brand-400 hover:border hover:border-brand-200 leading-none no-underline outline-none transition-colors",
-        className,
+       "px-4 py-[8px] font-karla rounded-radius-lg hover:bg-brand-50 border border-transparent hover:border-brand-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:shadow-inner leading-none no-underline outline-none transition-colors",
+        isActive ? "bg-brand-400 text-white border border-brand-200" : "",
+        className
       )}
       ref={ref as React.Ref<HTMLAnchorElement>}
     >

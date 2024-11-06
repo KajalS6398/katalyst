@@ -24,8 +24,8 @@ import Input from "@/components/Input";
 import Label from "@/components/Label";
 import Toggle from "@/components/Toggle";
 import { useTheme } from "@/context/ThemeContext";
-import React, { useState } from "react";
- 
+import React, { useEffect, useState } from "react";
+
 import {
   RiAddCircleLine,
   RiAddLine,
@@ -110,6 +110,17 @@ const Test = () => {
     setSliderValue(value);
   };
 
+  {
+    useEffect(() => {
+      if (showMenu) {
+        document.body.classList.add("overflow-hidden");
+      } else {
+        document.body.classList.remove("overflow-hidden");
+      }
+      return () => document.body.classList.remove("overflow-hidden");
+    }, [showMenu]);
+  }
+
   return (
     <div className="bg-light dark:bg-dark min-h-screen">
       {/* <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full z-[1000000]">
@@ -141,14 +152,7 @@ const Test = () => {
             height={29}
           />
           <nav className="flex items-center gap-[10px] tablet:hidden tablet:justify-end">
-            <Dropdown
-              triggerIcon={
-                <ListItem
-                  as="button"
-                  title="Products"
-                />
-              }
-            >
+            <Dropdown triggerIcon={<ListItem as="button" title="Products" />}>
               <Link
                 href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
                 target="_blank"
@@ -213,67 +217,66 @@ const Test = () => {
             </span>
           </div>
         </header>
-        <section className="bg-gray-500">
-          <div
-            className={`fixed top-[65px] hidden tablet:block right-0 h-full w-full text-black transition-transform duration-300 transform shadow-sm ${
-              showMenu ? "translate-x-0 hidden" : "translate-x-full"
-            }`}
-          >
-            <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium test bg-brand-100 h-[88dvh]">
-              <Dropdown
-                width="400px"
-                triggerIcon={
-                  <section className="p-4 border-b dark:border-gray-600">
-                    <ListItem as="button" title="Products" className="" />
-                  </section>
-                }
-              >
-                <Link
-                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-                  target="_blank"
+          <section className={`overflow-hidden`}>
+            {/* Slide-In Menu */}
+            <div
+              className={`h-[100vh] fixed top-[60px] flex flex-col justify-around items-center w-full md:hidden bg-white dark:bg-slate-800 z-40 transition-all duration-300 transform shadow-sm ${
+                showMenu ? "left-[0px]" : "left-[-100vw]"
+              } `}
+            >
+              <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium h-[100dvh]">
+                <Dropdown
+                  width="400px"
+                  triggerIcon={
+                    <section className="p-4 border-b dark:border-gray-600">
+                      <ListItem as="button" title="Products" className="" />
+                    </section>
+                  }
                 >
-                  <MenuItem label="Redirect Link" />
-                </Link>
-                <MenuSubItem label="More Tools">
-                  <MenuItem
-                    label="Save Page As..."
-                    onClick={() => alert("Save Page As clicked")}
+                  <Link
+                    href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+                    target="_blank"
+                  >
+                    <MenuItem label="Redirect Link" />
+                  </Link>
+                  <MenuSubItem label="More Tools">
+                    <MenuItem
+                      label="Save Page As..."
+                      onClick={() => alert("Save Page As clicked")}
+                    />
+                    <MenuItem
+                      label="Create Shortcut..."
+                      onClick={() => alert("Create Shortcut clicked")}
+                    />
+                  </MenuSubItem>
+                </Dropdown>
+                <section className="px-8 border-b dark:border-gray-600">
+                  <ListItem
+                    as="link"
+                    title="Resources"
+                    href="/primitives/docs/overview/introduction"
                   />
-                  <MenuItem
-                    label="Create Shortcut..."
-                    onClick={() => alert("Create Shortcut clicked")}
-                  />
-                </MenuSubItem>
-              </Dropdown>
-              <ListItem
-                as="link"
-                title="Resources"
-                href="/primitives/docs/overview/introduction"
-                className="p-4 border-b dark:border-gray-600"
-              />
-              <ListItem
-                as="link"
-                title="Pricing"
-                href="/primitives/docs/overview/introduction"
-                className="p-4 border-b dark:border-gray-600"
-              />
-              <ListItem
-                as="link"
-                title="Solutions"
-                href="/primitives/docs/overview/introduction"
-                className="p-4 border-b dark:border-gray-600"
-              />
-            </nav>
-          </div>
-        </section>
+                </section>
+                <section className="px-8 border-b dark:border-gray-600">
+                <ListItem
+                  as="link"
+                  title="Pricing"
+                  href="/primitives/docs/overview/introduction"
+                />
+                </section>
+                <section className="px-8 border-b dark:border-gray-600">
+                <ListItem
+                  as="link"
+                  title="Solutions"
+                  href="/primitives/docs/overview/introduction"
+                />
+                </section>
+              </nav>
+            </div>
+          </section>
       </div>
-
-      <div className="bg-brand-200 test h-[100vh] my-5">one</div>
-      <div className="bg-brand-300 test h-[100vh] my-5">two</div>
-
-      
       <main className="space-y-5 p-4">
-         <section className="space-y-3">
+        <section className="space-y-3">
           <Typography variant="h6">Typography</Typography>
           <Typography variant="h1">H1 Headline</Typography>
           <Typography variant="h2">H2 Headline</Typography>
@@ -372,95 +375,95 @@ const Test = () => {
           </div>
         </section>
         {/* dropdown */}
-      <div className="py-32 mb-32 flex gap-10 items-start">
-        <section>
-          <h1 className="dark:text-gray-25 text-gray-900">
-            Dropdown/List Menu
-          </h1>
-          <Dropdown
-            triggerIcon={
-              <Chip endIcon={<LuHeart />} variant="primary" size="md">
-                Open Dropdown
-              </Chip>
-            }
-          >
-            <Link
-              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-              target="_blank"
+        <div className="py-32 mb-32 flex gap-10 items-start">
+          <section>
+            <h1 className="dark:text-gray-25 text-gray-900">
+              Dropdown/List Menu
+            </h1>
+            <Dropdown
+              triggerIcon={
+                <Chip endIcon={<LuHeart />} variant="primary" size="md">
+                  Open Dropdown
+                </Chip>
+              }
             >
-              <MenuItem label="Redirect Link" />
-            </Link>
-            <MenuItem
-              label="New Tab"
-              onClick={() => alert("New Tab clicked")}
-            />
-            <MenuItem label="New Private Window" disabled />
-            <MenuItem
-              label="New Private Window"
-              onClick={() => alert("sab chal rha hai")}
-            >
-              <div>
-                <Caption variant="md">User can add anything here</Caption>
-                <Chip size="sm">testing</Chip>
-              </div>
-            </MenuItem>
-            <MenuSubItem label="More Tools">
+              <Link
+                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+                target="_blank"
+              >
+                <MenuItem label="Redirect Link" />
+              </Link>
               <MenuItem
-                label="Save Page As..."
-                onClick={() => alert("Save Page As clicked")}
+                label="New Tab"
+                onClick={() => alert("New Tab clicked")}
               />
+              <MenuItem label="New Private Window" disabled />
               <MenuItem
-                label="Create Shortcut..."
-                onClick={() => alert("Create Shortcut clicked")}
-              />
-            </MenuSubItem>
-            <MenuItem label="Sooraj" />
-            <MenuItem label="Katalyst" />
-          </Dropdown>
-        </section>
-
-        <section>
-          <h1 className="dark:text-gray-25 text-gray-900">
-            Dropdown/List Menu
-          </h1>
-          <Dropdown
-            triggerIcon={
-              <Chip endIcon={<LuHeart />} variant="primary" size="md">
-                Open Dropdown
-              </Chip>
-            }
-          >
-            <Link
-              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-              target="_blank"
-            >
-              <MenuItem label="Redirect Link" />
-            </Link>
-            <MenuItem
-              label="New Private Window"
-              onClick={() => alert("sab chal rha hai")}
-            >
-              <div>
-                <Caption variant="md">User can add anything here</Caption>
-                <Chip size="sm">testing</Chip>
-              </div>
-            </MenuItem>
-            <MenuSubItem label="More Tools">
-              <MenuItem label="Sooraj">
+                label="New Private Window"
+                onClick={() => alert("sab chal rha hai")}
+              >
                 <div>
                   <Caption variant="md">User can add anything here</Caption>
                   <Chip size="sm">testing</Chip>
                 </div>
               </MenuItem>
+              <MenuSubItem label="More Tools">
+                <MenuItem
+                  label="Save Page As..."
+                  onClick={() => alert("Save Page As clicked")}
+                />
+                <MenuItem
+                  label="Create Shortcut..."
+                  onClick={() => alert("Create Shortcut clicked")}
+                />
+              </MenuSubItem>
+              <MenuItem label="Sooraj" />
+              <MenuItem label="Katalyst" />
+            </Dropdown>
+          </section>
+
+          <section>
+            <h1 className="dark:text-gray-25 text-gray-900">
+              Dropdown/List Menu
+            </h1>
+            <Dropdown
+              triggerIcon={
+                <Chip endIcon={<LuHeart />} variant="primary" size="md">
+                  Open Dropdown
+                </Chip>
+              }
+            >
+              <Link
+                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+                target="_blank"
+              >
+                <MenuItem label="Redirect Link" />
+              </Link>
               <MenuItem
-                label="Create Shortcut..."
-                onClick={() => alert("Create Shortcut clicked")}
-              />
-            </MenuSubItem>
-            <MenuItem label="Katalyst" />
-          </Dropdown>
-        </section>
-      </div>
+                label="New Private Window"
+                onClick={() => alert("sab chal rha hai")}
+              >
+                <div>
+                  <Caption variant="md">User can add anything here</Caption>
+                  <Chip size="sm">testing</Chip>
+                </div>
+              </MenuItem>
+              <MenuSubItem label="More Tools">
+                <MenuItem label="Sooraj">
+                  <div>
+                    <Caption variant="md">User can add anything here</Caption>
+                    <Chip size="sm">testing</Chip>
+                  </div>
+                </MenuItem>
+                <MenuItem
+                  label="Create Shortcut..."
+                  onClick={() => alert("Create Shortcut clicked")}
+                />
+              </MenuSubItem>
+              <MenuItem label="Katalyst" />
+            </Dropdown>
+          </section>
+        </div>
         <section className="space-y-5">
           <Typography variant="h6">Checkbox</Typography>
           <div className="flex items-center gap-2">
