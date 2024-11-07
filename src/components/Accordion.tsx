@@ -1,6 +1,6 @@
 import { cn } from "@/utils/util";
 import React, { useState } from "react";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { FiChevronDown } from "react-icons/fi";
 
 type AccordionProps = {
   type?: "single" | "multiple";
@@ -78,14 +78,15 @@ export function AccordionItem({
   return (
     <div
       className={cn(
-        "rounded-radius-lg mb-3 shadow-cardShadow dark:shadow-none border dark:border-gray-900",
-        isOpen &&
-          "border border-brand-500 shadow-cardShadowActive dark:bg-gray-900 dark:border-gray-100",
-        disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
+        "rounded-lg mb-3 shadow-cardShadow dark:shadow-none border dark:border-gray-900",
+        isOpen
+          ? "border-brand-500 shadow-cardShadowActive dark:bg-gray-900"
+          : "hover:border-gray-500 hover:bg-gray-100 hover:dark:bg-transparent hover:dark:border-gray-600",
+        disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
       )}
     >
       <div
-        className="font-semibold transition-colors p-[32px] mobile:p-4 duration-200 ease-in-out"
+        className="font-semibold p-[32px] mobile:p-4 transition-colors duration-200 ease-in-out"
         onClick={toggle}
       >
         {children && Array.isArray(children) ? (
@@ -108,10 +109,13 @@ type AccordionTriggerProps = {
 
 export function AccordionTrigger({ isOpen, children }: AccordionTriggerProps) {
   return (
-    <div className="accordion-trigger transition-all delay-150 ease-in font-montserrat text-[20px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-white flex justify-between items-center font-semibold">
+    <div className="accordion-trigger flex justify-between items-center font-semibold text-[20px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-white transition-all delay-150 ease-in">
       {children}
-      <span>
-        {isOpen ? <FiChevronUp size={20} /> : <FiChevronDown size={20} />}
+      <span
+        className={`transition-transform duration-300 transform ${isOpen ? "rotate-180" : "rotate-0"
+          }`}
+      >
+        <FiChevronDown size={20} />
       </span>
     </div>
   );
@@ -126,8 +130,8 @@ export function AccordionContent({ isOpen, children }: AccordionContentProps) {
   return (
     <div
       className={cn(
-        "opacity-0 w-full accordion-content font-normal font-karla text-[18px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-gray-600 pt-[32px] mobile:pt-[10px] overflow-hidden max-h-0 duration-500 transition-all delay-100 ease-in",
-        !isOpen && "max-h-fit opacity-[1] transition-all ease-in duration-150",
+        "w-full font-normal font-karla text-[18px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-gray-400 pt-[32px] mobile:pt-[10px] overflow-hidden transition-all duration-500 ease-in",
+        !isOpen ? "max-h-full opacity-100" : "max-h-0 opacity-0"
       )}
     >
       {children}
