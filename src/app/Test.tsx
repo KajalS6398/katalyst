@@ -142,7 +142,7 @@ const Test = () => {
       </header> */}
 
       {/* navigation */}
-      {/* <Typography variant="h6">Top Nav Glass</Typography>
+      <Typography variant="h6">Top Nav Glass</Typography>
       <div className="p-4 mx-[30px] rounded-radius-md transition-colors duration-300 flex justify-between items-center sticky top-2 backdrop-blur-md z-[100] h-[62px] tablet:h-[56px] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
         <header className="w-full flex justify-between items-center">
           <Image
@@ -217,7 +217,7 @@ const Test = () => {
             </span>
           </div>
         </header>
-        <section className="test">
+        <section className="">
           <div
             className={`h-[100vh] sticky top-[56px] flex flex-col justify-around items-center w-full md:hidden bg-light dark:bg-dark z-40 transition-all duration-300 transform ${showMenu ? "left-[0px]" : "left-[-100vw]"
               } `}
@@ -280,11 +280,11 @@ const Test = () => {
             </nav>
           </div>
         </section>
-      </div> */}
+      </div>
 
 
       {/* new */}
-      <Typography variant="h6">Top Nav Glass</Typography>
+      {/* <Typography variant="h6">Top Nav Glass</Typography>
       <div className="mx-[30px] tablet:mx-4 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
         <header className="w-full p-4 flex justify-between items-center h-[62px] tablet:h-[56px]">
           <Image
@@ -351,72 +351,10 @@ const Test = () => {
           </div>
 
         </section>
-        {/* <section className={`overflow-hidden`}>
-          <div
-            className={`h-[100vh] sticky top-[56px] flex flex-col justify-around items-center w-full bg-light dark:bg-dark z-40 transition-all duration-300 transform `}
-          >
-            <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium h-[100dvh]">
-              <Dropdown
-                width="400px"
-                triggerIcon={
-                  <section className="p-4 border-b dark:border-gray-600">
-                    <ListItem
-                      variant="glass"
-                      as="button"
-                      title="Products"
-                      className=""
-                    />
-                  </section>
-                }
-              >
-                <Link
-                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-                  target="_blank"
-                >
-                  <MenuItem label="Redirect Link" />
-                </Link>
-                <MenuSubItem label="More Tools">
-                  <MenuItem
-                    label="Save Page As..."
-                    onClick={() => alert("Save Page As clicked")}
-                  />
-                  <MenuItem
-                    label="Create Shortcut..."
-                    onClick={() => alert("Create Shortcut clicked")}
-                  />
-                </MenuSubItem>
-              </Dropdown>
-              <section className="px-8 border-b dark:border-gray-600">
-                <ListItem
-                  as="link"
-                  title="Resources"
-                  href="/primitives/docs/overview/introduction"
-                  variant="glass"
-                />
-              </section>
-              <section className="px-8 border-b dark:border-gray-600">
-                <ListItem
-                  as="link"
-                  title="Pricing"
-                  href="/primitives/docs/overview/introduction"
-                  variant="glass"
-                />
-              </section>
-              <section className="px-8 border-b dark:border-gray-600">
-                <ListItem
-                  as="link"
-                  title="Solutions"
-                  href="/primitives/docs/overview/introduction"
-                  variant="glass"
-                />
-              </section>
-            </nav>
-          </div>
-        </section> */}
-      </div>
+      </div> */}
 
-      <main className="space-y-5 p-4"> 
-       <section className="space-y-3">
+      <main className="space-y-5 p-4">
+        <section className="space-y-3">
           <Typography variant="h6">Typography</Typography>
           <Typography variant="h1">H1 Headline</Typography>
           <Typography variant="h2">H2 Headline</Typography>
@@ -514,8 +452,8 @@ const Test = () => {
             />
           </div>
         </section>
-      {/* dropdown */}
-      <div className="py-32 mb-32 flex gap-10 items-start">
+        {/* dropdown */}
+        <div className="py-32 mb-32 flex gap-10 items-start">
           <section>
             <h1 className="dark:text-gray-25 text-gray-900">
               Dropdown/List Menu
@@ -1060,9 +998,9 @@ const Test = () => {
               cardIcon={<LuAngry size={40} />}
             />
           </section>
-        </div> 
-      {/* accordion */}
-       <section className="my-5">
+        </div>
+        {/* accordion */}
+        <section className="my-5">
           <Typography variant={"h6"}>Accordion Single</Typography>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
@@ -1363,7 +1301,7 @@ const Test = () => {
           />
         </section>
       </main>
-       <Footer
+      <Footer
         footerBottom={
           <Caption variant={"md"}>
             Made With Love By Atomos Tech All Right Reserved
