@@ -27,7 +27,7 @@ const Slider = forwardRef<HTMLInputElement, SliderProps>(
             size === "sm" ? "h-1.5" : "h-4",
           )}
           style={{
-            background: `linear-gradient(to right, ${sliderColor ?? "#3b82f6"} ${progress}%, #d1d5db ${progress}%)`,
+            background: `linear-gradient(to right, ${sliderColor ?? "#8EB6F8"} ${progress}%, #d1d5db ${progress}%)`,
           }}
         />
         <style jsx>{`
@@ -41,26 +41,28 @@ const Slider = forwardRef<HTMLInputElement, SliderProps>(
             appearance: none;
             width: 36px;
             height: 24px;
-            background-color: ${sliderColor ?? "#3b82f6"};
-            border: none;
+            background-color: ${sliderColor ?? "#4285F4"};
             border-radius: 9999px;
+            outline: 3px solid #B3CEFB
             cursor: pointer;
           }
 
           .slider::-webkit-slider-thumb:hover {
             background-color: #285092;
+            outline: 3px solid #B3CEFB
           }
 
           .slider::-webkit-slider-thumb:active {
             background-color: #356ac3;
+            outline: 3px solid #B3CEFB
             box-shadow: 0px 4px 4.7px 0px #0000002e;
           }
 
           .slider::-moz-range-thumb {
             width: 50px;
+            outline: 3px solid #B3CEFB
             height: 50px;
             background-color: #000;
-            border: none;
             border-radius: 0;
             cursor: pointer;
           }

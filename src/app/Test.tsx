@@ -1208,7 +1208,6 @@ const Test = () => {
             min={10}
             max={200}
             size="lg"
-            sliderColor="#8eb6f8"
             onChange={(e) => handleSliderChange(Number(e.target.value))}
           />
         </section>
