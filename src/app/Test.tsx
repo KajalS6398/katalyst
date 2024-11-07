@@ -121,7 +121,7 @@ const Test = () => {
   }
 
   return (
-    <div className="bg-light dark:bg-dark min-h-screen">
+    <div className="bg-light dark:bg-dark">
       {/* <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full z-[1000000]">
         <Typography variant={"h6"}>Katalyst:</Typography>
         <Paragraph variant={"b2"}>Current theme: {theme}</Paragraph>
@@ -142,8 +142,8 @@ const Test = () => {
       </header> */}
 
       {/* navigation */}
-      <Typography variant="h6">Top Nav Glass</Typography>
-      <div className="p-4 mx-[30px] rounded-radius-md transition-colors duration-300 flex justify-between items-center sticky top-2 backdrop-blur-md z-[100] h-[62px] tablet:h-[56px]">
+      {/* <Typography variant="h6">Top Nav Glass</Typography>
+      <div className="p-4 mx-[30px] rounded-radius-md transition-colors duration-300 flex justify-between items-center sticky top-2 backdrop-blur-md z-[100] h-[62px] tablet:h-[56px] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
         <header className="w-full flex justify-between items-center">
           <Image
             src="/ImgPlaceholder.svg"
@@ -217,11 +217,10 @@ const Test = () => {
             </span>
           </div>
         </header>
-        <section className={`overflow-hidden`}>
+        <section className="test">
           <div
-            className={`h-[100vh] sticky top-[56px] flex flex-col justify-around items-center w-full md:hidden bg-light dark:bg-dark z-40 transition-all duration-300 transform ${
-              showMenu ? "left-[0px]" : "left-[-100vw]"
-            } `}
+            className={`h-[100vh] sticky top-[56px] flex flex-col justify-around items-center w-full md:hidden bg-light dark:bg-dark z-40 transition-all duration-300 transform ${showMenu ? "left-[0px]" : "left-[-100vw]"
+              } `}
           >
             <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium h-[100dvh]">
               <Dropdown
@@ -281,9 +280,143 @@ const Test = () => {
             </nav>
           </div>
         </section>
+      </div> */}
+
+
+      {/* new */}
+      <Typography variant="h6">Top Nav Glass</Typography>
+      <div className="mx-[30px] tablet:mx-4 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
+        <header className="w-full p-4 flex justify-between items-center h-[62px] tablet:h-[56px]">
+          <Image
+            src="/ImgPlaceholder.svg"
+            alt="placeholder"
+            width={84}
+            height={29}
+          />
+          <nav className="flex items-center gap-[10px] tablet:hidden tablet:justify-end">
+            <ListItem
+              as="link"
+              title="Resources"
+              href="/primitives/docs/overview/introduction"
+            />
+            <ListItem
+              as="link"
+              title="Pricing"
+              href="/primitives/docs/overview/introduction"
+            />
+            <ListItem
+              as="link"
+              title="Solutions"
+              href="/primitives/docs/overview/introduction"
+            />
+          </nav>
+          <div className="flex gap-4 items-center">
+            <section className="flex gap-1 items-center">
+              <Chip
+                className="cursor-pointer"
+                size="sm"
+                variant="primary"
+                onClick={switchLight}
+              >
+                Light Mode
+              </Chip>
+              <Chip
+                className="cursor-pointer"
+                variant="glass"
+                size="sm"
+                onClick={switchDark}
+              >
+                Dark Mode
+              </Chip>
+            </section>
+            <span
+              className="hidden tablet:inline-block  text-dark dark:text-light"
+              onClick={() => setShowMenu((prev) => !prev)}
+            >
+              {!showMenu ? (
+                <HiMiniBars3BottomRight size={24} />
+              ) : (
+                <HiXMark size={24} />
+              )}
+            </span>
+          </div>
+        </header>
+        <section className="w-full h-[98dvh]" >
+          <div className={`h-full w-full bg-red-100 dark:bg-dark z-40 transition-all duration-300 transform ${showMenu ? "left-[0px]" : "left-[-100vw]"
+            } `}>
+            <h1>ashgdk</h1>
+            <h2>asdkjhd</h2>
+            <h3>kjdhsakd</h3>
+            <h4>jkdhasd</h4>
+          </div>
+
+        </section>
+        {/* <section className={`overflow-hidden`}>
+          <div
+            className={`h-[100vh] sticky top-[56px] flex flex-col justify-around items-center w-full bg-light dark:bg-dark z-40 transition-all duration-300 transform `}
+          >
+            <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium h-[100dvh]">
+              <Dropdown
+                width="400px"
+                triggerIcon={
+                  <section className="p-4 border-b dark:border-gray-600">
+                    <ListItem
+                      variant="glass"
+                      as="button"
+                      title="Products"
+                      className=""
+                    />
+                  </section>
+                }
+              >
+                <Link
+                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+                  target="_blank"
+                >
+                  <MenuItem label="Redirect Link" />
+                </Link>
+                <MenuSubItem label="More Tools">
+                  <MenuItem
+                    label="Save Page As..."
+                    onClick={() => alert("Save Page As clicked")}
+                  />
+                  <MenuItem
+                    label="Create Shortcut..."
+                    onClick={() => alert("Create Shortcut clicked")}
+                  />
+                </MenuSubItem>
+              </Dropdown>
+              <section className="px-8 border-b dark:border-gray-600">
+                <ListItem
+                  as="link"
+                  title="Resources"
+                  href="/primitives/docs/overview/introduction"
+                  variant="glass"
+                />
+              </section>
+              <section className="px-8 border-b dark:border-gray-600">
+                <ListItem
+                  as="link"
+                  title="Pricing"
+                  href="/primitives/docs/overview/introduction"
+                  variant="glass"
+                />
+              </section>
+              <section className="px-8 border-b dark:border-gray-600">
+                <ListItem
+                  as="link"
+                  title="Solutions"
+                  href="/primitives/docs/overview/introduction"
+                  variant="glass"
+                />
+              </section>
+            </nav>
+          </div>
+        </section> */}
       </div>
-      <main className="space-y-5 p-4">
-        <section className="space-y-3">
+
+      <main className="space-y-5 p-4"> 
+       <section className="space-y-3">
           <Typography variant="h6">Typography</Typography>
           <Typography variant="h1">H1 Headline</Typography>
           <Typography variant="h2">H2 Headline</Typography>
@@ -381,8 +514,8 @@ const Test = () => {
             />
           </div>
         </section>
-        {/* dropdown */}
-        <div className="py-32 mb-32 flex gap-10 items-start">
+      {/* dropdown */}
+      <div className="py-32 mb-32 flex gap-10 items-start">
           <section>
             <h1 className="dark:text-gray-25 text-gray-900">
               Dropdown/List Menu
@@ -927,9 +1060,9 @@ const Test = () => {
               cardIcon={<LuAngry size={40} />}
             />
           </section>
-        </div>
-        {/* accordion */}
-        <section className="my-5">
+        </div> 
+      {/* accordion */}
+       <section className="my-5">
           <Typography variant={"h6"}>Accordion Single</Typography>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
@@ -1230,7 +1363,7 @@ const Test = () => {
           />
         </section>
       </main>
-      <Footer
+       <Footer
         footerBottom={
           <Caption variant={"md"}>
             Made With Love By Atomos Tech All Right Reserved

@@ -130,7 +130,7 @@ export function AccordionContent({ isOpen, children }: AccordionContentProps) {
   return (
     <div
       className={cn(
-        "w-full font-normal font-karla text-[18px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-gray-400 pt-[32px] mobile:pt-[10px] overflow-hidden transition-all duration-500 ease-in",
+        "w-full font-normal font-karla text-[18px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-gray-300 pt-[32px] mobile:pt-[10px] overflow-hidden transition-all duration-500 ease-in",
         !isOpen ? "max-h-full opacity-100" : "max-h-0 opacity-0"
       )}
     >
