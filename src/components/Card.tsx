@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import Typography from "./Typography";
 import Paragraph from "./Paragraph";
 import { cn } from "@/utils/util";

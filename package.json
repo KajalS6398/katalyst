@@ -1,13 +1,39 @@
 {
-  "name": "katalyst",
-  "version": "0.1.0",
-  "private": true,
+  "name": "katalyst-riya-test",
+  "description": "website design system",
+  "version": "0.1.5",
+  "private": false,
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "repository": {
+    "url": "https://github.com/atomostechhq/katalyst"
+  },
+  "keywords": [
+    "website",
+    "design"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./style": {
+      "import": "./dist/index.css",
+      "require": "./dist/index.css"
+    }
+  },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "prepare": "npm run build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rm -rf dist",
+    "build": "tsup"
   },
+  "license": "MIT",
   "dependencies": {
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -15,9 +41,23 @@
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-dom": "19.0.0-rc-69d4b800-20241021",
     "react-icons": "^5.3.0",
-    "tailwind-merge": "^2.5.4"
+    "tailwind-merge": "^2.5.4",
+    "tsup": "^8.0.2"
   },
+  "peerDependencies": {
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "files": [
+    "dist/**/*"
+  ],
   "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@eslint/js": "^9.2.0",
     "@types/node": "^20.17.6",
     "@types/react": "^18",
@@ -28,8 +68,12 @@
     "globals": "^15.2.0",
     "postcss": "^8",
     "prettier": "^3.2.5",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
     "typescript-eslint": "^7.8.0"
-  }
+  },
+  "author": "riyavish13"
 }
