@@ -826,7 +826,7 @@ const Test = () => {
           <Typography variant={"h6"}>Cards: </Typography>
           <div className="my-5">
             <h1>Card Large</h1>
-            <Card className="w-[70%] rounded-radius-lg px-[64px] py-[32px] gradientOne border-2 border-[#0707071F] hover:border-2 hover:border-brand-500">
+            <Card className="w-[70%] rounded-radius-lg px-[64px] py-[32px] gradientOne border-2 border-brand-500 hover:border-2 hover:border-brand-500">
               <CardHeader>
                 <CardTitle className="text-[32px] font-bold leading-[48px] text-white">
                   Modal Card Title
@@ -856,7 +856,7 @@ const Test = () => {
           </div>
           <div className="my-5">
             <h1 className="dark:text-gray-25 text-gray-900">Card Small</h1>
-            <Card className="w-[711px] rounded-radius-lg p-[32px] gradientOne border-2 border-[#0707071F] hover:border-2 hover:border-brand-500">
+            <Card className="w-[711px] rounded-radius-lg p-[32px] gradientOne border-2 border-brand-500 hover:border-2 hover:border-brand-500">
               <CardHeader>
                 <CardTitle className="text-[24px] font-bold leading-[36px] text-white">
                   Modal Card Title
