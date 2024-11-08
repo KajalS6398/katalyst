@@ -57,7 +57,7 @@ const ListItem = React.forwardRef<
         >
           <Typography
             variant="h6"
-            className={cn("font-karla group-hover:dark:text-dark", className)}
+            className={cn("font-karla", className)}
           >
             {title}
           </Typography>
