@@ -7,36 +7,77 @@
 }
 
 .gradientOne {
-  background: linear-gradient(
-    242deg,
-    #070707 5.78%,
-    #4285f4 138.66%,
-    #8eb6f8 271.69%
-  );
+  background: linear-gradient(242deg,
+      #070707 5.78%,
+      #4285f4 138.66%,
+      #8eb6f8 271.69%);
 }
 
 .gradientOne:hover {
+  background: linear-gradient(242deg,
+      #0d1b31 5.78%,
+      #070707 49.65%,
+      #4285f4 271.69%);
+}
+
+.div-glass {
+  /* background-image: url("/assets/image.png"); The image used */
   background: linear-gradient(
     242deg,
     #0d1b31 5.78%,
     #070707 49.65%,
     #4285f4 271.69%
-  );
-}
-
-.div-glass {
-  background-image: url("/assets/image.png"); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
+  ); /* Used if the image is unavailable */
   height: 400px; /* You must set a specified height */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
 }
+
 .div-glass2 {
-  background-image: url("/assets/image2.png"); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
+  /* background-image: url("/assets/image2.png"); The image used */
+  background: linear-gradient(
+    242deg,
+    #0d1b31 5.78%,
+    #070707 49.65%,
+    #4285f4 271.69%
+  ); /* Used if the image is unavailable */
   height: 100px; /* You must set a specified height */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 36px;
+  height: 24px;
+  background-color: #4285f4;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  background-color: #285092;
+}
+
+.slider::-webkit-slider-thumb:active {
+  background-color: #356ac3;
+  outline: 3px solid #b3cefb;
+  box-shadow: 0px 4px 4.7px 0px #0000002e;
+}
+
+.slider::-moz-range-thumb {
+  width: 50px;
+  outline: 3px solid #b3cefb;
+  height: 50px;
+  background-color: #000;
+  border-radius: 0;
+  cursor: pointer;
 }

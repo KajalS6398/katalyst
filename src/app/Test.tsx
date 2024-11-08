@@ -125,7 +125,7 @@ const Test = () => {
   }, [showMenu]);
 
   return (
-    <div className="bg-light dark:bg-dark min-h-screen">
+    <div className="bg-light dark:bg-dark">
       {/* <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full z-[1000000]">
         <Typography variant={"h6"}>Katalyst:</Typography>
         <Paragraph variant={"b2"}>Current theme: {theme}</Paragraph>
@@ -146,7 +146,7 @@ const Test = () => {
       </header> */}
 
       <Typography variant="h6">Top Nav Glass</Typography>
-      <div className="mx-[30px] mobile:mx-0 tablet:mx-0 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
+      <div className="mx-[30px] mobile:mx-0 tablet:mx-0 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
         <header className="w-full p-4 flex justify-between items-center h-[62px] tablet:h-[56px]">
           <Image
             src="/ImgPlaceholder.svg"
@@ -211,6 +211,10 @@ const Test = () => {
             className={`fixed h-[98dvh] z-10 top-[60px] right-0 w-full bg-white text-black dark:bg-dark transition-transform duration-300 transform  ${
               showMenu ? "translate-x-0" : "-translate-x-full"
             }`}
+        <section className="">
+          <div
+            className={`h-[100vh] sticky top-[56px] flex flex-col justify-around items-center w-full md:hidden bg-light dark:bg-dark z-40 transition-all duration-300 transform ${showMenu ? "left-[0px]" : "left-[-100vw]"
+              } `}
           >
           <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium h-full">
             <Dropdown
@@ -270,6 +274,78 @@ const Test = () => {
           </nav>
         </div>
       </div>
+
+
+
+      {/* new */}
+      {/* <Typography variant="h6">Top Nav Glass</Typography>
+      <div className="mx-[30px] tablet:mx-4 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
+        <header className="w-full p-4 flex justify-between items-center h-[62px] tablet:h-[56px]">
+          <Image
+            src="/ImgPlaceholder.svg"
+            alt="placeholder"
+            width={84}
+            height={29}
+          />
+          <nav className="flex items-center gap-[10px] tablet:hidden tablet:justify-end">
+            <ListItem
+              as="link"
+              title="Resources"
+              href="/primitives/docs/overview/introduction"
+            />
+            <ListItem
+              as="link"
+              title="Pricing"
+              href="/primitives/docs/overview/introduction"
+            />
+            <ListItem
+              as="link"
+              title="Solutions"
+              href="/primitives/docs/overview/introduction"
+            />
+          </nav>
+          <div className="flex gap-4 items-center">
+            <section className="flex gap-1 items-center">
+              <Chip
+                className="cursor-pointer"
+                size="sm"
+                variant="primary"
+                onClick={switchLight}
+              >
+                Light Mode
+              </Chip>
+              <Chip
+                className="cursor-pointer"
+                variant="glass"
+                size="sm"
+                onClick={switchDark}
+              >
+                Dark Mode
+              </Chip>
+            </section>
+            <span
+              className="hidden tablet:inline-block  text-dark dark:text-light"
+              onClick={() => setShowMenu((prev) => !prev)}
+            >
+              {!showMenu ? (
+                <HiMiniBars3BottomRight size={24} />
+              ) : (
+                <HiXMark size={24} />
+              )}
+            </span>
+          </div>
+        </header>
+        <section className="w-full h-[98dvh]" >
+          <div className={`h-full w-full bg-red-100 dark:bg-dark z-40 transition-all duration-300 transform ${showMenu ? "left-[0px]" : "left-[-100vw]"
+            } `}>
+            <h1>ashgdk</h1>
+            <h2>asdkjhd</h2>
+            <h3>kjdhsakd</h3>
+            <h4>jkdhasd</h4>
+          </div>
+
+        </section>
+      </div> */}
 
       <main className="space-y-5 p-4"> 
       <section className="space-y-3">
@@ -815,7 +891,7 @@ const Test = () => {
           <Typography variant={"h6"}>Cards: </Typography>
           <div className="my-5">
             <h1>Card Large</h1>
-            <Card className="w-[70%] rounded-radius-lg px-[64px] py-[32px] gradientOne border-2 border-[#0707071F] hover:border-2 hover:border-brand-500">
+            <Card className="w-[70%] rounded-radius-lg px-[64px] py-[32px] gradientOne border-2 border-brand-500 hover:border-2 hover:border-brand-500">
               <CardHeader>
                 <CardTitle className="text-[32px] font-bold leading-[48px] text-white">
                   Modal Card Title
@@ -845,7 +921,7 @@ const Test = () => {
           </div>
           <div className="my-5">
             <h1 className="dark:text-gray-25 text-gray-900">Card Small</h1>
-            <Card className="w-[711px] rounded-radius-lg p-[32px] gradientOne border-2 border-[#0707071F] hover:border-2 hover:border-brand-500">
+            <Card className="w-[711px] rounded-radius-lg p-[32px] gradientOne border-2 border-brand-500 hover:border-2 hover:border-brand-500">
               <CardHeader>
                 <CardTitle className="text-[24px] font-bold leading-[36px] text-white">
                   Modal Card Title
