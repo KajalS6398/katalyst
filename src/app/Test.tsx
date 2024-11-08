@@ -146,7 +146,7 @@ const Test = () => {
       </header> */}
 
       <Typography variant="h6">Top Nav Glass</Typography>
-      <div className="mx-[30px] mobile:mx-0 tablet:mx-0 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
+      <div className="mx-[30px] mobile:mx-0 tablet:mx-0 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
         <header className="w-full p-4 flex justify-between items-center h-[62px] tablet:h-[56px]">
           <Image
             src="/ImgPlaceholder.svg"
@@ -211,10 +211,6 @@ const Test = () => {
             className={`fixed h-[98dvh] z-10 top-[60px] right-0 w-full bg-white text-black dark:bg-dark transition-transform duration-300 transform  ${
               showMenu ? "translate-x-0" : "-translate-x-full"
             }`}
-        <section className="">
-          <div
-            className={`h-[100vh] sticky top-[56px] flex flex-col justify-around items-center w-full md:hidden bg-light dark:bg-dark z-40 transition-all duration-300 transform ${showMenu ? "left-[0px]" : "left-[-100vw]"
-              } `}
           >
           <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium h-full">
             <Dropdown
@@ -272,6 +268,7 @@ const Test = () => {
               />
             </section>
           </nav>
+    
         </div>
       </div>
 
