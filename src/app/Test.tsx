@@ -110,17 +110,17 @@ const Test = () => {
     setSliderValue(value);
   };
 
- useEffect(() => {
+  useEffect(() => {
     // Prevent scrolling on the body when the menu is open
     if (showMenu) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
 
     // Clean up to remove overflow lock when component unmounts
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [showMenu]);
 
@@ -146,7 +146,7 @@ const Test = () => {
       </header> */}
 
       <Typography variant="h6">Top Nav Glass</Typography>
-      <div className="mx-[30px] mobile:mx-0 tablet:mx-0 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
+      <div className="px-[30px] mobile:mx-0 tablet:mx-0 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
         <header className="w-full p-4 flex justify-between items-center h-[62px] tablet:h-[56px]">
           <Image
             src="/ImgPlaceholder.svg"
@@ -155,11 +155,34 @@ const Test = () => {
             height={29}
           />
           <nav className="flex items-center gap-[10px] tablet:hidden tablet:justify-end">
-            <ListItem
-              as="link"
-              title="Products"
-              href="/primitives/docs/overview/introduction"
-            />
+            <Dropdown
+              width="400px"
+              triggerIcon={
+                <ListItem
+                  as="button"
+                  title="Products"
+                  className=""
+                  icon={<RiAddLine size={20} />}
+                />
+              }
+            >
+              <Link
+                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+                target="_blank"
+              >
+                <MenuItem label="Redirect Link" />
+              </Link>
+              <MenuSubItem label="More Tools">
+                <MenuItem
+                  label="Save Page As..."
+                  onClick={() => alert("Save Page As clicked")}
+                />
+                <MenuItem
+                  label="Create Shortcut..."
+                  onClick={() => alert("Create Shortcut clicked")}
+                />
+              </MenuSubItem>
+            </Dropdown>
             <ListItem
               as="link"
               title="Resources"
@@ -208,21 +231,16 @@ const Test = () => {
           </div>
         </header>
         <div
-            className={`fixed h-[98dvh] z-10 top-[60px] right-0 w-full bg-white text-black dark:bg-dark transition-transform duration-300 transform  ${
-              showMenu ? "translate-x-0" : "-translate-x-full"
-            }`}
-          >
+          className={`fixed h-[98dvh] z-10 top-[60px] right-0 w-full bg-white text-black dark:bg-dark transition-transform duration-300 transform  ${
+            showMenu ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
           <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium h-full">
             <Dropdown
               width="400px"
               triggerIcon={
-                <section className="p-4 border-b dark:border-gray-600">
-                  <ListItem
-                    variant="glass"
-                    as="button"
-                    title="Products"
-                    className=""
-                  />
+                <section className="p-4 border-b dark:border-brand-100">
+                  <ListItem as="button" title="Products" className="" />
                 </section>
               }
             >
@@ -243,36 +261,30 @@ const Test = () => {
                 />
               </MenuSubItem>
             </Dropdown>
-            <section className="px-8 border-b dark:border-gray-600">
+            <section className="px-4 py-2 border-b dark:border-gray-600">
               <ListItem
                 as="link"
                 title="Resources"
                 href="/primitives/docs/overview/introduction"
-                variant="glass"
               />
             </section>
-            <section className="px-8 border-b dark:border-gray-600">
+            <section className="px-4 py-2 border-b dark:border-gray-600">
               <ListItem
                 as="link"
                 title="Pricing"
                 href="/primitives/docs/overview/introduction"
-                variant="glass"
               />
             </section>
-            <section className="px-8 border-b dark:border-gray-600">
+            <section className="px-4 py-2 border-b dark:border-gray-600">
               <ListItem
                 as="link"
                 title="Solutions"
                 href="/primitives/docs/overview/introduction"
-                variant="glass"
               />
             </section>
           </nav>
-    
         </div>
       </div>
-
-
 
       {/* new */}
       {/* <Typography variant="h6">Top Nav Glass</Typography>
@@ -344,8 +356,8 @@ const Test = () => {
         </section>
       </div> */}
 
-      <main className="space-y-5 p-4"> 
-      <section className="space-y-3">
+      <main className="space-y-5 p-4">
+        <section className="space-y-3">
           <Typography variant="h6">Typography</Typography>
           <Typography variant="h1">H1 Headline</Typography>
           <Typography variant="h2">H2 Headline</Typography>
@@ -442,9 +454,9 @@ const Test = () => {
               rows={4}
             />
           </div>
-        </section> 
-      {/* dropdown */}
-      <div className="py-32 mb-32 flex gap-10 items-start">
+        </section>
+        {/* dropdown */}
+        <div className="py-32 mb-32 flex gap-10 items-start">
           <section>
             <h1 className="dark:text-gray-25 text-gray-900">
               Dropdown/List Menu
@@ -532,8 +544,8 @@ const Test = () => {
               <MenuItem label="Katalyst" />
             </Dropdown>
           </section>
-        </div> 
-      <section className="space-y-5">
+        </div>
+        <section className="space-y-5">
           <Typography variant="h6">Checkbox</Typography>
           <div className="flex items-center gap-2">
             <Checkbox id="check1" />
@@ -989,9 +1001,9 @@ const Test = () => {
               cardIcon={<LuAngry size={40} />}
             />
           </section>
-        </div> 
-      {/* accordion */}
-       <section className="my-5">
+        </div>
+        {/* accordion */}
+        <section className="my-5">
           <Typography variant={"h6"}>Accordion Single</Typography>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
@@ -1290,7 +1302,7 @@ const Test = () => {
             size="lg"
             onChange={(e) => handleSliderChange(Number(e.target.value))}
           />
-        </section> 
+        </section>
       </main>
       <Footer
         footerBottom={
