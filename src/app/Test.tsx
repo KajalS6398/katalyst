@@ -102,6 +102,7 @@ const Test = () => {
   // toggle
   const [isChecked, setIsChecked] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  console.log("showMenu", showMenu);
   // slider
   const [sliderValue, setSliderValue] = useState<number>(50);
 
@@ -109,19 +110,22 @@ const Test = () => {
     setSliderValue(value);
   };
 
-  {
-    useEffect(() => {
-      if (showMenu) {
-        document.body.classList.add("overflow-hidden");
-      } else {
-        document.body.classList.remove("overflow-hidden");
-      }
-      return () => document.body.classList.remove("overflow-hidden");
-    }, [showMenu]);
-  }
+  useEffect(() => {
+    // Prevent scrolling on the body when the menu is open
+    if (showMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    // Clean up to remove overflow lock when component unmounts
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showMenu]);
 
   return (
-    <div className="bg-light dark:bg-dark min-h-screen">
+    <div className="bg-light dark:bg-dark">
       {/* <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full z-[1000000]">
         <Typography variant={"h6"}>Katalyst:</Typography>
         <Paragraph variant={"b2"}>Current theme: {theme}</Paragraph>
@@ -141,10 +145,9 @@ const Test = () => {
         </div>
       </header> */}
 
-      {/* navigation */}
       <Typography variant="h6">Top Nav Glass</Typography>
-      <div className="p-4 mx-[30px] rounded-radius-md transition-colors duration-300 flex justify-between items-center sticky top-2 backdrop-blur-md z-[100] h-[62px] tablet:h-[56px]">
-        <header className="w-full flex justify-between items-center">
+      <div className="px-[30px] mobile:mx-0 tablet:mx-0 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
+        <header className="w-full p-4 flex justify-between items-center h-[62px] tablet:h-[56px]">
           <Image
             src="/ImgPlaceholder.svg"
             alt="placeholder"
@@ -152,7 +155,17 @@ const Test = () => {
             height={29}
           />
           <nav className="flex items-center gap-[10px] tablet:hidden tablet:justify-end">
-            <Dropdown triggerIcon={<ListItem as="button" title="Products" />}>
+            <Dropdown
+              width="400px"
+              triggerIcon={
+                <ListItem
+                  as="button"
+                  title="Products"
+                  className=""
+                  icon={<RiAddLine size={20} />}
+                />
+              }
+            >
               <Link
                 href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
                 target="_blank"
@@ -206,7 +219,7 @@ const Test = () => {
               </Chip>
             </section>
             <span
-              className="hidden tablet:inline-block text-dark dark:text-light"
+              className="hidden tablet:inline-block  text-dark dark:text-light"
               onClick={() => setShowMenu((prev) => !prev)}
             >
               {!showMenu ? (
@@ -217,71 +230,132 @@ const Test = () => {
             </span>
           </div>
         </header>
-        <section className={`overflow-hidden`}>
-          <div
-            className={`h-[100vh] sticky top-[56px] flex flex-col justify-around items-center w-full md:hidden bg-light dark:bg-dark z-40 transition-all duration-300 transform ${
-              showMenu ? "left-[0px]" : "left-[-100vw]"
-            } `}
-          >
-            <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium h-[100dvh]">
-              <Dropdown
-                width="400px"
-                triggerIcon={
-                  <section className="p-4 border-b dark:border-gray-600">
-                    <ListItem
-                      variant="glass"
-                      as="button"
-                      title="Products"
-                      className=""
-                    />
-                  </section>
-                }
+        <div
+          className={`fixed h-[98dvh] z-10 top-[60px] right-0 w-full bg-white text-black dark:bg-dark transition-transform duration-300 transform  ${
+            showMenu ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium h-full">
+            <Dropdown
+              width="400px"
+              triggerIcon={
+                <section className="p-4 border-b dark:border-brand-100">
+                  <ListItem as="button" title="Products" className="" />
+                </section>
+              }
+            >
+              <Link
+                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
+                target="_blank"
               >
-                <Link
-                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-                  target="_blank"
-                >
-                  <MenuItem label="Redirect Link" />
-                </Link>
-                <MenuSubItem label="More Tools">
-                  <MenuItem
-                    label="Save Page As..."
-                    onClick={() => alert("Save Page As clicked")}
-                  />
-                  <MenuItem
-                    label="Create Shortcut..."
-                    onClick={() => alert("Create Shortcut clicked")}
-                  />
-                </MenuSubItem>
-              </Dropdown>
-              <section className="px-8 border-b dark:border-gray-600">
-                <ListItem
-                  as="link"
-                  title="Resources"
-                  href="/primitives/docs/overview/introduction"
-                  variant="glass"
+                <MenuItem label="Redirect Link" />
+              </Link>
+              <MenuSubItem label="More Tools">
+                <MenuItem
+                  label="Save Page As..."
+                  onClick={() => alert("Save Page As clicked")}
                 />
-              </section>
-              <section className="px-8 border-b dark:border-gray-600">
-                <ListItem
-                  as="link"
-                  title="Pricing"
-                  href="/primitives/docs/overview/introduction"
-                  variant="glass"
+                <MenuItem
+                  label="Create Shortcut..."
+                  onClick={() => alert("Create Shortcut clicked")}
                 />
-              </section>
-              <section className="px-8 border-b dark:border-gray-600">
-                <ListItem
-                  as="link"
-                  title="Solutions"
-                  href="/primitives/docs/overview/introduction"
-                  variant="glass"
-                />
-              </section>
-            </nav>
-          </div>
-        </section>
+              </MenuSubItem>
+            </Dropdown>
+            <section className="px-4 py-2 border-b dark:border-gray-600">
+              <ListItem
+                as="link"
+                title="Resources"
+                href="/primitives/docs/overview/introduction"
+              />
+            </section>
+            <section className="px-4 py-2 border-b dark:border-gray-600">
+              <ListItem
+                as="link"
+                title="Pricing"
+                href="/primitives/docs/overview/introduction"
+              />
+            </section>
+            <section className="px-4 py-2 border-b dark:border-gray-600">
+              <ListItem
+                as="link"
+                title="Solutions"
+                href="/primitives/docs/overview/introduction"
+              />
+            </section>
+          </nav>
+        </div>
       </div>
+
+      {/* new */}
+      {/* <Typography variant="h6">Top Nav Glass</Typography>
+      <div className="mx-[30px] tablet:mx-4 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
+        <header className="w-full p-4 flex justify-between items-center h-[62px] tablet:h-[56px]">
+          <Image
+            src="/ImgPlaceholder.svg"
+            alt="placeholder"
+            width={84}
+            height={29}
+          />
+          <nav className="flex items-center gap-[10px] tablet:hidden tablet:justify-end">
+            <ListItem
+              as="link"
+              title="Resources"
+              href="/primitives/docs/overview/introduction"
+            />
+            <ListItem
+              as="link"
+              title="Pricing"
+              href="/primitives/docs/overview/introduction"
+            />
+            <ListItem
+              as="link"
+              title="Solutions"
+              href="/primitives/docs/overview/introduction"
+            />
+          </nav>
+          <div className="flex gap-4 items-center">
+            <section className="flex gap-1 items-center">
+              <Chip
+                className="cursor-pointer"
+                size="sm"
+                variant="primary"
+                onClick={switchLight}
+              >
+                Light Mode
+              </Chip>
+              <Chip
+                className="cursor-pointer"
+                variant="glass"
+                size="sm"
+                onClick={switchDark}
+              >
+                Dark Mode
+              </Chip>
+            </section>
+            <span
+              className="hidden tablet:inline-block  text-dark dark:text-light"
+              onClick={() => setShowMenu((prev) => !prev)}
+            >
+              {!showMenu ? (
+                <HiMiniBars3BottomRight size={24} />
+              ) : (
+                <HiXMark size={24} />
+              )}
+            </span>
+          </div>
+        </header>
+        <section className="w-full h-[98dvh]" >
+          <div className={`h-full w-full bg-red-100 dark:bg-dark z-40 transition-all duration-300 transform ${showMenu ? "left-[0px]" : "left-[-100vw]"
+            } `}>
+            <h1>ashgdk</h1>
+            <h2>asdkjhd</h2>
+            <h3>kjdhsakd</h3>
+            <h4>jkdhasd</h4>
+          </div>
+
+        </section>
+      </div> */}
+
       <main className="space-y-5 p-4">
         <section className="space-y-3">
           <Typography variant="h6">Typography</Typography>

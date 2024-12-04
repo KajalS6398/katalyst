@@ -7,21 +7,17 @@
 }
 
 .gradientOne {
-  background: linear-gradient(
-    242deg,
-    #070707 5.78%,
-    #4285f4 138.66%,
-    #8eb6f8 271.69%
-  );
+  background: linear-gradient(242deg,
+      #070707 5.78%,
+      #4285f4 138.66%,
+      #8eb6f8 271.69%);
 }
 
 .gradientOne:hover {
-  background: linear-gradient(
-    242deg,
-    #0d1b31 5.78%,
-    #070707 49.65%,
-    #4285f4 271.69%
-  );
+  background: linear-gradient(242deg,
+      #0d1b31 5.78%,
+      #070707 49.65%,
+      #4285f4 271.69%);
 }
 
 .div-glass {
@@ -37,6 +33,7 @@
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
 }
+
 .div-glass2 {
   /* background-image: url("/assets/image2.png"); The image used */
   background: linear-gradient(

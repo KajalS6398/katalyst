@@ -1,0 +1,7 @@
+# Exclude all source files
+/src/
+
+# Exclude specific config files
+*.config.mjs
+*.ts
+*.json
