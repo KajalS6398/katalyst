@@ -91,13 +91,21 @@ export const FooterContent = ({ children, className }: FooterContentProps) => {
 };
 
 export const FooterList = ({ footerItems, target }: FooterListProps) => {
+  console.log("Footer Length", footerItems.length);
   return (
-    <div className="grid lg:grid-cols-3 md:grid-cols-2 place-items-start gap-12 text-center md:text-left">
+    <div
+      className={cn(
+        "grid place-items-start gap-12 text-center md:text-left",
+        footerItems.length === 2 && "md:grid-cols-2",
+        (footerItems.length > 3 || footerItems.length === 3) &&
+          "lg:grid-cols-3 md:grid-cols-2",
+      )}
+    >
       {footerItems?.map((data, i) => (
         <div key={i} className="space-y-5 w-full">
           <Typography variant={"h5"}>{data?.label}</Typography>
           <ul className="space-y-2.5 list-none">
-            {data.content?.map((data, i) => (
+            {data?.content?.map((data, i) => (
               <li key={i}>
                 <Link href={data?.link} target={target}>
                   <Paragraph

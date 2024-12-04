@@ -123,15 +123,15 @@ function AccordionItem({
     "div",
     {
       className: cn(
-        "rounded-radius-lg mb-3 shadow-cardShadow dark:shadow-none border dark:border-gray-900",
-        isOpen && "border border-brand-500 shadow-cardShadowActive dark:bg-gray-900 dark:border-gray-100",
+        "rounded-lg mb-3 shadow-cardShadow dark:shadow-none border dark:border-gray-900",
+        isOpen ? "border-brand-500 shadow-cardShadowActive dark:bg-gray-900" : "hover:border-gray-500 hover:bg-gray-100 hover:dark:bg-transparent hover:dark:border-gray-600",
         disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
       )
     },
     /* @__PURE__ */ import_react.default.createElement(
       "div",
       {
-        className: "font-semibold transition-colors p-[32px] mobile:p-4 duration-200 ease-in-out",
+        className: "font-semibold p-[32px] mobile:p-4 transition-colors duration-200 ease-in-out",
         onClick: toggle
       },
       children && Array.isArray(children) ? /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, import_react.default.cloneElement(children[0], { isOpen }), isOpen && !disabled ? children[1] : null) : children
@@ -139,15 +139,21 @@ function AccordionItem({
   );
 }
 function AccordionTrigger({ isOpen, children }) {
-  return /* @__PURE__ */ import_react.default.createElement("div", { className: "accordion-trigger transition-all delay-150 ease-in font-montserrat text-[20px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-white flex justify-between items-center font-semibold" }, children, /* @__PURE__ */ import_react.default.createElement("span", null, isOpen ? /* @__PURE__ */ import_react.default.createElement(import_fi.FiChevronUp, { size: 20 }) : /* @__PURE__ */ import_react.default.createElement(import_fi.FiChevronDown, { size: 20 })));
+  return /* @__PURE__ */ import_react.default.createElement("div", { className: "accordion-trigger flex justify-between items-center font-semibold text-[20px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-white transition-all delay-150 ease-in" }, children, /* @__PURE__ */ import_react.default.createElement(
+    "span",
+    {
+      className: `transition-transform duration-300 transform ${isOpen ? "rotate-180" : "rotate-0"}`
+    },
+    /* @__PURE__ */ import_react.default.createElement(import_fi.FiChevronDown, { size: 20 })
+  ));
 }
 function AccordionContent({ isOpen, children }) {
   return /* @__PURE__ */ import_react.default.createElement(
     "div",
     {
       className: cn(
-        "opacity-0 w-full accordion-content font-normal font-karla text-[18px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-gray-600 pt-[32px] mobile:pt-[10px] overflow-hidden max-h-0 duration-500 transition-all delay-100 ease-in",
-        !isOpen && "max-h-fit opacity-[1] transition-all ease-in duration-150"
+        "w-full font-normal font-karla text-[18px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-gray-400 pt-[32px] mobile:pt-[10px] overflow-hidden transition-all duration-500 ease-in",
+        !isOpen ? "max-h-full opacity-100" : "max-h-0 opacity-0"
       )
     },
     children
@@ -424,7 +430,7 @@ var Chip = ({
     "div",
     {
       className: cn(
-        "rounded-radius-xl bg-gradient-to-r",
+        "rounded-radius-xl bg-gradient-to-r w-fit",
         {
           solid: "from-brand-200 to-brand-500",
           primary: "from-brand-200 to-brand-500",
@@ -570,14 +576,25 @@ var FooterContent = ({ children, className }) => {
   );
 };
 var FooterList = ({ footerItems, target }) => {
-  return /* @__PURE__ */ import_react10.default.createElement("div", { className: "grid lg:grid-cols-3 md:grid-cols-2 place-items-start gap-12 text-center md:text-left" }, footerItems?.map((data, i) => /* @__PURE__ */ import_react10.default.createElement("div", { key: i, className: "space-y-5 w-full" }, /* @__PURE__ */ import_react10.default.createElement(Typography_default, { variant: "h5" }, data?.label), /* @__PURE__ */ import_react10.default.createElement("ul", { className: "space-y-2.5 list-none" }, data.content?.map((data2, i2) => /* @__PURE__ */ import_react10.default.createElement("li", { key: i2 }, /* @__PURE__ */ import_react10.default.createElement(import_link.default, { href: data2?.link, target }, /* @__PURE__ */ import_react10.default.createElement(
-    Paragraph_default,
+  console.log("Footer Length", footerItems.length);
+  return /* @__PURE__ */ import_react10.default.createElement(
+    "div",
     {
-      variant: "b3",
-      className: "dark:text-gray-300 hover:text-brand-400 dark:hover:text-brand-600 text-gray-900"
+      className: cn(
+        "grid place-items-start gap-12 text-center md:text-left",
+        footerItems.length === 2 && "md:grid-cols-2",
+        (footerItems.length > 3 || footerItems.length === 3) && "lg:grid-cols-3 md:grid-cols-2"
+      )
     },
-    data2?.text
-  ))))))));
+    footerItems?.map((data, i) => /* @__PURE__ */ import_react10.default.createElement("div", { key: i, className: "space-y-5 w-full" }, /* @__PURE__ */ import_react10.default.createElement(Typography_default, { variant: "h5" }, data?.label), /* @__PURE__ */ import_react10.default.createElement("ul", { className: "space-y-2.5 list-none" }, data?.content?.map((data2, i2) => /* @__PURE__ */ import_react10.default.createElement("li", { key: i2 }, /* @__PURE__ */ import_react10.default.createElement(import_link.default, { href: data2?.link, target }, /* @__PURE__ */ import_react10.default.createElement(
+      Paragraph_default,
+      {
+        variant: "b3",
+        className: "dark:text-gray-300 hover:text-brand-400 dark:hover:text-brand-600 text-gray-900"
+      },
+      data2?.text
+    )))))))
+  );
 };
 var FooterIcons = ({ icons }) => {
   return /* @__PURE__ */ import_react10.default.createElement("div", { className: "flex flex-wrap justify-center items-center gap-5 text-brand-700 dark:text-brand-200" }, icons.map((icon, index) => /* @__PURE__ */ import_react10.default.createElement(

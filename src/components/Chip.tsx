@@ -43,7 +43,7 @@ const Chip = ({
   return (
     <div
       className={cn(
-        "rounded-radius-xl bg-gradient-to-r",
+        "rounded-radius-xl bg-gradient-to-r w-fit",
         {
           solid: "from-brand-200 to-brand-500",
           primary: "from-brand-200 to-brand-500",

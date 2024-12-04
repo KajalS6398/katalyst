@@ -1240,7 +1240,7 @@ const Test = () => {
         <FooterContent>
           <FooterHeader>
             <div className="w-[124px] h-[54px] bg-brand-300"></div>
-            <Paragraph variant={"b3"}>
+            <Paragraph variant={"b3"} className="text-center md:text-left">
               Atomos Technologies, backed by Mirats, delivers innovative digital
               services, IT solutions, and business consulting
             </Paragraph>
