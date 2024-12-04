@@ -5,7 +5,7 @@
 Begin by installing the Katalyst Component Library via npm:
 
 ```bash
-npm i katalyst-riya-test
+npm i @atomos_tech/katerpillar
 ```
 
 ## Step 2: Import CSS
@@ -13,7 +13,7 @@ npm i katalyst-riya-test
 Import the library's CSS in your root page to apply the default styles:
 
 ```typescript
-import "katalyst-riya-test/style";
+import "@atomos_tech/katerpillar/style";
 ```
 
 ## Step 3: Configure Tailwind
@@ -26,10 +26,10 @@ With the library set up, you can start using the provided components. Below are 
 
 ### Import Components
 
-Import the required components from the `katalyst-riya-test` package:
+Import the required components from the `@atomos_tech/katerpillar` package:
 
 ```typescript
-import { Button, Chip } from "katalyst-riya-test";
+import { Button, Chip } from "@atomos_tech/katerpillar";
 ```
 
 ### Example Usage
@@ -56,7 +56,7 @@ Here is how you can integrate the Button and Chip into your page:
 Here's an example of how you might set up a simple page using the library:
 
 ```typescript
-import { Button, Chip } from "katalyst-riya-test";
+import { Button, Chip } from "@atomos_tech/katerpillar";
 
 export default function ExamplePage() {
   return (
