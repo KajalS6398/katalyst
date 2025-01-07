@@ -12,7 +12,7 @@ interface ToggleProps
 }
 
 const toggleVariants = cva(
-  "rounded-radius-xl bg-gray-300 transition-colors peer-checked:bg-brand-500 peer-active:ring-2 peer-active:ring-brand-300",
+  "rounded-radius-xl bg-gray-300 transition-colors peer-checked:bg-primary-500 peer-active:ring-2 peer-active:ring-primary-300",
   {
     variants: {
       size: {

@@ -239,7 +239,7 @@ const Test = () => {
             <Dropdown
               width="400px"
               triggerIcon={
-                <section className="p-4 border-b dark:border-brand-100">
+                <section className="p-4 border-b dark:border-primary-100">
                   <ListItem as="button" title="Products" className="" />
                 </section>
               }
@@ -600,7 +600,7 @@ const Test = () => {
             <Toggle
               readOnly
               id="icon"
-              icon={<RiCheckLine className="text-brand-400" />}
+              icon={<RiCheckLine className="text-primary-400" />}
             />
             <Label size={"md"} htmlFor="icon">
               Toggle With Icon
@@ -650,10 +650,10 @@ const Test = () => {
         <section className="space-y-4">
           <Typography variant={"h6"}>Pricing Cards</Typography>
           <div className="flex flex-wrap items-center gap-spacing-lg">
-            <Card className="w-full p-spacing-md md:p-spacing-lg max-w-[333px] space-y-spacing-md bg-light border-2 border-brand-200 rounded-radius-xl">
+            <Card className="w-full p-spacing-md md:p-spacing-lg max-w-[333px] space-y-spacing-md bg-light border-2 border-primary-200 rounded-radius-xl">
               <CardHeader className="space-y-3.5">
                 <div className="flex items-center gap-spacing-md">
-                  <p className="bg-brand-400 p-3 rounded-radius-lg">
+                  <p className="bg-primary-400 p-3 rounded-radius-lg">
                     <RiHexagonLine size={60} className="text-light" />
                   </p>
                   <div>
@@ -692,7 +692,7 @@ const Test = () => {
                   >
                     What&apos;s included
                   </Typography>
-                  <ul className="text-brand-500">
+                  <ul className="text-primary-500">
                     <li className="flex items-start gap-spacing-sm">
                       <RiCheckboxCircleFill size={24} className="mt-1" />
                       <Paragraph
@@ -738,10 +738,10 @@ const Test = () => {
                 </Button>
               </CardFooter>
             </Card>
-            <Card className="w-full text-light p-spacing-md md:p-spacing-lg max-w-[333px] space-y-spacing-md border-2 border-brand-200 rounded-radius-xl bg-gradient-to-r from-brand-700 from-[-10.81%] to-brand-900 to-[93.83%]">
+            <Card className="w-full text-light p-spacing-md md:p-spacing-lg max-w-[333px] space-y-spacing-md border-2 border-primary-200 rounded-radius-xl bg-gradient-to-r from-primary-700 from-[-10.81%] to-primary-900 to-[93.83%]">
               <CardHeader className="space-y-3.5">
                 <div className="flex items-center gap-spacing-md">
-                  <p className="bg-brand-400 p-3 rounded-radius-lg">
+                  <p className="bg-primary-400 p-3 rounded-radius-lg">
                     <RiHexagonLine size={60} className="text-light" />
                   </p>
                   <div>
@@ -771,7 +771,7 @@ const Test = () => {
                   <Typography variant={"h6"} className="text-light">
                     What&apos;s included
                   </Typography>
-                  <ul className="text-brand-500">
+                  <ul className="text-primary-500">
                     <li className="flex items-start gap-spacing-sm">
                       <RiCheckboxCircleFill size={24} className="mt-1" />
                       <Paragraph variant={"b2"} className="text-light">
@@ -810,10 +810,10 @@ const Test = () => {
                 </Button>
               </CardFooter>
             </Card>
-            <Card className="w-full p-spacing-md md:p-spacing-lg max-w-[717px] space-y-spacing-md bg-light border-2 border-brand-200 rounded-radius-xl flex md:flex-row flex-col items-center gap-spacing-md">
+            <Card className="w-full p-spacing-md md:p-spacing-lg max-w-[717px] space-y-spacing-md bg-light border-2 border-primary-200 rounded-radius-xl flex md:flex-row flex-col items-center gap-spacing-md">
               <CardHeader className="space-y-3.5 pr-spacing-md md:border-r md:border-gray-400 flex-[0.6]">
                 <div className="flex items-center gap-spacing-md">
-                  <p className="bg-brand-400 p-3 rounded-radius-lg">
+                  <p className="bg-primary-400 p-3 rounded-radius-lg">
                     <RiHexagonLine size={60} className="text-light" />
                   </p>
                   <div>
@@ -854,7 +854,7 @@ const Test = () => {
                 >
                   What&apos;s included
                 </Typography>
-                <ul className="text-brand-500 space-y-2.5">
+                <ul className="text-primary-500 space-y-2.5">
                   <li className="flex items-start gap-spacing-sm">
                     <RiCheckboxCircleFill size={24} className="mt-1" />
                     <Paragraph
@@ -900,7 +900,7 @@ const Test = () => {
           <Typography variant={"h6"}>Cards: </Typography>
           <div className="my-5">
             <h1>Card Large</h1>
-            <Card className="w-[70%] rounded-radius-lg px-[64px] py-[32px] gradientOne border-2 border-brand-500 hover:border-2 hover:border-brand-500">
+            <Card className="w-[70%] rounded-radius-lg px-[64px] py-[32px] gradientOne border-2 border-primary-500 hover:border-2 hover:border-primary-500">
               <CardHeader>
                 <CardTitle className="text-[32px] font-bold leading-[48px] text-white">
                   Modal Card Title
@@ -930,7 +930,7 @@ const Test = () => {
           </div>
           <div className="my-5">
             <h1 className="dark:text-gray-25 text-gray-900">Card Small</h1>
-            <Card className="w-[711px] rounded-radius-lg p-[32px] gradientOne border-2 border-brand-500 hover:border-2 hover:border-brand-500">
+            <Card className="w-[711px] rounded-radius-lg p-[32px] gradientOne border-2 border-primary-500 hover:border-2 hover:border-primary-500">
               <CardHeader>
                 <CardTitle className="text-[24px] font-bold leading-[36px] text-white">
                   Modal Card Title
@@ -959,7 +959,7 @@ const Test = () => {
           <ImageCard
             cardTitle="Modal Card Title"
             cardDesc="Lorem ipsum dolor sit amet consectetur. Accumsan."
-            className="w-[466px] h-[406px] bg-brand-100"
+            className="w-[466px] h-[406px] bg-primary-100"
           >
             <div className="my-2 w-[50%]">
               <Chip endIcon={<LuHeart />} variant="primary">
@@ -1313,7 +1313,7 @@ const Test = () => {
       >
         <FooterContent>
           <FooterHeader>
-            <div className="w-[124px] h-[54px] bg-brand-300"></div>
+            <div className="w-[124px] h-[54px] bg-primary-300"></div>
             <Paragraph variant={"b3"} className="text-center md:text-left">
               Atomos Technologies, backed by Mirats, delivers innovative digital
               services, IT solutions, and business consulting

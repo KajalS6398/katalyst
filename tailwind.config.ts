@@ -6,10 +6,22 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
+        "primary-25": "var(--primary-25)",
+        "primary-50": "var(--primary-50)",
+        "primary-100": "var(--primary-100)",
+        "primary-200": "var(--primary-200)",
+        "primary-300": "var(--primary-300)",
+        "primary-400": "var(--primary-400)",
+        "primary-500": "var(--primary-500)",
+        "primary-600": "var(--primary-600)",
+        "primary-700": "var(--primary-700)",
+        "primary-800": "var(--primary-800)",
+        "primary-900": "var(--primary-900)",
+
         light: "#ffffff",
         dark: "#070707",
         error: "#EA4335",
@@ -29,19 +41,6 @@ const config: Config = {
           800: "#464646",
           900: "#252525",
         },
-
-        "primary-25": "var(--primary-25)",
-        "primary-50": "var(--primary-50)",
-        "primary-100": "var(--primary-100)",
-        "primary-200": "var(--primary-200)",
-        "primary-300": "var(--primary-300)",
-        "primary-400": "var(--primary-400)",
-        "primary-500": "var(--primary-500)",
-        "primary-600": "var(--primary-600)",
-        "primary-700": "var(--primary-700)",
-        "primary-800": "var(--primary-800)",
-        "primary-900": "var(--primary-900)",
-
         brand: {
           25: "#f5faff",
           50: "#ECF3FE",
@@ -80,10 +79,10 @@ const config: Config = {
         mobile: { max: "480px" },
       },
       boxShadow: {
-        "cardShadow": "0px 5px 16px 0px rgba(8, 15, 52, 0.06)",
-        'cardShadowActive': '0px 5px 15px 0px rgba(66, 133, 244, 0.32)',
-        "innerShadow": "3px 4px 5.3px 0px rgba(13, 51, 116, 0.64) inset"
-      }
+        cardShadow: "0px 5px 16px 0px rgba(8, 15, 52, 0.06)",
+        cardShadowActive: "0px 5px 15px 0px rgba(66, 133, 244, 0.32)",
+        innerShadow: "3px 4px 5.3px 0px rgba(13, 51, 116, 0.64) inset",
+      },
     },
   },
   plugins: [],

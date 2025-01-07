@@ -2,9 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-.test {
-  border: 1px solid red;
+@layer base {
+  :root {
+    .theme-brand {
+      --primary-25: #f5faff;
+      --primary-50: #ECF3FE;
+      --primary-100: #D9E7FD;
+      --primary-200: #B3CEFB;
+      --primary-300: #8EB6F8;
+      --primary-400: #689DF6;
+      --primary-500: #4285F4;
+      --primary-600: #356AC3;
+      --primary-700: #285092;
+      --primary-800: #1A3562;
+      --primary-900: #0D1B31;
+    }
+    .rdp {
+      --rdp-cell-size: 28px;
+      --rdp-caption-font-size: 15px;
+    }
+  }
 }
+
+/* .test {
+  border: 1px solid red;
+} */
 
 .gradientOne {
   background: linear-gradient(242deg,
@@ -58,24 +80,24 @@
   appearance: none;
   width: 36px;
   height: 24px;
-  background-color: #4285f4;
+  background-color: var(--primary-500);
   border-radius: 9999px;
   cursor: pointer;
 }
 
 .slider::-webkit-slider-thumb:hover {
-  background-color: #285092;
+  background-color: var(--primary-700);
 }
 
 .slider::-webkit-slider-thumb:active {
-  background-color: #356ac3;
-  outline: 3px solid #b3cefb;
+  background-color: var(--primary-500);
+  outline: 3px solid var(--primary-200);
   box-shadow: 0px 4px 4.7px 0px #0000002e;
 }
 
 .slider::-moz-range-thumb {
   width: 50px;
-  outline: 3px solid #b3cefb;
+  outline: 3px solid var(--primary-200);
   height: 50px;
   background-color: #000;
   border-radius: 0;

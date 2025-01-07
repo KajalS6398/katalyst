@@ -80,7 +80,7 @@ export function AccordionItem({
       className={cn(
         "rounded-lg mb-3 shadow-cardShadow dark:shadow-none border dark:border-gray-900",
         isOpen
-          ? "border-brand-500 shadow-cardShadowActive dark:bg-gray-900"
+          ? "border-primary-500 shadow-cardShadowActive dark:bg-gray-900"
           : "hover:border-gray-500 hover:bg-gray-100 hover:dark:bg-transparent hover:dark:border-gray-600",
         disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
       )}
