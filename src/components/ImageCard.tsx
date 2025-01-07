@@ -21,7 +21,7 @@ const ImageCard = ({
   return (
     <div
       className={cn(
-        "transition-all duration-300 ease-in-out hover:ring-1 hover:ring-[#4285F4] relative rounded-radius-xl overflow-hidden block z-10 bg-cover bg-no-repeat bg-center",
+        "transition-all duration-300 ease-in-out hover:ring-1 hover:ring-brand-500 relative rounded-radius-xl overflow-hidden block z-10 bg-cover bg-no-repeat bg-center",
         className,
       )}
       style={{

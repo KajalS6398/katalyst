@@ -41,8 +41,8 @@
 
 // //     const variantClasses =
 // //       variant === "solid"
-// //         ? "rounded-radius-lg hover:bg-brand-50 group border border-transparent hover:border-brand-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:text-white leading-none no-underline outline-none transition-colors" :
-// //         variant === "glass" ? "rounded-radius-lg group border border-transparent hover:border-brand-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:text-white leading-none no-underline outline-none transition-colors" : ""
+// //         ? "rounded-radius-lg hover:bg-primary-50 group border border-transparent hover:border-primary-200 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:text-white leading-none no-underline outline-none transition-colors" :
+// //         variant === "glass" ? "rounded-radius-lg group border border-transparent hover:border-primary-200 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:text-white leading-none no-underline outline-none transition-colors" : ""
 
 // //     if (as === "button") {
 // //       return (
@@ -72,7 +72,7 @@
 // //         className={cn(
 // //           "px-4 py-[8px] font-karla",
 // //           isActive
-// //             ? "bg-brand-400 text-white border border-brand-200"
+// //             ? "bg-primary-400 text-white border border-primary-200"
 // //             : variantClasses,
 // //           className,
 // //         )}
@@ -138,7 +138,7 @@
 // //     return (
 // //       <button
 // //         className={cn(
-// //           "px-4 py-[8px] font-karla rounded-radius-lg hover:bg-brand-50 group border border-transparent hover:border-brand-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:text-white leading-none no-underline outline-none transition-colors",
+// //           "px-4 py-[8px] font-karla rounded-radius-lg hover:bg-primary-50 group border border-transparent hover:border-primary-200 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:text-white leading-none no-underline outline-none transition-colors",
 // //         )}
 // //         onClick={onClick}
 // //         ref={ref as React.Ref<HTMLButtonElement>}
@@ -159,8 +159,8 @@
 // //       href={href ?? ""}
 // //       passHref
 // //       className={cn(
-// //         "px-4 py-[8px] font-karla group rounded-radius-lg hover:bg-brand-50 border border-transparent hover:border-brand-200 focus:outline-none focus:ring-1 focus:ring-brand-500 leading-none no-underline outline-none transition-colors",
-// //         isActive ? "bg-brand-400 text-white border border-brand-200" : "",
+// //         "px-4 py-[8px] font-karla group rounded-radius-lg hover:bg-primary-50 border border-transparent hover:border-primary-200 focus:outline-none focus:ring-1 focus:ring-primary-500 leading-none no-underline outline-none transition-colors",
+// //         isActive ? "bg-primary-400 text-white border border-primary-200" : "",
 
 // //       )}
 // //       ref={ref as React.Ref<HTMLAnchorElement>}
@@ -222,8 +222,8 @@
 
 //     const variantClasses =
 //       variant === "solid"
-//         ? "rounded-radius-lg hover:bg-brand-50 group border border-transparent hover:border-brand-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:text-white leading-none no-underline outline-none transition-colors" :
-//         variant === "glass" ? "rounded-radius-lg group border border-transparent hover:border-brand-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:text-white leading-none no-underline outline-none transition-colors" : ""
+//         ? "rounded-radius-lg hover:bg-primary-50 group border border-transparent hover:border-primary-200 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:text-white leading-none no-underline outline-none transition-colors" :
+//         variant === "glass" ? "rounded-radius-lg group border border-transparent hover:border-primary-200 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:text-white leading-none no-underline outline-none transition-colors" : ""
 
 //     if (as === "button") {
 //       return (
@@ -253,7 +253,7 @@
 //         className={cn(
 //           "px-4 py-[8px] font-karla w-full block",
 //           isActive
-//             ? "bg-brand-400 text-white border border-brand-200"
+//             ? "bg-primary-400 text-white border border-primary-200"
 //             : variantClasses,
 //           className,
 //         )}
@@ -319,9 +319,9 @@ const ListItem = React.forwardRef<
 
     const variantClasses =
       variant === "solid"
-        ? "rounded-radius-lg hover:bg-brand-50 text-dark group border border-transparent hover:border-brand-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:text-white leading-none no-underline outline-none transition-colors"
+        ? "rounded-radius-lg hover:bg-primary-50 text-dark group border border-transparent hover:border-primary-200 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:text-white leading-none no-underline outline-none transition-colors"
         : variant === "glass"
-        ? "rounded-radius-lg group border border-transparent hover:border-brand-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:text-white leading-none no-underline outline-none transition-colors"
+        ? "rounded-radius-lg group border border-transparent hover:border-primary-200 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:text-white leading-none no-underline outline-none transition-colors"
         : "";
 
     if (as === "button") {
@@ -346,7 +346,7 @@ const ListItem = React.forwardRef<
         className={cn(
           "px-4 py-[8px] font-karla w-full flex items-center gap-2 group",
           isActive
-            ? "bg-brand-400 text-white border border-brand-200"
+            ? "bg-primary-400 text-white border border-primary-200"
             : variantClasses,
           className,
         )}
