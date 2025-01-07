@@ -21,7 +21,7 @@ import Checkbox from "@/components/Checkbox";
 import Input from "@/components/Input";
 import Label from "@/components/Label";
 import Toggle from "@/components/Toggle";
-import { useTheme } from "@/context/ThemeContext";
+// import { useTheme } from "@/context/ThemeContext";
 import React, { useEffect, useState } from "react";
 
 import {
@@ -97,7 +97,7 @@ const iconsArray = [
 ];
 
 const Test = () => {
-  const { switchDark, switchLight } = useTheme();
+  // const { switchDark, switchLight } = useTheme();
 
   // toggle
   const [isChecked, setIsChecked] = useState(false);
@@ -199,7 +199,7 @@ const Test = () => {
               href="/primitives/docs/overview/introduction"
             />
           </nav>
-          <div className="flex gap-4 items-center">
+          {/* <div className="flex gap-4 items-center">
             <section className="flex gap-1 items-center">
               <Chip
                 className="cursor-pointer"
@@ -228,7 +228,7 @@ const Test = () => {
                 <HiXMark size={24} />
               )}
             </span>
-          </div>
+          </div> */}
         </header>
         <div
           className={`fixed h-[98dvh] z-10 top-[60px] right-0 w-full bg-white text-black dark:bg-dark transition-transform duration-300 transform  ${

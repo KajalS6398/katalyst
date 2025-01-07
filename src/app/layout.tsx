@@ -23,7 +23,8 @@ export default function RootLayout({
           karla.variable,
         )}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
+        {/* <ThemeProvider>{children}</ThemeProvider> */}
       </body>
     </html>
   );

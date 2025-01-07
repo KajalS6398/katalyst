@@ -18,6 +18,7 @@ interface ThemeProviderProps {
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<string>("light");
+  console.log("theme", theme)
 
   const switchDark = () => {
     document.documentElement.classList.add("dark");
