@@ -1,7 +1,7 @@
 {
-  "name": "katalyst-riya-test",
+  "name": "@atomos_tech/katerpillar",
   "description": "website design system",
-  "version": "0.1.5",
+  "version": "0.0.1-alpha",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.mjs",
