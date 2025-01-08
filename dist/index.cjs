@@ -402,8 +402,8 @@ var import_class_variance_authority5 = require("class-variance-authority");
 var chipVariants = (0, import_class_variance_authority5.cva)("", {
   variants: {
     variant: {
-      primary: "bg-white text-primary-500 hover:text-white hover:bg-gradient-to-r hover:from-primary-500 hover:to-[#264D8E]",
-      secondary: "bg-primary-500 text-white hover:text-white hover:bg-gradient-to-r hover:from-primary-500 hover:to-[#285092]",
+      primary: "bg-white text-primary-500 hover:text-white hover:bg-gradient-to-r hover:from-primary-500 hover:to-primary-600",
+      secondary: "bg-primary-500 text-white hover:text-white hover:bg-gradient-to-r hover:from-primary-500 hover:to-primary-600",
       glass: "text-primary-500"
     },
     size: {

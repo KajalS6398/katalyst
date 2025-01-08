@@ -6,6 +6,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  important: true,
   darkMode: "class",
   theme: {
     extend: {
@@ -21,6 +22,20 @@ const config: Config = {
         "primary-700": "var(--primary-700)",
         "primary-800": "var(--primary-800)",
         "primary-900": "var(--primary-900)",
+
+        brand: {
+          25: "#f5faff",
+          50: "#FFF8E4",
+          100: "#FFECBA",
+          200: "#FFE08F",
+          300: "#FFD665",
+          400: "#FFCB4C",
+          500: "#FFC342",
+          600: "#FFB53D",
+          700: "#FFA33A",
+          800: "#FD9438",
+          900: "#F97835",
+        },
 
         light: "#ffffff",
         dark: "#070707",
@@ -40,19 +55,6 @@ const config: Config = {
           700: "#656565",
           800: "#464646",
           900: "#252525",
-        },
-        brand: {
-          25: "var(--primary-25)",
-          50: "var(--primary-50)",
-          100: "var(--primary-100)",
-          200: "var(--primary-200)",
-          300: "var(--primary-300)",
-          400: "var(--primary-400)",
-          500: "var(--primary-500)",
-          600: "var(--primary-600)",
-          700: "var(--primary-700)",
-          800: "var(--primary-800)",
-          900: "var(--primary-900)",
         },
       },
       borderRadius: {
