@@ -41,7 +41,7 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "pretty": true,
-    "incremental": true
+    // "incremental": true
   },
   "include": [
     "next-env.d.ts",
