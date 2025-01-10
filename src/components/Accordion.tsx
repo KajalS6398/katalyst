@@ -80,9 +80,9 @@ export function AccordionItem({
       className={cn(
         "rounded-lg mb-3 shadow-cardShadow dark:shadow-none border dark:border-gray-900",
         isOpen
-          ? "border-brand-500 shadow-cardShadowActive dark:bg-gray-900"
+          ? "border-primary-500 shadow-cardShadowActive dark:bg-gray-900"
           : "hover:border-gray-500 hover:bg-gray-100 hover:dark:bg-transparent hover:dark:border-gray-600",
-        disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+        disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
       )}
     >
       <div
@@ -112,8 +112,9 @@ export function AccordionTrigger({ isOpen, children }: AccordionTriggerProps) {
     <div className="accordion-trigger flex justify-between items-center font-semibold text-[20px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-white transition-all delay-150 ease-in">
       {children}
       <span
-        className={`transition-transform duration-300 transform ${isOpen ? "rotate-180" : "rotate-0"
-          }`}
+        className={`transition-transform duration-300 transform ${
+          isOpen ? "rotate-180" : "rotate-0"
+        }`}
       >
         <FiChevronDown size={20} />
       </span>
@@ -131,7 +132,7 @@ export function AccordionContent({ isOpen, children }: AccordionContentProps) {
     <div
       className={cn(
         "w-full font-normal font-karla text-[18px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-gray-300 pt-[32px] mobile:pt-[10px] overflow-hidden transition-all duration-500 ease-in",
-        !isOpen ? "max-h-full opacity-100" : "max-h-0 opacity-0"
+        !isOpen ? "max-h-full opacity-100" : "max-h-0 opacity-0",
       )}
     >
       {children}

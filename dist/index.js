@@ -55,7 +55,7 @@ function AccordionItem({
     {
       className: cn(
         "rounded-lg mb-3 shadow-cardShadow dark:shadow-none border dark:border-gray-900",
-        isOpen ? "border-brand-500 shadow-cardShadowActive dark:bg-gray-900" : "hover:border-gray-500 hover:bg-gray-100 hover:dark:bg-transparent hover:dark:border-gray-600",
+        isOpen ? "border-primary-500 shadow-cardShadowActive dark:bg-gray-900" : "hover:border-gray-500 hover:bg-gray-100 hover:dark:bg-transparent hover:dark:border-gray-600",
         disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
       )
     },
@@ -83,7 +83,7 @@ function AccordionContent({ isOpen, children }) {
     "div",
     {
       className: cn(
-        "w-full font-normal font-karla text-[18px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-gray-400 pt-[32px] mobile:pt-[10px] overflow-hidden transition-all duration-500 ease-in",
+        "w-full font-normal font-karla text-[18px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-gray-300 pt-[32px] mobile:pt-[10px] overflow-hidden transition-all duration-500 ease-in",
         !isOpen ? "max-h-full opacity-100" : "max-h-0 opacity-0"
       )
     },
@@ -99,9 +99,9 @@ var buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-brand-500 text-light border hover:bg-brand-600 hover:shadow-[inset_0px_2px_8px_-2px_#FFFFFF8F,inset_0px_8px_8px_-2px_#0000002E] active:bg-brand-400 active:shadow-[0px_0px_0px_3px] active:shadow-brand-300",
-        "primary-light": "bg-brand-50 text-brand-600 hover:bg-brand-200 hover:shadow-[inset_0px_2px_8px_-2px_#FFFFFF8F,inset_0px_8px_8px_-2px_#356AC32E] active:shadow-[0px_0px_0px_3px] active:bg-brand-50 active:shadow-brand-300",
-        secondary: "bg-brand-50 text-brand-800 hover:bg-brand-200 hover:shadow-[inset_0px_2px_8px_-2px_#FFFFFF8F,inset_0px_8px_8px_-2px_#6984AD2E] active:bg-brand-50 active:shadow-[0px_0px_0px_3px] active:shadow-brand-700",
+        primary: "bg-primary-500 text-light border hover:bg-primary-600 hover:shadow-[inset_0px_2px_8px_-2px_#FFFFFF8F,inset_0px_8px_8px_-2px_#0000002E] active:bg-primary-400 active:shadow-[0px_0px_0px_3px] active:shadow-primary-300",
+        "primary-light": "bg-primary-50 text-primary-600 hover:bg-primary-200 hover:shadow-[inset_0px_2px_8px_-2px_#FFFFFF8F,inset_0px_8px_8px_-2px_#356AC32E] active:shadow-[0px_0px_0px_3px] active:bg-primary-50 active:shadow-primary-300",
+        secondary: "bg-primary-50 text-primary-800 hover:bg-primary-200 hover:shadow-[inset_0px_2px_8px_-2px_#FFFFFF8F,inset_0px_8px_8px_-2px_#6984AD2E] active:bg-primary-50 active:shadow-[0px_0px_0px_3px] active:shadow-primary-700",
         tertiary: "bg-gray-100 text-gray-900 hover:bg-gray-300 hover:shadow-[inset_0px_2px_8px_-2px_#FFFFFF8F,inset_0px_8px_8px_-2px_#9595952E] active:bg-gray-25 active:shadow-[0px_0px_0px_3px] active:shadow-gray-700",
         quaternary: "bg-gray-50/[0.02] text-light backdrop-blur-[6px] hover:shadow-[inset_0px_8px_8px_-2px_#23232314] hover:backdrop-blur-md hover:bg-gray-200/10 active:bg-gray-25 active:shadow-[0px_0px_0px_3px] active:text-gray-900 active:shadow-[#46464659]"
       },
@@ -273,7 +273,7 @@ var Checkbox = forwardRef(
       "div",
       {
         className: cn(
-          "group inline-flex relative items-center rounded-full border-2 border-transparent hover:border-brand-300",
+          "group inline-flex relative items-center rounded-full border-2 border-transparent hover:border-primary-300",
           disabled && "border-none"
         )
       },
@@ -287,7 +287,7 @@ var Checkbox = forwardRef(
           readOnly,
           checked,
           className: cn(
-            "peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border-2 border-gray-300 transition-all checked:border-brand-500 hover:border-brand-500 hover:bg-brand-25/25 disabled:opacity-30 disabled:pointer-events-none disabled:border-gray-400",
+            "peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border-2 border-gray-300 transition-all checked:border-primary-500 hover:border-primary-500 hover:bg-primary-25/25 disabled:opacity-30 disabled:pointer-events-none disabled:border-gray-400",
             className
           )
         }
@@ -296,7 +296,7 @@ var Checkbox = forwardRef(
         "span",
         {
           className: cn(
-            "absolute text-brand-600 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100",
+            "absolute text-primary-600 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100",
             disabled && "text-gray-300"
           )
         },
@@ -333,9 +333,9 @@ import { cva as cva5 } from "class-variance-authority";
 var chipVariants = cva5("", {
   variants: {
     variant: {
-      primary: "bg-white text-brand-500 hover:text-white hover:bg-gradient-to-r hover:from-brand-500 hover:to-[#264D8E]",
-      secondary: "bg-brand-500 text-white hover:text-white hover:bg-gradient-to-r hover:from-brand-500 hover:to-[#285092]",
-      glass: "text-brand-500"
+      primary: "bg-white text-primary-500 hover:text-white hover:bg-gradient-to-r hover:from-primary-500 hover:to-primary-700",
+      secondary: "bg-primary-500 text-white hover:text-white hover:bg-gradient-to-r hover:from-primary-500 hover:to-primary-700",
+      glass: "text-primary-500"
     },
     size: {
       sm: "text-sm py-1 px-3",
@@ -363,10 +363,10 @@ var Chip = ({
       className: cn(
         "rounded-radius-xl bg-gradient-to-r w-fit",
         {
-          solid: "from-brand-200 to-brand-500",
-          primary: "from-brand-200 to-brand-500",
-          secondary: "from-brand-200 to-brand-500",
-          glass: "border border-brand-500"
+          solid: "from-primary-200 to-primary-500",
+          primary: "from-primary-200 to-primary-500",
+          secondary: "from-primary-200 to-primary-500",
+          glass: "border border-primary-500"
         }[variant || "primary"],
         "p-[1px]"
       )
@@ -474,12 +474,12 @@ function Footer({
     "footer",
     {
       className: cn(
-        "bg-gradient-to-b from-gray-25 to-brand-100 dark:from-brand-900 dark:to-dark",
+        "bg-gradient-to-b from-gray-25 to-primary-100 dark:from-primary-900 dark:to-dark",
         className
       )
     },
     children,
-    footerBottom && /* @__PURE__ */ React10.createElement("section", { className: "border-t border-brand-500 dark:border-brand-800 text-center py-spacing-md" }, footerBottom)
+    footerBottom && /* @__PURE__ */ React10.createElement("section", { className: "border-t border-primary-500 dark:border-primary-800 text-center py-spacing-md" }, footerBottom)
   );
 }
 var FooterHeader = ({ children, className }) => {
@@ -521,20 +521,20 @@ var FooterList = ({ footerItems, target }) => {
       Paragraph_default,
       {
         variant: "b3",
-        className: "dark:text-gray-300 hover:text-brand-400 dark:hover:text-brand-600 text-gray-900"
+        className: "dark:text-gray-300 hover:text-primary-400 dark:hover:text-primary-600 text-gray-900"
       },
       data2?.text
     )))))))
   );
 };
 var FooterIcons = ({ icons }) => {
-  return /* @__PURE__ */ React10.createElement("div", { className: "flex flex-wrap justify-center items-center gap-5 text-brand-700 dark:text-brand-200" }, icons.map((icon, index) => /* @__PURE__ */ React10.createElement(
+  return /* @__PURE__ */ React10.createElement("div", { className: "flex flex-wrap justify-center items-center gap-5 text-primary-700 dark:text-primary-200" }, icons.map((icon, index) => /* @__PURE__ */ React10.createElement(
     Link,
     {
       href: icon.link,
       key: index,
       target: "_blank",
-      className: "hover:bg-brand-100 dark:hover:bg-brand-800 p-1 rounded-radius-sm"
+      className: "hover:bg-primary-100 dark:hover:bg-primary-800 p-1 rounded-radius-sm"
     },
     icon.icon
   )));
@@ -575,7 +575,7 @@ var inputVariants = cva6(
   {
     variants: {
       variant: {
-        default: "dark:text-gray-500 dark:bg-gray-900 dark:border-gray-800 dark:hover:text-light dark:hover:bg-gray-800 dark:hover:border-gray-700 dark:focus-within:bg-gray-100 dark:focus-within:border-gray-800 dark:focus-within:hover:bg-gray-700 dark:focus-within:text-dark dark:has-[:disabled]:bg-gray-700 bg-gray-100 border-gray-200 text-gray-600 hover:border-gray-300 hover:text-gray-500 hover:bg-gray-300 focus-within:bg-gray-50 focus-within:border-gray-400 focus-within:text-dark focus-within:hover:text-dark focus-within:hover:border-brand-100 focus-within:hover:bg-brand-50 has-[:disabled]:bg-gray-25 has-[:disabled]:border-gray-400",
+        default: "dark:text-gray-500 dark:bg-gray-900 dark:border-gray-800 dark:hover:text-light dark:hover:bg-gray-800 dark:hover:border-gray-700 dark:focus-within:bg-gray-100 dark:focus-within:border-gray-800 dark:focus-within:hover:bg-gray-700 dark:focus-within:text-dark dark:has-[:disabled]:bg-gray-700 bg-gray-100 border-gray-200 text-gray-600 hover:border-gray-300 hover:text-gray-500 hover:bg-gray-300 focus-within:bg-gray-50 focus-within:border-gray-400 focus-within:text-dark focus-within:hover:text-dark focus-within:hover:border-primary-100 focus-within:hover:bg-primary-50 has-[:disabled]:bg-gray-25 has-[:disabled]:border-gray-400",
         glass: "backdrop-blur-[3.5px] bg-light/10 dark:bg-dark/20 dark:border-gray-800 border-gray-200/50 text-light"
       }
     },
@@ -647,16 +647,16 @@ import Link2 from "next/link";
 import React14 from "react";
 import { usePathname } from "next/navigation";
 var ListItem = React14.forwardRef(
-  ({ className, title, href, onClick, as = "link", variant = "solid" }, ref) => {
+  ({ className, title, href, onClick, as = "link", variant = "solid", icon }, ref) => {
     const pathname = usePathname();
     const isActive = as === "link" && href === pathname;
-    const variantClasses = variant === "solid" ? "rounded-radius-lg hover:bg-brand-50 group border border-transparent hover:border-brand-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:text-white leading-none no-underline outline-none transition-colors" : variant === "glass" ? "rounded-radius-lg group border border-transparent hover:border-brand-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:text-white leading-none no-underline outline-none transition-colors" : "";
+    const variantClasses = variant === "solid" ? "rounded-radius-lg hover:bg-primary-50 text-dark group border border-transparent hover:border-primary-200 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:text-white leading-none no-underline outline-none transition-colors" : variant === "glass" ? "rounded-radius-lg group border border-transparent hover:border-primary-200 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:text-white leading-none no-underline outline-none transition-colors" : "";
     if (as === "button") {
       return /* @__PURE__ */ React14.createElement(
         "button",
         {
           className: cn(
-            "px-4 py-[8px] font-karla",
+            "px-4 py-[8px] group font-karla w-full text-left flex items-center gap-2",
             variantClasses,
             className
           ),
@@ -670,7 +670,8 @@ var ListItem = React14.forwardRef(
             className: cn("font-karla group-hover:dark:text-dark", className)
           },
           title
-        )
+        ),
+        icon && /* @__PURE__ */ React14.createElement("span", { className: "text-dark dark:text-white" }, icon)
       );
     }
     return /* @__PURE__ */ React14.createElement(
@@ -679,8 +680,8 @@ var ListItem = React14.forwardRef(
         href: href ?? "",
         passHref: true,
         className: cn(
-          "px-4 py-[8px] font-karla",
-          isActive ? "bg-brand-400 text-white border border-brand-200" : variantClasses,
+          "px-4 py-[8px] font-karla w-full flex items-center gap-2 group",
+          isActive ? "bg-primary-400 text-white border border-primary-200" : variantClasses,
           className
         ),
         ref
@@ -692,6 +693,14 @@ var ListItem = React14.forwardRef(
           className: cn("font-karla group-hover:dark:text-dark", className)
         },
         title
+      ),
+      icon && /* @__PURE__ */ React14.createElement(
+        Caption_default,
+        {
+          variant: "md",
+          className: "text-dark dark:text-white group-hover:dark:text-dark"
+        },
+        icon
       )
     );
   }
@@ -718,7 +727,7 @@ var Slider = forwardRef3(
           size === "sm" ? "h-1.5" : "h-4"
         ),
         style: {
-          background: `linear-gradient(to right, #8EB6F8 ${progress}%, #d1d5db ${progress}%)`
+          background: `linear-gradient(to right, var(--primary-300) ${progress}%, var(--gray-200) ${progress}%)`
         }
       }
     ));
@@ -739,12 +748,12 @@ var StatsCard = ({
     Card,
     {
       className: cn(
-        "border border-[#eee] hover:border-[#4285F4] rounded-radius-xl bg-[#FFFFFFE5] bg-gradient-to-b bg-[#fff] hover:from-[#8EB6F8D9] hover:to-[#356AC3D9] dark:from-[#252525D9] dark:to-[#070707D9] dark:hover:from-[#1A3562D9] dark:hover:to-[#070707D9] backdrop-blur-sm px-[32px] py-[64px] group",
+        "border border-gray-200 hover:border-primary-500 rounded-radius-xl bg-[#FFFFFFE5] bg-gradient-to-b bg-[#fff] hover:from-primary-300 hover:to-primary-600 dark:from-primary-800 dark:to-primary-700 dark:hover:from-primary-800 dark:hover:to-primary-900 backdrop-blur-sm px-[32px] py-[64px] group",
         className
       )
     },
     /* @__PURE__ */ React16.createElement("span", { className: "group-hover:text-white text-dark dark:text-white" }, cardIcon),
-    /* @__PURE__ */ React16.createElement(CardTitle, { className: "group-hover:text-white text-[48px] font-bold text-brand-500 dark:text-white my-4" }, statTitle),
+    /* @__PURE__ */ React16.createElement(CardTitle, { className: "group-hover:text-white text-[48px] font-bold text-primary-500 dark:text-white my-4" }, statTitle),
     /* @__PURE__ */ React16.createElement(CardDescription, { className: "group-hover:text-white text-[24px] hover:text-white text-dark leading-[25px]" }, statDesc)
   );
 };
@@ -760,7 +769,7 @@ var textareaVariants = cva8(
   {
     variants: {
       variant: {
-        default: "dark:text-gray-500 dark:bg-gray-900 dark:border-gray-800 dark:hover:text-light dark:hover:bg-gray-800 dark:hover:border-gray-700 dark:focus-within:bg-gray-100 dark:focus-within:border-gray-800 dark:focus-within:hover:bg-gray-700 dark:focus-within:text-dark dark:disabled:bg-gray-700 bg-gray-100 border-gray-200 text-gray-600 hover:border-gray-300 hover:text-gray-500 hover:bg-gray-300 focus-within:bg-gray-50 focus-within:border-gray-400 focus-within:text-dark focus-within:hover:text-dark focus-within:hover:border-brand-100 focus-within:hover:bg-brand-50 disabled:bg-gray-25 disabled:border-gray-400",
+        default: "dark:text-gray-500 dark:bg-gray-900 dark:border-gray-800 dark:hover:text-light dark:hover:bg-gray-800 dark:hover:border-gray-700 dark:focus-within:bg-gray-100 dark:focus-within:border-gray-800 dark:focus-within:hover:bg-gray-700 dark:focus-within:text-dark dark:disabled:bg-gray-700 bg-gray-100 border-gray-200 text-gray-600 hover:border-gray-300 hover:text-gray-500 hover:bg-gray-300 focus-within:bg-gray-50 focus-within:border-gray-400 focus-within:text-dark focus-within:hover:text-dark focus-within:hover:border-primary-100 focus-within:hover:bg-primary-50 disabled:bg-gray-25 disabled:border-gray-400",
         glass: "backdrop-blur-[3.5px] bg-light/10 dark:bg-dark/20 dark:border-gray-800 border-gray-200/50 text-light"
       }
     },
@@ -792,7 +801,7 @@ var Textarea_default = Textarea;
 import { cva as cva9 } from "class-variance-authority";
 import React18, { forwardRef as forwardRef5 } from "react";
 var toggleVariants = cva9(
-  "rounded-radius-xl bg-gray-300 transition-colors peer-checked:bg-brand-500 peer-active:ring-2 peer-active:ring-brand-300",
+  "rounded-radius-xl bg-gray-300 transition-colors peer-checked:bg-primary-500 peer-active:ring-2 peer-active:ring-primary-300",
   {
     variants: {
       size: {

@@ -50,13 +50,13 @@ export default function Footer({
   return (
     <footer
       className={cn(
-        "bg-gradient-to-b from-gray-25 to-brand-100 dark:from-brand-900 dark:to-dark",
+        "bg-gradient-to-b from-gray-25 to-primary-100 dark:from-primary-900 dark:to-dark",
         className,
       )}
     >
       {children}
       {footerBottom && (
-        <section className="border-t border-brand-500 dark:border-brand-800 text-center py-spacing-md">
+        <section className="border-t border-primary-500 dark:border-primary-800 text-center py-spacing-md">
           {footerBottom}
         </section>
       )}
@@ -110,7 +110,7 @@ export const FooterList = ({ footerItems, target }: FooterListProps) => {
                 <Link href={data?.link} target={target}>
                   <Paragraph
                     variant={"b3"}
-                    className="dark:text-gray-300 hover:text-brand-400 dark:hover:text-brand-600 text-gray-900"
+                    className="dark:text-gray-300 hover:text-primary-400 dark:hover:text-primary-600 text-gray-900"
                   >
                     {data?.text}
                   </Paragraph>
@@ -126,13 +126,13 @@ export const FooterList = ({ footerItems, target }: FooterListProps) => {
 
 export const FooterIcons = ({ icons }: FooterIconsProps) => {
   return (
-    <div className="flex flex-wrap justify-center items-center gap-5 text-brand-700 dark:text-brand-200">
+    <div className="flex flex-wrap justify-center items-center gap-5 text-primary-700 dark:text-primary-200">
       {icons.map((icon, index) => (
         <Link
           href={icon.link}
           key={index}
           target="_blank"
-          className="hover:bg-brand-100 dark:hover:bg-brand-800 p-1 rounded-radius-sm"
+          className="hover:bg-primary-100 dark:hover:bg-primary-800 p-1 rounded-radius-sm"
         >
           {icon.icon}
         </Link>

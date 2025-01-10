@@ -1,14 +1,14 @@
 {
   "name": "@atomos_tech/katerpillar",
   "description": "website design system",
-  "version": "0.0.1-alpha",
+  "version": "0.0.77",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "type": "module",
   "repository": {
-    "url": "https://github.com/atomostechhq/katalyst"
+    "url": "git+https://github.com/atomostechhq/katalyst.git"
   },
   "keywords": [
     "website",
@@ -75,5 +75,9 @@
     "typescript": "^5",
     "typescript-eslint": "^7.8.0"
   },
-  "author": "riyavish13"
+  "author": "riyavish13",
+  "bugs": {
+    "url": "https://github.com/atomostechhq/katalyst/issues"
+  },
+  "homepage": "https://github.com/atomostechhq/katalyst#readme"
 }

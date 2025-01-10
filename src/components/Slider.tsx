@@ -26,7 +26,7 @@ const Slider = forwardRef<HTMLInputElement, SliderProps>(
             size === "sm" ? "h-1.5" : "h-4",
           )}
           style={{
-            background: `linear-gradient(to right, #8EB6F8 ${progress}%, #d1d5db ${progress}%)`,
+            background: `linear-gradient(to right, var(--primary-300) ${progress}%, var(--gray-200) ${progress}%)`,
           }}
         />
       </>

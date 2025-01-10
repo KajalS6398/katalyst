@@ -181,6 +181,7 @@ interface BaseProps {
     title: string;
     as?: "link" | "button";
     variant?: "solid" | "glass";
+    icon?: React.ReactNode;
 }
 type LinkProps = BaseProps & {
     as: "link";
