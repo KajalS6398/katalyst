@@ -402,8 +402,8 @@ var import_class_variance_authority5 = require("class-variance-authority");
 var chipVariants = (0, import_class_variance_authority5.cva)("", {
   variants: {
     variant: {
-      primary: "bg-white text-primary-500 hover:text-white hover:bg-gradient-to-r hover:from-primary-500 hover:to-primary-600",
-      secondary: "bg-primary-500 text-white hover:text-white hover:bg-gradient-to-r hover:from-primary-500 hover:to-primary-600",
+      primary: "bg-white text-primary-500 hover:text-white hover:bg-gradient-to-r hover:from-primary-500 hover:to-primary-700",
+      secondary: "bg-primary-500 text-white hover:text-white hover:bg-gradient-to-r hover:from-primary-500 hover:to-primary-700",
       glass: "text-primary-500"
     },
     size: {
@@ -623,7 +623,7 @@ var ImageCard = ({
     "div",
     {
       className: cn(
-        "transition-all duration-300 ease-in-out hover:ring-1 hover:ring-brand-500 relative rounded-radius-xl overflow-hidden block z-10 bg-cover bg-no-repeat bg-center",
+        "transition-all duration-300 ease-in-out hover:ring-1 hover:ring-[#4285F4] relative rounded-radius-xl overflow-hidden block z-10 bg-cover bg-no-repeat bg-center",
         className
       ),
       style: {
@@ -724,11 +724,22 @@ var ListItem = import_react14.default.forwardRef(
       return /* @__PURE__ */ import_react14.default.createElement(
         "button",
         {
-          className: cn("px-4 py-[8px] group font-karla w-full text-left flex items-center gap-2", variantClasses, className),
+          className: cn(
+            "px-4 py-[8px] group font-karla w-full text-left flex items-center gap-2",
+            variantClasses,
+            className
+          ),
           onClick,
           ref
         },
-        /* @__PURE__ */ import_react14.default.createElement(Typography_default, { variant: "h6", className: cn("font-karla group-hover:dark:text-dark", className) }, title),
+        /* @__PURE__ */ import_react14.default.createElement(
+          Typography_default,
+          {
+            variant: "h6",
+            className: cn("font-karla group-hover:dark:text-dark", className)
+          },
+          title
+        ),
         icon && /* @__PURE__ */ import_react14.default.createElement("span", { className: "text-dark dark:text-white" }, icon)
       );
     }
@@ -752,7 +763,14 @@ var ListItem = import_react14.default.forwardRef(
         },
         title
       ),
-      icon && /* @__PURE__ */ import_react14.default.createElement(Caption_default, { variant: "md", className: "text-dark dark:text-white group-hover:dark:text-dark" }, icon)
+      icon && /* @__PURE__ */ import_react14.default.createElement(
+        Caption_default,
+        {
+          variant: "md",
+          className: "text-dark dark:text-white group-hover:dark:text-dark"
+        },
+        icon
+      )
     );
   }
 );
@@ -778,7 +796,7 @@ var Slider = (0, import_react15.forwardRef)(
           size === "sm" ? "h-1.5" : "h-4"
         ),
         style: {
-          background: `linear-gradient(to right, var(--primary-500) ${progress}%, #d1d5db ${progress}%)`
+          background: `linear-gradient(to right, var(--primary-300) ${progress}%, var(--gray-200) ${progress}%)`
         }
       }
     ));
@@ -799,7 +817,7 @@ var StatsCard = ({
     Card,
     {
       className: cn(
-        "border border-[#eee] hover:border-primary-500 rounded-radius-xl bg-[#FFFFFFE5] bg-gradient-to-b bg-[#fff] hover:from-[#8EB6F8D9] hover:to-[#356AC3D9] dark:from-[#252525D9] dark:to-[#070707D9] dark:hover:from-[#1A3562D9] dark:hover:to-[#070707D9] backdrop-blur-sm px-[32px] py-[64px] group",
+        "border border-gray-200 hover:border-primary-500 rounded-radius-xl bg-[#FFFFFFE5] bg-gradient-to-b bg-[#fff] hover:from-primary-300 hover:to-primary-600 dark:from-primary-800 dark:to-primary-700 dark:hover:from-primary-800 dark:hover:to-primary-900 backdrop-blur-sm px-[32px] py-[64px] group",
         className
       )
     },

@@ -4,41 +4,60 @@
 
 @layer base {
   :root {
-    .theme-brand {
-      --primary-25: theme("colors.brand.25") !important;
-      --primary-50: theme("colors.brand.50") !important;
-      --primary-100: theme("colors.brand.100") !important;
-      --primary-200: theme("colors.brand.200") !important;
-      --primary-300: theme("colors.brand.300") !important;
-      --primary-400: theme("colors.brand.400") !important;
-      --primary-500: theme("colors.brand.500") !important;
-      --primary-600: theme("colors.brand.600") !important;
-      --primary-700: theme("colors.brand.700") !important;
-      --primary-800: theme("colors.brand.800") !important;
-      --primary-900: theme("colors.brand.900") !important;
-    }
+    /* primary */
+    --primary-25: #f5faff;
+    --primary-50: #ecf3fe;
+    --primary-100: #d9e7fd;
+    --primary-200: #b3cefb;
+    --primary-300: #8eb6f8;
+    --primary-400: #689df6;
+    --primary-500: #4285f4;
+    --primary-600: #356ac3;
+    --primary-700: #285092;
+    --primary-800: #1a3562;
+    --primary-900: #0d1b31;
+
+    /* gray */
+    --gray-25: #ffffff;
+    --gray-50: #fefefe;
+    --gray-100: #f8f8f8;
+    --gray-200: #f2f2f2;
+    --gray-300: #e4e4e4;
+    --gray-400: #c0c0c0;
+    --gray-500: #a2a2a2;
+    --gray-600: #797979;
+    --gray-700: #656565;
+    --gray-800: #464646;
+    --gray-900: #252525;
+
+    /* secondary colors */
+    --light: #ffffff;
+    --dark: #070707;
+    --error: #ea4335;
+    --success: #34a853;
+    --warning: #fbbc05;
   }
 }
 
-/* .test {
+.test {
   border: 1px solid red;
-} */
+}
 
 .gradientOne {
   background: linear-gradient(
     242deg,
     #070707 5.78%,
-    #4285f4 138.66%,
-    #8eb6f8 271.69%
+    var(--primary-500) 138.66%,
+    var(--primary-300) 271.69%
   );
 }
 
 .gradientOne:hover {
   background: linear-gradient(
     242deg,
-    #0d1b31 5.78%,
+    var(--primary-900) 5.78%,
     #070707 49.65%,
-    #4285f4 271.69%
+    var(--primary-500) 271.69%
   );
 }
 
@@ -46,9 +65,9 @@
   /* background-image: url("/assets/image.png"); The image used */
   background: linear-gradient(
     242deg,
-    #0d1b31 5.78%,
+    var(--primary-900) 5.78%,
     #070707 49.65%,
-    #4285f4 271.69%
+    var(--primary-500) 271.69%
   ); /* Used if the image is unavailable */
   height: 400px; /* You must set a specified height */
   background-position: center; /* Center the image */
@@ -60,9 +79,9 @@
   /* background-image: url("/assets/image2.png"); The image used */
   background: linear-gradient(
     242deg,
-    #0d1b31 5.78%,
+    var(--primary-900) 5.78%,
     #070707 49.65%,
-    #4285f4 271.69%
+    var(--primary-500) 271.69%
   ); /* Used if the image is unavailable */
   height: 100px; /* You must set a specified height */
   background-position: center; /* Center the image */
@@ -90,7 +109,7 @@
 }
 
 .slider::-webkit-slider-thumb:active {
-  background-color: var(--primary-500);
+  background-color: var(--primary-600);
   outline: 3px solid var(--primary-200);
   box-shadow: 0px 4px 4.7px 0px #0000002e;
 }

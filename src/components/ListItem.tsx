@@ -93,9 +93,6 @@
 
 // // export default ListItem;
 
-
-
-
 // // import { cn } from "@/utils/util";
 // // import Link from "next/link";
 // // import React from "react";
@@ -321,17 +318,24 @@ const ListItem = React.forwardRef<
       variant === "solid"
         ? "rounded-radius-lg hover:bg-primary-50 text-dark group border border-transparent hover:border-primary-200 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:text-white leading-none no-underline outline-none transition-colors"
         : variant === "glass"
-        ? "rounded-radius-lg group border border-transparent hover:border-primary-200 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:text-white leading-none no-underline outline-none transition-colors"
-        : "";
+          ? "rounded-radius-lg group border border-transparent hover:border-primary-200 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:text-white leading-none no-underline outline-none transition-colors"
+          : "";
 
     if (as === "button") {
       return (
         <button
-          className={cn("px-4 py-[8px] group font-karla w-full text-left flex items-center gap-2", variantClasses, className)}
+          className={cn(
+            "px-4 py-[8px] group font-karla w-full text-left flex items-center gap-2",
+            variantClasses,
+            className,
+          )}
           onClick={onClick}
           ref={ref as React.Ref<HTMLButtonElement>}
         >
-          <Typography variant="h6" className={cn("font-karla group-hover:dark:text-dark", className)}>
+          <Typography
+            variant="h6"
+            className={cn("font-karla group-hover:dark:text-dark", className)}
+          >
             {title}
           </Typography>
           {icon && <span className="text-dark dark:text-white">{icon}</span>}
@@ -358,7 +362,14 @@ const ListItem = React.forwardRef<
         >
           {title}
         </Typography>
-        {icon && <Caption variant="md" className="text-dark dark:text-white group-hover:dark:text-dark">{icon}</Caption>}
+        {icon && (
+          <Caption
+            variant="md"
+            className="text-dark dark:text-white group-hover:dark:text-dark"
+          >
+            {icon}
+          </Caption>
+        )}
       </Link>
     );
   },

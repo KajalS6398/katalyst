@@ -21,7 +21,6 @@ export default function RootLayout({
           montserrat.className,
           montserrat.variable,
           karla.variable,
-          "theme-brand"
         )}
       >
         <ThemeProvider>{children}</ThemeProvider>
