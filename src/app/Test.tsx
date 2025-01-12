@@ -172,13 +172,65 @@ const Test = () => {
               >
                 <MenuItem label="Redirect Link" />
               </Link>
-              <MenuSubItem label="More Tools">
+              <MenuSubItem
+                content={
+                  <div>
+                    <h6>Cheese & Dairy</h6>
+                    <Caption variant="md">
+                      Find exotic cheese and fresh milk
+                    </Caption>
+                  </div>
+                }
+              >
                 <MenuItem
-                  label="Save Page As..."
+                  label="Cheese"
                   onClick={() => alert("Save Page As clicked")}
                 />
                 <MenuItem
-                  label="Create Shortcut..."
+                  label="Milk"
+                  onClick={() => alert("Create Shortcut clicked")}
+                />
+              </MenuSubItem>
+              <MenuSubItem
+                content={
+                  <div>
+                    <h6>Cheese & Dairy</h6>
+                    <Caption variant="md">
+                      Find exotic cheese and fresh milk
+                    </Caption>
+                  </div>
+                }
+                sectionClassName="text-xl text-gray-800 hover:bg-blue-100" 
+                subMenuClassName="bg-gray-50 p-4" 
+              >
+                <MenuItem
+                  label="Cheese"
+                  onClick={() => alert("Save Page As clicked")}
+                  className="hover:bg-yellow-200" 
+                />
+                <MenuItem
+                  label="Milk"
+                  onClick={() => alert("Create Shortcut clicked")}
+                  className="hover:bg-yellow-200"
+                />
+              </MenuSubItem>
+
+              <MenuSubItem
+                content={
+                  <div>
+                    <h6>Meat</h6>
+                    <Caption variant="md">
+                      Discover fresh and exotic meats
+                    </Caption>
+                  </div>
+                }
+              >
+                <MenuItem
+                  label="Cheese"
+                  onClick={() => alert("Save Page As clicked")}
+                />
+                <MenuItem
+                  label="Milk"
                   onClick={() => alert("Create Shortcut clicked")}
                 />
               </MenuSubItem>
@@ -250,7 +302,8 @@ const Test = () => {
               >
                 <MenuItem label="Redirect Link" />
               </Link>
-              <MenuSubItem label="More Tools">
+              {/* <MenuSubItem label="More Tools"> */}
+              <MenuSubItem content={<div>More Tools</div>}>
                 <MenuItem
                   label="Save Page As..."
                   onClick={() => alert("Save Page As clicked")}
@@ -488,7 +541,7 @@ const Test = () => {
                   <Chip size="sm">testing</Chip>
                 </div>
               </MenuItem>
-              <MenuSubItem label="More Tools">
+              <MenuSubItem content={<div>More Tools</div>}>
                 <MenuItem
                   label="Save Page As..."
                   onClick={() => alert("Save Page As clicked")}
@@ -529,7 +582,7 @@ const Test = () => {
                   <Chip size="sm">testing</Chip>
                 </div>
               </MenuItem>
-              <MenuSubItem label="More Tools">
+              <MenuSubItem content={<div>More Tools</div>}>
                 <MenuItem label="Sooraj">
                   <div>
                     <Caption variant="md">User can add anything here</Caption>
