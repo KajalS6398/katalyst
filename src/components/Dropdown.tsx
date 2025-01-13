@@ -6,12 +6,14 @@ interface DropdownProps {
   triggerIcon?: React.ReactNode;
   children: React.ReactNode;
   width?: string;
+  className?: string;
 }
 
 export default function Dropdown({
   triggerIcon,
   children,
   width = "250px",
+  className
 }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -43,9 +45,10 @@ export default function Dropdown({
       {isOpen && (
         <div
           style={{ width }}
-          className={
-            "border border-gray-200 dark:bg-gray-800 dark:border-gray-600 dark:text-white rounded-t-radius-md absolute left-0 mt-1 z-[100000] w-full bg-white shadow-sm"
-          }
+          className={cn(
+            "border border-primary-200 dark:bg-white dark:border-primary-600 rounded-t-radius-md absolute left-0 mt-1 z-[100000] w-full bg-white shadow-sm",
+            className
+          )}
         >
           {children}
         </div>
@@ -59,6 +62,7 @@ interface MenuItemProps {
   onClick?: () => void;
   disabled?: boolean;
   children?: React.ReactNode;
+  className?: string;
 }
 
 export const MenuItem: React.FC<MenuItemProps> = ({
@@ -66,11 +70,13 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   onClick,
   disabled,
   children,
+  className = "", 
 }) => (
   <button
     className={cn(
-      "w-full text-left p-4 border-t border-gray-200 last:border-none hover:bg-gray-200 dark:hover:bg-gray-600",
+      "w-full text-left p-4 border-t border-b border-primary-100 last:border-t last:border-none hover:bg-primary-50 dark:hover:bg-primary-50", 
       disabled ? "opacity-50 cursor-not-allowed" : "",
+      className 
     )}
     onClick={onClick}
     disabled={disabled}
@@ -81,27 +87,42 @@ export const MenuItem: React.FC<MenuItemProps> = ({
 );
 
 interface MenuSubItemProps {
-  label: string;
+  content: React.ReactNode;
   children: React.ReactNode;
+  label?: string;
+  className?: string; 
+  sectionClassName?: string; 
+  subMenuClassName?: string; 
 }
 
 export const MenuSubItem: React.FC<MenuSubItemProps> = ({
-  label,
+  content,
   children,
+  className = "", 
+  sectionClassName = "", 
+  subMenuClassName = "", 
 }) => {
   const [isSubOpen, setIsSubOpen] = useState(false);
 
   return (
-    <div className="relative">
+    <div className={cn("relative", className)}>
       <section
         onClick={() => setIsSubOpen(!isSubOpen)}
-        className="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 border-t border-b border-gray-200 p-4 flex justify-between items-center gap-1 w-full text-left"
+        className={cn(
+          "cursor-pointer hover:bg-primary-50 dark:hover:bg-primary-50 border-t border-b border-primary-100 p-4 flex justify-between items-center gap-1 w-full text-left",
+          sectionClassName 
+        )}
       >
-        <span>{label}</span>
+        {content}
         {isSubOpen ? <HiChevronUp /> : <HiChevronDown />}
       </section>
       {isSubOpen && (
-        <div className="bg-gray-100 border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+        <div
+          className={cn(
+            "bg-primary-25 border-primary-100 dark:bg-primary-50 dark:border-primary-100",
+            subMenuClassName 
+          )}
+        >
           {children}
         </div>
       )}
