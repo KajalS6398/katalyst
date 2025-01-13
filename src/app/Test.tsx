@@ -157,6 +157,7 @@ const Test = () => {
           <nav className="flex items-center gap-[10px] tablet:hidden tablet:justify-end">
             <Dropdown
               width="400px"
+              className=""
               triggerIcon={
                 <ListItem
                   as="button"
@@ -176,7 +177,7 @@ const Test = () => {
                 content={
                   <div>
                     <h6>Cheese & Dairy</h6>
-                    <Caption variant="md">
+                    <Caption variant="md" className="dark:text-dark">
                       Find exotic cheese and fresh milk
                     </Caption>
                   </div>
@@ -194,8 +195,8 @@ const Test = () => {
               <MenuSubItem
                 content={
                   <div>
-                    <h6>Cheese & Dairy</h6>
-                    <Caption variant="md">
+                    <h6>Cheese & Dairy (custom)</h6>
+                    <Caption variant="md" className="dark:text-dark">
                       Find exotic cheese and fresh milk
                     </Caption>
                   </div>
@@ -219,7 +220,7 @@ const Test = () => {
                 content={
                   <div>
                     <h6>Meat</h6>
-                    <Caption variant="md">
+                    <Caption variant="md" className="dark:text-dark">
                       Discover fresh and exotic meats
                     </Caption>
                   </div>

@@ -396,7 +396,8 @@ import { HiChevronDown, HiChevronUp } from "react-icons/hi2";
 function Dropdown({
   triggerIcon,
   children,
-  width = "250px"
+  width = "250px",
+  className
 }) {
   const [isOpen, setIsOpen] = useState2(false);
   const dropdownRef = useRef(null);
@@ -423,7 +424,10 @@ function Dropdown({
     "div",
     {
       style: { width },
-      className: "border border-primary-200 dark:bg-primary-800 dark:border-primary-600 dark:text-white rounded-t-radius-md absolute left-0 mt-1 z-[100000] w-full bg-white shadow-sm"
+      className: cn(
+        "border border-primary-200 dark:bg-white dark:border-primary-600 rounded-t-radius-md absolute left-0 mt-1 z-[100000] w-full bg-white shadow-sm",
+        className
+      )
     },
     children
   ));
@@ -432,13 +436,15 @@ var MenuItem = ({
   label,
   onClick,
   disabled,
-  children
+  children,
+  className = ""
 }) => /* @__PURE__ */ React9.createElement(
   "button",
   {
     className: cn(
-      "w-full text-left p-4 border-t border-primary-200 last:border-none hover:bg-primary-200 dark:hover:bg-primary-600",
-      disabled ? "opacity-50 cursor-not-allowed" : ""
+      "w-full text-left p-4 border-t border-b border-primary-100 last:border-t last:border-none hover:bg-primary-50 dark:hover:bg-primary-50",
+      disabled ? "opacity-50 cursor-not-allowed" : "",
+      className
     ),
     onClick,
     disabled
@@ -446,17 +452,35 @@ var MenuItem = ({
   label,
   children && /* @__PURE__ */ React9.createElement(React9.Fragment, null, children)
 );
-var MenuSubItem = ({ content, children }) => {
+var MenuSubItem = ({
+  content,
+  children,
+  className = "",
+  sectionClassName = "",
+  subMenuClassName = ""
+}) => {
   const [isSubOpen, setIsSubOpen] = useState2(false);
-  return /* @__PURE__ */ React9.createElement("div", { className: "relative" }, /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React9.createElement("div", { className: cn("relative", className) }, /* @__PURE__ */ React9.createElement(
     "section",
     {
       onClick: () => setIsSubOpen(!isSubOpen),
-      className: "cursor-pointer hover:bg-primary-100 dark:hover:bg-primary-200 border-t border-b border-primary-200 p-4 flex justify-between items-center gap-1 w-full text-left"
+      className: cn(
+        "cursor-pointer hover:bg-primary-50 dark:hover:bg-primary-50 border-t border-b border-primary-100 p-4 flex justify-between items-center gap-1 w-full text-left",
+        sectionClassName
+      )
     },
-    /* @__PURE__ */ React9.createElement(React9.Fragment, null, content),
+    content,
     isSubOpen ? /* @__PURE__ */ React9.createElement(HiChevronUp, null) : /* @__PURE__ */ React9.createElement(HiChevronDown, null)
-  ), isSubOpen && /* @__PURE__ */ React9.createElement("div", { className: "bg-primary-100 border-primary-200 dark:bg-primary-300 dark:border-primary-600 dark:text-white" }, children));
+  ), isSubOpen && /* @__PURE__ */ React9.createElement(
+    "div",
+    {
+      className: cn(
+        "bg-primary-25 border-primary-100 dark:bg-primary-50 dark:border-primary-100",
+        subMenuClassName
+      )
+    },
+    children
+  ));
 };
 
 // src/components/Footer.tsx
