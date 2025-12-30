@@ -49,6 +49,7 @@ import ListItem from "@/components/ListItem";
 import Link from "next/link";
 import { HiMiniBars3BottomRight, HiXMark } from "react-icons/hi2";
 import Slider from "@/components/Slider";
+import ListPagination from "@/components/ListPagination";
 
 const footerItems = [
   {
@@ -96,13 +97,18 @@ const iconsArray = [
   { icon: <RiLinkedinLine />, link: "https://linkedin.com" },
 ];
 
+const dummyData = Array.from({ length: 100 }, (_, index) => ({
+  id: index + 1,
+  name: `Chip ${index + 1}`,
+}));
+
 const Test = () => {
   const { switchDark, switchLight } = useTheme();
 
   // toggle
   const [isChecked, setIsChecked] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-  console.log("showMenu", showMenu);
+  // console.log("showMenu", showMenu);
   // slider
   const [sliderValue, setSliderValue] = useState<number>(50);
 
@@ -123,6 +129,18 @@ const Test = () => {
       document.body.style.overflow = "";
     };
   }, [showMenu]);
+
+  const rowsPerPage = 5;
+  const [page, setPage] = useState(0);
+
+  const handleChangePage = (newPage: number) => {
+    setPage(newPage);
+  };
+
+  const paginatedData = dummyData.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage,
+  );
 
   return (
     <div className="bg-light dark:bg-dark">
@@ -1068,6 +1086,22 @@ const Test = () => {
             />
           </section>
         </div>
+        <section className="my-5 space-y-3">
+          <Typography variant="h6">List Pagination</Typography>
+          <div className="flex flex-wrap items-center gap-4">
+            {paginatedData.map((item) => (
+              <Chip key={item.id}>
+                <strong>{item.name}</strong>
+              </Chip>
+            ))}
+          </div>
+          <ListPagination
+            count={dummyData.length}
+            page={page}
+            onPageChange={handleChangePage}
+            rowsPerPage={rowsPerPage}
+          />
+        </section>
         {/* accordion */}
         <section className="my-5">
           <Typography variant={"h6"}>Accordion Single</Typography>

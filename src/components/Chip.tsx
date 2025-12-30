@@ -50,7 +50,7 @@ const Chip = ({
           solid: "from-primary-200 to-primary-500 p-[1px]",
           primary: "from-primary-200 to-primary-500 p-[1px]",
           secondary: "from-primary-200 to-primary-500 p-[1px]",
-          glass: "border border-primary-500 bg-white/25",
+          glass: "border border-primary-500 bg-white/20",
           default: "bg-gray-200 border border-gray-100 p-[1px]",
         }[variant || "primary"],
       )}
