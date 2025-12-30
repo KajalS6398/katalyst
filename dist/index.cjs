@@ -175,6 +175,7 @@ var buttonVariants = (0, import_class_variance_authority.cva)(
         quaternary: "bg-gray-50/[0.02] text-light backdrop-blur-[6px] hover:shadow-[inset_0px_8px_8px_-2px_#23232314] hover:backdrop-blur-md hover:bg-gray-200/10 active:bg-gray-25 active:shadow-[0px_0px_0px_3px] active:text-gray-900 active:shadow-[#46464659]"
       },
       size: {
+        xs: "text-base px-spacing-sm",
         sm: "text-xl leading-[30px] px-spacing-md",
         md: "font-bold text-2xl leading-[36px] px-spacing-lg",
         lg: "font-bold text-[32px] leading-[48px] px-spacing-xl"
@@ -182,7 +183,7 @@ var buttonVariants = (0, import_class_variance_authority.cva)(
     },
     defaultVariants: {
       variant: "primary",
-      size: "md"
+      size: "sm"
     }
   }
 );
@@ -337,12 +338,13 @@ var CardFooter = ({ children, className }) => /* @__PURE__ */ import_react6.defa
 // src/components/Checkbox.tsx
 var import_react7 = __toESM(require("react"), 1);
 var Checkbox = (0, import_react7.forwardRef)(
-  ({ disabled, checked, className, children, readOnly, ...props }, ref) => {
+  ({ disabled, checked, className, children, readOnly, square, ...props }, ref) => {
     return /* @__PURE__ */ import_react7.default.createElement(
       "div",
       {
         className: cn(
-          "group inline-flex relative items-center rounded-full border-2 border-transparent hover:border-primary-300",
+          square ? "rounded-sm" : "rounded-full",
+          "group inline-flex relative items-center  border-2 border-transparent hover:border-primary-300",
           disabled && "border-none"
         )
       },
@@ -356,7 +358,8 @@ var Checkbox = (0, import_react7.forwardRef)(
           readOnly,
           checked,
           className: cn(
-            "peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border-2 border-gray-300 transition-all checked:border-primary-500 hover:border-primary-500 hover:bg-primary-25/25 disabled:opacity-30 disabled:pointer-events-none disabled:border-gray-400",
+            square ? "rounded-sm" : "rounded-full",
+            "peer relative h-5 w-5 cursor-pointer appearance-none border-2 border-gray-300 transition-all checked:border-primary-500 hover:border-primary-500 hover:bg-primary-25/25 disabled:opacity-30 disabled:pointer-events-none disabled:border-gray-400",
             className
           )
         }
@@ -404,9 +407,11 @@ var chipVariants = (0, import_class_variance_authority5.cva)("", {
     variant: {
       primary: "bg-white text-primary-500 hover:text-white hover:bg-gradient-to-r hover:from-primary-500 hover:to-primary-700",
       secondary: "bg-primary-500 text-white hover:text-white hover:bg-gradient-to-r hover:from-primary-500 hover:to-primary-700",
-      glass: "text-primary-500"
+      default: "bg-gray-200",
+      glass: "backdrop-blur-sm text-primary-500"
     },
     size: {
+      xs: "text-xs py-1 px-3",
       sm: "text-sm py-1 px-3",
       md: "text-base px-4 py-2",
       lg: "text-lg px-6 py-3"
@@ -432,12 +437,12 @@ var Chip = ({
       className: cn(
         "rounded-radius-xl bg-gradient-to-r w-fit",
         {
-          solid: "from-primary-200 to-primary-500",
-          primary: "from-primary-200 to-primary-500",
-          secondary: "from-primary-200 to-primary-500",
-          glass: "border border-primary-500"
-        }[variant || "primary"],
-        "p-[1px]"
+          solid: "from-primary-200 to-primary-500 p-[1px]",
+          primary: "from-primary-200 to-primary-500 p-[1px]",
+          secondary: "from-primary-200 to-primary-500 p-[1px]",
+          glass: "border border-primary-500 bg-white/20",
+          default: "bg-gray-200 border border-gray-200 p-[1px]"
+        }[variant || "primary"]
       )
     },
     /* @__PURE__ */ import_react8.default.createElement(
@@ -597,7 +602,6 @@ var FooterContent = ({ children, className }) => {
   );
 };
 var FooterList = ({ footerItems, target }) => {
-  console.log("Footer Length", footerItems.length);
   return /* @__PURE__ */ import_react10.default.createElement(
     "div",
     {

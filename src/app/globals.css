@@ -76,16 +76,14 @@
 }
 
 .div-glass2 {
-  /* background-image: url("/assets/image2.png"); The image used */
   background: linear-gradient(
     242deg,
     var(--primary-900) 5.78%,
     #070707 49.65%,
     var(--primary-500) 271.69%
   ); /* Used if the image is unavailable */
-  height: 100px; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
@@ -121,4 +119,54 @@
   background-color: #000;
   border-radius: 0;
   cursor: pointer;
+}
+
+/* Spinner */
+.spinner {
+  --spinner-color-1: var(--primary-500);
+  --spinner-color-2: var(--primary-200);
+
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    linear-gradient(
+        0deg,
+        var(--spinner-color-1) 30%,
+        transparent 30% 70%,
+        var(--spinner-color-1) 70%
+      )
+      50% / 8% 100%,
+    linear-gradient(
+        90deg,
+        var(--spinner-color-2) 30%,
+        transparent 30% 70%,
+        var(--spinner-color-2) 70%
+      )
+      50% / 100% 8%;
+  background-repeat: no-repeat;
+  animation: l23 2s infinite steps(12);
+  position: relative;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.915;
+  transform: rotate(30deg);
+}
+
+.spinner::after {
+  opacity: 0.83;
+  transform: rotate(60deg);
+}
+
+@keyframes l23 {
+  100% {
+    transform: rotate(1turn);
+  }
 }

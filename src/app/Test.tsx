@@ -12,11 +12,19 @@ import Card, {
   CardHeader,
   CardTitle,
 } from "@/components/Card";
+import nature from "../../public/assets/nature.png";
 import Chip from "@/components/Chip";
 import ImageCard from "@/components/ImageCard";
 import StatsCard from "@/components/StatsCard";
 import { LuAngry, LuAnnoyed, LuHeart } from "react-icons/lu";
-import { Caption, Paragraph, Textarea, Typography } from "@/components";
+import {
+  Caption,
+  Loading,
+  Paragraph,
+  Spinner,
+  Textarea,
+  Typography,
+} from "@/components";
 import Checkbox from "@/components/Checkbox";
 import Input from "@/components/Input";
 import Label from "@/components/Label";
@@ -49,6 +57,7 @@ import ListItem from "@/components/ListItem";
 import Link from "next/link";
 import { HiMiniBars3BottomRight, HiXMark } from "react-icons/hi2";
 import Slider from "@/components/Slider";
+import ListPagination from "@/components/ListPagination";
 
 const footerItems = [
   {
@@ -96,13 +105,18 @@ const iconsArray = [
   { icon: <RiLinkedinLine />, link: "https://linkedin.com" },
 ];
 
+const dummyData = Array.from({ length: 100 }, (_, index) => ({
+  id: index + 1,
+  name: `Chip ${index + 1}`,
+}));
+
 const Test = () => {
   const { switchDark, switchLight } = useTheme();
 
   // toggle
   const [isChecked, setIsChecked] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-  console.log("showMenu", showMenu);
+  // console.log("showMenu", showMenu);
   // slider
   const [sliderValue, setSliderValue] = useState<number>(50);
 
@@ -123,6 +137,18 @@ const Test = () => {
       document.body.style.overflow = "";
     };
   }, [showMenu]);
+
+  const rowsPerPage = 5;
+  const [page, setPage] = useState(0);
+
+  const handleChangePage = (newPage: number) => {
+    setPage(newPage);
+  };
+
+  const paginatedData = dummyData.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage,
+  );
 
   return (
     <div className="bg-light dark:bg-dark">
@@ -201,13 +227,13 @@ const Test = () => {
                     </Caption>
                   </div>
                 }
-                sectionClassName="text-xl text-gray-800 hover:bg-blue-100" 
-                subMenuClassName="bg-gray-50 p-4" 
+                sectionClassName="text-xl text-gray-800 hover:bg-blue-100"
+                subMenuClassName="bg-gray-50 p-4"
               >
                 <MenuItem
                   label="Cheese"
                   onClick={() => alert("Save Page As clicked")}
-                  className="hover:bg-yellow-200" 
+                  className="hover:bg-yellow-200"
                 />
                 <MenuItem
                   label="Milk"
@@ -478,7 +504,10 @@ const Test = () => {
             className="resize-none"
             rows={4}
           />
-          <div className="space-y-5 min-h-[200px] p-10 div-glass">
+          <div
+            className="space-y-5 min-h-[200px] p-10 div-glass"
+            style={{ backgroundImage: `url(${nature.src})` }}
+          >
             <Input
               type="text"
               variant={"glass"}
@@ -608,6 +637,12 @@ const Test = () => {
             </Label>
           </div>
           <div className="flex items-center gap-2">
+            <Checkbox id="checksq" square />
+            <Label size={"md"} htmlFor="checksq">
+              This is in square variant
+            </Label>
+          </div>
+          <div className="flex items-center gap-2">
             <Checkbox checked readOnly id="check2" />
             <Label size={"md"} htmlFor="check2">
               This is a checked state
@@ -672,7 +707,7 @@ const Test = () => {
             </Label>
           </div>
         </section>
-        <section className="flex gap-4 items-center my-4">
+        <section className="flex gap-4 items-center my-4 ">
           <Typography variant="h6">Chips Variant</Typography>
           <Chip
             startIcon={<LuAnnoyed />}
@@ -685,12 +720,18 @@ const Test = () => {
           <Chip variant="secondary" size="md">
             Secondary
           </Chip>
+          <Chip variant="default" size="md">
+            Default
+          </Chip>
           <Chip variant="glass" size="md">
             Glass
           </Chip>
         </section>
         <section className="flex gap-4 items-center my-4">
           <Typography variant={"h6"}>Sizes - </Typography>
+          <Chip variant="default" size="xs">
+            Default
+          </Chip>
           <Chip endIcon={<LuHeart />} variant="primary" size="sm">
             Solid
           </Chip>
@@ -1056,6 +1097,20 @@ const Test = () => {
             />
           </section>
         </div>
+        <section className="my-5 space-y-3">
+          <Typography variant="h6">List Pagination</Typography>
+          <div className="flex flex-wrap items-center gap-4">
+            {paginatedData.map((item) => (
+              <Chip key={item.id}>{item.name}</Chip>
+            ))}
+          </div>
+          <ListPagination
+            count={dummyData.length}
+            page={page}
+            onPageChange={handleChangePage}
+            rowsPerPage={rowsPerPage}
+          />
+        </section>
         {/* accordion */}
         <section className="my-5">
           <Typography variant={"h6"}>Accordion Single</Typography>
@@ -1122,6 +1177,13 @@ const Test = () => {
           <div className="flex items-center gap-3">
             <Paragraph variant="b2">Primary:</Paragraph>
             <Button
+              size={"xs"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
               size={"sm"}
               startIcon={<RiAddLine />}
               endIcon={<RiAddLine />}
@@ -1145,6 +1207,14 @@ const Test = () => {
           </div>
           <div className="flex items-center gap-3">
             <Paragraph variant="b2">Primary Light:</Paragraph>
+            <Button
+              size={"xs"}
+              variant={"primary-light"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
             <Button
               size={"sm"}
               variant={"primary-light"}
@@ -1173,6 +1243,14 @@ const Test = () => {
           <div className="flex items-center gap-3">
             <Paragraph variant="b2">Secondary:</Paragraph>
             <Button
+              size={"xs"}
+              variant={"secondary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
               size={"sm"}
               variant={"secondary"}
               startIcon={<RiAddLine />}
@@ -1200,6 +1278,14 @@ const Test = () => {
           <div className="flex items-center gap-3">
             <Paragraph variant="b2">Tertiary:</Paragraph>
             <Button
+              size={"xs"}
+              variant={"tertiary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
               size={"sm"}
               variant={"tertiary"}
               startIcon={<RiAddLine />}
@@ -1224,10 +1310,18 @@ const Test = () => {
               Button
             </Button>
           </div>
-          <div className="flex items-center gap-3 div-glass2 px-4">
+          <div className="flex items-center gap-3 div-glass2 py-5 px-4">
             <Paragraph variant="b2" className="text-light">
               Quaternary:
             </Paragraph>
+            <Button
+              size={"xs"}
+              variant={"quaternary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
             <Button
               size={"sm"}
               variant={"quaternary"}
@@ -1255,42 +1349,6 @@ const Test = () => {
           </div>
           <div className="flex items-center gap-3">
             <Paragraph variant="b2">Disabled:</Paragraph>
-            <Button
-              size={"sm"}
-              disabled
-              variant={"primary"}
-              startIcon={<RiAddLine />}
-              endIcon={<RiAddLine />}
-            >
-              Button
-            </Button>
-            <Button
-              size={"sm"}
-              disabled
-              variant={"primary-light"}
-              startIcon={<RiAddLine />}
-              endIcon={<RiAddLine />}
-            >
-              Button
-            </Button>
-            <Button
-              size={"sm"}
-              disabled
-              variant={"quaternary"}
-              startIcon={<RiAddLine />}
-              endIcon={<RiAddLine />}
-            >
-              Button
-            </Button>
-            <Button
-              size={"sm"}
-              disabled
-              variant={"secondary"}
-              startIcon={<RiAddLine />}
-              endIcon={<RiAddLine />}
-            >
-              Button
-            </Button>
             <Button
               size={"sm"}
               disabled
@@ -1356,6 +1414,26 @@ const Test = () => {
             size="lg"
             onChange={(e) => handleSliderChange(Number(e.target.value))}
           />
+        </section>
+        <section className="flex flex-col items-center justify-center gap-2">
+          <Typography variant={"h6"}>Loading:</Typography>
+          <Loading width="50px" height="50px" loaderColor="green" />
+          <span className="font-bold">Hold On ...</span>
+          <p className="text-sm text-gray-500">
+            We are running into some issues :&#40;
+          </p>
+          <Button size={"sm"}>
+            Loading <Loading width="15px" height="15px" variant="light" />
+          </Button>
+          <Button variant="primary-light">
+            Loading <Loading width="15px" height="15px" variant="heavy" />
+          </Button>
+        </section>
+        <section className="flex items-center gap-6">
+          <Typography variant={"h6"}>Spinner:</Typography>
+          <Spinner size="sm" />
+          <Spinner size="md" />
+          <Spinner size="lg" />
         </section>
       </main>
       <Footer

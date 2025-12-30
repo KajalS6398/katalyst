@@ -91,7 +91,7 @@ export const FooterContent = ({ children, className }: FooterContentProps) => {
 };
 
 export const FooterList = ({ footerItems, target }: FooterListProps) => {
-  console.log("Footer Length", footerItems.length);
+  // console.log("Footer Length", footerItems.length);
   return (
     <div
       className={cn(
