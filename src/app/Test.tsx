@@ -17,7 +17,14 @@ import Chip from "@/components/Chip";
 import ImageCard from "@/components/ImageCard";
 import StatsCard from "@/components/StatsCard";
 import { LuAngry, LuAnnoyed, LuHeart } from "react-icons/lu";
-import { Caption, Paragraph, Textarea, Typography } from "@/components";
+import {
+  Caption,
+  Loading,
+  Paragraph,
+  Spinner,
+  Textarea,
+  Typography,
+} from "@/components";
 import Checkbox from "@/components/Checkbox";
 import Input from "@/components/Input";
 import Label from "@/components/Label";
@@ -1407,6 +1414,26 @@ const Test = () => {
             size="lg"
             onChange={(e) => handleSliderChange(Number(e.target.value))}
           />
+        </section>
+        <section className="flex flex-col items-center justify-center gap-2">
+          <Typography variant={"h6"}>Loading:</Typography>
+          <Loading width="50px" height="50px" loaderColor="green" />
+          <span className="font-bold">Hold On ...</span>
+          <p className="text-sm text-gray-500">
+            We are running into some issues :&#40;
+          </p>
+          <Button size={"sm"}>
+            Loading <Loading width="15px" height="15px" variant="light" />
+          </Button>
+          <Button variant="primary-light">
+            Loading <Loading width="15px" height="15px" variant="heavy" />
+          </Button>
+        </section>
+        <section className="flex items-center gap-6">
+          <Typography variant={"h6"}>Spinner:</Typography>
+          <Spinner size="sm" />
+          <Spinner size="md" />
+          <Spinner size="lg" />
         </section>
       </main>
       <Footer

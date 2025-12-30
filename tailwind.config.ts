@@ -72,6 +72,19 @@ const config: Config = {
         cardShadowActive: "0px 5px 15px 0px rgba(66, 133, 244, 0.32)",
         innerShadow: "3px 4px 5.3px 0px rgba(13, 51, 116, 0.64) inset",
       },
+      animation: {
+        "spin-slow": "spin-slow 1.5s linear infinite",
+      },
+      keyframes: {
+        "spin-slow": {
+          from: {
+            transform: "rotate(0deg)",
+          },
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
+      },
     },
   },
   plugins: [],
