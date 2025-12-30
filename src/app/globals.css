@@ -76,9 +76,14 @@
 }
 
 .div-glass2 {
-  background-image: url("/image2.png");
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
+  background: linear-gradient(
+    242deg,
+    var(--primary-900) 5.78%,
+    #070707 49.65%,
+    var(--primary-500) 271.69%
+  ); /* Used if the image is unavailable */
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 

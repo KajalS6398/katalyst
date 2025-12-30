@@ -12,6 +12,7 @@ import Card, {
   CardHeader,
   CardTitle,
 } from "@/components/Card";
+import nature from "../../public/assets/nature.png";
 import Chip from "@/components/Chip";
 import ImageCard from "@/components/ImageCard";
 import StatsCard from "@/components/StatsCard";
@@ -496,7 +497,10 @@ const Test = () => {
             className="resize-none"
             rows={4}
           />
-          <div className="space-y-5 min-h-[200px] p-10 div-glass">
+          <div
+            className="space-y-5 min-h-[200px] p-10 div-glass"
+            style={{ backgroundImage: `url(${nature.src})` }}
+          >
             <Input
               type="text"
               variant={"glass"}
@@ -1090,9 +1094,7 @@ const Test = () => {
           <Typography variant="h6">List Pagination</Typography>
           <div className="flex flex-wrap items-center gap-4">
             {paginatedData.map((item) => (
-              <Chip key={item.id}>
-                <strong>{item.name}</strong>
-              </Chip>
+              <Chip key={item.id}>{item.name}</Chip>
             ))}
           </div>
           <ListPagination

@@ -109,7 +109,7 @@ const NavBtn = ({
     startIcon={icon}
     onClick={onClick}
     disabled={disabled}
-    className="border border-primary-100 px-2"
+    className="border border-primary-100 px-1.5"
   />
 );
 
