@@ -6,14 +6,19 @@ interface CheckboxProps extends HTMLAttributes<HTMLInputElement> {
   checked?: boolean;
   readOnly?: boolean;
   children?: never;
+  square?: boolean;
 }
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ disabled, checked, className, children, readOnly, ...props }, ref) => {
+  (
+    { disabled, checked, className, children, readOnly, square, ...props },
+    ref,
+  ) => {
     return (
       <div
         className={cn(
-          "group inline-flex relative items-center rounded-full border-2 border-transparent hover:border-primary-300",
+          square ? "rounded-sm" : "rounded-full",
+          "group inline-flex relative items-center  border-2 border-transparent hover:border-primary-300",
           disabled && "border-none",
         )}
       >
@@ -25,7 +30,8 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           readOnly={readOnly}
           checked={checked}
           className={cn(
-            "peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border-2 border-gray-300 transition-all checked:border-primary-500 hover:border-primary-500 hover:bg-primary-25/25 disabled:opacity-30 disabled:pointer-events-none disabled:border-gray-400",
+            square ? "rounded-sm" : "rounded-full",
+            "peer relative h-5 w-5 cursor-pointer appearance-none border-2 border-gray-300 transition-all checked:border-primary-500 hover:border-primary-500 hover:bg-primary-25/25 disabled:opacity-30 disabled:pointer-events-none disabled:border-gray-400",
             className,
           )}
         />

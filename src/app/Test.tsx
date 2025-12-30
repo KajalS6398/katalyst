@@ -201,13 +201,13 @@ const Test = () => {
                     </Caption>
                   </div>
                 }
-                sectionClassName="text-xl text-gray-800 hover:bg-blue-100" 
-                subMenuClassName="bg-gray-50 p-4" 
+                sectionClassName="text-xl text-gray-800 hover:bg-blue-100"
+                subMenuClassName="bg-gray-50 p-4"
               >
                 <MenuItem
                   label="Cheese"
                   onClick={() => alert("Save Page As clicked")}
-                  className="hover:bg-yellow-200" 
+                  className="hover:bg-yellow-200"
                 />
                 <MenuItem
                   label="Milk"
@@ -608,6 +608,12 @@ const Test = () => {
             </Label>
           </div>
           <div className="flex items-center gap-2">
+            <Checkbox id="checksq" square />
+            <Label size={"md"} htmlFor="checksq">
+              This is in square variant
+            </Label>
+          </div>
+          <div className="flex items-center gap-2">
             <Checkbox checked readOnly id="check2" />
             <Label size={"md"} htmlFor="check2">
               This is a checked state
@@ -672,7 +678,7 @@ const Test = () => {
             </Label>
           </div>
         </section>
-        <section className="flex gap-4 items-center my-4">
+        <section className="flex gap-4 items-center my-4 ">
           <Typography variant="h6">Chips Variant</Typography>
           <Chip
             startIcon={<LuAnnoyed />}
@@ -685,12 +691,18 @@ const Test = () => {
           <Chip variant="secondary" size="md">
             Secondary
           </Chip>
+          <Chip variant="default" size="md">
+            Default
+          </Chip>
           <Chip variant="glass" size="md">
             Glass
           </Chip>
         </section>
         <section className="flex gap-4 items-center my-4">
           <Typography variant={"h6"}>Sizes - </Typography>
+          <Chip variant="default" size="xs">
+            Default
+          </Chip>
           <Chip endIcon={<LuHeart />} variant="primary" size="sm">
             Solid
           </Chip>
@@ -1122,6 +1134,13 @@ const Test = () => {
           <div className="flex items-center gap-3">
             <Paragraph variant="b2">Primary:</Paragraph>
             <Button
+              size={"xs"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
               size={"sm"}
               startIcon={<RiAddLine />}
               endIcon={<RiAddLine />}
@@ -1145,6 +1164,14 @@ const Test = () => {
           </div>
           <div className="flex items-center gap-3">
             <Paragraph variant="b2">Primary Light:</Paragraph>
+            <Button
+              size={"xs"}
+              variant={"primary-light"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
             <Button
               size={"sm"}
               variant={"primary-light"}
@@ -1173,6 +1200,14 @@ const Test = () => {
           <div className="flex items-center gap-3">
             <Paragraph variant="b2">Secondary:</Paragraph>
             <Button
+              size={"xs"}
+              variant={"secondary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
               size={"sm"}
               variant={"secondary"}
               startIcon={<RiAddLine />}
@@ -1200,6 +1235,14 @@ const Test = () => {
           <div className="flex items-center gap-3">
             <Paragraph variant="b2">Tertiary:</Paragraph>
             <Button
+              size={"xs"}
+              variant={"tertiary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
+            <Button
               size={"sm"}
               variant={"tertiary"}
               startIcon={<RiAddLine />}
@@ -1224,10 +1267,18 @@ const Test = () => {
               Button
             </Button>
           </div>
-          <div className="flex items-center gap-3 div-glass2 px-4">
+          <div className="flex items-center gap-3 div-glass2 py-5 px-4">
             <Paragraph variant="b2" className="text-light">
               Quaternary:
             </Paragraph>
+            <Button
+              size={"xs"}
+              variant={"quaternary"}
+              startIcon={<RiAddLine />}
+              endIcon={<RiAddLine />}
+            >
+              Button
+            </Button>
             <Button
               size={"sm"}
               variant={"quaternary"}
@@ -1255,42 +1306,6 @@ const Test = () => {
           </div>
           <div className="flex items-center gap-3">
             <Paragraph variant="b2">Disabled:</Paragraph>
-            <Button
-              size={"sm"}
-              disabled
-              variant={"primary"}
-              startIcon={<RiAddLine />}
-              endIcon={<RiAddLine />}
-            >
-              Button
-            </Button>
-            <Button
-              size={"sm"}
-              disabled
-              variant={"primary-light"}
-              startIcon={<RiAddLine />}
-              endIcon={<RiAddLine />}
-            >
-              Button
-            </Button>
-            <Button
-              size={"sm"}
-              disabled
-              variant={"quaternary"}
-              startIcon={<RiAddLine />}
-              endIcon={<RiAddLine />}
-            >
-              Button
-            </Button>
-            <Button
-              size={"sm"}
-              disabled
-              variant={"secondary"}
-              startIcon={<RiAddLine />}
-              endIcon={<RiAddLine />}
-            >
-              Button
-            </Button>
             <Button
               size={"sm"}
               disabled
