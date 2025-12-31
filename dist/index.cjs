@@ -28,8 +28,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/app/index.ts
-var app_exports = {};
-__export(app_exports, {
+var index_exports = {};
+__export(index_exports, {
   Accordion: () => Accordion,
   AccordionContent: () => AccordionContent,
   AccordionItem: () => AccordionItem,
@@ -69,7 +69,7 @@ __export(app_exports, {
   Toggle: () => Toggle_default,
   Typography: () => Typography_default
 });
-module.exports = __toCommonJS(app_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/utils/util.ts
 var import_clsx = __toESM(require("clsx"), 1);
