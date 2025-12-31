@@ -501,11 +501,20 @@ video {
 .h-1\.5 {
   height: 0.375rem;
 }
+.h-10 {
+  height: 2.5rem;
+}
+.h-16 {
+  height: 4rem;
+}
 .h-4 {
   height: 1rem;
 }
 .h-5 {
   height: 1.25rem;
+}
+.h-6 {
+  height: 1.5rem;
 }
 .h-\[18px\] {
   height: 18px;
@@ -546,11 +555,20 @@ video {
 .min-h-\[200px\] {
   min-height: 200px;
 }
+.w-10 {
+  width: 2.5rem;
+}
+.w-16 {
+  width: 4rem;
+}
 .w-4 {
   width: 1rem;
 }
 .w-5 {
   width: 1.25rem;
+}
+.w-6 {
+  width: 1.5rem;
 }
 .w-8 {
   width: 2rem;
@@ -563,6 +581,9 @@ video {
 }
 .w-\[400px\] {
   width: 400px;
+}
+.w-\[40px\] {
+  width: 40px;
 }
 .w-\[466px\] {
   width: 466px;
@@ -636,6 +657,17 @@ video {
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 1.5s linear infinite;
+}
 .cursor-not-allowed {
   cursor: not-allowed;
 }
@@ -687,9 +719,6 @@ video {
 .gap-10 {
   gap: 2.5rem;
 }
-.gap-12 {
-  gap: 3rem;
-}
 .gap-14 {
   gap: 3.5rem;
 }
@@ -704,6 +733,12 @@ video {
 }
 .gap-5 {
   gap: 1.25rem;
+}
+.gap-6 {
+  gap: 1.5rem;
+}
+.gap-8 {
+  gap: 2rem;
 }
 .gap-\[10px\] {
   gap: 10px;
@@ -721,6 +756,11 @@ video {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 .space-y-2\.5 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
@@ -803,6 +843,9 @@ video {
 .border-2 {
   border-width: 2px;
 }
+.border-4 {
+  border-width: 4px;
+}
 .border-b {
   border-bottom-width: 1px;
 }
@@ -829,6 +872,9 @@ video {
 }
 .border-primary-500 {
   border-color: var(--primary-500);
+}
+.border-primary-600 {
+  border-color: var(--primary-600);
 }
 .border-transparent {
   border-color: transparent;
@@ -897,6 +943,9 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.bg-white\/10 {
+  background-color: rgb(255 255 255 / 0.1);
 }
 .bg-white\/20 {
   background-color: rgb(255 255 255 / 0.2);
@@ -980,6 +1029,9 @@ video {
 }
 .p-3 {
   padding: 0.75rem;
+}
+.p-3\.5 {
+  padding: 0.875rem;
 }
 .p-4 {
   padding: 1rem;
@@ -1217,8 +1269,14 @@ video {
 .text-gray-400 {
   color: var(--gray-400);
 }
+.text-gray-500 {
+  color: var(--gray-500);
+}
 .text-gray-600 {
   color: var(--gray-600);
+}
+.text-gray-700 {
+  color: var(--gray-700);
 }
 .text-gray-800 {
   color: var(--gray-800);
@@ -1373,6 +1431,14 @@ video {
 .test {
   border: 1px solid red;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
 .gradientOne {
   background:
     linear-gradient(
@@ -1440,6 +1506,46 @@ video {
   background-color: #000;
   border-radius: 0;
   cursor: pointer;
+}
+.spinner {
+  --spinner-color-1: var(--primary-500);
+  --spinner-color-2: var(--primary-200);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    linear-gradient(
+      0deg,
+      var(--spinner-color-1) 30%,
+      transparent 30% 70%,
+      var(--spinner-color-1) 70%) 50% / 8% 100%,
+    linear-gradient(
+      90deg,
+      var(--spinner-color-2) 30%,
+      transparent 30% 70%,
+      var(--spinner-color-2) 70%) 50% / 100% 8%;
+  background-repeat: no-repeat;
+  animation: l23 2s infinite steps(12);
+  position: relative;
+}
+.spinner::before,
+.spinner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.915;
+  transform: rotate(30deg);
+}
+.spinner::after {
+  opacity: 0.83;
+  transform: rotate(60deg);
+}
+@keyframes l23 {
+  100% {
+    transform: rotate(1turn);
+  }
 }
 .last\:border-t:last-child {
   border-top-width: 1px;

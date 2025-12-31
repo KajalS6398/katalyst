@@ -148,6 +148,7 @@ const Test = () => {
 
   const paginatedData = dummyData.slice(
     page * rowsPerPage,
+
     page * rowsPerPage + rowsPerPage,
   );
 

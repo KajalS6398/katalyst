@@ -56,10 +56,14 @@ __export(app_exports, {
   Input: () => Input_default,
   Label: () => Label_default,
   ListItem: () => ListItem_default,
+  ListPagination: () => ListPagination_default,
+  Loading: () => Loading_default,
   MenuItem: () => MenuItem,
   MenuSubItem: () => MenuSubItem,
+  OTPInput: () => OTPInput_default,
   Paragraph: () => Paragraph_default,
   Slider: () => Slider_default,
+  Spinner: () => Spinner_default,
   StatsCard: () => StatsCard_default,
   Textarea: () => Textarea_default,
   Toggle: () => Toggle_default,
@@ -606,16 +610,16 @@ var FooterList = ({ footerItems, target }) => {
     "div",
     {
       className: cn(
-        "grid place-items-start gap-12 text-center md:text-left",
+        "grid place-items-start gap-8 text-center md:text-left",
         footerItems.length === 2 && "md:grid-cols-2",
         (footerItems.length > 3 || footerItems.length === 3) && "lg:grid-cols-3 md:grid-cols-2"
       )
     },
-    footerItems?.map((data, i) => /* @__PURE__ */ import_react10.default.createElement("div", { key: i, className: "space-y-5 w-full" }, /* @__PURE__ */ import_react10.default.createElement(Typography_default, { variant: "h5" }, data?.label), /* @__PURE__ */ import_react10.default.createElement("ul", { className: "space-y-2.5 list-none" }, data?.content?.map((data2, i2) => /* @__PURE__ */ import_react10.default.createElement("li", { key: i2 }, /* @__PURE__ */ import_react10.default.createElement(import_link.default, { href: data2?.link, target }, /* @__PURE__ */ import_react10.default.createElement(
+    footerItems?.map((data, i) => /* @__PURE__ */ import_react10.default.createElement("div", { key: i, className: "space-y-3 w-full" }, /* @__PURE__ */ import_react10.default.createElement(Paragraph_default, { variant: "b3", className: "text-primary-600" }, data?.label), /* @__PURE__ */ import_react10.default.createElement("ul", { className: "space-y-2 list-none" }, data?.content?.map((data2, i2) => /* @__PURE__ */ import_react10.default.createElement("li", { key: i2 }, /* @__PURE__ */ import_react10.default.createElement(import_link.default, { href: data2?.link, target }, /* @__PURE__ */ import_react10.default.createElement(
       Paragraph_default,
       {
-        variant: "b3",
-        className: "dark:text-gray-300 hover:text-primary-400 dark:hover:text-primary-600 text-gray-900"
+        variant: "b4",
+        className: "dark:text-gray-300 hover:text-primary-400 dark:hover:text-primary-600 font-semibold text-gray-900"
       },
       data2?.text
     )))))))
@@ -802,12 +806,178 @@ var ListItem = import_react14.default.forwardRef(
 ListItem.displayName = "ListItem";
 var ListItem_default = ListItem;
 
-// src/components/Slider.tsx
+// src/components/ListPagination.tsx
 var import_react15 = __toESM(require("react"), 1);
-var Slider = (0, import_react15.forwardRef)(
+var import_ri = require("react-icons/ri");
+var ListPagination = ({
+  count,
+  page,
+  rowsPerPage,
+  onPageChange,
+  className
+}) => {
+  const totalPages = Math.ceil(count / rowsPerPage);
+  const [expanded, setExpanded] = (0, import_react15.useState)(false);
+  const renderPages = () => {
+    if (totalPages <= 6 || expanded) {
+      return [...Array(totalPages)].map((_, i) => /* @__PURE__ */ import_react15.default.createElement(PageBtn, { key: i, i, page, onPageChange }));
+    }
+    const start = [0, 1];
+    const mid = [page - 1, page, page + 1].filter(
+      (i) => i > 1 && i < totalPages - 2
+    );
+    const end = [totalPages - 2, totalPages - 1];
+    const range = Array.from(/* @__PURE__ */ new Set([...start, ...mid, ...end]));
+    return range.map(
+      (i, idx) => typeof range[idx - 1] === "number" && i - range[idx - 1] > 1 ? /* @__PURE__ */ import_react15.default.createElement(
+        Button_default,
+        {
+          key: `dots-${i}`,
+          size: "sm",
+          variant: "secondary",
+          onClick: () => setExpanded(true)
+        },
+        "..."
+      ) : /* @__PURE__ */ import_react15.default.createElement(PageBtn, { key: i, i, page, onPageChange })
+    );
+  };
+  return /* @__PURE__ */ import_react15.default.createElement("section", { className: cn("flex items-center gap-1", className) }, /* @__PURE__ */ import_react15.default.createElement(
+    NavBtn,
+    {
+      icon: /* @__PURE__ */ import_react15.default.createElement(import_ri.RiArrowLeftSLine, { size: 28 }),
+      onClick: () => onPageChange(page - 1),
+      disabled: page === 0
+    }
+  ), /* @__PURE__ */ import_react15.default.createElement("div", { className: "max-w-[90vw] w-max overflow-auto flex items-center gap-2 p-2" }, renderPages()), /* @__PURE__ */ import_react15.default.createElement(
+    NavBtn,
+    {
+      icon: /* @__PURE__ */ import_react15.default.createElement(import_ri.RiArrowRightSLine, { size: 28 }),
+      onClick: () => onPageChange(page + 1),
+      disabled: page === totalPages - 1
+    }
+  ));
+};
+var PageBtn = ({
+  i,
+  page,
+  onPageChange
+}) => /* @__PURE__ */ import_react15.default.createElement(
+  Button_default,
+  {
+    size: "sm",
+    variant: "secondary",
+    className: cn(
+      // "dark:bg-transparent dark:border dark:text-gray-300 dark:border-gray-400",
+      i === page && "bg-primary-50 shadow-[0px_0px_0px_2px] shadow-primary-700 hover:shadow-[0px_0px_0px_2px] hover:shadow-primary-700 dark:shadow-primary-200 dark:bg-primary-300"
+    ),
+    onClick: () => onPageChange(i)
+  },
+  i + 1
+);
+var NavBtn = ({
+  icon,
+  onClick,
+  disabled
+}) => /* @__PURE__ */ import_react15.default.createElement(
+  Button_default,
+  {
+    size: "sm",
+    variant: "primary-light",
+    startIcon: icon,
+    onClick,
+    disabled,
+    className: "border border-primary-100 px-1.5"
+  }
+);
+var ListPagination_default = ListPagination;
+
+// src/components/Loading.tsx
+var import_react16 = __toESM(require("react"), 1);
+var Loading = ({ width, height, loaderColor, variant }) => {
+  return /* @__PURE__ */ import_react16.default.createElement(
+    "div",
+    {
+      className: cn(
+        "animate-spin-slow border-primary-600 border-t-gray-200/50 rounded-full",
+        variant === "light" ? "border-2" : "border-4"
+      ),
+      style: {
+        width,
+        height,
+        borderColor: loaderColor,
+        borderTopColor: "rgb(234 236 240 / 0.5)"
+      }
+    }
+  );
+};
+var Loading_default = Loading;
+
+// src/components/OTPInput.tsx
+var import_react17 = __toESM(require("react"), 1);
+var OTPInput = ({
+  length,
+  onChange,
+  type = "text"
+}) => {
+  const [otpValues, setOtpValues] = (0, import_react17.useState)(Array(length).fill(""));
+  const inputsRef = (0, import_react17.useRef)([]);
+  const handleChange = (e, idx) => {
+    let value = e.target.value;
+    if (type === "number") value = value.replace(/\D/g, "");
+    if (!value) return;
+    const newOtp = [...otpValues];
+    newOtp[idx] = value[0];
+    setOtpValues(newOtp);
+    onChange(newOtp.join(""));
+    if (idx < length - 1) inputsRef.current[idx + 1]?.focus();
+  };
+  const handleKeyDown = (e, idx) => {
+    if (e.key === "Backspace") {
+      if (otpValues[idx]) {
+        const newOtp = [...otpValues];
+        newOtp[idx] = "";
+        setOtpValues(newOtp);
+        onChange(newOtp.join(""));
+      } else if (idx > 0) {
+        inputsRef.current[idx - 1]?.focus();
+      }
+    }
+  };
+  const handlePaste = (e) => {
+    e.preventDefault();
+    let pasteData = e.clipboardData.getData("Text");
+    if (type === "number") pasteData = pasteData.replace(/\D/g, "");
+    const newOtp = pasteData.split("").concat(Array(length).fill("")).slice(0, length);
+    setOtpValues(newOtp);
+    onChange(newOtp.join(""));
+    inputsRef.current[Math.min(pasteData.length, length - 1)]?.focus();
+  };
+  return /* @__PURE__ */ import_react17.default.createElement("div", { className: "flex items-center gap-2" }, Array.from({ length }).map((_, idx) => /* @__PURE__ */ import_react17.default.createElement(
+    Input_default,
+    {
+      key: idx,
+      type,
+      inputMode: type === "number" ? "numeric" : "text",
+      maxLength: 1,
+      value: otpValues[idx],
+      onChange: (e) => handleChange(e, idx),
+      onKeyDown: (e) => handleKeyDown(e, idx),
+      onPaste: handlePaste,
+      ref: (el) => {
+        inputsRef.current[idx] = el ?? null;
+      },
+      className: "w-[40px] p-3.5"
+    }
+  )));
+};
+var OTPInput_default = OTPInput;
+
+// src/components/Slider.tsx
+var import_react18 = __toESM(require("react"), 1);
+var Slider = (0, import_react18.forwardRef)(
   ({ value, min = 0, max = 100, size = "sm", ...props }, ref) => {
     const progress = (value - min) / (max - min) * 100;
-    return /* @__PURE__ */ import_react15.default.createElement(import_react15.default.Fragment, null, /* @__PURE__ */ import_react15.default.createElement(
+    return /* @__PURE__ */ import_react18.default.createElement(import_react18.default.Fragment, null, /* @__PURE__ */ import_react18.default.createElement(
       "input",
       {
         ref,
@@ -830,15 +1000,64 @@ var Slider = (0, import_react15.forwardRef)(
 Slider.displayName = "Slider";
 var Slider_default = Slider;
 
+// src/components/Spinner.tsx
+var import_react19 = __toESM(require("react"), 1);
+var colorVars = {
+  primary: {
+    c1: "var(--primary-500)",
+    c2: "var(--primary-200)"
+  },
+  black: {
+    c1: "rgba(0, 0, 0, 1)",
+    c2: "rgba(0, 0, 0, 0.5)"
+  },
+  gray: {
+    c1: "var(--gray-500)",
+    c2: "var(--gray-300)"
+  }
+};
+var Spinner = ({ size = "md", color = "primary" }) => {
+  const sizeClass = cn({
+    "w-4 h-4": size === "xs",
+    "w-6 h-6": size === "sm",
+    "w-10 h-10": size === "md",
+    "w-16 h-16": size === "lg"
+  });
+  const getColorValues = (color2) => {
+    if (colorVars[color2]) {
+      return colorVars[color2];
+    }
+    if (color2.startsWith("#")) {
+      return {
+        c1: color2,
+        c2: `${color2}80`
+      };
+    }
+    return colorVars.primary;
+  };
+  const colorValues = getColorValues(color);
+  return /* @__PURE__ */ import_react19.default.createElement("div", { className: cn("relative", sizeClass) }, /* @__PURE__ */ import_react19.default.createElement(
+    "div",
+    {
+      className: "spinner",
+      style: {
+        ["--spinner-color-1"]: colorValues.c1,
+        ["--spinner-color-2"]: colorValues.c2
+      }
+    }
+  ));
+};
+var Spinner_default = Spinner;
+
 // src/components/StatsCard.tsx
-var import_react16 = __toESM(require("react"), 1);
+var import_react20 = __toESM(require("react"), 1);
 var StatsCard = ({
   statTitle,
   statDesc,
   className,
   cardIcon
 }) => {
-  return /* @__PURE__ */ import_react16.default.createElement(
+  return /* @__PURE__ */ import_react20.default.createElement(
     Card,
     {
       className: cn(
@@ -846,23 +1065,23 @@ var StatsCard = ({
         className
       )
     },
-    /* @__PURE__ */ import_react16.default.createElement("span", { className: "group-hover:text-white text-dark dark:text-white" }, cardIcon),
-    /* @__PURE__ */ import_react16.default.createElement(CardTitle, { className: "group-hover:text-white text-[48px] font-bold text-primary-500 dark:text-white my-4" }, statTitle),
-    /* @__PURE__ */ import_react16.default.createElement(CardDescription, { className: "group-hover:text-white text-[24px] hover:text-white text-dark leading-[25px]" }, statDesc)
+    /* @__PURE__ */ import_react20.default.createElement("span", { className: "group-hover:text-white text-dark dark:text-white" }, cardIcon),
+    /* @__PURE__ */ import_react20.default.createElement(CardTitle, { className: "group-hover:text-white text-[48px] font-bold text-primary-500 dark:text-white my-4" }, statTitle),
+    /* @__PURE__ */ import_react20.default.createElement(CardDescription, { className: "group-hover:text-white text-[24px] hover:text-white text-dark leading-[25px]" }, statDesc)
   );
 };
 var StatsCard_default = StatsCard;
 
 // src/components/Textarea.tsx
 var import_class_variance_authority8 = require("class-variance-authority");
-var import_react17 = __toESM(require("react"), 1);
+var import_react21 = __toESM(require("react"), 1);
 var textareaVariants = (0, import_class_variance_authority8.cva)(
-  "flex items-center gap-2 font-karla text-sm outline-none rounded-radius-md border py-2 px-4 disabled:opacity-60 disabled:select-none disabled:pointer-events-none w-full",
+  "flex items-center gap-2 font-karla bg-transparent text-sm outline-none rounded-radius-md border py-2 px-4 disabled:opacity-60 disabled:select-none disabled:pointer-events-none w-full",
   {
     variants: {
       variant: {
         default: "dark:text-gray-500 dark:bg-gray-900 dark:border-gray-800 dark:hover:text-light dark:hover:bg-gray-800 dark:hover:border-gray-700 dark:focus-within:bg-gray-100 dark:focus-within:border-gray-800 dark:focus-within:hover:bg-gray-700 dark:focus-within:text-dark dark:disabled:bg-gray-700 bg-gray-100 border-gray-200 text-gray-600 hover:border-gray-300 hover:text-gray-500 hover:bg-gray-300 focus-within:bg-gray-50 focus-within:border-gray-400 focus-within:text-dark focus-within:hover:text-dark focus-within:hover:border-primary-100 focus-within:hover:bg-primary-50 disabled:bg-gray-25 disabled:border-gray-400",
-        glass: "backdrop-blur-[3.5px] bg-light/10 dark:bg-dark/20 dark:border-gray-800 border-gray-200/50 text-light"
+        glass: "backdrop-blur-[3.5px] bg-white/10 dark:bg-dark/20 dark:border-gray-800 border-gray-200/50 text-light"
       }
     },
     defaultVariants: {
@@ -870,9 +1089,9 @@ var textareaVariants = (0, import_class_variance_authority8.cva)(
     }
   }
 );
-var Textarea = (0, import_react17.forwardRef)(
+var Textarea = (0, import_react21.forwardRef)(
   ({ className, rows, cols, variant, disabled, children, ...props }, ref) => {
-    return /* @__PURE__ */ import_react17.default.createElement(
+    return /* @__PURE__ */ import_react21.default.createElement(
       "textarea",
       {
         ...props,
@@ -891,7 +1110,7 @@ var Textarea_default = Textarea;
 
 // src/components/Toggle.tsx
 var import_class_variance_authority9 = require("class-variance-authority");
-var import_react18 = __toESM(require("react"), 1);
+var import_react22 = __toESM(require("react"), 1);
 var toggleVariants = (0, import_class_variance_authority9.cva)(
   "rounded-radius-xl bg-gray-300 transition-colors peer-checked:bg-primary-500 peer-active:ring-2 peer-active:ring-primary-300",
   {
@@ -906,9 +1125,9 @@ var toggleVariants = (0, import_class_variance_authority9.cva)(
     }
   }
 );
-var Toggle = (0, import_react18.forwardRef)(
+var Toggle = (0, import_react22.forwardRef)(
   ({ icon, children, disabled, size = "lg", ...props }, ref) => {
-    return /* @__PURE__ */ import_react18.default.createElement(
+    return /* @__PURE__ */ import_react22.default.createElement(
       "label",
       {
         className: cn(
@@ -916,7 +1135,7 @@ var Toggle = (0, import_react18.forwardRef)(
           disabled && "opacity-50 pointer-events-none"
         )
       },
-      /* @__PURE__ */ import_react18.default.createElement("div", { className: "relative" }, /* @__PURE__ */ import_react18.default.createElement(
+      /* @__PURE__ */ import_react22.default.createElement("div", { className: "relative" }, /* @__PURE__ */ import_react22.default.createElement(
         "input",
         {
           type: "checkbox",
@@ -925,7 +1144,7 @@ var Toggle = (0, import_react18.forwardRef)(
           ...props,
           className: "sr-only peer"
         }
-      ), /* @__PURE__ */ import_react18.default.createElement("div", { className: cn(toggleVariants({ size })) }), /* @__PURE__ */ import_react18.default.createElement(
+      ), /* @__PURE__ */ import_react22.default.createElement("div", { className: cn(toggleVariants({ size })) }), /* @__PURE__ */ import_react22.default.createElement(
         "div",
         {
           className: cn(
@@ -933,7 +1152,7 @@ var Toggle = (0, import_react18.forwardRef)(
             size === "sm" ? "peer-checked:translate-x-2 top-[1px] left-[2px] w-5 h-4 rounded-radius-md" : "peer-checked:translate-x-3 top-[2.5px] left-1 h-[22px] w-[34px] rounded-radius-lg"
           )
         },
-        /* @__PURE__ */ import_react18.default.createElement("span", { className: "flex items-center justify-center" }, icon),
+        /* @__PURE__ */ import_react22.default.createElement("span", { className: "flex items-center justify-center" }, icon),
         children
       ))
     );
@@ -969,10 +1188,14 @@ var Toggle_default = Toggle;
   Input,
   Label,
   ListItem,
+  ListPagination,
+  Loading,
   MenuItem,
   MenuSubItem,
+  OTPInput,
   Paragraph,
   Slider,
+  Spinner,
   StatsCard,
   Textarea,
   Toggle,
