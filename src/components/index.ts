@@ -32,6 +32,7 @@ export { default as Label } from "./Label";
 export { default as ListItem } from "./ListItem";
 export { default as ListPagination } from "./ListPagination";
 export { default as Loading } from "./Loading";
+export { default as OTPInput } from "./OTPInput";
 export { default as Paragraph } from "./Paragraph";
 export { default as Slider } from "./Slider";
 export { default as Spinner } from "./Spinner";
