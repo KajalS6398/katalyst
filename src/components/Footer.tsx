@@ -1,5 +1,4 @@
 import React, { type ReactNode } from "react";
-import Typography from "./Typography";
 import Paragraph from "./Paragraph";
 import { cn } from "@/utils/util";
 import Link from "next/link";
@@ -95,22 +94,24 @@ export const FooterList = ({ footerItems, target }: FooterListProps) => {
   return (
     <div
       className={cn(
-        "grid place-items-start gap-12 text-center md:text-left",
+        "grid place-items-start gap-8 text-center md:text-left",
         footerItems.length === 2 && "md:grid-cols-2",
         (footerItems.length > 3 || footerItems.length === 3) &&
           "lg:grid-cols-3 md:grid-cols-2",
       )}
     >
       {footerItems?.map((data, i) => (
-        <div key={i} className="space-y-5 w-full">
-          <Typography variant={"h5"}>{data?.label}</Typography>
-          <ul className="space-y-2.5 list-none">
+        <div key={i} className="space-y-3 w-full">
+          <Paragraph variant={"b3"} className="text-primary-600">
+            {data?.label}
+          </Paragraph>
+          <ul className="space-y-2 list-none">
             {data?.content?.map((data, i) => (
               <li key={i}>
                 <Link href={data?.link} target={target}>
                   <Paragraph
-                    variant={"b3"}
-                    className="dark:text-gray-300 hover:text-primary-400 dark:hover:text-primary-600 text-gray-900"
+                    variant={"b4"}
+                    className="dark:text-gray-300 hover:text-primary-400 dark:hover:text-primary-600 font-semibold text-gray-900"
                   >
                     {data?.text}
                   </Paragraph>

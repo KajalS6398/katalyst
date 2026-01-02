@@ -20,6 +20,7 @@ import { LuAngry, LuAnnoyed, LuHeart } from "react-icons/lu";
 import {
   Caption,
   Loading,
+  OTPInput,
   Paragraph,
   Spinner,
   Textarea,
@@ -147,8 +148,11 @@ const Test = () => {
 
   const paginatedData = dummyData.slice(
     page * rowsPerPage,
+
     page * rowsPerPage + rowsPerPage,
   );
+
+  const [otp, setOtp] = useState("");
 
   return (
     <div className="bg-light dark:bg-dark">
@@ -537,6 +541,18 @@ const Test = () => {
               rows={4}
             />
           </div>
+        </section>
+        <section className="space-y-4">
+          <Typography variant="h6">OTP</Typography>
+          <div className="space-y-2">
+            <OTPInput type="text" length={4} onChange={setOtp} />
+            <OTPInput type="number" length={5} onChange={setOtp} />
+            <OTPInput type="password" length={6} onChange={setOtp} />
+            <Paragraph variant={"b3"} className="mt-4 text-gray-700">
+              Your OTP: {otp}
+            </Paragraph>
+          </div>
+          <Caption variant={"md"}>Note: you can also paste values</Caption>
         </section>
         {/* dropdown */}
         <div className="py-32 mb-32 flex gap-10 items-start">
