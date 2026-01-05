@@ -19,8 +19,8 @@ import StatsCard from "@/components/StatsCard";
 import { LuAngry, LuAnnoyed, LuHeart } from "react-icons/lu";
 import {
   Caption,
-  Dropdown,
   Loading,
+  OTPInput,
   Paragraph,
   Spinner,
   Textarea,
@@ -56,6 +56,7 @@ import Image from "next/image";
 import { HiMiniBars3BottomRight, HiXMark } from "react-icons/hi2";
 import Slider from "@/components/Slider";
 import ListPagination from "@/components/ListPagination";
+import NestedDropdown from "@/components/NestedDropdown";
 
 interface Option {
   label: string | number;
@@ -101,6 +102,202 @@ const footerItems = [
   },
 ];
 
+// Sample industry data that matches the BaseNestedItem interface
+interface IndustryItem {
+  _id: string;
+  name: string;
+  children?: IndustryItem[];
+}
+const industryList = {
+  data: [
+    {
+      _id: "1",
+      name: "Technology",
+      children: [
+        {
+          _id: "101",
+          name: "Software Development",
+          children: [
+            { _id: "1001", name: "Web Development", children: [] },
+            { _id: "1002", name: "Mobile Apps", children: [] },
+            { _id: "1003", name: "Cloud Computing", children: [] },
+          ],
+        },
+        {
+          _id: "102",
+          name: "Hardware",
+          children: [
+            { _id: "1004", name: "Computer Manufacturing", children: [] },
+            { _id: "1005", name: "Consumer Electronics", children: [] },
+          ],
+        },
+        {
+          _id: "103",
+          name: "IT Services",
+          children: [
+            { _id: "1006", name: "Cybersecurity", children: [] },
+            { _id: "1007", name: "Network Solutions", children: [] },
+          ],
+        },
+      ],
+    },
+    {
+      _id: "2",
+      name: "Healthcare",
+      children: [
+        {
+          _id: "201",
+          name: "Medical Services",
+          children: [
+            { _id: "2001", name: "Hospitals", children: [] },
+            { _id: "2002", name: "Clinics", children: [] },
+          ],
+        },
+        {
+          _id: "202",
+          name: "Pharmaceuticals",
+          children: [
+            { _id: "2003", name: "Drug Manufacturing", children: [] },
+            { _id: "2004", name: "Research & Development", children: [] },
+          ],
+        },
+      ],
+    },
+    {
+      _id: "3",
+      name: "Finance",
+      children: [
+        {
+          _id: "301",
+          name: "Banking",
+          children: [
+            { _id: "3001", name: "Retail Banking", children: [] },
+            { _id: "3002", name: "Investment Banking", children: [] },
+          ],
+        },
+        {
+          _id: "302",
+          name: "Insurance",
+          children: [
+            { _id: "3003", name: "Life Insurance", children: [] },
+            { _id: "3004", name: "Property Insurance", children: [] },
+          ],
+        },
+      ],
+    },
+    {
+      _id: "4",
+      name: "Education",
+      children: [
+        {
+          _id: "401",
+          name: "Higher Education",
+          children: [
+            { _id: "4001", name: "Universities", children: [] },
+            { _id: "4002", name: "Colleges", children: [] },
+          ],
+        },
+        {
+          _id: "402",
+          name: "K-12",
+          children: [
+            { _id: "4003", name: "Public Schools", children: [] },
+            { _id: "4004", name: "Private Schools", children: [] },
+          ],
+        },
+      ],
+    },
+    {
+      _id: "5",
+      name: "Manufacturing",
+      children: [
+        {
+          _id: "501",
+          name: "Automotive",
+          children: [
+            { _id: "5001", name: "Car Manufacturing", children: [] },
+            { _id: "5002", name: "Auto Parts", children: [] },
+          ],
+        },
+        {
+          _id: "502",
+          name: "Consumer Goods",
+          children: [
+            { _id: "5003", name: "Apparel", children: [] },
+            { _id: "5004", name: "Home Appliances", children: [] },
+          ],
+        },
+      ],
+    },
+    {
+      _id: "6",
+      name: "Retail",
+      children: [
+        {
+          _id: "601",
+          name: "E-commerce",
+          children: [
+            { _id: "6001", name: "Online Marketplaces", children: [] },
+            { _id: "6002", name: "Direct-to-Consumer", children: [] },
+          ],
+        },
+        {
+          _id: "602",
+          name: "Brick & Mortar",
+          children: [
+            { _id: "6003", name: "Department Stores", children: [] },
+            { _id: "6004", name: "Specialty Stores", children: [] },
+          ],
+        },
+      ],
+    },
+    {
+      _id: "7",
+      name: "Transportation",
+      children: [
+        {
+          _id: "701",
+          name: "Logistics",
+          children: [
+            { _id: "7001", name: "Shipping", children: [] },
+            { _id: "7002", name: "Warehousing", children: [] },
+          ],
+        },
+        {
+          _id: "702",
+          name: "Passenger Services",
+          children: [
+            { _id: "7003", name: "Airlines", children: [] },
+            { _id: "7004", name: "Railways", children: [] },
+          ],
+        },
+      ],
+    },
+    {
+      _id: "8",
+      name: "Real Estate",
+      children: [
+        {
+          _id: "801",
+          name: "Residential",
+          children: [
+            { _id: "8001", name: "Apartments", children: [] },
+            { _id: "8002", name: "Houses", children: [] },
+          ],
+        },
+        {
+          _id: "802",
+          name: "Commercial",
+          children: [
+            { _id: "8003", name: "Office Spaces", children: [] },
+            { _id: "8004", name: "Retail Spaces", children: [] },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
 const iconsArray = [
   { icon: <RiTwitterLine />, link: "https://twitter.com" },
   { icon: <RiInstagramLine />, link: "https://instagram.com" },
@@ -115,6 +312,8 @@ const dummyData = Array.from({ length: 100 }, (_, index) => ({
 
 const Test = () => {
   const { switchDark, switchLight } = useTheme();
+
+  const [selectedItem, setSelectedItem] = useState<IndustryItem | null>(null);
 
   // toggle
   const [isChecked, setIsChecked] = useState(false);
@@ -151,8 +350,11 @@ const Test = () => {
 
   const paginatedData = dummyData.slice(
     page * rowsPerPage,
+
     page * rowsPerPage + rowsPerPage,
   );
+
+  const [otp, setOtp] = useState("");
 
   return (
     <div className="bg-light dark:bg-dark">
@@ -287,6 +489,142 @@ const Test = () => {
         </section>
       </div> */}
 
+      <div className="my-10 mx-10 flex items-center flex-wrap gap-5">
+        <NestedDropdown
+          data={industryList?.data || []}
+          onSelect={(_, path) => {
+            const pathIds = path?.map((p) => p?._id);
+            console.log("Selected Path IDs:", pathIds);
+          }}
+          placeholder="Select Parent"
+        />
+
+        {/* <section>
+          <h1>Custom Width and Height</h1>
+          <NestedDropdown
+            data={industryList?.data || []}
+            onSelect={(_, path) => {
+              const pathIds = path?.map((p) => p?._id);
+              console.log("Selected Path IDs:", pathIds);
+            }}
+            placeholder="Choose Category"
+            width="300px"
+            height="250px"
+          />
+        </section>
+        <section>
+          <h1>Disabled State</h1>
+          <NestedDropdown
+            data={industryList?.data || []}
+            onSelect={(_, path) => {
+              const pathIds = path?.map((p) => p?._id);
+              console.log("Selected:", pathIds);
+            }}
+            placeholder="Select Parent"
+            disabled={true}
+          />
+        </section>
+        <section>
+          <h1>With Error State</h1>
+          <NestedDropdown
+            data={industryList?.data || []}
+            onSelect={(_, path) => {
+              const pathIds = path?.map((p) => p?._id);
+              console.log("Selected:", pathIds);
+            }}
+            placeholder="Select Parent"
+            disabled={true}
+          />
+        </section>
+        <section>
+          <h1>Controlled Component</h1>
+          <NestedDropdown
+            data={industryList?.data || []}
+            onSelect={(item, path) => {
+              const pathIds = path?.map((p) => p?._id);
+              setSelectedItem(item);
+              console.log("Selected IDs:", pathIds);
+            }}
+            placeholder="Select Parent"
+            value={selectedItem}
+          />
+        </section>
+        <section>
+          <h1>Without Clear Button</h1>
+          <NestedDropdown
+            data={industryList?.data || []}
+            onSelect={(_, path) => {
+              const pathIds = path?.map((p) => p?._id);
+              console.log("Selected:", pathIds);
+            }}
+            placeholder="Select Parent"
+            clearable={false}
+          />
+        </section>
+        <section>
+          <h1>Keep Dropdown Open After Selection</h1>
+          <NestedDropdown
+            data={industryList?.data || []}
+            onSelect={(_, path) => {
+              const pathIds = path?.map((p) => p?._id);
+              console.log("Selected:", pathIds);
+            }}
+            placeholder="Select Parent"
+            closeOnSelect={false}
+          />
+        </section>
+        <section>
+          <h1>With Custom Search Placeholder</h1>
+          <NestedDropdown
+            data={industryList?.data || []}
+            onSelect={(_, path) => {
+              const pathIds = path?.map((p) => p?._id);
+              console.log("Selected:", pathIds);
+            }}
+            placeholder="Select Parent"
+            searchPlaceholder="Search industries..."
+            // searchDebounce={500}
+          />
+        </section>
+        <section>
+          <h1>With Loading State</h1>
+          <NestedDropdown
+            data={industryList?.data || []}
+            onSelect={(_, path) => {
+              const pathIds = path?.map((p) => p?._id);
+              console.log("Selected:", pathIds);
+            }}
+            placeholder="Select Parent"
+            loading={true}
+          />
+        </section>
+        <section>
+          <h1>Custom Styling</h1>
+          <NestedDropdown
+            data={industryList?.data || []}
+            onSelect={(_, path) => {
+              const pathIds = path?.map((p) => p?._id);
+              console.log("Selected:", pathIds);
+            }}
+            placeholder="Select Parent"
+            className="custom-dropdown"
+            width="350px"
+          />
+        </section>
+        <section>
+          <h1>No Results Text Customized</h1>
+          <NestedDropdown
+            data={[]}
+            onSelect={(_, path) => {
+              const pathIds = path?.map((p) => p);
+              console.log("Selected:", pathIds);
+            }}
+            placeholder="Select Parent"
+            noResultsText="No industries found. Try another search."
+          />
+        </section> */}
+      </div>
+
       <main className="space-y-5 p-4">
         <section className="space-y-3">
           <Typography variant="h6">Typography</Typography>
@@ -389,6 +727,19 @@ const Test = () => {
             />
           </div>
         </section>
+        <section className="space-y-4">
+          <Typography variant="h6">OTP</Typography>
+          <div className="space-y-2">
+            <OTPInput type="text" length={4} onChange={setOtp} />
+            <OTPInput type="number" length={5} onChange={setOtp} />
+            <OTPInput type="password" length={6} onChange={setOtp} />
+            <Paragraph variant={"b3"} className="mt-4 text-gray-700">
+              Your OTP: {otp}
+            </Paragraph>
+          </div>
+          <Caption variant={"md"}>Note: you can also paste values</Caption>
+        </section>
+        {/* dropdown */}
         <section className="space-y-5">
           <Typography variant="h6">Checkbox</Typography>
           <div className="flex items-center gap-2">
@@ -505,7 +856,7 @@ const Test = () => {
         </section>
         <div>
           <h1 className="text-lg">Multiple Dropdown</h1>
-          <Dropdown
+          {/* <Dropdown
             options={[
               { label: "High", value: "High", disabledOption: true },
               { label: "Medium", value: "Medium" },
@@ -527,7 +878,7 @@ const Test = () => {
             onApply={() => {
               alert("Apply button clicked");
             }}
-          />
+          /> */}
         </div>
         <section className="space-y-4">
           <Typography variant={"h6"}>Pricing Cards</Typography>
