@@ -396,205 +396,20 @@ var Chip = ({
 var Chip_default = Chip;
 
 // src/components/Dropdown.tsx
-import React9, { useState as useState2, useRef, useEffect } from "react";
-import { HiChevronDown, HiChevronUp } from "react-icons/hi2";
-function Dropdown({
-  triggerIcon,
-  children,
-  width = "250px",
-  className
-}) {
-  const [isOpen, setIsOpen] = useState2(false);
-  const dropdownRef = useRef(null);
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-  return /* @__PURE__ */ React9.createElement("div", { className: "relative w-full font-karla", ref: dropdownRef }, /* @__PURE__ */ React9.createElement(
-    "div",
-    {
-      className: "cursor-pointer",
-      onClick: () => setIsOpen(!isOpen),
-      "aria-label": "Open menu"
-    },
-    triggerIcon || /* @__PURE__ */ React9.createElement("span", null, "\u2630")
-  ), isOpen && /* @__PURE__ */ React9.createElement(
-    "div",
-    {
-      style: { width },
-      className: cn(
-        "border border-primary-200 dark:bg-white dark:border-primary-600 rounded-t-radius-md absolute left-0 mt-1 z-[100000] w-full bg-white shadow-sm",
-        className
-      )
-    },
-    children
-  ));
-}
-var MenuItem = ({
-  label,
-  onClick,
-  disabled,
-  children,
-  className = ""
-}) => /* @__PURE__ */ React9.createElement(
-  "button",
-  {
-    className: cn(
-      "w-full text-left p-4 border-t border-b border-primary-100 last:border-t last:border-none hover:bg-primary-50 dark:hover:bg-primary-50",
-      disabled ? "opacity-50 cursor-not-allowed" : "",
-      className
-    ),
-    onClick,
-    disabled
-  },
-  label,
-  children && /* @__PURE__ */ React9.createElement(React9.Fragment, null, children)
-);
-var MenuSubItem = ({
-  content,
-  children,
-  className = "",
-  sectionClassName = "",
-  subMenuClassName = ""
-}) => {
-  const [isSubOpen, setIsSubOpen] = useState2(false);
-  return /* @__PURE__ */ React9.createElement("div", { className: cn("relative", className) }, /* @__PURE__ */ React9.createElement(
-    "section",
-    {
-      onClick: () => setIsSubOpen(!isSubOpen),
-      className: cn(
-        "cursor-pointer hover:bg-primary-50 dark:hover:bg-primary-50 border-t border-b border-primary-100 p-4 flex justify-between items-center gap-1 w-full text-left",
-        sectionClassName
-      )
-    },
-    content,
-    isSubOpen ? /* @__PURE__ */ React9.createElement(HiChevronUp, null) : /* @__PURE__ */ React9.createElement(HiChevronDown, null)
-  ), isSubOpen && /* @__PURE__ */ React9.createElement(
-    "div",
-    {
-      className: cn(
-        "bg-primary-25 border-primary-100 dark:bg-primary-50 dark:border-primary-100",
-        subMenuClassName
-      )
-    },
-    children
-  ));
-};
-
-// src/components/Footer.tsx
-import React10 from "react";
-import Link from "next/link";
-function Footer({
-  children,
-  className,
-  footerBottom
-}) {
-  return /* @__PURE__ */ React10.createElement(
-    "footer",
-    {
-      className: cn(
-        "bg-gradient-to-b from-gray-25 to-primary-100 dark:from-primary-900 dark:to-dark",
-        className
-      )
-    },
-    children,
-    footerBottom && /* @__PURE__ */ React10.createElement("section", { className: "border-t border-primary-500 dark:border-primary-800 text-center py-spacing-md" }, footerBottom)
-  );
-}
-var FooterHeader = ({ children, className }) => {
-  return /* @__PURE__ */ React10.createElement(
-    "div",
-    {
-      className: cn(
-        "md:w-[30%] space-y-4 flex flex-col items-center lg:items-start",
-        className
-      )
-    },
-    children
-  );
-};
-var FooterContent = ({ children, className }) => {
-  return /* @__PURE__ */ React10.createElement(
-    "section",
-    {
-      className: cn(
-        "max-w-6xl mx-auto flex md:flex-row flex-col items-center md:items-start justify-between gap-14 px-4 md:px-20 py-20",
-        className
-      )
-    },
-    children
-  );
-};
-var FooterList = ({ footerItems, target }) => {
-  return /* @__PURE__ */ React10.createElement(
-    "div",
-    {
-      className: cn(
-        "grid place-items-start gap-12 text-center md:text-left",
-        footerItems.length === 2 && "md:grid-cols-2",
-        (footerItems.length > 3 || footerItems.length === 3) && "lg:grid-cols-3 md:grid-cols-2"
-      )
-    },
-    footerItems?.map((data, i) => /* @__PURE__ */ React10.createElement("div", { key: i, className: "space-y-5 w-full" }, /* @__PURE__ */ React10.createElement(Typography_default, { variant: "h5" }, data?.label), /* @__PURE__ */ React10.createElement("ul", { className: "space-y-2.5 list-none" }, data?.content?.map((data2, i2) => /* @__PURE__ */ React10.createElement("li", { key: i2 }, /* @__PURE__ */ React10.createElement(Link, { href: data2?.link, target }, /* @__PURE__ */ React10.createElement(
-      Paragraph_default,
-      {
-        variant: "b3",
-        className: "dark:text-gray-300 hover:text-primary-400 dark:hover:text-primary-600 text-gray-900"
-      },
-      data2?.text
-    )))))))
-  );
-};
-var FooterIcons = ({ icons }) => {
-  return /* @__PURE__ */ React10.createElement("div", { className: "flex flex-wrap justify-center items-center gap-5 text-primary-700 dark:text-primary-200" }, icons.map((icon, index) => /* @__PURE__ */ React10.createElement(
-    Link,
-    {
-      href: icon.link,
-      key: index,
-      target: "_blank",
-      className: "hover:bg-primary-100 dark:hover:bg-primary-800 p-1 rounded-radius-sm"
-    },
-    icon.icon
-  )));
-};
-
-// src/components/ImageCard.tsx
-import React11 from "react";
-var ImageCard = ({
-  cardTitle,
-  cardDesc,
-  cardImg,
-  children,
-  className = ""
-}) => {
-  const backgroundImage = `url('${cardImg}')`;
-  return /* @__PURE__ */ React11.createElement(
-    "div",
-    {
-      className: cn(
-        "transition-all duration-300 ease-in-out hover:ring-1 hover:ring-[#4285F4] relative rounded-radius-xl overflow-hidden block z-10 bg-cover bg-no-repeat bg-center",
-        className
-      ),
-      style: {
-        backgroundImage
-      }
-    },
-    /* @__PURE__ */ React11.createElement("div", { className: "absolute inset-0 z-[-5] transition-all duration-300 ease-in-out bg-gradient-to-b from-transparent via-black/50 to-black" }),
-    /* @__PURE__ */ React11.createElement("section", { className: "p-[32px] w-full h-full flex flex-col justify-end font-karla hover:bg-gradient-to-b hover:from-black/60 hover:via-black/70 hover:to-[#070707]" }, /* @__PURE__ */ React11.createElement(CardTitle, { className: "text-[24px] font-bold text-white mt-4 mb-6" }, cardTitle), /* @__PURE__ */ React11.createElement(CardDescription, { className: "text-[20px] leading-[25px] text-white" }, cardDesc), /* @__PURE__ */ React11.createElement("div", null, children))
-  );
-};
-var ImageCard_default = ImageCard;
+import React11, {
+  useEffect,
+  useState as useState2,
+  useMemo,
+  useCallback,
+  forwardRef as forwardRef3,
+  useRef,
+  useImperativeHandle
+} from "react";
+import { HiChevronDown, HiOutlineSearch } from "react-icons/hi";
 
 // src/components/Input.tsx
 import { cva as cva6 } from "class-variance-authority";
-import React12, { forwardRef as forwardRef2 } from "react";
+import React9, { forwardRef as forwardRef2 } from "react";
 var inputVariants = cva6(
   "flex items-center text-sm gap-2 py-2 px-4 rounded-radius-md border font-karla has-[:disabled]:opacity-30 has-[:disabled]:select-none has-[:disabled]:pointer-events-none",
   {
@@ -611,7 +426,7 @@ var inputVariants = cva6(
 );
 var Input = forwardRef2(
   ({ startIcon, endIcon, className, variant, type, disabled, ...props }, ref) => {
-    return /* @__PURE__ */ React12.createElement("div", { className: cn(inputVariants({ variant, className })) }, startIcon, /* @__PURE__ */ React12.createElement(
+    return /* @__PURE__ */ React9.createElement("div", { className: cn(inputVariants({ variant, className })) }, startIcon, /* @__PURE__ */ React9.createElement(
       "input",
       {
         ...props,
@@ -628,7 +443,7 @@ var Input_default = Input;
 
 // src/components/Label.tsx
 import { cva as cva7 } from "class-variance-authority";
-import React13 from "react";
+import React10 from "react";
 var labelVariants = cva7("font-medium text-dark dark:text-light", {
   variants: {
     size: {
@@ -650,7 +465,7 @@ var Label = ({
   className,
   ...props
 }) => {
-  return /* @__PURE__ */ React13.createElement(
+  return /* @__PURE__ */ React10.createElement(
     "label",
     {
       htmlFor,
@@ -662,10 +477,401 @@ var Label = ({
       ...props
     },
     children,
-    required && /* @__PURE__ */ React13.createElement("span", { className: "text-error" }, "*")
+    required && /* @__PURE__ */ React10.createElement("span", { className: "text-error" }, "*")
   );
 };
 var Label_default = Label;
+
+// src/components/Dropdown.tsx
+var defaultRenderItem = (option) => {
+  return /* @__PURE__ */ React11.createElement(MenuItem, { label: option.label, value: option.value });
+};
+var Dropdown = forwardRef3(
+  ({
+    id = `dropdown-${Math.random().toString(36).substring(2, 11)}`,
+    options,
+    selected,
+    setSelected,
+    search = false,
+    multiple = false,
+    dropdownText = "Select",
+    renderItem = defaultRenderItem,
+    children,
+    icon,
+    position = "top",
+    width,
+    info,
+    dropdownFooter = false,
+    onApply,
+    disabled = false,
+    onReset,
+    footerAction
+  }, ref) => {
+    const [searchQuery, setSearchQuery] = useState2("");
+    const [filteredOptions, setFilteredOptions] = useState2(
+      options || []
+    );
+    const [dropdownMenu, setDropdownMenu] = useState2(false);
+    const dropdownRef = useRef(null);
+    useImperativeHandle(ref, () => dropdownRef.current);
+    useEffect(() => {
+      if (options) {
+        setFilteredOptions(options);
+      }
+    }, [options]);
+    const memoizedFilteredOptions = useMemo(() => {
+      if (!search) return filteredOptions;
+      return filteredOptions.filter((option) => {
+        if (typeof option.label === "string") {
+          return option.label.toLowerCase().includes(searchQuery.toLowerCase());
+        }
+        return option.label.toString().includes(searchQuery.toLowerCase());
+      });
+    }, [search, searchQuery, filteredOptions]);
+    const handleSearchChange = useCallback(
+      (e) => {
+        setSearchQuery(e.target.value);
+      },
+      []
+    );
+    const toggleOption = useCallback(
+      (option) => {
+        if (multiple && setSelected) {
+          setSelected(
+            (prevSelected) => prevSelected.some((item) => item.value === option.value) ? prevSelected.filter((item) => item.value !== option.value) : [...prevSelected, option]
+          );
+        } else if (setSelected) {
+          setSelected([option]);
+          setDropdownMenu(false);
+        }
+      },
+      [multiple, setSelected]
+    );
+    const handleCheckboxChange = useCallback(
+      (option) => {
+        if (multiple && setSelected) {
+          setSelected(
+            (prevSelected) => prevSelected.some((item) => item.value === option.value) ? prevSelected.filter((item) => item.value !== option.value) : [...prevSelected, option]
+          );
+        } else if (setSelected) {
+          setSelected([option]);
+        }
+      },
+      [multiple, setSelected]
+    );
+    const handleSelectAll = () => {
+      if (selected?.length === filteredOptions.length) {
+        setSelected?.([]);
+      } else {
+        setSelected?.(filteredOptions);
+      }
+    };
+    const handleReset = () => {
+      if (onReset) {
+        onReset();
+      }
+      setSelected?.([]);
+      setDropdownMenu(false);
+    };
+    useEffect(() => {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, []);
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownMenu(false);
+      }
+    };
+    return /* @__PURE__ */ React11.createElement(
+      "div",
+      {
+        id,
+        ref: dropdownRef,
+        className: cn(
+          "relative bg-gray-25 shadow-[0px_1px_2px_0px_#1018280D] rounded-lg",
+          !width && "w-full",
+          disabled && "cursor-not-allowed opacity-50"
+        ),
+        style: {
+          width
+        }
+      },
+      /* @__PURE__ */ React11.createElement(
+        "button",
+        {
+          type: "button",
+          "aria-haspopup": "listbox",
+          "aria-expanded": dropdownMenu,
+          "aria-labelledby": `${id}-label`,
+          disabled,
+          onClick: () => !disabled && setDropdownMenu((prev) => !prev),
+          onKeyDown: (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              !disabled && setDropdownMenu((prev) => !prev);
+            }
+          },
+          className: cn(
+            "w-full hover:bg-gray-50 py-2 px-[14px] rounded-lg flex justify-between items-center text-gray-900 bg-gray-25 text-text-sm cursor-pointer",
+            dropdownMenu ? "border border-primary-600" : "border border-gray-200",
+            disabled && "bg-gray-300 hover:bg-gray-300 cursor-not-allowed"
+          )
+        },
+        /* @__PURE__ */ React11.createElement("section", { className: "flex items-center gap-2 text-ellipsis overflow-hidden" }, icon && /* @__PURE__ */ React11.createElement("span", { "aria-hidden": "true" }, icon), /* @__PURE__ */ React11.createElement("span", { id: `${id}-label`, className: "line-clamp-1 w-full" }, multiple ? (selected?.length ?? 0) > 0 ? `${selected?.length} Selected` : dropdownText : selected?.[0]?.label ? selected?.[0]?.label : dropdownText)),
+        /* @__PURE__ */ React11.createElement(HiChevronDown, { "aria-hidden": "true", size: 18 })
+      ),
+      /* @__PURE__ */ React11.createElement(
+        "ul",
+        {
+          role: "listbox",
+          "aria-multiselectable": multiple,
+          "aria-labelledby": `${id}-label`,
+          className: cn(
+            "max-h-0 opacity-0 overflow-hidden shadow-sm mt-1 rounded absolute text-[16px] bg-white z-[1000] w-full transition-all duration-75 delay-100 ease-in",
+            position === "top" ? "top-10" : "bottom-10",
+            dropdownMenu ? "border border-primary-600" : "border border-gray-200",
+            dropdownMenu && "max-h-[360px] h-fit opacity-[1] transition-all ease-in duration-150"
+          )
+        },
+        search && /* @__PURE__ */ React11.createElement(
+          Input_default,
+          {
+            id: `${id}-search`,
+            type: "text",
+            placeholder: "Search...",
+            "aria-label": "Search options",
+            value: searchQuery,
+            onChange: handleSearchChange,
+            className: "rounded rounded-b-none text-gray-800 bg-white w-full h-[35px] pl-3 border-none",
+            endIcon: /* @__PURE__ */ React11.createElement(HiOutlineSearch, { size: 18 })
+          }
+        ),
+        multiple && /* @__PURE__ */ React11.createElement("section", { className: "py-[6px] px-[14px] flex justify-between items-center" }, /* @__PURE__ */ React11.createElement(
+          "button",
+          {
+            type: "button",
+            "aria-label": "Select all",
+            onClick: handleSelectAll,
+            className: "text-text-sm  hover:text-primary-700 text-primary-600 cursor-pointer"
+          },
+          "Select all"
+        ), /* @__PURE__ */ React11.createElement(
+          "button",
+          {
+            "aria-label": "Reset",
+            type: "button",
+            className: "text-text-sm text-warning-500 hover:text-warning-600",
+            onClick: handleReset
+          },
+          "Reset"
+        )),
+        /* @__PURE__ */ React11.createElement("section", { className: "max-h-[200px] transition-all duration-75 delay-100 ease-in-out overflow-y-scroll" }, options ? memoizedFilteredOptions?.map((option, i) => /* @__PURE__ */ React11.createElement(React11.Fragment, { key: i }, multiple ? /* @__PURE__ */ React11.createElement(
+          Label_default,
+          {
+            className: cn(
+              "has-[:checked]:bg-primary-50 has-[:checked]:border-primary-600 hover:bg-gray-50 flex flex-col py-[6px] px-[14px] cursor-pointer border-l-4 border-transparent",
+              option?.disabledOption && "opacity-50 cursor-not-allowed hover:bg-white text-gray-300 select-none"
+            ),
+            htmlFor: `${id}-checkbox-${option.value}`,
+            key: i
+          },
+          /* @__PURE__ */ React11.createElement("section", { className: "flex items-center justify-between gap-2 w-full" }, /* @__PURE__ */ React11.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React11.createElement(
+            Checkbox_default,
+            {
+              id: `${id}-checkbox-${option.value}`,
+              checked: selected?.some(
+                (item) => item.value === option.value
+              ) ?? false,
+              onChange: () => handleCheckboxChange(option),
+              disabled: option?.disabledOption ?? false
+            }
+          ), /* @__PURE__ */ React11.createElement("div", { className: "flex items-center gap-1" }, /* @__PURE__ */ React11.createElement(
+            "div",
+            {
+              style: {
+                color: option?.disabledOption ? "#D1D5DB" : option.labelTextColor
+              },
+              className: cn(
+                "break-words",
+                option?.disabledOption && "text-gray-300"
+              )
+            },
+            renderItem(option)
+          ))), /* @__PURE__ */ React11.createElement("span", { className: "text-gray-500" }, option?.info)),
+          /* @__PURE__ */ React11.createElement("span", { className: "pt-[2px] text-text-sm text-gray-500" }, option?.addInfo)
+        ) : /* @__PURE__ */ React11.createElement(
+          Label_default,
+          {
+            key: i,
+            htmlFor: `${id}-checkbox-${option.value}`,
+            className: cn(
+              "flex justify-between py-[6px] px-[14px] hover:bg-gray-50 gap-2 items-center border-l-4 border-transparent cursor-pointer",
+              {
+                "bg-primary-50 border-primary-600": selected && selected[0]?.value === option.value,
+                "opacity-50 cursor-not-allowed hover:bg-white text-gray-500": option?.disabledOption
+              }
+            ),
+            onClick: () => !option?.disabledOption && toggleOption(option)
+          },
+          /* @__PURE__ */ React11.createElement(
+            "div",
+            {
+              style: {
+                color: option?.disabledOption ? "#D1D5DB" : option.labelTextColor
+              },
+              className: cn(
+                "break-words",
+                option?.disabledOption && "text-gray-300"
+              )
+            },
+            renderItem(option)
+          ),
+          /* @__PURE__ */ React11.createElement("span", { className: "text-gray-500" }, info)
+        ))) : children),
+        footerAction && /* @__PURE__ */ React11.createElement("div", { className: "py-2 mt-1 px-2 border-t" }, footerAction),
+        dropdownFooter && /* @__PURE__ */ React11.createElement(
+          DropdownFooter,
+          {
+            setDropdownMenu,
+            onApply
+          }
+        )
+      )
+    );
+  }
+);
+var MenuItem = ({ label, children }) => {
+  return /* @__PURE__ */ React11.createElement("p", { className: "break-all" }, label || children);
+};
+var DropdownFooter = ({
+  onApply,
+  setDropdownMenu
+}) => {
+  return /* @__PURE__ */ React11.createElement("div", { className: "flex justify-end border-t border-gray-200 px-[14px] py-[8px] text-text-sm" }, /* @__PURE__ */ React11.createElement(
+    "button",
+    {
+      type: "button",
+      className: "text-primary-600 hover:text-primary-700",
+      onClick: () => {
+        if (onApply) {
+          onApply();
+        }
+        if (setDropdownMenu) {
+          setDropdownMenu(false);
+        }
+      }
+    },
+    "Apply"
+  ));
+};
+Dropdown.displayName = "Dropdown";
+var Dropdown_default = Dropdown;
+
+// src/components/Footer.tsx
+import React12 from "react";
+import Link from "next/link";
+function Footer({
+  children,
+  className,
+  footerBottom
+}) {
+  return /* @__PURE__ */ React12.createElement(
+    "footer",
+    {
+      className: cn(
+        "bg-gradient-to-b from-gray-25 to-primary-100 dark:from-primary-900 dark:to-dark",
+        className
+      )
+    },
+    children,
+    footerBottom && /* @__PURE__ */ React12.createElement("section", { className: "border-t border-primary-500 dark:border-primary-800 text-center py-spacing-md" }, footerBottom)
+  );
+}
+var FooterHeader = ({ children, className }) => {
+  return /* @__PURE__ */ React12.createElement(
+    "div",
+    {
+      className: cn(
+        "md:w-[30%] space-y-4 flex flex-col items-center lg:items-start",
+        className
+      )
+    },
+    children
+  );
+};
+var FooterContent = ({ children, className }) => {
+  return /* @__PURE__ */ React12.createElement(
+    "section",
+    {
+      className: cn(
+        "max-w-6xl mx-auto flex md:flex-row flex-col items-center md:items-start justify-between gap-14 px-4 md:px-20 py-20",
+        className
+      )
+    },
+    children
+  );
+};
+var FooterList = ({ footerItems, target }) => {
+  return /* @__PURE__ */ React12.createElement(
+    "div",
+    {
+      className: cn(
+        "grid place-items-start gap-12 text-center md:text-left",
+        footerItems.length === 2 && "md:grid-cols-2",
+        (footerItems.length > 3 || footerItems.length === 3) && "lg:grid-cols-3 md:grid-cols-2"
+      )
+    },
+    footerItems?.map((data, i) => /* @__PURE__ */ React12.createElement("div", { key: i, className: "space-y-5 w-full" }, /* @__PURE__ */ React12.createElement(Typography_default, { variant: "h5" }, data?.label), /* @__PURE__ */ React12.createElement("ul", { className: "space-y-2.5 list-none" }, data?.content?.map((data2, i2) => /* @__PURE__ */ React12.createElement("li", { key: i2 }, /* @__PURE__ */ React12.createElement(Link, { href: data2?.link, target }, /* @__PURE__ */ React12.createElement(
+      Paragraph_default,
+      {
+        variant: "b3",
+        className: "dark:text-gray-300 hover:text-primary-400 dark:hover:text-primary-600 text-gray-900"
+      },
+      data2?.text
+    )))))))
+  );
+};
+var FooterIcons = ({ icons }) => {
+  return /* @__PURE__ */ React12.createElement("div", { className: "flex flex-wrap justify-center items-center gap-5 text-primary-700 dark:text-primary-200" }, icons.map((icon, index) => /* @__PURE__ */ React12.createElement(
+    Link,
+    {
+      href: icon.link,
+      key: index,
+      target: "_blank",
+      className: "hover:bg-primary-100 dark:hover:bg-primary-800 p-1 rounded-radius-sm"
+    },
+    icon.icon
+  )));
+};
+
+// src/components/ImageCard.tsx
+import React13 from "react";
+var ImageCard = ({
+  cardTitle,
+  cardDesc,
+  cardImg,
+  children,
+  className = ""
+}) => {
+  const backgroundImage = `url('${cardImg}')`;
+  return /* @__PURE__ */ React13.createElement(
+    "div",
+    {
+      className: cn(
+        "transition-all duration-300 ease-in-out hover:ring-1 hover:ring-[#4285F4] relative rounded-radius-xl overflow-hidden block z-10 bg-cover bg-no-repeat bg-center",
+        className
+      ),
+      style: {
+        backgroundImage
+      }
+    },
+    /* @__PURE__ */ React13.createElement("div", { className: "absolute inset-0 z-[-5] transition-all duration-300 ease-in-out bg-gradient-to-b from-transparent via-black/50 to-black" }),
+    /* @__PURE__ */ React13.createElement("section", { className: "p-[32px] w-full h-full flex flex-col justify-end font-karla hover:bg-gradient-to-b hover:from-black/60 hover:via-black/70 hover:to-[#070707]" }, /* @__PURE__ */ React13.createElement(CardTitle, { className: "text-[24px] font-bold text-white mt-4 mb-6" }, cardTitle), /* @__PURE__ */ React13.createElement(CardDescription, { className: "text-[20px] leading-[25px] text-white" }, cardDesc), /* @__PURE__ */ React13.createElement("div", null, children))
+  );
+};
+var ImageCard_default = ImageCard;
 
 // src/components/ListItem.tsx
 import Link2 from "next/link";
@@ -733,12 +939,118 @@ var ListItem = React14.forwardRef(
 ListItem.displayName = "ListItem";
 var ListItem_default = ListItem;
 
+// src/components/ListPagination.tsx
+import React15, { useState as useState3 } from "react";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+var ListPagination = ({
+  count,
+  page,
+  rowsPerPage,
+  onPageChange,
+  className
+}) => {
+  const totalPages = Math.ceil(count / rowsPerPage);
+  const [expanded, setExpanded] = useState3(false);
+  const renderPages = () => {
+    if (totalPages <= 6 || expanded) {
+      return [...Array(totalPages)].map((_, i) => /* @__PURE__ */ React15.createElement(PageBtn, { key: i, i, page, onPageChange }));
+    }
+    const start = [0, 1];
+    const mid = [page - 1, page, page + 1].filter(
+      (i) => i > 1 && i < totalPages - 2
+    );
+    const end = [totalPages - 2, totalPages - 1];
+    const range = Array.from(/* @__PURE__ */ new Set([...start, ...mid, ...end]));
+    return range.map(
+      (i, idx) => typeof range[idx - 1] === "number" && i - range[idx - 1] > 1 ? /* @__PURE__ */ React15.createElement(
+        Button_default,
+        {
+          key: `dots-${i}`,
+          size: "sm",
+          variant: "secondary",
+          onClick: () => setExpanded(true)
+        },
+        "..."
+      ) : /* @__PURE__ */ React15.createElement(PageBtn, { key: i, i, page, onPageChange })
+    );
+  };
+  return /* @__PURE__ */ React15.createElement("section", { className: cn("flex items-center gap-1", className) }, /* @__PURE__ */ React15.createElement(
+    NavBtn,
+    {
+      icon: /* @__PURE__ */ React15.createElement(RiArrowLeftSLine, { size: 28 }),
+      onClick: () => onPageChange(page - 1),
+      disabled: page === 0
+    }
+  ), /* @__PURE__ */ React15.createElement("div", { className: "max-w-[90vw] w-max overflow-auto flex items-center gap-2 p-2" }, renderPages()), /* @__PURE__ */ React15.createElement(
+    NavBtn,
+    {
+      icon: /* @__PURE__ */ React15.createElement(RiArrowRightSLine, { size: 28 }),
+      onClick: () => onPageChange(page + 1),
+      disabled: page === totalPages - 1
+    }
+  ));
+};
+var PageBtn = ({
+  i,
+  page,
+  onPageChange
+}) => /* @__PURE__ */ React15.createElement(
+  Button_default,
+  {
+    size: "sm",
+    variant: "secondary",
+    className: cn(
+      // "dark:bg-transparent dark:border dark:text-gray-300 dark:border-gray-400",
+      i === page && "bg-primary-50 shadow-[0px_0px_0px_2px] shadow-primary-700 hover:shadow-[0px_0px_0px_2px] hover:shadow-primary-700 dark:shadow-primary-200 dark:bg-primary-300"
+    ),
+    onClick: () => onPageChange(i)
+  },
+  i + 1
+);
+var NavBtn = ({
+  icon,
+  onClick,
+  disabled
+}) => /* @__PURE__ */ React15.createElement(
+  Button_default,
+  {
+    size: "sm",
+    variant: "primary-light",
+    startIcon: icon,
+    onClick,
+    disabled,
+    className: "border border-primary-100 px-1.5"
+  }
+);
+var ListPagination_default = ListPagination;
+
+// src/components/Loading.tsx
+import React16 from "react";
+var Loading = ({ width, height, loaderColor, variant }) => {
+  return /* @__PURE__ */ React16.createElement(
+    "div",
+    {
+      className: cn(
+        "animate-spin-slow border-primary-600 border-t-gray-200/50 rounded-full",
+        variant === "light" ? "border-2" : "border-4"
+      ),
+      style: {
+        width,
+        height,
+        borderColor: loaderColor,
+        borderTopColor: "rgb(234 236 240 / 0.5)"
+      }
+    }
+  );
+};
+var Loading_default = Loading;
+
 // src/components/Slider.tsx
-import React15, { forwardRef as forwardRef3 } from "react";
-var Slider = forwardRef3(
+import React17, { forwardRef as forwardRef4 } from "react";
+var Slider = forwardRef4(
   ({ value, min = 0, max = 100, size = "sm", ...props }, ref) => {
     const progress = (value - min) / (max - min) * 100;
-    return /* @__PURE__ */ React15.createElement(React15.Fragment, null, /* @__PURE__ */ React15.createElement(
+    return /* @__PURE__ */ React17.createElement(React17.Fragment, null, /* @__PURE__ */ React17.createElement(
       "input",
       {
         ref,
@@ -761,15 +1073,64 @@ var Slider = forwardRef3(
 Slider.displayName = "Slider";
 var Slider_default = Slider;
 
+// src/components/Spinner.tsx
+import React18 from "react";
+var colorVars = {
+  primary: {
+    c1: "var(--primary-500)",
+    c2: "var(--primary-200)"
+  },
+  black: {
+    c1: "rgba(0, 0, 0, 1)",
+    c2: "rgba(0, 0, 0, 0.5)"
+  },
+  gray: {
+    c1: "var(--gray-500)",
+    c2: "var(--gray-300)"
+  }
+};
+var Spinner = ({ size = "md", color = "primary" }) => {
+  const sizeClass = cn({
+    "w-4 h-4": size === "xs",
+    "w-6 h-6": size === "sm",
+    "w-10 h-10": size === "md",
+    "w-16 h-16": size === "lg"
+  });
+  const getColorValues = (color2) => {
+    if (colorVars[color2]) {
+      return colorVars[color2];
+    }
+    if (color2.startsWith("#")) {
+      return {
+        c1: color2,
+        c2: `${color2}80`
+      };
+    }
+    return colorVars.primary;
+  };
+  const colorValues = getColorValues(color);
+  return /* @__PURE__ */ React18.createElement("div", { className: cn("relative", sizeClass) }, /* @__PURE__ */ React18.createElement(
+    "div",
+    {
+      className: "spinner",
+      style: {
+        ["--spinner-color-1"]: colorValues.c1,
+        ["--spinner-color-2"]: colorValues.c2
+      }
+    }
+  ));
+};
+var Spinner_default = Spinner;
+
 // src/components/StatsCard.tsx
-import React16 from "react";
+import React19 from "react";
 var StatsCard = ({
   statTitle,
   statDesc,
   className,
   cardIcon
 }) => {
-  return /* @__PURE__ */ React16.createElement(
+  return /* @__PURE__ */ React19.createElement(
     Card,
     {
       className: cn(
@@ -777,17 +1138,17 @@ var StatsCard = ({
         className
       )
     },
-    /* @__PURE__ */ React16.createElement("span", { className: "group-hover:text-white text-dark dark:text-white" }, cardIcon),
-    /* @__PURE__ */ React16.createElement(CardTitle, { className: "group-hover:text-white text-[48px] font-bold text-primary-500 dark:text-white my-4" }, statTitle),
-    /* @__PURE__ */ React16.createElement(CardDescription, { className: "group-hover:text-white text-[24px] hover:text-white text-dark leading-[25px]" }, statDesc)
+    /* @__PURE__ */ React19.createElement("span", { className: "group-hover:text-white text-dark dark:text-white" }, cardIcon),
+    /* @__PURE__ */ React19.createElement(CardTitle, { className: "group-hover:text-white text-[48px] font-bold text-primary-500 dark:text-white my-4" }, statTitle),
+    /* @__PURE__ */ React19.createElement(CardDescription, { className: "group-hover:text-white text-[24px] hover:text-white text-dark leading-[25px]" }, statDesc)
   );
 };
 var StatsCard_default = StatsCard;
 
 // src/components/Textarea.tsx
 import { cva as cva8 } from "class-variance-authority";
-import React17, {
-  forwardRef as forwardRef4
+import React20, {
+  forwardRef as forwardRef5
 } from "react";
 var textareaVariants = cva8(
   "flex items-center gap-2 font-karla text-sm outline-none rounded-radius-md border py-2 px-4 disabled:opacity-60 disabled:select-none disabled:pointer-events-none w-full",
@@ -803,9 +1164,9 @@ var textareaVariants = cva8(
     }
   }
 );
-var Textarea = forwardRef4(
+var Textarea = forwardRef5(
   ({ className, rows, cols, variant, disabled, children, ...props }, ref) => {
-    return /* @__PURE__ */ React17.createElement(
+    return /* @__PURE__ */ React20.createElement(
       "textarea",
       {
         ...props,
@@ -824,7 +1185,7 @@ var Textarea_default = Textarea;
 
 // src/components/Toggle.tsx
 import { cva as cva9 } from "class-variance-authority";
-import React18, { forwardRef as forwardRef5 } from "react";
+import React21, { forwardRef as forwardRef6 } from "react";
 var toggleVariants = cva9(
   "rounded-radius-xl bg-gray-300 transition-colors peer-checked:bg-primary-500 peer-active:ring-2 peer-active:ring-primary-300",
   {
@@ -839,9 +1200,9 @@ var toggleVariants = cva9(
     }
   }
 );
-var Toggle = forwardRef5(
+var Toggle = forwardRef6(
   ({ icon, children, disabled, size = "lg", ...props }, ref) => {
-    return /* @__PURE__ */ React18.createElement(
+    return /* @__PURE__ */ React21.createElement(
       "label",
       {
         className: cn(
@@ -849,7 +1210,7 @@ var Toggle = forwardRef5(
           disabled && "opacity-50 pointer-events-none"
         )
       },
-      /* @__PURE__ */ React18.createElement("div", { className: "relative" }, /* @__PURE__ */ React18.createElement(
+      /* @__PURE__ */ React21.createElement("div", { className: "relative" }, /* @__PURE__ */ React21.createElement(
         "input",
         {
           type: "checkbox",
@@ -858,7 +1219,7 @@ var Toggle = forwardRef5(
           ...props,
           className: "sr-only peer"
         }
-      ), /* @__PURE__ */ React18.createElement("div", { className: cn(toggleVariants({ size })) }), /* @__PURE__ */ React18.createElement(
+      ), /* @__PURE__ */ React21.createElement("div", { className: cn(toggleVariants({ size })) }), /* @__PURE__ */ React21.createElement(
         "div",
         {
           className: cn(
@@ -866,7 +1227,7 @@ var Toggle = forwardRef5(
             size === "sm" ? "peer-checked:translate-x-2 top-[1px] left-[2px] w-5 h-4 rounded-radius-md" : "peer-checked:translate-x-3 top-[2.5px] left-1 h-[22px] w-[34px] rounded-radius-lg"
           )
         },
-        /* @__PURE__ */ React18.createElement("span", { className: "flex items-center justify-center" }, icon),
+        /* @__PURE__ */ React21.createElement("span", { className: "flex items-center justify-center" }, icon),
         children
       ))
     );
@@ -891,7 +1252,7 @@ export {
   CardTitle,
   Checkbox_default as Checkbox,
   Chip_default as Chip,
-  Dropdown,
+  Dropdown_default as Dropdown,
   Footer,
   FooterContent,
   FooterHeader,
@@ -901,10 +1262,12 @@ export {
   Input_default as Input,
   Label_default as Label,
   ListItem_default as ListItem,
+  ListPagination_default as ListPagination,
+  Loading_default as Loading,
   MenuItem,
-  MenuSubItem,
   Paragraph_default as Paragraph,
   Slider_default as Slider,
+  Spinner_default as Spinner,
   StatsCard_default as StatsCard,
   Textarea_default as Textarea,
   Toggle_default as Toggle,

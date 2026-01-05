@@ -19,6 +19,7 @@ import StatsCard from "@/components/StatsCard";
 import { LuAngry, LuAnnoyed, LuHeart } from "react-icons/lu";
 import {
   Caption,
+  Dropdown,
   Loading,
   Paragraph,
   Spinner,
@@ -52,12 +53,14 @@ import Footer, {
   FooterList,
 } from "@/components/Footer";
 import Image from "next/image";
-import Dropdown, { MenuItem, MenuSubItem } from "@/components/Dropdown";
-import ListItem from "@/components/ListItem";
-import Link from "next/link";
 import { HiMiniBars3BottomRight, HiXMark } from "react-icons/hi2";
 import Slider from "@/components/Slider";
 import ListPagination from "@/components/ListPagination";
+
+interface Option {
+  label: string | number;
+  value: string | number;
+}
 
 const footerItems = [
   {
@@ -116,6 +119,7 @@ const Test = () => {
   // toggle
   const [isChecked, setIsChecked] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [multiSelect, setMultiSelect] = useState<Option[]>([]);
   // console.log("showMenu", showMenu);
   // slider
   const [sliderValue, setSliderValue] = useState<number>(50);
@@ -180,104 +184,6 @@ const Test = () => {
             width={84}
             height={29}
           />
-          <nav className="flex items-center gap-[10px] tablet:hidden tablet:justify-end">
-            <Dropdown
-              width="400px"
-              className=""
-              triggerIcon={
-                <ListItem
-                  as="button"
-                  title="Products"
-                  className=""
-                  icon={<RiAddLine size={20} />}
-                />
-              }
-            >
-              <Link
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-                target="_blank"
-              >
-                <MenuItem label="Redirect Link" />
-              </Link>
-              <MenuSubItem
-                content={
-                  <div>
-                    <h6>Cheese & Dairy</h6>
-                    <Caption variant="md" className="dark:text-dark">
-                      Find exotic cheese and fresh milk
-                    </Caption>
-                  </div>
-                }
-              >
-                <MenuItem
-                  label="Cheese"
-                  onClick={() => alert("Save Page As clicked")}
-                />
-                <MenuItem
-                  label="Milk"
-                  onClick={() => alert("Create Shortcut clicked")}
-                />
-              </MenuSubItem>
-              <MenuSubItem
-                content={
-                  <div>
-                    <h6>Cheese & Dairy (custom)</h6>
-                    <Caption variant="md" className="dark:text-dark">
-                      Find exotic cheese and fresh milk
-                    </Caption>
-                  </div>
-                }
-                sectionClassName="text-xl text-gray-800 hover:bg-blue-100"
-                subMenuClassName="bg-gray-50 p-4"
-              >
-                <MenuItem
-                  label="Cheese"
-                  onClick={() => alert("Save Page As clicked")}
-                  className="hover:bg-yellow-200"
-                />
-                <MenuItem
-                  label="Milk"
-                  onClick={() => alert("Create Shortcut clicked")}
-                  className="hover:bg-yellow-200"
-                />
-              </MenuSubItem>
-
-              <MenuSubItem
-                content={
-                  <div>
-                    <h6>Meat</h6>
-                    <Caption variant="md" className="dark:text-dark">
-                      Discover fresh and exotic meats
-                    </Caption>
-                  </div>
-                }
-              >
-                <MenuItem
-                  label="Cheese"
-                  onClick={() => alert("Save Page As clicked")}
-                />
-                <MenuItem
-                  label="Milk"
-                  onClick={() => alert("Create Shortcut clicked")}
-                />
-              </MenuSubItem>
-            </Dropdown>
-            <ListItem
-              as="link"
-              title="Resources"
-              href="/primitives/docs/overview/introduction"
-            />
-            <ListItem
-              as="link"
-              title="Pricing"
-              href="/primitives/docs/overview/introduction"
-            />
-            <ListItem
-              as="link"
-              title="Solutions"
-              href="/primitives/docs/overview/introduction"
-            />
-          </nav>
           <div className="flex gap-4 items-center">
             <section className="flex gap-1 items-center">
               <Chip
@@ -309,61 +215,6 @@ const Test = () => {
             </span>
           </div>
         </header>
-        <div
-          className={`fixed h-[98dvh] z-10 top-[60px] right-0 w-full bg-white text-black dark:bg-dark transition-transform duration-300 transform  ${
-            showMenu ? "translate-x-0" : "-translate-x-full"
-          }`}
-        >
-          <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium h-full">
-            <Dropdown
-              width="400px"
-              triggerIcon={
-                <section className="p-4 border-b dark:border-primary-100">
-                  <ListItem as="button" title="Products" className="" />
-                </section>
-              }
-            >
-              <Link
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-                target="_blank"
-              >
-                <MenuItem label="Redirect Link" />
-              </Link>
-              {/* <MenuSubItem label="More Tools"> */}
-              <MenuSubItem content={<div>More Tools</div>}>
-                <MenuItem
-                  label="Save Page As..."
-                  onClick={() => alert("Save Page As clicked")}
-                />
-                <MenuItem
-                  label="Create Shortcut..."
-                  onClick={() => alert("Create Shortcut clicked")}
-                />
-              </MenuSubItem>
-            </Dropdown>
-            <section className="px-4 py-2 border-b dark:border-gray-600">
-              <ListItem
-                as="link"
-                title="Resources"
-                href="/primitives/docs/overview/introduction"
-              />
-            </section>
-            <section className="px-4 py-2 border-b dark:border-gray-600">
-              <ListItem
-                as="link"
-                title="Pricing"
-                href="/primitives/docs/overview/introduction"
-              />
-            </section>
-            <section className="px-4 py-2 border-b dark:border-gray-600">
-              <ListItem
-                as="link"
-                title="Solutions"
-                href="/primitives/docs/overview/introduction"
-              />
-            </section>
-          </nav>
-        </div>
       </div>
 
       {/* new */}
@@ -538,96 +389,6 @@ const Test = () => {
             />
           </div>
         </section>
-        {/* dropdown */}
-        <div className="py-32 mb-32 flex gap-10 items-start">
-          <section>
-            <h1 className="dark:text-gray-25 text-gray-900">
-              Dropdown/List Menu
-            </h1>
-            <Dropdown
-              triggerIcon={
-                <Chip endIcon={<LuHeart />} variant="primary" size="md">
-                  Open Dropdown
-                </Chip>
-              }
-            >
-              <Link
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-                target="_blank"
-              >
-                <MenuItem label="Redirect Link" />
-              </Link>
-              <MenuItem
-                label="New Tab"
-                onClick={() => alert("New Tab clicked")}
-              />
-              <MenuItem label="New Private Window" disabled />
-              <MenuItem
-                label="New Private Window"
-                onClick={() => alert("sab chal rha hai")}
-              >
-                <div>
-                  <Caption variant="md">User can add anything here</Caption>
-                  <Chip size="sm">testing</Chip>
-                </div>
-              </MenuItem>
-              <MenuSubItem content={<div>More Tools</div>}>
-                <MenuItem
-                  label="Save Page As..."
-                  onClick={() => alert("Save Page As clicked")}
-                />
-                <MenuItem
-                  label="Create Shortcut..."
-                  onClick={() => alert("Create Shortcut clicked")}
-                />
-              </MenuSubItem>
-              <MenuItem label="Sooraj" />
-              <MenuItem label="Katalyst" />
-            </Dropdown>
-          </section>
-
-          <section>
-            <h1 className="dark:text-gray-25 text-gray-900">
-              Dropdown/List Menu
-            </h1>
-            <Dropdown
-              triggerIcon={
-                <Chip endIcon={<LuHeart />} variant="primary" size="md">
-                  Open Dropdown
-                </Chip>
-              }
-            >
-              <Link
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-                target="_blank"
-              >
-                <MenuItem label="Redirect Link" />
-              </Link>
-              <MenuItem
-                label="New Private Window"
-                onClick={() => alert("sab chal rha hai")}
-              >
-                <div>
-                  <Caption variant="md">User can add anything here</Caption>
-                  <Chip size="sm">testing</Chip>
-                </div>
-              </MenuItem>
-              <MenuSubItem content={<div>More Tools</div>}>
-                <MenuItem label="Sooraj">
-                  <div>
-                    <Caption variant="md">User can add anything here</Caption>
-                    <Chip size="sm">testing</Chip>
-                  </div>
-                </MenuItem>
-                <MenuItem
-                  label="Create Shortcut..."
-                  onClick={() => alert("Create Shortcut clicked")}
-                />
-              </MenuSubItem>
-              <MenuItem label="Katalyst" />
-            </Dropdown>
-          </section>
-        </div>
         <section className="space-y-5">
           <Typography variant="h6">Checkbox</Typography>
           <div className="flex items-center gap-2">
@@ -742,6 +503,32 @@ const Test = () => {
             Secondary
           </Chip>
         </section>
+        <div>
+          <h1 className="text-lg">Multiple Dropdown</h1>
+          <Dropdown
+            options={[
+              { label: "High", value: "High", disabledOption: true },
+              { label: "Medium", value: "Medium" },
+              { label: "Low", value: "Low" },
+              { label: "High", value: "High" },
+              { label: "Medium", value: "Medium" },
+              { label: "Low", value: "Low" },
+              { label: "High", value: "High" },
+              { label: "Medium", value: "Medium" },
+              { label: "Low", value: "Low" },
+            ]}
+            selected={multiSelect}
+            setSelected={setMultiSelect}
+            width="300px"
+            dropdownText="Test Test"
+            multiple
+            search
+            position="bottom"
+            onApply={() => {
+              alert("Apply button clicked");
+            }}
+          />
+        </div>
         <section className="space-y-4">
           <Typography variant={"h6"}>Pricing Cards</Typography>
           <div className="flex flex-wrap items-center gap-spacing-lg">
