@@ -27,6 +27,10 @@ import {
   Radio,
   Skeleton,
   Spinner,
+  Tab,
+  TabList,
+  TabPanel,
+  TabsContainer,
   Textarea,
   Typography,
 } from "@/components";
@@ -48,6 +52,7 @@ import {
   RiInformationLine,
   RiInstagramLine,
   RiLinkedinLine,
+  RiSearch2Line,
   RiTwitterLine,
 } from "react-icons/ri";
 import Button from "@/components/Button";
@@ -107,11 +112,11 @@ const footerItems = [
 ];
 
 // Sample industry data that matches the BaseNestedItem interface
-interface IndustryItem {
-  _id: string;
-  name: string;
-  children?: IndustryItem[];
-}
+// interface IndustryItem {
+//   _id: string;
+//   name: string;
+//   children?: IndustryItem[];
+// }
 const industryList = {
   data: [
     {
@@ -317,7 +322,7 @@ const dummyData = Array.from({ length: 100 }, (_, index) => ({
 const Test = () => {
   const { switchDark, switchLight } = useTheme();
 
-  const [selectedItem, setSelectedItem] = useState<IndustryItem | null>(null);
+  // const [selectedItem, setSelectedItem] = useState<IndustryItem | null>(null);
 
   // toggle
   const [isChecked, setIsChecked] = useState(false);
@@ -369,6 +374,13 @@ const Test = () => {
 
   // modal
   const [showModal, setShowModal] = useState(false);
+
+  // tabs
+  const [value, setValue] = useState("1");
+
+  const handleTabChange = (newValue: string) => {
+    setValue(newValue);
+  };
 
   return (
     <div className="bg-light dark:bg-dark">
@@ -1921,6 +1933,202 @@ const Test = () => {
               <p>You can change its position, width, and height using props.</p>
             </Drawer>
           ))}
+        </section>
+        <section>
+          <Typography variant={"h6"}>Tabs:</Typography>
+          <div className="my-5 space-y-4">
+            <Paragraph variant={"b3"}>Default Tabs:</Paragraph>
+            <TabsContainer value={value}>
+              <TabList
+                onChange={handleTabChange}
+                ariaLabel="lab API tabs example"
+                box={false}
+              >
+                <Tab
+                  label="Item One"
+                  content="(12)"
+                  icon={<RiSearch2Line size={16} />}
+                  value="1"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Two"
+                  value="2"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Three"
+                  value="3"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+              </TabList>
+              <TabPanel value="1" currentValue={value}>
+                Item One Content
+              </TabPanel>
+              <TabPanel value="2" currentValue={value}>
+                Item Two Content
+              </TabPanel>
+              <TabPanel value="3" currentValue={value}>
+                Item Three Content
+              </TabPanel>
+            </TabsContainer>
+            <TabsContainer
+              value={value}
+              position="vertical"
+              className="flex gap-4"
+            >
+              <TabList
+                onChange={handleTabChange}
+                ariaLabel="Vertical tabs example"
+                position="vertical"
+                className="w-48"
+              >
+                <Tab
+                  label="Item One"
+                  value="1"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                  position="vertical"
+                />
+                <Tab
+                  label="Item Two"
+                  value="2"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                  position="vertical"
+                />
+              </TabList>
+              <div className="flex-1">
+                <TabPanel value="1" currentValue={value}>
+                  Item One Content
+                </TabPanel>
+                <TabPanel value="2" currentValue={value}>
+                  Item Two Content
+                </TabPanel>
+              </div>
+            </TabsContainer>
+          </div>
+          <div className="my-5 space-y-4">
+            <Paragraph variant={"b3"}>Tab with box variant:</Paragraph>
+            <TabsContainer value={value}>
+              <TabList
+                onChange={handleTabChange}
+                ariaLabel="lab API tabs example"
+                box={true}
+              >
+                <Tab
+                  label="Item One"
+                  value="1"
+                  content="(12)"
+                  icon={<RiSearch2Line size={16} />}
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Two"
+                  value="2"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Three"
+                  value="3"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+              </TabList>
+              <TabPanel value="1" currentValue={value}>
+                Item One Content
+              </TabPanel>
+              <TabPanel value="2" currentValue={value}>
+                Item Two Content
+              </TabPanel>
+              <TabPanel value="3" currentValue={value}>
+                Item Three Content
+              </TabPanel>
+            </TabsContainer>
+            <TabsContainer position="vertical" value={value}>
+              <TabList
+                onChange={handleTabChange}
+                ariaLabel="lab API tabs example"
+                box={true}
+                position="vertical"
+              >
+                <Tab
+                  label="Item One"
+                  value="1"
+                  content="(12)"
+                  icon={<RiSearch2Line size={16} />}
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Two"
+                  value="2"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Three"
+                  value="3"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+              </TabList>
+              <TabPanel value="1" currentValue={value}>
+                Item One Content
+              </TabPanel>
+              <TabPanel value="2" currentValue={value}>
+                Item Two Content
+              </TabPanel>
+              <TabPanel value="3" currentValue={value}>
+                Item Three Content
+              </TabPanel>
+            </TabsContainer>
+          </div>
+          <div className="my-5 space-y-4">
+            <Paragraph variant={"b3"}>Custom styling for Tabs:</Paragraph>
+            <TabsContainer value={value}>
+              <TabList
+                onChange={handleTabChange}
+                ariaLabel="lab API tabs example"
+                className="border-none"
+              >
+                <Tab
+                  label="Item One"
+                  value="1"
+                  // icon={<RiSearch2Line size={16} />}
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                  className="bg-primary-600 text-white rounded-2xl hover:bg-primary-100 hover:text-black border-b-0 hover:rounded-2xl"
+                />
+                <Tab
+                  label="Item Two"
+                  value="2"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Three"
+                  value="3"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+              </TabList>
+              <TabPanel value="1" currentValue={value}>
+                Item One Content
+              </TabPanel>
+              <TabPanel value="2" currentValue={value}>
+                Item Two Content
+              </TabPanel>
+              <TabPanel value="3" currentValue={value}>
+                Item Three Content
+              </TabPanel>
+            </TabsContainer>
+          </div>
         </section>
         <section className="my-5 space-y-4">
           <Typography variant={"h6"}>Callout:</Typography>
