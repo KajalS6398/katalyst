@@ -19,9 +19,13 @@ import StatsCard from "@/components/StatsCard";
 import { LuAngry, LuAnnoyed, LuHeart } from "react-icons/lu";
 import {
   Caption,
+  Drawer,
   Loading,
+  Modal,
   OTPInput,
   Paragraph,
+  Radio,
+  Skeleton,
   Spinner,
   Textarea,
   Typography,
@@ -41,6 +45,7 @@ import {
   RiCloseLine,
   RiFacebookLine,
   RiHexagonLine,
+  RiInformationLine,
   RiInstagramLine,
   RiLinkedinLine,
   RiTwitterLine,
@@ -59,6 +64,7 @@ import Link from "next/link";
 import { HiMiniBars3BottomRight, HiXMark } from "react-icons/hi2";
 import Slider from "@/components/Slider";
 import ListPagination from "@/components/ListPagination";
+import Callout from "@/components/Callout";
 
 const footerItems = [
   {
@@ -153,6 +159,17 @@ const Test = () => {
   );
 
   const [otp, setOtp] = useState("");
+
+  // drawer
+  type DrawerPosition = "top" | "right" | "bottom" | "left";
+  const [openPosition, setOpenPosition] = useState<DrawerPosition | undefined>(
+    undefined,
+  );
+
+  const positions: DrawerPosition[] = ["top", "right", "bottom", "left"];
+
+  // modal
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="bg-light dark:bg-dark">
@@ -723,6 +740,62 @@ const Test = () => {
             </Label>
           </div>
         </section>
+        <section className="flex flex-col gap-1">
+          <Typography variant="h6">Radio</Typography>
+          <section className="flex items-center gap-4">
+            <h1>Size with Text:</h1>
+            <div role="radiogroup" aria-label="Options">
+              <Label htmlFor="option1" className="flex items-center gap-2">
+                <Radio id="option1" name="options" />
+                Option 1
+              </Label>
+              <Label htmlFor="option2" className="flex items-center gap-2">
+                <Radio id="option2" name="options" />
+                Option 2
+              </Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <Radio id="radioTextLarge" size="lg" />
+              <Label htmlFor="radioTextLarge" required>
+                Large
+              </Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <Radio id="radioTextSmall" size="sm" />
+              <Label htmlFor="radioTextSmall">Small</Label>
+            </div>
+          </section>
+          <section className="flex items-center gap-4">
+            <h1>States:</h1>
+            <div className="flex items-center gap-2">
+              <Radio id="disable" size="lg" disabled />
+              <Label disabled htmlFor="disable">
+                Disabled
+              </Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <Radio id="check" size="lg" readOnly checked />
+              <Label htmlFor="check">Checked</Label>
+            </div>
+          </section>
+          <section className="flex items-center gap-4">
+            <h1>Radio with Text and Subtext: </h1>
+            <div className="flex items-start gap-2">
+              <Radio name="radioWithText" id="smallRadio" size="sm" />
+              <div className="flex flex-col -mt-1">
+                <Label htmlFor="smallRadio">Text with small radio button</Label>
+                <Caption>This is a helper text</Caption>
+              </div>
+            </div>
+            <div className="flex items-start gap-2">
+              <Radio name="radioWithText" id="largeRadio" size="lg" />
+              <div className="flex flex-col -mt-1">
+                <Label htmlFor="largeRadio">Text with large radio button</Label>
+                <Caption>This is a helper text</Caption>
+              </div>
+            </div>
+          </section>
+        </section>
         <section className="flex gap-4 items-center my-4 ">
           <Typography variant="h6">Chips Variant</Typography>
           <Chip
@@ -1127,6 +1200,21 @@ const Test = () => {
             rowsPerPage={rowsPerPage}
           />
         </section>
+        <section className="my-5">
+          <Typography variant="h6">Skeleton: </Typography>
+          <div className="flex flex-col gap-2">
+            <Skeleton animation="wave" width="200px" height="200px" />
+            <Skeleton width="200px" height="200px" circle animation="shimmer" />
+            {/* Fluid text line skeletons */}
+            <div className="w-[20%] min-w-[120px] max-w-[167px] h-[14px]">
+              <Skeleton width="100%" height="100%" animation="pulse" />
+            </div>
+
+            <div className="w-[15%] min-w-[100px] max-w-[138px] h-[42px]">
+              <Skeleton width="100%" height="100%" animation="pulse" />
+            </div>
+          </div>
+        </section>
         {/* accordion */}
         <section className="my-5">
           <Typography variant={"h6"}>Accordion Single</Typography>
@@ -1450,6 +1538,154 @@ const Test = () => {
           <Spinner size="sm" />
           <Spinner size="md" />
           <Spinner size="lg" />
+        </section>
+        <section className="my-5">
+          <Typography variant={"h6"}>Modal:</Typography>
+          <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+          <Modal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            closeModal={true}
+            closeOnOutsideClick={true}
+            width="60%"
+          >
+            <div className=" w-full">
+              <Typography variant={"h4"}>Content</Typography>
+              <Paragraph>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
+                quisquam consequatur quis vitae blanditiis dicta iusto nesciunt
+                magni. Ipsum maxime dolorem rem excepturi laboriosam voluptate
+                quia, natus qui neque accusamus?
+              </Paragraph>
+            </div>
+          </Modal>
+        </section>
+        <section className="my-5 space-y-4">
+          <Typography variant={"h6"}>Drawer:</Typography>
+          <div className="flex gap-3 flex-wrap">
+            {positions.map((pos) => (
+              <Button key={pos} onClick={() => setOpenPosition(pos)}>
+                Show {pos} Drawer
+              </Button>
+            ))}
+          </div>
+
+          {positions.map((pos) => (
+            <Drawer
+              key={pos}
+              isOpen={openPosition === pos}
+              setIsOpen={(isOpen) => {
+                if (!isOpen) setOpenPosition(undefined);
+              }}
+              closeOnOutsideClick={false}
+              position={pos}
+              width={pos === "left" || pos === "right" ? "w-[500px]" : ""}
+              height={pos === "top" || pos === "bottom" ? "h-[500px]" : ""}
+            >
+              <p>This is a {pos} drawer.</p>
+              <p>You can change its position, width, and height using props.</p>
+            </Drawer>
+          ))}
+        </section>
+        <section className="my-5 space-y-4">
+          <Typography variant={"h6"}>Callout:</Typography>
+          <div className="space-y-3">
+            <h1 className="text-display-xs text-primary-600">Filled:</h1>
+            <Callout
+              size={"xs"}
+              startIcon={<RiInformationLine size={18} />}
+              endIcon={<RiCloseLine size={18} />}
+            >
+              Access denied. Please contact the network administrator to view
+              this page.
+            </Callout>
+            <Callout
+              size={"sm"}
+              intent={"warning"}
+              startIcon={<RiInformationLine size={18} />}
+              endIcon={<RiCloseLine size={18} />}
+            >
+              Access denied. Please contact the network administrator to view
+              this page.
+            </Callout>
+            <Callout
+              size={"md"}
+              intent={"error"}
+              startIcon={<RiInformationLine size={20} />}
+              endIcon={<RiCloseLine size={20} />}
+            >
+              Access denied. Please contact the network administrator to view
+              this page.
+            </Callout>
+            <Callout
+              size={"lg"}
+              intent={"success"}
+              startIcon={<RiInformationLine size={20} />}
+              endIcon={<RiCloseLine size={20} />}
+            >
+              Access denied. Please contact the network administrator to view
+              this page.
+            </Callout>
+            <Callout
+              size={"lg"}
+              intent={"default"}
+              startIcon={<RiInformationLine size={20} />}
+              endIcon={<RiCloseLine size={20} />}
+            >
+              Access denied. Please contact the network administrator to view
+              this page.
+            </Callout>
+            <h1 className="text-display-xs text-primary-600">Outlined:</h1>
+            <Callout
+              size={"md"}
+              variant={"outlined"}
+              startIcon={<RiInformationLine size={18} />}
+              endIcon={<RiCloseLine size={20} />}
+            >
+              Access denied. Please contact the network administrator to view
+              this page.
+            </Callout>
+            <Callout
+              size={"sm"}
+              variant={"outlined"}
+              intent={"warning"}
+              startIcon={<RiInformationLine size={18} />}
+              endIcon={<RiCloseLine size={18} />}
+            >
+              Access denied. Please contact the network administrator to view
+              this page.
+            </Callout>
+            <Callout
+              size={"md"}
+              variant={"outlined"}
+              intent={"error"}
+              startIcon={<RiInformationLine size={20} />}
+              endIcon={<RiCloseLine size={20} />}
+            >
+              Access denied. Please contact the network administrator to view
+              this page.
+            </Callout>
+            <Callout
+              size={"lg"}
+              variant={"outlined"}
+              intent={"success"}
+              startIcon={<RiInformationLine size={20} />}
+              endIcon={<RiCloseLine size={18} />}
+            >
+              Access denied. Please contact the network administrator to view
+              this page.
+            </Callout>
+            <Callout
+              size={"lg"}
+              variant={"outlined"}
+              intent={"default"}
+              startIcon={<RiInformationLine size={20} />}
+              endIcon={<RiCloseLine size={20} />}
+            >
+              Access denied. Please contact the network administrator to view
+              this page.
+            </Callout>
+          </div>
         </section>
       </main>
       <Footer
