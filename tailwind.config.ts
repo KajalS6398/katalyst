@@ -10,6 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        backdrop: "rgba(0, 0, 0, 0.5)",
         light: "var(--light)",
         dark: "var(--dark)",
         error: "var(--error)",
