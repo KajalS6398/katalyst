@@ -73,6 +73,7 @@ import ListPagination from "@/components/ListPagination";
 import Callout from "@/components/Callout";
 import NestedDropdown from "@/components/NestedDropdown";
 import FillButton from "@/components/FillButton";
+import FloatingButton from "@/components/FloatingButton";
 
 const footerItems = [
   {
@@ -383,8 +384,12 @@ const Test = () => {
   const handleTabChange = (newValue: string) => {
     setValue(newValue);
   };
+
   // popover
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  // floating button
+  const [showButton, setShowButton] = useState(false);
 
   return (
     <div className="bg-light dark:bg-dark">
@@ -1863,6 +1868,54 @@ const Test = () => {
             icon={RiCheckLine}
             className="w-[150px]"
           />
+        </section>
+        <section className="flex items-center gap-5">
+          <Typography variant="h6">Floating Button:</Typography>
+          <Button
+            onClick={() => setShowButton((prev) => !prev)}
+            aria-expanded={showButton}
+          >
+            {showButton ? "Hide" : "Show"}
+          </Button>
+          {showButton && (
+            <div>
+              <FloatingButton
+                onClick={() => alert("Button Clicked!!")}
+                position="bottom-center"
+                variant={"quaternary"}
+                className="text-primary-500 border border-primary-500"
+              >
+                <RiAddLine />
+              </FloatingButton>
+              <FloatingButton
+                onClick={() => alert("Button Clicked!!")}
+                variant={"primary-light"}
+                position="bottom-left"
+              >
+                <RiAddLine />
+              </FloatingButton>
+              <FloatingButton
+                onClick={() => alert("Button Clicked!!")}
+                position="bottom-right"
+                variant={"secondary"}
+              >
+                <RiAddLine />
+              </FloatingButton>{" "}
+              <FloatingButton
+                onClick={() => alert("Button Clicked!!")}
+                position="top-left"
+                variant={"tertiary"}
+              >
+                <RiAddLine />
+              </FloatingButton>{" "}
+              <FloatingButton
+                onClick={() => alert("Button Clicked!!")}
+                position="top-right"
+              >
+                <RiAddLine />
+              </FloatingButton>
+            </div>
+          )}
         </section>
         <section className="space-y-5">
           <Typography variant={"h6"}>Slider: </Typography>
