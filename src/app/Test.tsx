@@ -24,6 +24,7 @@ import {
   Modal,
   OTPInput,
   Paragraph,
+  Popover,
   Radio,
   Skeleton,
   Spinner,
@@ -381,6 +382,8 @@ const Test = () => {
   const handleTabChange = (newValue: string) => {
     setValue(newValue);
   };
+  // popover
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <div className="bg-light dark:bg-dark">
@@ -1933,6 +1936,65 @@ const Test = () => {
               <p>You can change its position, width, and height using props.</p>
             </Drawer>
           ))}
+        </section>
+        <section className="my-5 space-y-4">
+          <Typography variant={"h6"}>Popover:</Typography>
+          <div className="flex justify-center">
+            <Popover
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              postion="top-center"
+              trigger={<Button size={"sm"}>Show Popover</Button>}
+              className="w-[500px]"
+            >
+              <div className="grid gap-4">
+                <div className="space-y-2">
+                  <h4 className="leading-none font-medium">Dimensions</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Set the dimensions for the layer.
+                  </p>
+                </div>
+                <div className="grid gap-2">
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="width">Width</Label>
+                    <Input
+                      type="text"
+                      id="width"
+                      defaultValue="100%"
+                      className="col-span-2 h-8"
+                    />
+                  </div>
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="maxWidth">Max. width</Label>
+                    <Input
+                      type="text"
+                      id="maxWidth"
+                      defaultValue="300px"
+                      className="col-span-2 h-8"
+                    />
+                  </div>
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="height">Height</Label>
+                    <Input
+                      type="text"
+                      id="height"
+                      defaultValue="25px"
+                      className="col-span-2 h-8"
+                    />
+                  </div>
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="maxHeight">Max. height</Label>
+                    <Input
+                      type="text"
+                      id="maxHeight"
+                      defaultValue="none"
+                      className="col-span-2 h-8"
+                    />
+                  </div>
+                </div>
+              </div>
+            </Popover>
+          </div>
         </section>
         <section>
           <Typography variant={"h6"}>Tabs:</Typography>

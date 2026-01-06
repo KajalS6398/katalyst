@@ -21,6 +21,7 @@ export { default as Checkbox } from "./Checkbox";
 export { default as Chip } from "./Chip";
 export { default as Drawer } from "./Drawer";
 export { default as Dropdown, MenuItem, MenuSubItem } from "./Dropdown";
+export { default as Popover } from "./Popover";
 export {
   default as Footer,
   FooterContent,
