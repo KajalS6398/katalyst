@@ -1,19 +1,12 @@
 "use client";
-import React, {
-  Dispatch,
-  FC,
-  ReactNode,
-  SetStateAction,
-  useCallback,
-  useEffect,
-} from "react";
+import React, { type ReactNode, useCallback, useEffect } from "react";
 import Button from "./Button";
 import { RiCloseLine } from "react-icons/ri";
 import { cn } from "@/utils/util";
 
 interface DrawerProps {
   isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   children: ReactNode;
   position?: "left" | "right" | "top" | "bottom";
   width?: string;
@@ -23,7 +16,7 @@ interface DrawerProps {
   closeOnOutsideClick?: boolean;
 }
 
-const Drawer: FC<DrawerProps> = ({
+const Drawer: React.FC<DrawerProps> = ({
   isOpen,
   setIsOpen,
   children,

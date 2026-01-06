@@ -1,6 +1,6 @@
 import { cn } from "@/utils/util";
 import { cva, type VariantProps } from "class-variance-authority";
-import React, { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 
 // const calloutVariants = cva("py-3 px-4 font-medium rounded-md", {
 //   variants: {
