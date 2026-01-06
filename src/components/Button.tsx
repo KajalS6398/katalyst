@@ -2,8 +2,9 @@ import { cn } from "@/utils/util";
 import { cva, type VariantProps } from "class-variance-authority";
 import React, { type ButtonHTMLAttributes, type ReactNode } from "react";
 
-interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
+export interface ButtonProps
+  extends
+    ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   children?: ReactNode;
   startIcon?: JSX.Element;

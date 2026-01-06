@@ -24,9 +24,14 @@ import {
   Modal,
   OTPInput,
   Paragraph,
+  Popover,
   Radio,
   Skeleton,
   Spinner,
+  Tab,
+  TabList,
+  TabPanel,
+  TabsContainer,
   Textarea,
   Typography,
 } from "@/components";
@@ -48,6 +53,7 @@ import {
   RiInformationLine,
   RiInstagramLine,
   RiLinkedinLine,
+  RiSearch2Line,
   RiTwitterLine,
 } from "react-icons/ri";
 import Button from "@/components/Button";
@@ -66,6 +72,8 @@ import Slider from "@/components/Slider";
 import ListPagination from "@/components/ListPagination";
 import Callout from "@/components/Callout";
 import NestedDropdown from "@/components/NestedDropdown";
+import FillButton from "@/components/FillButton";
+import FloatingButton from "@/components/FloatingButton";
 
 const footerItems = [
   {
@@ -107,11 +115,11 @@ const footerItems = [
 ];
 
 // Sample industry data that matches the BaseNestedItem interface
-interface IndustryItem {
-  _id: string;
-  name: string;
-  children?: IndustryItem[];
-}
+// interface IndustryItem {
+//   _id: string;
+//   name: string;
+//   children?: IndustryItem[];
+// }
 const industryList = {
   data: [
     {
@@ -317,7 +325,7 @@ const dummyData = Array.from({ length: 100 }, (_, index) => ({
 const Test = () => {
   const { switchDark, switchLight } = useTheme();
 
-  const [selectedItem, setSelectedItem] = useState<IndustryItem | null>(null);
+  // const [selectedItem, setSelectedItem] = useState<IndustryItem | null>(null);
 
   // toggle
   const [isChecked, setIsChecked] = useState(false);
@@ -369,6 +377,19 @@ const Test = () => {
 
   // modal
   const [showModal, setShowModal] = useState(false);
+
+  // tabs
+  const [value, setValue] = useState("1");
+
+  const handleTabChange = (newValue: string) => {
+    setValue(newValue);
+  };
+
+  // popover
+  const [isOpen, setIsOpen] = useState(false);
+
+  // floating button
+  const [showButton, setShowButton] = useState(false);
 
   return (
     <div className="bg-light dark:bg-dark">
@@ -1838,6 +1859,64 @@ const Test = () => {
             </Button>
           </div>
         </section>
+        <section>
+          <Typography variant="h6">Fill Button:</Typography>
+          <FillButton
+            label="Button"
+            fillColor="bg-primary-600"
+            textHoverColor="group-hover:text-white"
+            icon={RiCheckLine}
+            className="w-[150px]"
+          />
+        </section>
+        <section className="flex items-center gap-5">
+          <Typography variant="h6">Floating Button:</Typography>
+          <Button
+            onClick={() => setShowButton((prev) => !prev)}
+            aria-expanded={showButton}
+          >
+            {showButton ? "Hide" : "Show"}
+          </Button>
+          {showButton && (
+            <div>
+              <FloatingButton
+                onClick={() => alert("Button Clicked!!")}
+                position="bottom-center"
+                variant={"quaternary"}
+                className="text-primary-500 border border-primary-500"
+              >
+                <RiAddLine />
+              </FloatingButton>
+              <FloatingButton
+                onClick={() => alert("Button Clicked!!")}
+                variant={"primary-light"}
+                position="bottom-left"
+              >
+                <RiAddLine />
+              </FloatingButton>
+              <FloatingButton
+                onClick={() => alert("Button Clicked!!")}
+                position="bottom-right"
+                variant={"secondary"}
+              >
+                <RiAddLine />
+              </FloatingButton>{" "}
+              <FloatingButton
+                onClick={() => alert("Button Clicked!!")}
+                position="top-left"
+                variant={"tertiary"}
+              >
+                <RiAddLine />
+              </FloatingButton>{" "}
+              <FloatingButton
+                onClick={() => alert("Button Clicked!!")}
+                position="top-right"
+              >
+                <RiAddLine />
+              </FloatingButton>
+            </div>
+          )}
+        </section>
         <section className="space-y-5">
           <Typography variant={"h6"}>Slider: </Typography>
           <Slider
@@ -1921,6 +2000,261 @@ const Test = () => {
               <p>You can change its position, width, and height using props.</p>
             </Drawer>
           ))}
+        </section>
+        <section className="my-5 space-y-4">
+          <Typography variant={"h6"}>Popover:</Typography>
+          <div className="flex justify-center">
+            <Popover
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              postion="top-center"
+              trigger={<Button size={"sm"}>Show Popover</Button>}
+              className="w-[500px]"
+            >
+              <div className="grid gap-4">
+                <div className="space-y-2">
+                  <h4 className="leading-none font-medium">Dimensions</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Set the dimensions for the layer.
+                  </p>
+                </div>
+                <div className="grid gap-2">
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="width">Width</Label>
+                    <Input
+                      type="text"
+                      id="width"
+                      defaultValue="100%"
+                      className="col-span-2 h-8"
+                    />
+                  </div>
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="maxWidth">Max. width</Label>
+                    <Input
+                      type="text"
+                      id="maxWidth"
+                      defaultValue="300px"
+                      className="col-span-2 h-8"
+                    />
+                  </div>
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="height">Height</Label>
+                    <Input
+                      type="text"
+                      id="height"
+                      defaultValue="25px"
+                      className="col-span-2 h-8"
+                    />
+                  </div>
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="maxHeight">Max. height</Label>
+                    <Input
+                      type="text"
+                      id="maxHeight"
+                      defaultValue="none"
+                      className="col-span-2 h-8"
+                    />
+                  </div>
+                </div>
+              </div>
+            </Popover>
+          </div>
+        </section>
+        <section>
+          <Typography variant={"h6"}>Tabs:</Typography>
+          <div className="my-5 space-y-4">
+            <Paragraph variant={"b3"}>Default Tabs:</Paragraph>
+            <TabsContainer value={value}>
+              <TabList
+                onChange={handleTabChange}
+                ariaLabel="lab API tabs example"
+                box={false}
+              >
+                <Tab
+                  label="Item One"
+                  content="(12)"
+                  icon={<RiSearch2Line size={16} />}
+                  value="1"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Two"
+                  value="2"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Three"
+                  value="3"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+              </TabList>
+              <TabPanel value="1" currentValue={value}>
+                Item One Content
+              </TabPanel>
+              <TabPanel value="2" currentValue={value}>
+                Item Two Content
+              </TabPanel>
+              <TabPanel value="3" currentValue={value}>
+                Item Three Content
+              </TabPanel>
+            </TabsContainer>
+            <TabsContainer
+              value={value}
+              position="vertical"
+              className="flex gap-4"
+            >
+              <TabList
+                onChange={handleTabChange}
+                ariaLabel="Vertical tabs example"
+                position="vertical"
+                className="w-48"
+              >
+                <Tab
+                  label="Item One"
+                  value="1"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                  position="vertical"
+                />
+                <Tab
+                  label="Item Two"
+                  value="2"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                  position="vertical"
+                />
+              </TabList>
+              <div className="flex-1">
+                <TabPanel value="1" currentValue={value}>
+                  Item One Content
+                </TabPanel>
+                <TabPanel value="2" currentValue={value}>
+                  Item Two Content
+                </TabPanel>
+              </div>
+            </TabsContainer>
+          </div>
+          <div className="my-5 space-y-4">
+            <Paragraph variant={"b3"}>Tab with box variant:</Paragraph>
+            <TabsContainer value={value}>
+              <TabList
+                onChange={handleTabChange}
+                ariaLabel="lab API tabs example"
+                box={true}
+              >
+                <Tab
+                  label="Item One"
+                  value="1"
+                  content="(12)"
+                  icon={<RiSearch2Line size={16} />}
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Two"
+                  value="2"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Three"
+                  value="3"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+              </TabList>
+              <TabPanel value="1" currentValue={value}>
+                Item One Content
+              </TabPanel>
+              <TabPanel value="2" currentValue={value}>
+                Item Two Content
+              </TabPanel>
+              <TabPanel value="3" currentValue={value}>
+                Item Three Content
+              </TabPanel>
+            </TabsContainer>
+            <TabsContainer position="vertical" value={value}>
+              <TabList
+                onChange={handleTabChange}
+                ariaLabel="lab API tabs example"
+                box={true}
+                position="vertical"
+              >
+                <Tab
+                  label="Item One"
+                  value="1"
+                  content="(12)"
+                  icon={<RiSearch2Line size={16} />}
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Two"
+                  value="2"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Three"
+                  value="3"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+              </TabList>
+              <TabPanel value="1" currentValue={value}>
+                Item One Content
+              </TabPanel>
+              <TabPanel value="2" currentValue={value}>
+                Item Two Content
+              </TabPanel>
+              <TabPanel value="3" currentValue={value}>
+                Item Three Content
+              </TabPanel>
+            </TabsContainer>
+          </div>
+          <div className="my-5 space-y-4">
+            <Paragraph variant={"b3"}>Custom styling for Tabs:</Paragraph>
+            <TabsContainer value={value}>
+              <TabList
+                onChange={handleTabChange}
+                ariaLabel="lab API tabs example"
+                className="border-none"
+              >
+                <Tab
+                  label="Item One"
+                  value="1"
+                  // icon={<RiSearch2Line size={16} />}
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                  className="bg-primary-600 text-white rounded-2xl hover:bg-primary-100 hover:text-black border-b-0 hover:rounded-2xl"
+                />
+                <Tab
+                  label="Item Two"
+                  value="2"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+                <Tab
+                  label="Item Three"
+                  value="3"
+                  onChange={handleTabChange}
+                  selectedTabValue={value}
+                />
+              </TabList>
+              <TabPanel value="1" currentValue={value}>
+                Item One Content
+              </TabPanel>
+              <TabPanel value="2" currentValue={value}>
+                Item Two Content
+              </TabPanel>
+              <TabPanel value="3" currentValue={value}>
+                Item Three Content
+              </TabPanel>
+            </TabsContainer>
+          </div>
         </section>
         <section className="my-5 space-y-4">
           <Typography variant={"h6"}>Callout:</Typography>
