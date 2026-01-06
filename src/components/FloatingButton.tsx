@@ -2,7 +2,7 @@
 
 import React from "react";
 import { cn } from "@/utils/util";
-import Button, { ButtonProps } from "./Button";
+import Button, { type ButtonProps } from "./Button";
 
 interface FloatingButtonProps extends ButtonProps {
   position?:

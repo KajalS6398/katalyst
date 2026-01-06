@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/utils/util";
-import React, { ReactNode, useEffect } from "react";
+import React, { type ReactNode, useEffect } from "react";
 import { RiCloseLine } from "react-icons/ri";
 
 interface ModalProps {
