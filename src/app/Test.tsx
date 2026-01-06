@@ -72,6 +72,7 @@ import Slider from "@/components/Slider";
 import ListPagination from "@/components/ListPagination";
 import Callout from "@/components/Callout";
 import NestedDropdown from "@/components/NestedDropdown";
+import FillButton from "@/components/FillButton";
 
 const footerItems = [
   {
@@ -1852,6 +1853,16 @@ const Test = () => {
               Button
             </Button>
           </div>
+        </section>
+        <section>
+          <Typography variant="h6">Fill Button:</Typography>
+          <FillButton
+            label="Button"
+            fillColor="bg-primary-600"
+            textHoverColor="group-hover:text-white"
+            icon={RiCheckLine}
+            className="w-[150px]"
+          />
         </section>
         <section className="space-y-5">
           <Typography variant={"h6"}>Slider: </Typography>

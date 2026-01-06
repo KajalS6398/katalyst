@@ -21,7 +21,7 @@ export { default as Checkbox } from "./Checkbox";
 export { default as Chip } from "./Chip";
 export { default as Drawer } from "./Drawer";
 export { default as Dropdown, MenuItem, MenuSubItem } from "./Dropdown";
-export { default as Popover } from "./Popover";
+export { default as FillButton } from "./FillButton";
 export {
   default as Footer,
   FooterContent,
@@ -39,6 +39,7 @@ export { default as Modal } from "./Modal";
 export { default as NestedDropdown } from "./NestedDropdown";
 export { default as OTPInput } from "./OTPInput";
 export { default as Paragraph } from "./Paragraph";
+export { default as Popover } from "./Popover";
 export { default as Radio } from "./Radio";
 export { default as Skeleton } from "./Skeleton";
 export { default as Slider } from "./Slider";
