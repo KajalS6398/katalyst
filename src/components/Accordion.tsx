@@ -1,12 +1,18 @@
+"use client";
 import { cn } from "@/utils/util";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
 
+/* =========================================================
+   Accordion Root
+========================================================= */
 type AccordionProps = {
   type?: "single" | "multiple";
-  collapsible?: boolean;
+  collapsible?: boolean; // If false, one item must always be open
   className?: string;
   children: React.ReactNode;
+  expanded?: boolean;
+  defaultOpenValues?: string[]; // Allow user to set initial state
 };
 
 export default function Accordion({
@@ -14,37 +20,56 @@ export default function Accordion({
   collapsible = true,
   className,
   children,
+  expanded,
+  defaultOpenValues = [],
 }: AccordionProps) {
-  const [openItems, setOpenItems] = useState<string[]>([]);
+  // Initialize state with default values
+  const [openItems, setOpenItems] = useState<string[]>(defaultOpenValues);
+
+  // Sync with global expanded prop
+  useEffect(() => {
+    if (expanded !== undefined) {
+      if (expanded) {
+        const allValues: string[] = [];
+        React.Children.forEach(children, (child) => {
+          if (React.isValidElement(child)) {
+            allValues.push((child.props as any).value);
+          }
+        });
+        setOpenItems(allValues);
+      } else {
+        // If collapsible is false, we don't clear all if there are items
+        setOpenItems(collapsible ? [] : openItems);
+      }
+    }
+  }, [expanded, children, collapsible]);
 
   const handleToggle = (value: string) => {
     if (type === "single") {
-      setOpenItems((prev) =>
-        prev.includes(value) ? (collapsible ? [] : prev) : [value],
-      );
+      const isClosing = openItems.includes(value);
+      
+      // If NOT collapsible and user clicks the open item, do nothing
+      if (isClosing && !collapsible) return;
+
+      setOpenItems(isClosing ? [] : [value]);
     } else {
-      setOpenItems((prev) =>
-        prev.includes(value)
+      setOpenItems((prev) => {
+        const isClosing = prev.includes(value);
+        // If NOT collapsible and it's the last item open, don't close it
+        if (isClosing && !collapsible && prev.length === 1) return prev;
+        
+        return isClosing
           ? prev.filter((item) => item !== value)
-          : [...prev, value],
-      );
+          : [...prev, value];
+      });
     }
   };
 
   return (
-    <div className={className}>
+    <div className={cn("flex flex-col", className)}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(
-            child as React.ReactElement<{
-              openItems: string[];
-              handleToggle: (value: string) => void;
-            }>,
-            {
-              openItems,
-              handleToggle,
-            },
-          );
+          return React.cloneElement(child as any, { openItems, handleToggle });
         }
         return child;
       })}
@@ -52,90 +77,68 @@ export default function Accordion({
   );
 }
 
-type AccordionItemProps = {
-  value: string;
-  disabled?: boolean;
-  openItems?: string[];
-  handleToggle?: (value: string) => void;
-  children: React.ReactNode;
-};
-
-export function AccordionItem({
-  value,
-  disabled = false,
-  openItems,
-  handleToggle,
-  children,
-}: AccordionItemProps) {
+/* =========================================================
+   Accordion Item
+========================================================= */
+export function AccordionItem({ value, disabled, openItems, handleToggle, children }: any) {
   const isOpen = openItems?.includes(value);
 
-  const toggle = () => {
-    if (!disabled && handleToggle) {
-      handleToggle(value);
-    }
-  };
+  return (
+    <div className={cn(
+      "rounded-lg mb-3 border transition-all duration-300 overflow-hidden",
+      isOpen ? "border-primary-500 bg-white dark:bg-gray-900" : "border-transparent bg-gray-50 dark:bg-gray-800",
+      disabled && "opacity-50 pointer-events-none"
+    )}>
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child as any, { 
+            isOpen, 
+            onClick: () => handleToggle?.(value) 
+          });
+        }
+        return child;
+      })}
+    </div>
+  );
+}
 
+/* =========================================================
+   Accordion Trigger
+========================================================= */
+export function AccordionTrigger({ isOpen, children, onClick }: any) {
   return (
     <div
-      className={cn(
-        "rounded-lg mb-3 shadow-cardShadow dark:shadow-none border dark:border-gray-900",
-        isOpen
-          ? "border-primary-500 shadow-cardShadowActive dark:bg-gray-900"
-          : "hover:border-gray-500 hover:bg-gray-100 hover:dark:bg-transparent hover:dark:border-gray-600",
-        disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
-      )}
+      className="p-6 mobile:p-4 flex justify-between items-center cursor-pointer select-none"
+      onClick={onClick}
     >
-      <div
-        className="font-semibold p-[32px] mobile:p-4 transition-colors duration-200 ease-in-out"
-        onClick={toggle}
-      >
-        {children && Array.isArray(children) ? (
-          <>
-            {React.cloneElement(children[0] as React.ReactElement, { isOpen })}
-            {isOpen && !disabled ? children[1] : null}
-          </>
-        ) : (
-          children
-        )}
+      <div className="font-semibold text-xl mobile:text-base text-dark dark:text-white">
+        {children}
       </div>
+      <FiChevronDown 
+        size={24} 
+        className={cn(
+          "transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)]",
+          isOpen && "rotate-180"
+        )} 
+      />
     </div>
   );
 }
 
-type AccordionTriggerProps = {
-  isOpen?: boolean;
-  children: React.ReactNode;
-};
-
-export function AccordionTrigger({ isOpen, children }: AccordionTriggerProps) {
+/* =========================================================
+   Accordion Content
+========================================================= */
+export function AccordionContent({ isOpen, children }: any) {
   return (
-    <div className="accordion-trigger flex justify-between items-center font-semibold text-[20px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-white transition-all delay-150 ease-in">
-      {children}
-      <span
-        className={`transition-transform duration-300 transform ${
-          isOpen ? "rotate-180" : "rotate-0"
-        }`}
-      >
-        <FiChevronDown size={20} />
-      </span>
-    </div>
-  );
-}
-
-type AccordionContentProps = {
-  isOpen?: boolean;
-  children: React.ReactNode;
-};
-
-export function AccordionContent({ isOpen, children }: AccordionContentProps) {
-  return (
-    <div
-      className={cn(
-        "w-full font-normal font-karla text-[18px] mobile:text-[12px] mobile:leading-[18px] text-dark dark:text-gray-300 pt-[32px] mobile:pt-[10px] overflow-hidden transition-all duration-500 ease-in",
-        !isOpen ? "max-h-full opacity-100" : "max-h-0 opacity-0",
-      )}
-    >
-      {children}
+    <div className={cn(
+      "grid transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)]",
+      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+    )}>
+      <div className="overflow-hidden">
+        <div className="px-6 pb-6 mobile:px-4 mobile:pb-4 text-gray-600 dark:text-gray-400 leading-relaxed">
+          {children}
+        </div>
+      </div>
     </div>
   );
 }
