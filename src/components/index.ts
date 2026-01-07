@@ -19,6 +19,7 @@ export {
 export { default as Checkbox } from "./Checkbox";
 export { default as Chip } from "./Chip";
 export { default as Drawer } from "./Drawer";
+export { default as Dropdown } from "./Dropdown";
 export {
   default as Footer,
   FooterContent,
