@@ -1,5 +1,5 @@
-import React, { InputHTMLAttributes, forwardRef } from "react";
-import { cva, VariantProps } from "class-variance-authority";
+import React, { type InputHTMLAttributes, forwardRef } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/util";
 
 interface RadioProps
@@ -25,10 +25,7 @@ const radioVariants = cva("", {
 });
 
 const Radio = forwardRef<HTMLInputElement, RadioProps>(
-  (
-    { size, disabled, checked, className, children, id, name, ...props },
-    ref,
-  ) => {
+  ({ size, disabled, checked, className, id, name, ...props }, ref) => {
     return (
       <div className="relative inline-flex items-center cursor-pointer">
         <input
