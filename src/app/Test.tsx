@@ -335,8 +335,6 @@ const dummyData = Array.from({ length: 100 }, (_, index) => ({
 
 const Test = () => {
   const { switchDark, switchLight } = useTheme();
-
-  const [selected, setSelected] = useState<IndustryItem | null>(null);
   // const [selectedItem, setSelectedItem] = useState<IndustryItem | null>(null);
 
   // toggle
