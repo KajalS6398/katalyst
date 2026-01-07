@@ -18,7 +18,6 @@ export {
 } from "./Card";
 export { default as Checkbox } from "./Checkbox";
 export { default as Chip } from "./Chip";
-export { default as Dropdown, MenuItem, MenuSubItem } from "./Dropdown";
 export {
   default as Footer,
   FooterContent,

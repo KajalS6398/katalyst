@@ -57,6 +57,7 @@ import { HiMiniBars3BottomRight, HiXMark } from "react-icons/hi2";
 import Slider from "@/components/Slider";
 import ListPagination from "@/components/ListPagination";
 import NestedDropdown from "@/components/NestedDropdown";
+import Dropdown from "@/components/Dropdown";
 
 interface Option {
   label: string | number;
@@ -313,7 +314,7 @@ const dummyData = Array.from({ length: 100 }, (_, index) => ({
 const Test = () => {
   const { switchDark, switchLight } = useTheme();
 
-  const [selectedItem, setSelectedItem] = useState<IndustryItem | null>(null);
+  const [selected, setSelected] = useState<IndustryItem | null>(null);
 
   // toggle
   const [isChecked, setIsChecked] = useState(false);
@@ -856,7 +857,7 @@ const Test = () => {
         </section>
         <div>
           <h1 className="text-lg">Multiple Dropdown</h1>
-          {/* <Dropdown
+          <Dropdown
             options={[
               { label: "High", value: "High", disabledOption: true },
               { label: "Medium", value: "Medium" },
@@ -875,10 +876,11 @@ const Test = () => {
             multiple
             search
             position="bottom"
+            dropdownFooter={true}
             onApply={() => {
               alert("Apply button clicked");
             }}
-          /> */}
+          />
         </div>
         <section className="space-y-4">
           <Typography variant={"h6"}>Pricing Cards</Typography>
