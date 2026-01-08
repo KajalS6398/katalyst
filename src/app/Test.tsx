@@ -1606,12 +1606,13 @@ const Test = () => {
         {/* accordion */}
         <section className="my-5">
           <Typography variant={"h6"}>Accordion Single</Typography>
-          <button onClick={() => setIsAllExpanded(!isAllExpanded)}>
+          <Button onClick={() => setIsAllExpanded(!isAllExpanded)}>
             {isAllExpanded ? "Collapse All" : "Expand All"}
-          </button>
+          </Button>
           <Accordion type="single" collapsible defaultOpenValues={["item-1"]} className="w-full">
             <AccordionItem value="item-1">
-              <AccordionTrigger>
+              <AccordionTrigger  className="text-yellow-500"
+                triggerIcon={<RiAlertFill />}>
                 What is your favorite template from BRIX Templates?
               </AccordionTrigger>
               <AccordionContent>
