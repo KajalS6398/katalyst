@@ -74,6 +74,7 @@ import Callout from "@/components/Callout";
 import NestedDropdown from "@/components/NestedDropdown";
 import FillButton from "@/components/FillButton";
 import FloatingButton from "@/components/FloatingButton";
+import Notice from "@/components/Notice";
 
 const footerItems = [
   {
@@ -390,6 +391,9 @@ const Test = () => {
 
   // floating button
   const [showButton, setShowButton] = useState(false);
+
+  // notice
+  const [notice, setNotice] = useState(false);
 
   return (
     <div className="bg-light dark:bg-dark">
@@ -1953,6 +1957,52 @@ const Test = () => {
           <Spinner size="md" />
           <Spinner size="lg" />
         </section>
+        <div className="flex   items-center gap-8">
+          <Typography variant={"h6"}>Notice: </Typography>
+          <Button onClick={() => setNotice(true)}>Show Notice</Button>
+          <Notice
+            open={notice}
+            setOpen={setNotice}
+            variant="default"
+            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            position="top-left"
+          />
+          <Notice
+            open={notice}
+            setOpen={setNotice}
+            variant="info"
+            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            position="top-right"
+            showIcon={false}
+          ></Notice>
+          <Notice
+            open={notice}
+            setOpen={setNotice}
+            variant="error"
+            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            position="top-center"
+          />
+          <Notice
+            open={notice}
+            setOpen={setNotice}
+            variant="warning"
+            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            position="bottom-center"
+          />{" "}
+          <Notice
+            open={notice}
+            setOpen={setNotice}
+            variant="success"
+            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            position="bottom-left"
+          />{" "}
+          <Notice
+            open={notice}
+            setOpen={setNotice}
+            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            position="bottom-right"
+          />
+        </div>
         <section className="my-5">
           <Typography variant={"h6"}>Modal:</Typography>
           <Button onClick={() => setShowModal(true)}>Show Modal</Button>

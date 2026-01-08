@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/utils/util";
 import React, { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";

@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/utils/util";
 import React, { useState, useRef, useEffect } from "react";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi2";
@@ -13,7 +14,7 @@ export default function Dropdown({
   triggerIcon,
   children,
   width = "250px",
-  className
+  className,
 }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -47,7 +48,7 @@ export default function Dropdown({
           style={{ width }}
           className={cn(
             "border border-primary-200 dark:bg-white dark:border-primary-600 rounded-t-radius-md absolute left-0 mt-1 z-[100000] w-full bg-white shadow-sm",
-            className
+            className,
           )}
         >
           {children}
@@ -70,13 +71,13 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   onClick,
   disabled,
   children,
-  className = "", 
+  className = "",
 }) => (
   <button
     className={cn(
-      "w-full text-left p-4 border-t border-b border-primary-100 last:border-t last:border-none hover:bg-primary-50 dark:hover:bg-primary-50", 
+      "w-full text-left p-4 border-t border-b border-primary-100 last:border-t last:border-none hover:bg-primary-50 dark:hover:bg-primary-50",
       disabled ? "opacity-50 cursor-not-allowed" : "",
-      className 
+      className,
     )}
     onClick={onClick}
     disabled={disabled}
@@ -90,17 +91,17 @@ interface MenuSubItemProps {
   content: React.ReactNode;
   children: React.ReactNode;
   label?: string;
-  className?: string; 
-  sectionClassName?: string; 
-  subMenuClassName?: string; 
+  className?: string;
+  sectionClassName?: string;
+  subMenuClassName?: string;
 }
 
 export const MenuSubItem: React.FC<MenuSubItemProps> = ({
   content,
   children,
-  className = "", 
-  sectionClassName = "", 
-  subMenuClassName = "", 
+  className = "",
+  sectionClassName = "",
+  subMenuClassName = "",
 }) => {
   const [isSubOpen, setIsSubOpen] = useState(false);
 
@@ -110,7 +111,7 @@ export const MenuSubItem: React.FC<MenuSubItemProps> = ({
         onClick={() => setIsSubOpen(!isSubOpen)}
         className={cn(
           "cursor-pointer hover:bg-primary-50 dark:hover:bg-primary-50 border-t border-b border-primary-100 p-4 flex justify-between items-center gap-1 w-full text-left",
-          sectionClassName 
+          sectionClassName,
         )}
       >
         {content}
@@ -120,7 +121,7 @@ export const MenuSubItem: React.FC<MenuSubItemProps> = ({
         <div
           className={cn(
             "bg-primary-25 border-primary-100 dark:bg-primary-50 dark:border-primary-100",
-            subMenuClassName 
+            subMenuClassName,
           )}
         >
           {children}
