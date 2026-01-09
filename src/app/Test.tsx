@@ -75,6 +75,7 @@ import NestedDropdown from "@/components/NestedDropdown";
 import FillButton from "@/components/FillButton";
 import FloatingButton from "@/components/FloatingButton";
 import Notice from "@/components/Notice";
+import Progress from "@/components/Progress";
 
 const footerItems = [
   {
@@ -394,6 +395,14 @@ const Test = () => {
 
   // notice
   const [notice, setNotice] = useState(false);
+
+  // progress
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setProgress(80), 500);
+    return () => clearTimeout(timer);
+  }, [progress]);
 
   return (
     <div className="bg-light dark:bg-dark">
@@ -2109,6 +2118,35 @@ const Test = () => {
               </div>
             </Popover>
           </div>
+        </section>
+        <section className="my-5 w-[500px] space-y-3">
+          <Typography variant={"h6"}>Progress:</Typography>
+          <Progress
+            progressColor="bg-success"
+            progress={progress}
+            rounded
+            height="2px"
+            progressText={"Progress text on top"}
+            progressTextPosition="top"
+          />
+          <Progress
+            progressColor="bg-primary-600"
+            progress={progress}
+            progressText={`${progress}%`}
+            progressTextPosition="right"
+          />
+          <Progress
+            progressColor="bg-success"
+            progress={progress}
+            progressText={`${progress}%`}
+            progressTextPosition="left"
+          />
+          <Progress
+            progressColor="bg-success"
+            progress={progress}
+            progressText={"Progress text on bottom"}
+            progressTextPosition="bottom"
+          />
         </section>
         <section>
           <Typography variant={"h6"}>Tabs:</Typography>
