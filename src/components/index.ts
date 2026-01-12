@@ -20,7 +20,7 @@ export {
 export { default as Checkbox } from "./Checkbox";
 export { default as Chip } from "./Chip";
 export { default as Drawer } from "./Drawer";
-export { default as Dropdown, MenuItem, MenuSubItem } from "./Dropdown";
+export { default as Dropdown } from "./Dropdown";
 export { default as FillButton } from "./FillButton";
 export {
   default as Footer,
