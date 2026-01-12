@@ -48,10 +48,7 @@ import {
   RiCheckboxCircleFill,
   RiCheckLine,
   RiCloseLine,
-  RiEditLine,
   RiFacebookLine,
-  RiFileLine,
-  RiFolderOpenFill,
   RiGlobalLine,
   RiHexagonLine,
   RiInformationLine,
@@ -86,7 +83,7 @@ import DropdownMenu, {
 } from "@/components/DropdownMenu";
 import FillButton from "@/components/FillButton";
 import FloatingButton from "@/components/FloatingButton";
-import FileUploadControl, { UploadItem } from "@/components/FileUploadControl";
+import FileUploadControl, { type UploadItem } from "@/components/FileUploadControl";
 
 interface Option {
   label: string | number;

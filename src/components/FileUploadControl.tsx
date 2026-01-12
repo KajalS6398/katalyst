@@ -211,14 +211,14 @@ export default function FileUploadControl({
     return `${Math.round(bytes / 1024)} KB`;
   };
 
-  const getPreviewUrl = (item: UploadItem) => {
-    if (item.previewUrl) return item.previewUrl;
-    if (item.file && !localPreviews.current.has(item.id)) {
-      const url = URL.createObjectURL(item.file);
-      localPreviews.current.set(item.id, url);
-    }
-    return localPreviews.current.get(item.id);
-  };
+  // const getPreviewUrl = (item: UploadItem) => {
+  //   if (item.previewUrl) return item.previewUrl;
+  //   if (item.file && !localPreviews.current.has(item.id)) {
+  //     const url = URL.createObjectURL(item.file);
+  //     localPreviews.current.set(item.id, url);
+  //   }
+  //   return localPreviews.current.get(item.id);
+  // };
 
   const getStatusDisplay = (status?: UploadStatus) => {
     switch (status) {
@@ -456,7 +456,7 @@ export default function FileUploadControl({
   }, []);
 
   return (
-    <div className={`w-full ${className}`}>
+    <div className={`w-full`}>
       <input
         id={inputId}
         ref={inputRef}
@@ -481,8 +481,9 @@ export default function FileUploadControl({
           "max-w-[564px] w-full bg-white dark:bg-gray-900 py-4 flex items-center justify-center rounded-lg border cursor-pointer transition-all",
           isDragging
             ? "border-blue-500 bg-blue-50 dark:bg-blue-800 dark:border-blue-400"
-            : "border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700",
+            : "border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-700",
           disabled && "pointer-events-none cursor-not-allowed",
+          className
         )}
       >
         <div className="flex items-center gap-3 text-center">
@@ -511,7 +512,7 @@ export default function FileUploadControl({
           return (
             <div
               key={item?.id}
-              className="flex items-center gap-2 bg-white dark:bg-gray-800 max-w-[564px] w-full p-4 rounded-lg border border-gray-200 dark:border-gray-700"
+              className="flex items-center gap-2 bg-white dark:bg-gray-900 max-w-[564px] w-full p-4 rounded-lg border border-gray-200 dark:border-gray-700"
             >
               <div className="w-14 h-14 flex-shrink-0 rounded-md overflow-hidden relative">
                 <div className="absolute inset-0 w-full h-full object-contain">
@@ -526,7 +527,7 @@ export default function FileUploadControl({
                 <div className="flex items-start justify-between gap-2 mb-3">
                   <div className="min-w-0">
                     <h4 className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
-                      {item?.name || item.file?.name || "Unnamed file"} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, minus?
+                      {item?.name || item.file?.name || "Unnamed file"}
                     </h4>
                     {showSizeText && (
                       <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">

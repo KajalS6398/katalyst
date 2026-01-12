@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/utils/util";
-import React, { useState, useEffect, KeyboardEvent } from "react";
+import React, { useState, useEffect, type KeyboardEvent } from "react";
 import { HiChevronDown } from "react-icons/hi";
 
 //  Accordion Root
@@ -63,7 +63,7 @@ export default function Accordion({
   };
 
   return (
-    <div 
+    <div
       className={cn("flex flex-col", className)}
       role={type === "single" ? "tablist" : undefined}
       aria-label={ariaLabel}
@@ -72,11 +72,11 @@ export default function Accordion({
     >
       {React.Children.map(children, (child, index) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child as any, { 
-            openItems, 
+          return React.cloneElement(child as any, {
+            openItems,
             handleToggle,
             index,
-            totalItems: React.Children.count(children)
+            totalItems: React.Children.count(children),
           });
         }
         return child;
@@ -119,7 +119,7 @@ export function AccordionItem({
         isOpen
           ? "border-primary-500 bg-white dark:bg-gray-900 dark:border-primary-400"
           : "border-transparent bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700/70",
-        disabled && "opacity-50 pointer-events-none dark:opacity-40"
+        disabled && "opacity-50 pointer-events-none dark:opacity-40",
       )}
       id={itemId}
       role="presentation"
@@ -181,39 +181,39 @@ export function AccordionTrigger({
         e.preventDefault();
         onClick?.();
         break;
-      case "ArrowDown":
+      case "ArrowDown": {
         e.preventDefault();
-        // Focus next accordion trigger
         const nextTrigger = document.querySelector<HTMLElement>(
-          `[data-accordion-trigger-index="${(index || 0) + 1}"]`
+          `[data-accordion-trigger-index="${(index || 0) + 1}"]`,
         );
         nextTrigger?.focus();
         break;
-      case "ArrowUp":
+      }
+      case "ArrowUp": {
         e.preventDefault();
-        // Focus previous accordion trigger
         const prevTrigger = document.querySelector<HTMLElement>(
-          `[data-accordion-trigger-index="${(index || 0) - 1}"]`
+          `[data-accordion-trigger-index="${(index || 0) - 1}"]`,
         );
         prevTrigger?.focus();
         break;
-      case "Home":
+      }
+      case "Home": {
         e.preventDefault();
-        // Focus first accordion trigger
         const firstTrigger = document.querySelector<HTMLElement>(
-          '[data-accordion-trigger-index="0"]'
+          '[data-accordion-trigger-index="0"]',
         );
         firstTrigger?.focus();
         break;
-      case "End":
+      }
+      case "End": {
         e.preventDefault();
-        // Focus last accordion trigger
         const lastIndex = (totalItems || 1) - 1;
         const lastTrigger = document.querySelector<HTMLElement>(
-          `[data-accordion-trigger-index="${lastIndex}"]`
+          `[data-accordion-trigger-index="${lastIndex}"]`,
         );
         lastTrigger?.focus();
         break;
+      }
     }
   };
 
@@ -235,14 +235,14 @@ export function AccordionTrigger({
         isOpen && "bg-gray-50 dark:bg-gray-800",
         isOpen ? "border-none" : "border border-gray-200 dark:border-gray-700",
         disabled && "cursor-not-allowed",
-        className
+        className,
       )}
     >
       <span className="text-gray-900 dark:text-gray-100">{children}</span>
       <span
         className={cn(
           "transition-transform duration-300 text-gray-600 dark:text-gray-400",
-          isOpen ? "rotate-180" : "rotate-0"
+          isOpen ? "rotate-180" : "rotate-0",
         )}
         aria-hidden="true"
       >
@@ -262,12 +262,12 @@ interface AccordionContentProps {
   triggerId?: string;
 }
 
-export function AccordionContent({ 
-  isOpen, 
-  children, 
+export function AccordionContent({
+  isOpen,
+  children,
   className,
   contentId,
-  triggerId 
+  triggerId,
 }: AccordionContentProps) {
   return (
     <div
@@ -277,15 +277,17 @@ export function AccordionContent({
       hidden={!isOpen}
       className={cn(
         "grid transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)]",
-        isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
       )}
     >
       <div className="overflow-hidden">
-        <div className={cn(
-          "p-4 pb-6 mobile:px-4 mobile:pb-4 text-gray-600 dark:text-gray-300 leading-relaxed",
-          "border-t border-gray-100 dark:border-gray-700",
-          className
-        )}>
+        <div
+          className={cn(
+            "p-4 pb-6 mobile:px-4 mobile:pb-4 text-gray-600 dark:text-gray-300 leading-relaxed",
+            "border-t border-gray-100 dark:border-gray-700",
+            className,
+          )}
+        >
           {children}
         </div>
       </div>

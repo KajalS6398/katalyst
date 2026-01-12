@@ -206,11 +206,17 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
           aria-expanded={dropdownMenu}
           aria-labelledby={`${id}-label`}
           disabled={disabled}
-          onClick={() => !disabled && setDropdownMenu((prev) => !prev)}
+          onClick={() => {
+            if (!disabled) {
+              setDropdownMenu((prev) => !prev);
+            }
+          }}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
-              !disabled && setDropdownMenu((prev) => !prev);
+              if (!disabled) {
+                setDropdownMenu((prev) => !prev);
+              }
             }
           }}
           className={cn(
