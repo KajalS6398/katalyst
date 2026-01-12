@@ -216,12 +216,17 @@ export function DropdownMenuContent({
   }
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
     if (isOpen) {
       setVisible(true);
     } else {
-      const timer = setTimeout(() => setVisible(false), 150);
-      return () => clearTimeout(timer);
+      timer = setTimeout(() => setVisible(false), 150);
     }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
   }, [isOpen]);
 
   if (!visible) return null;
@@ -394,7 +399,7 @@ export function DropdownMenuItem({
   disabled,
   dropdownProps,
   className,
-  selected
+  selected,
 }: {
   children: React.ReactNode;
   onClick?: (() => void) | undefined;

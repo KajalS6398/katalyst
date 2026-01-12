@@ -69,7 +69,7 @@ export const TabList: React.FC<TabListProps> = ({
     const tabCount = React.Children.count(children);
 
     switch (e.key) {
-      case "ArrowRight":
+      case "ArrowRight": {
         if (position === "horizontal") {
           e.preventDefault();
           const nextIndex = (index + 1) % tabCount;
@@ -77,7 +77,9 @@ export const TabList: React.FC<TabListProps> = ({
           tabRefs.current[nextIndex]?.focus();
         }
         break;
-      case "ArrowLeft":
+      }
+
+      case "ArrowLeft": {
         if (position === "horizontal") {
           e.preventDefault();
           const prevIndex = (index - 1 + tabCount) % tabCount;
@@ -85,7 +87,9 @@ export const TabList: React.FC<TabListProps> = ({
           tabRefs.current[prevIndex]?.focus();
         }
         break;
-      case "ArrowDown":
+      }
+
+      case "ArrowDown": {
         if (position === "vertical") {
           e.preventDefault();
           const nextIndex = (index + 1) % tabCount;
@@ -93,7 +97,9 @@ export const TabList: React.FC<TabListProps> = ({
           tabRefs.current[nextIndex]?.focus();
         }
         break;
-      case "ArrowUp":
+      }
+
+      case "ArrowUp": {
         if (position === "vertical") {
           e.preventDefault();
           const prevIndex = (index - 1 + tabCount) % tabCount;
@@ -101,17 +107,22 @@ export const TabList: React.FC<TabListProps> = ({
           tabRefs.current[prevIndex]?.focus();
         }
         break;
-      case "Home":
+      }
+
+      case "Home": {
         e.preventDefault();
         setFocusIndex(0);
         tabRefs.current[0]?.focus();
         break;
-      case "End":
+      }
+
+      case "End": {
         e.preventDefault();
         const lastIndex = tabCount - 1;
         setFocusIndex(lastIndex);
         tabRefs.current[lastIndex]?.focus();
         break;
+      }
     }
   };
 

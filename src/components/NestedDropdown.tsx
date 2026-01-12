@@ -1,5 +1,6 @@
-import { FiChevronDown, FiChevronRight } from 'react-icons/fi';
-import { useState, useRef, useEffect } from 'react';
+"use client";
+import { FiChevronDown, FiChevronRight } from "react-icons/fi";
+import { useState, useRef, useEffect } from "react";
 
 // Base interface that users can extend
 export interface BaseNestedItem {
@@ -19,7 +20,7 @@ export interface NestedDropdownProps<T extends BaseNestedItem> {
 const NestedDropdown = <T extends BaseNestedItem>({
   data,
   onSelect,
-  placeholder = 'Select Industry',
+  placeholder = "Select Industry",
   getChildren = (item: T) => (item as any).children,
 }: NestedDropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -40,9 +41,9 @@ const NestedDropdown = <T extends BaseNestedItem>({
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -64,7 +65,7 @@ const NestedDropdown = <T extends BaseNestedItem>({
   const handleCategoryClick = (
     item: T,
     level: number,
-    event?: React.MouseEvent
+    event?: React.MouseEvent,
   ): void => {
     const children = getChildren(item);
 
@@ -101,14 +102,14 @@ const NestedDropdown = <T extends BaseNestedItem>({
       >
         <span
           className={`whitespace-nowrap text-ellipsis overflow-hidden w-[180px] ${
-            selectedItem ? 'text-gray-900 font-medium' : 'text-gray-500'
+            selectedItem ? "text-gray-900 font-medium" : "text-gray-500"
           }`}
         >
           {selectedItem ? selectedItem.name : placeholder}
         </span>
         <FiChevronDown
           className={`w-5 h-5 text-gray-400 transform transition-transform duration-200 ${
-            isOpen ? 'rotate-180' : ''
+            isOpen ? "rotate-180" : ""
           }`}
         />
       </button>
@@ -149,8 +150,8 @@ const NestedDropdown = <T extends BaseNestedItem>({
                         transition-colors duration-200 relative
                         ${
                           isActive
-                            ? 'bg-primary-50 text-primary-700 border border-primary-200'
-                            : 'hover:bg-gray-50'
+                            ? "bg-primary-50 text-primary-700 border border-primary-200"
+                            : "hover:bg-gray-50"
                         }
                       `}
                       onClick={(e) => handleCategoryClick(item, 0, e)}
@@ -199,8 +200,8 @@ const NestedDropdown = <T extends BaseNestedItem>({
                                 transition-colors duration-200 relative
                                 ${
                                   isActive
-                                    ? 'bg-primary-50 text-primary-700 border border-primary-200'
-                                    : 'hover:bg-gray-50'
+                                    ? "bg-primary-50 text-primary-700 border border-primary-200"
+                                    : "hover:bg-gray-50"
                                 }
                               `}
                               onClick={(e) =>
