@@ -76,6 +76,7 @@ import FillButton from "@/components/FillButton";
 import FloatingButton from "@/components/FloatingButton";
 import Notice from "@/components/Notice";
 import Progress from "@/components/Progress";
+import CircularProgress from "@/components/CircularProgress";
 
 const footerItems = [
   {
@@ -2147,6 +2148,20 @@ const Test = () => {
             progressText={"Progress text on bottom"}
             progressTextPosition="bottom"
           />
+        </section>
+        <section className="my-5">
+          <Typography variant={"h6"}>Circular Progress:</Typography>
+          <div className="flex items-center gap-5 py-10">
+            <CircularProgress size={50} strokeWidth={4} percentage={50} />
+            <CircularProgress size={90} strokeWidth={10} percentage={70} />
+            <CircularProgress
+              size={120}
+              strokeWidth={8}
+              percentage={60}
+              text="60%"
+              textClassName="text-primary-600 font-semibold"
+            />
+          </div>
         </section>
         <section>
           <Typography variant={"h6"}>Tabs:</Typography>
