@@ -41,14 +41,18 @@ import Label from "@/components/Label";
 import Toggle from "@/components/Toggle";
 import { useTheme } from "@/context/ThemeContext";
 import React, { useEffect, useState } from "react";
-
 import {
   RiAddCircleLine,
   RiAddLine,
+  RiAlertFill,
   RiCheckboxCircleFill,
   RiCheckLine,
   RiCloseLine,
+  RiEditLine,
   RiFacebookLine,
+  RiFileLine,
+  RiFolderOpenFill,
+  RiGlobalLine,
   RiHexagonLine,
   RiInformationLine,
   RiInstagramLine,
@@ -64,19 +68,32 @@ import Footer, {
   FooterList,
 } from "@/components/Footer";
 import Image from "next/image";
-import Dropdown, { MenuItem, MenuSubItem } from "@/components/Dropdown";
-import ListItem from "@/components/ListItem";
-import Link from "next/link";
 import { HiMiniBars3BottomRight, HiXMark } from "react-icons/hi2";
 import Slider from "@/components/Slider";
 import ListPagination from "@/components/ListPagination";
 import Callout from "@/components/Callout";
 import NestedDropdown from "@/components/NestedDropdown";
+import Dropdown from "@/components/Dropdown";
+import DropdownMenu, {
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/DropdownMenu";
 import FillButton from "@/components/FillButton";
 import FloatingButton from "@/components/FloatingButton";
 import Notice from "@/components/Notice";
 import Progress from "@/components/Progress";
 import CircularProgress from "@/components/CircularProgress";
+
+interface Option {
+  label: string | number;
+  value: string | number;
+}
 
 const footerItems = [
   {
@@ -313,6 +330,12 @@ const industryList = {
   ],
 };
 
+const singleOptions = [
+  { label: "Option 1", value: 1 },
+  { label: "Option 2", value: 2 },
+  { label: "Option 3", value: 3 },
+];
+
 const iconsArray = [
   { icon: <RiTwitterLine />, link: "https://twitter.com" },
   { icon: <RiInstagramLine />, link: "https://instagram.com" },
@@ -327,12 +350,14 @@ const dummyData = Array.from({ length: 100 }, (_, index) => ({
 
 const Test = () => {
   const { switchDark, switchLight } = useTheme();
-
   // const [selectedItem, setSelectedItem] = useState<IndustryItem | null>(null);
 
   // toggle
   const [isChecked, setIsChecked] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [multiSelect, setMultiSelect] = useState<Option[]>([]);
+  const [singleSelect, setSingleSelect] = useState<Option[]>([]);
+
   // console.log("showMenu", showMenu);
   // slider
   const [sliderValue, setSliderValue] = useState<number>(50);
@@ -369,6 +394,8 @@ const Test = () => {
   );
 
   const [otp, setOtp] = useState("");
+
+  const [isAllExpanded, setIsAllExpanded] = useState(false);
 
   // drawer
   type DrawerPosition = "top" | "right" | "bottom" | "left";
@@ -435,104 +462,6 @@ const Test = () => {
             width={84}
             height={29}
           />
-          <nav className="flex items-center gap-[10px] tablet:hidden tablet:justify-end">
-            <Dropdown
-              width="400px"
-              className=""
-              triggerIcon={
-                <ListItem
-                  as="button"
-                  title="Products"
-                  className=""
-                  icon={<RiAddLine size={20} />}
-                />
-              }
-            >
-              <Link
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-                target="_blank"
-              >
-                <MenuItem label="Redirect Link" />
-              </Link>
-              <MenuSubItem
-                content={
-                  <div>
-                    <h6>Cheese & Dairy</h6>
-                    <Caption variant="md" className="dark:text-dark">
-                      Find exotic cheese and fresh milk
-                    </Caption>
-                  </div>
-                }
-              >
-                <MenuItem
-                  label="Cheese"
-                  onClick={() => alert("Save Page As clicked")}
-                />
-                <MenuItem
-                  label="Milk"
-                  onClick={() => alert("Create Shortcut clicked")}
-                />
-              </MenuSubItem>
-              <MenuSubItem
-                content={
-                  <div>
-                    <h6>Cheese & Dairy (custom)</h6>
-                    <Caption variant="md" className="dark:text-dark">
-                      Find exotic cheese and fresh milk
-                    </Caption>
-                  </div>
-                }
-                sectionClassName="text-xl text-gray-800 hover:bg-blue-100"
-                subMenuClassName="bg-gray-50 p-4"
-              >
-                <MenuItem
-                  label="Cheese"
-                  onClick={() => alert("Save Page As clicked")}
-                  className="hover:bg-yellow-200"
-                />
-                <MenuItem
-                  label="Milk"
-                  onClick={() => alert("Create Shortcut clicked")}
-                  className="hover:bg-yellow-200"
-                />
-              </MenuSubItem>
-
-              <MenuSubItem
-                content={
-                  <div>
-                    <h6>Meat</h6>
-                    <Caption variant="md" className="dark:text-dark">
-                      Discover fresh and exotic meats
-                    </Caption>
-                  </div>
-                }
-              >
-                <MenuItem
-                  label="Cheese"
-                  onClick={() => alert("Save Page As clicked")}
-                />
-                <MenuItem
-                  label="Milk"
-                  onClick={() => alert("Create Shortcut clicked")}
-                />
-              </MenuSubItem>
-            </Dropdown>
-            <ListItem
-              as="link"
-              title="Resources"
-              href="/primitives/docs/overview/introduction"
-            />
-            <ListItem
-              as="link"
-              title="Pricing"
-              href="/primitives/docs/overview/introduction"
-            />
-            <ListItem
-              as="link"
-              title="Solutions"
-              href="/primitives/docs/overview/introduction"
-            />
-          </nav>
           <div className="flex gap-4 items-center">
             <section className="flex gap-1 items-center">
               <Chip
@@ -564,132 +493,7 @@ const Test = () => {
             </span>
           </div>
         </header>
-        <div
-          className={`fixed h-[98dvh] z-10 top-[60px] right-0 w-full bg-white text-black dark:bg-dark transition-transform duration-300 transform  ${
-            showMenu ? "translate-x-0" : "-translate-x-full"
-          }`}
-        >
-          <nav className="w-full gap-[10px] tablet:justify-end text-dark dark:text-white font-medium h-full">
-            <Dropdown
-              width="400px"
-              triggerIcon={
-                <section className="p-4 border-b dark:border-primary-100">
-                  <ListItem as="button" title="Products" className="" />
-                </section>
-              }
-            >
-              <Link
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-                target="_blank"
-              >
-                <MenuItem label="Redirect Link" />
-              </Link>
-              {/* <MenuSubItem label="More Tools"> */}
-              <MenuSubItem content={<div>More Tools</div>}>
-                <MenuItem
-                  label="Save Page As..."
-                  onClick={() => alert("Save Page As clicked")}
-                />
-                <MenuItem
-                  label="Create Shortcut..."
-                  onClick={() => alert("Create Shortcut clicked")}
-                />
-              </MenuSubItem>
-            </Dropdown>
-            <section className="px-4 py-2 border-b dark:border-gray-600">
-              <ListItem
-                as="link"
-                title="Resources"
-                href="/primitives/docs/overview/introduction"
-              />
-            </section>
-            <section className="px-4 py-2 border-b dark:border-gray-600">
-              <ListItem
-                as="link"
-                title="Pricing"
-                href="/primitives/docs/overview/introduction"
-              />
-            </section>
-            <section className="px-4 py-2 border-b dark:border-gray-600">
-              <ListItem
-                as="link"
-                title="Solutions"
-                href="/primitives/docs/overview/introduction"
-              />
-            </section>
-          </nav>
-        </div>
       </div>
-
-      {/* new */}
-      {/* <Typography variant="h6">Top Nav Glass</Typography>
-      <div className="mx-[30px] tablet:mx-4 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
-        <header className="w-full p-4 flex justify-between items-center h-[62px] tablet:h-[56px]">
-          <Image
-            src="/ImgPlaceholder.svg"
-            alt="placeholder"
-            width={84}
-            height={29}
-          />
-          <nav className="flex items-center gap-[10px] tablet:hidden tablet:justify-end">
-            <ListItem
-              as="link"
-              title="Resources"
-              href="/primitives/docs/overview/introduction"
-            />
-            <ListItem
-              as="link"
-              title="Pricing"
-              href="/primitives/docs/overview/introduction"
-            />
-            <ListItem
-              as="link"
-              title="Solutions"
-              href="/primitives/docs/overview/introduction"
-            />
-          </nav>
-          <div className="flex gap-4 items-center">
-            <section className="flex gap-1 items-center">
-              <Chip
-                className="cursor-pointer"
-                size="sm"
-                variant="primary"
-                onClick={switchLight}
-              >
-                Light Mode
-              </Chip>
-              <Chip
-                className="cursor-pointer"
-                variant="glass"
-                size="sm"
-                onClick={switchDark}
-              >
-                Dark Mode
-              </Chip>
-            </section>
-            <span
-              className="hidden tablet:inline-block  text-dark dark:text-light"
-              onClick={() => setShowMenu((prev) => !prev)}
-            >
-              {!showMenu ? (
-                <HiMiniBars3BottomRight size={24} />
-              ) : (
-                <HiXMark size={24} />
-              )}
-            </span>
-          </div>
-        </header>
-        <section className="w-full h-[98dvh]" >
-          <div className={`h-full w-full bg-red-100 dark:bg-dark z-40 transition-all duration-300 transform ${showMenu ? "left-[0px]" : "left-[-100vw]"
-            } `}>
-            <h1>ashgdk</h1>
-            <h2>asdkjhd</h2>
-            <h3>kjdhsakd</h3>
-            <h4>jkdhasd</h4>
-          </div>
-
-        </section>
-      </div> */}
 
       <div className="my-10 mx-10 flex items-center flex-wrap gap-5">
         <NestedDropdown
@@ -942,95 +746,6 @@ const Test = () => {
           <Caption variant={"md"}>Note: you can also paste values</Caption>
         </section>
         {/* dropdown */}
-        <div className="py-32 mb-32 flex gap-10 items-start">
-          <section>
-            <h1 className="dark:text-gray-25 text-gray-900">
-              Dropdown/List Menu
-            </h1>
-            <Dropdown
-              triggerIcon={
-                <Chip endIcon={<LuHeart />} variant="primary" size="md">
-                  Open Dropdown
-                </Chip>
-              }
-            >
-              <Link
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-                target="_blank"
-              >
-                <MenuItem label="Redirect Link" />
-              </Link>
-              <MenuItem
-                label="New Tab"
-                onClick={() => alert("New Tab clicked")}
-              />
-              <MenuItem label="New Private Window" disabled />
-              <MenuItem
-                label="New Private Window"
-                onClick={() => alert("sab chal rha hai")}
-              >
-                <div>
-                  <Caption variant="md">User can add anything here</Caption>
-                  <Chip size="sm">testing</Chip>
-                </div>
-              </MenuItem>
-              <MenuSubItem content={<div>More Tools</div>}>
-                <MenuItem
-                  label="Save Page As..."
-                  onClick={() => alert("Save Page As clicked")}
-                />
-                <MenuItem
-                  label="Create Shortcut..."
-                  onClick={() => alert("Create Shortcut clicked")}
-                />
-              </MenuSubItem>
-              <MenuItem label="Sooraj" />
-              <MenuItem label="Katalyst" />
-            </Dropdown>
-          </section>
-
-          <section>
-            <h1 className="dark:text-gray-25 text-gray-900">
-              Dropdown/List Menu
-            </h1>
-            <Dropdown
-              triggerIcon={
-                <Chip endIcon={<LuHeart />} variant="primary" size="md">
-                  Open Dropdown
-                </Chip>
-              }
-            >
-              <Link
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygULcmljayBuIHJvbGw%3D"
-                target="_blank"
-              >
-                <MenuItem label="Redirect Link" />
-              </Link>
-              <MenuItem
-                label="New Private Window"
-                onClick={() => alert("sab chal rha hai")}
-              >
-                <div>
-                  <Caption variant="md">User can add anything here</Caption>
-                  <Chip size="sm">testing</Chip>
-                </div>
-              </MenuItem>
-              <MenuSubItem content={<div>More Tools</div>}>
-                <MenuItem label="Sooraj">
-                  <div>
-                    <Caption variant="md">User can add anything here</Caption>
-                    <Chip size="sm">testing</Chip>
-                  </div>
-                </MenuItem>
-                <MenuItem
-                  label="Create Shortcut..."
-                  onClick={() => alert("Create Shortcut clicked")}
-                />
-              </MenuSubItem>
-              <MenuItem label="Katalyst" />
-            </Dropdown>
-          </section>
-        </div>
         <section className="space-y-5">
           <Typography variant="h6">Checkbox</Typography>
           <div className="flex items-center gap-2">
@@ -1201,6 +916,323 @@ const Test = () => {
             Secondary
           </Chip>
         </section>
+        <div className="flex flex-wrap items-center gap-10">
+          <h1 className="text-lg">Multiple Dropdown</h1>
+          <Dropdown
+            options={[
+              { label: "High", value: "High", disabledOption: true },
+              { label: "Medium", value: "Medium" },
+              { label: "Low", value: "Low" },
+              { label: "High", value: "High" },
+              { label: "Medium", value: "Medium" },
+              { label: "Low", value: "Low" },
+              { label: "High", value: "High" },
+              { label: "Medium", value: "Medium" },
+              { label: "Low", value: "Low" },
+            ]}
+            selected={multiSelect}
+            setSelected={setMultiSelect}
+            width="300px"
+            dropdownText="Test Test"
+            multiple
+            search
+            dropdownFooter={true}
+            onApply={() => {
+              alert("Apply button clicked");
+            }}
+          />
+
+          <Dropdown
+            options={singleOptions}
+            selected={singleSelect}
+            icon={<RiGlobalLine size={16} />}
+            setSelected={setSingleSelect}
+            dropdownText="single text"
+            info="info"
+            width="300px"
+          />
+        </div>
+
+        <section className="p-5">
+          <h1 className="text-display-sm text-primary-600">
+            Dropdown Examples:
+          </h1>
+
+          {/* Example 1: Basic Dropdown */}
+          <div className="mb-4">
+            <h2 className="text-lg font-medium mb-2">Basic Dropdown</h2>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button>Open Basic Menu</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-64">
+                <DropdownMenuLabel>Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={() => console.log("Profile clicked")}
+                >
+                  Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => console.log("Settings clicked")}
+                >
+                  Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem disabled>Disabled Item</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          <div className="mb-4">
+            <h2 className="text-lg font-medium mb-2">Dropdown with Submenu</h2>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button>Open Menu with Submenu</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-64">
+                <DropdownMenuLabel>Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+
+                {/* Submenu Example */}
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>More Options</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>Billing</DropdownMenuItem>
+                    <DropdownMenuItem>Support</DropdownMenuItem>
+                    <DropdownMenuItem>API Keys</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+
+                <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Menu One</DropdownMenuItem>
+                <DropdownMenuItem>Menu Two</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          {/* Example 3: Different Alignment */}
+          <div className="mb-4">
+            <h2 className="text-lg font-medium mb-2">Left Aligned Menu</h2>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button>Open Left Menu</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="left">
+                <DropdownMenuItem onClick={() => alert("Item 1 clicked")}>
+                  Item 1
+                </DropdownMenuItem>
+                <DropdownMenuItem>Item 2</DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Submenu</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>Sub Item 1</DropdownMenuItem>
+                    <DropdownMenuItem>Sub Item 2</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          {/* Example 4: Center Aligned Menu */}
+          <div className="mb-4">
+            <h2 className="text-lg font-medium mb-2">Center Aligned Menu</h2>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button>Open Center Menu</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center">
+                <DropdownMenuItem>Center Item 1</DropdownMenuItem>
+                <DropdownMenuItem>Center Item 2</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          {/* Example 5: Complex Nested Structure */}
+          <div className="mb-4">
+            <h2 className="text-lg font-medium mb-2">Complex Nested Menu</h2>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button>Complex Menu</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-72">
+                <DropdownMenuLabel>User Settings</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <div className="flex items-center gap-2">
+                    <span>👤</span>
+                    <span>Profile</span>
+                  </div>
+                </DropdownMenuItem>
+
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>
+                    <div className="flex items-center gap-2">
+                      <span>⚙️</span>
+                      <span>Settings</span>
+                    </div>
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuSub>
+                      <DropdownMenuSubTrigger>
+                        Appearance
+                      </DropdownMenuSubTrigger>
+                      <DropdownMenuSubContent>
+                        <DropdownMenuItem>Light Mode</DropdownMenuItem>
+                        <DropdownMenuItem>Dark Mode</DropdownMenuItem>
+                        <DropdownMenuItem>System</DropdownMenuItem>
+                      </DropdownMenuSubContent>
+                    </DropdownMenuSub>
+                    <DropdownMenuItem>Notifications</DropdownMenuItem>
+                    <DropdownMenuItem>Privacy</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="text-red-600 hover:bg-red-50">
+                  <div className="flex items-center gap-2">
+                    <span>🚪</span>
+                    <span>Logout</span>
+                  </div>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </section>
+        <div className="grid grid-cols-2 gap-4 p-8 w-full whitespace-nowrap">
+          {/* Top-Left */}
+          <div className="flex justify-center gap-6">
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button>Top</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="top">
+                <DropdownMenuLabel>Top Position</DropdownMenuLabel>
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>Email</DropdownMenuItem>
+                    <DropdownMenuItem>Message</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>More...</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button>Bottom</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="bottom">
+                <DropdownMenuLabel>Bottom Position</DropdownMenuLabel>
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>Email</DropdownMenuItem>
+                    <DropdownMenuItem>Message</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>More...</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button>Left</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="left">
+                <DropdownMenuLabel>Left Position</DropdownMenuLabel>
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>Email</DropdownMenuItem>
+                    <DropdownMenuItem>Message</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>More...</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button>Right</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="right">
+                <DropdownMenuLabel>Right Position</DropdownMenuLabel>
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>Email</DropdownMenuItem>
+                    <DropdownMenuItem>Message</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>More...</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button>Center</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="center">
+                <DropdownMenuLabel>Center Aligned</DropdownMenuLabel>
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>Email</DropdownMenuItem>
+                    <DropdownMenuItem>Message</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>More...</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button>Wide Menu</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-80" align="end">
+                <DropdownMenuLabel>Wide Menu (320px)</DropdownMenuLabel>
+                <DropdownMenuItem>Profile with very long text</DropdownMenuItem>
+                <DropdownMenuItem>Settings with extra content</DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>
+                    Invite users with long text
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>Email invitation</DropdownMenuItem>
+                    <DropdownMenuItem>Message invitation</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>More options...</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>
+                    Invite users with long text
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>Email invitation</DropdownMenuItem>
+                    <DropdownMenuItem>Message invitation</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>More options...</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
         <section className="space-y-4">
           <Typography variant={"h6"}>Pricing Cards</Typography>
           <div className="flex flex-wrap items-center gap-spacing-lg">
@@ -1588,9 +1620,13 @@ const Test = () => {
         {/* accordion */}
         <section className="my-5">
           <Typography variant={"h6"}>Accordion Single</Typography>
-          <Accordion type="single" collapsible className="w-full">
+          <Button onClick={() => setIsAllExpanded(!isAllExpanded)}>
+            {isAllExpanded ? "Collapse All" : "Expand All"}
+          </Button>
+          <Accordion type="single" collapsible defaultOpenValues={["item-1"]} className="w-full">
             <AccordionItem value="item-1">
-              <AccordionTrigger>
+              <AccordionTrigger  className="text-yellow-500"
+                triggerIcon={<RiAlertFill />}>
                 What is your favorite template from BRIX Templates?
               </AccordionTrigger>
               <AccordionContent>
@@ -1618,7 +1654,7 @@ const Test = () => {
         </section>
         <section className="my-5">
           <Typography variant={"h6"}>Accordion Multiple</Typography>
-          <Accordion type="multiple" collapsible className="w-full">
+          <Accordion expanded={isAllExpanded} type="multiple" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger>
                 What is your favorite template from BRIX Templates?
