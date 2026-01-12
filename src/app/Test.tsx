@@ -48,10 +48,7 @@ import {
   RiCheckboxCircleFill,
   RiCheckLine,
   RiCloseLine,
-  RiEditLine,
   RiFacebookLine,
-  RiFileLine,
-  RiFolderOpenFill,
   RiGlobalLine,
   RiHexagonLine,
   RiInformationLine,
@@ -86,6 +83,9 @@ import DropdownMenu, {
 } from "@/components/DropdownMenu";
 import FillButton from "@/components/FillButton";
 import FloatingButton from "@/components/FloatingButton";
+import Notice from "@/components/Notice";
+import Progress from "@/components/Progress";
+import CircularProgress from "@/components/CircularProgress";
 
 interface Option {
   label: string | number;
@@ -417,6 +417,17 @@ const Test = () => {
 
   // floating button
   const [showButton, setShowButton] = useState(false);
+
+  // notice
+  const [notice, setNotice] = useState(false);
+
+  // progress
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setProgress(80), 500);
+    return () => clearTimeout(timer);
+  }, [progress]);
 
   return (
     <div className="bg-light dark:bg-dark">
@@ -1609,10 +1620,17 @@ const Test = () => {
           <Button onClick={() => setIsAllExpanded(!isAllExpanded)}>
             {isAllExpanded ? "Collapse All" : "Expand All"}
           </Button>
-          <Accordion type="single" collapsible defaultOpenValues={["item-1"]} className="w-full">
+          <Accordion
+            type="single"
+            collapsible
+            defaultOpenValues={["item-1"]}
+            className="w-full"
+          >
             <AccordionItem value="item-1">
-              <AccordionTrigger  className="text-yellow-500"
-                triggerIcon={<RiAlertFill />}>
+              <AccordionTrigger
+                className="text-yellow-500"
+                triggerIcon={<RiAlertFill />}
+              >
                 What is your favorite template from BRIX Templates?
               </AccordionTrigger>
               <AccordionContent>
@@ -1640,7 +1658,12 @@ const Test = () => {
         </section>
         <section className="my-5">
           <Typography variant={"h6"}>Accordion Multiple</Typography>
-          <Accordion expanded={isAllExpanded} type="multiple" collapsible className="w-full">
+          <Accordion
+            expanded={isAllExpanded}
+            type="multiple"
+            collapsible
+            className="w-full"
+          >
             <AccordionItem value="item-1">
               <AccordionTrigger>
                 What is your favorite template from BRIX Templates?
@@ -1989,6 +2012,52 @@ const Test = () => {
           <Spinner size="md" />
           <Spinner size="lg" />
         </section>
+        <div className="flex   items-center gap-8">
+          <Typography variant={"h6"}>Notice: </Typography>
+          <Button onClick={() => setNotice(true)}>Show Notice</Button>
+          <Notice
+            open={notice}
+            setOpen={setNotice}
+            variant="default"
+            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            position="top-left"
+          />
+          <Notice
+            open={notice}
+            setOpen={setNotice}
+            variant="info"
+            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            position="top-right"
+            showIcon={false}
+          ></Notice>
+          <Notice
+            open={notice}
+            setOpen={setNotice}
+            variant="error"
+            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            position="top-center"
+          />
+          <Notice
+            open={notice}
+            setOpen={setNotice}
+            variant="warning"
+            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            position="bottom-center"
+          />{" "}
+          <Notice
+            open={notice}
+            setOpen={setNotice}
+            variant="success"
+            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            position="bottom-left"
+          />{" "}
+          <Notice
+            open={notice}
+            setOpen={setNotice}
+            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            position="bottom-right"
+          />
+        </div>
         <section className="my-5">
           <Typography variant={"h6"}>Modal:</Typography>
           <Button onClick={() => setShowModal(true)}>Show Modal</Button>
@@ -2094,6 +2163,61 @@ const Test = () => {
                 </div>
               </div>
             </Popover>
+          </div>
+        </section>
+        <section className="my-5 w-[500px] space-y-3">
+          <Typography variant={"h6"}>Progress:</Typography>
+          <Progress
+            progressColor="bg-success"
+            progress={progress}
+            rounded
+            height="2px"
+            progressText={"Progress text on top"}
+            progressTextPosition="top"
+          />
+          <Progress
+            progressColor="bg-primary-600"
+            progress={progress}
+            progressText={`${progress}%`}
+            progressTextPosition="right"
+          />
+          <Progress
+            progressColor="bg-success"
+            progress={progress}
+            progressText={`${progress}%`}
+            progressTextPosition="left"
+          />
+          <Progress
+            progressColor="bg-success"
+            progress={progress}
+            progressText={"Progress text on bottom"}
+            progressTextPosition="bottom"
+          />
+        </section>
+        <section className="my-5">
+          <Typography variant={"h6"}>Circular Progress:</Typography>
+          <div className="flex items-center gap-5 py-10">
+            <CircularProgress
+              strokeLinecap="square"
+              size={50}
+              strokeWidth={4}
+              percentage={50}
+            />
+            <CircularProgress
+              strokeLinecap="butt"
+              size={90}
+              strokeWidth={10}
+              strokeColor="var(--success)"
+              percentage={70}
+            />
+            <CircularProgress
+              size={120}
+              strokeWidth={8}
+              percentage={60}
+              text="60%"
+              strokeLinecap="round"
+              textClassName="text-primary-600 font-semibold"
+            />
           </div>
         </section>
         <section>

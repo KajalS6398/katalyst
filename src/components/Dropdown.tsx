@@ -210,7 +210,10 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
-              !disabled && setDropdownMenu((prev) => !prev);
+
+              if (!disabled) {
+                setDropdownMenu((prev) => !prev);
+              }
             }
           }}
           className={cn(
