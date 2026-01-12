@@ -1,6 +1,6 @@
-import React, { HTMLAttributes, ReactNode } from "react";
+import React, { type HTMLAttributes, type ReactNode } from "react";
 import { cn } from "@/utils/util";
-import { VariantProps, cva } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
 import {
   RiAlertFill,
   RiCloseLine,
