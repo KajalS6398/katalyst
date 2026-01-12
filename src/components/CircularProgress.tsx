@@ -54,7 +54,7 @@ const CircularProgress = ({
         dy=".3em"
         textAnchor="middle"
         fill="currentColor"
-        className={cn(textClassName)}
+        className={cn("text-dark dark:text-light font-medium", textClassName)}
       >
         {text}
       </text>

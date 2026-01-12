@@ -2207,6 +2207,7 @@ const Test = () => {
               strokeLinecap="butt"
               size={90}
               strokeWidth={10}
+              text="90%"
               strokeColor="var(--success)"
               percentage={70}
             />

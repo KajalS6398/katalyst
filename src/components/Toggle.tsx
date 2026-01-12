@@ -3,7 +3,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 import React, { forwardRef, type InputHTMLAttributes } from "react";
 
 interface ToggleProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
+  extends
+    Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
     VariantProps<typeof toggleVariants> {
   icon?: JSX.Element;
   children?: never;
@@ -49,7 +50,7 @@ const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
               "absolute  flex items-center justify-center bg-white transition-transform",
               size === "sm"
                 ? "peer-checked:translate-x-2 top-[1px] left-[2px] w-5 h-4 rounded-radius-md"
-                : "peer-checked:translate-x-3 top-[2.5px] left-1 h-[22px] w-[34px] rounded-radius-lg",
+                : "peer-checked:translate-x-[11px] top-[2.5px] left-1 h-[22px] w-[34px] rounded-radius-lg",
             )}
           >
             <span className="flex items-center justify-center">{icon}</span>
