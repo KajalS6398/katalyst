@@ -1,5 +1,10 @@
 "use client";
-import React, { useState, Children, isValidElement, ReactNode } from "react";
+import React, {
+  useState,
+  Children,
+  isValidElement,
+  type ReactNode,
+} from "react";
 import { HiChevronDown, HiChevronRight } from "react-icons/hi";
 import { cn } from "@/utils/util";
 
@@ -46,7 +51,11 @@ interface TreeViewSubTreeProps {
 
 const TreeViewLeadingVisual: React.FC<{ children: React.ReactNode }> = ({
   children,
-}) => <span className="flex items-center shrink-0 w-5 h-5 justify-center">{children}</span>;
+}) => (
+  <span className="flex items-center shrink-0 w-5 h-5 justify-center">
+    {children}
+  </span>
+);
 
 const TreeViewTrailingVisual: React.FC<{
   children: React.ReactNode;
@@ -77,7 +86,7 @@ const TreeViewSubTree: React.FC<TreeViewSubTreeProps> = ({
       className={cn(
         "list-none m-0 overflow-hidden transition-all duration-200 ease-in-out",
         expanded ? "max-h-[5000px] opacity-100" : "max-h-0 opacity-0",
-        className
+        className,
       )}
     >
       {state === "loading" ? (
@@ -137,7 +146,9 @@ const TreeViewItem: React.FC<TreeViewItemProps> = ({
     <>
       <li
         role="treeitem"
-        aria-expanded={hasSubTree && !flat ? (expanded ? "true" : "false") : undefined}
+        aria-expanded={
+          hasSubTree && !flat ? (expanded ? "true" : "false") : undefined
+        }
         aria-selected={selected ? "true" : "false"}
         aria-current={current ? "true" : undefined}
         tabIndex={selected ? 0 : -1}
@@ -146,14 +157,19 @@ const TreeViewItem: React.FC<TreeViewItemProps> = ({
         className={cn(
           "flex items-center gap-2 px-2 py-1.5 rounded-md cursor-pointer transition-colors select-none",
           "hover:bg-gray-100 dark:hover:bg-gray-800",
-          selected && "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 font-medium",
-          className
+          selected &&
+            "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 font-medium",
+          className,
         )}
       >
         {/* Render Chevron only if no LeadingVisual is provided and it has children */}
         {!leading.length && hasSubTree && !flat && (
           <span className="text-gray-400">
-            {expanded ? <HiChevronDown size={18} /> : <HiChevronRight size={18} />}
+            {expanded ? (
+              <HiChevronDown size={18} />
+            ) : (
+              <HiChevronRight size={18} />
+            )}
           </span>
         )}
         {leading}
@@ -166,7 +182,7 @@ const TreeViewItem: React.FC<TreeViewItemProps> = ({
           expanded,
           flat,
           key: `${id}-subtree-${index}`,
-        })
+        }),
       )}
     </>
   );
@@ -192,7 +208,7 @@ export const TreeView: React.FC<TreeViewProps> & {
   allowMultiple = true,
 }) => {
   const [internalExpanded, setInternalExpanded] = useState<Set<string>>(
-    () => new Set(defaultExpandedIds)
+    () => new Set(defaultExpandedIds),
   );
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
@@ -202,7 +218,11 @@ export const TreeView: React.FC<TreeViewProps> & {
     const update = (prev: Set<string>) => {
       const next = new Set(prev);
       if (allowMultiple) {
-        next.has(id) ? next.delete(id) : next.add(id);
+        if (next.has(id)) {
+          next.delete(id);
+        } else {
+          next.add(id);
+        }
       } else {
         const wasExpanded = next.has(id);
         next.clear();
