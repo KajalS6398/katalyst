@@ -86,6 +86,7 @@ import DropdownMenu, {
 } from "@/components/DropdownMenu";
 import FillButton from "@/components/FillButton";
 import FloatingButton from "@/components/FloatingButton";
+import FileUploadControl, { UploadItem } from "@/components/FileUploadControl";
 
 interface Option {
   label: string | number;
@@ -418,6 +419,72 @@ const Test = () => {
   // floating button
   const [showButton, setShowButton] = useState(false);
 
+  // file upload
+  const [items, setItems] = useState<UploadItem[]>([]);
+
+  const handleAddFiles = (files: File[]) => {
+    const newItems: UploadItem[] = files.map((file) => ({
+      id: Math.random().toString(36).slice(2),
+      file,
+      name: file.name,
+      size: file.size,
+      progress: 0,
+      status: "idle",
+    }));
+
+    setItems((prev) => [...prev, ...newItems]);
+  };
+
+  const handleUpdateItem = (id: string, updates: Partial<UploadItem>) => {
+    setItems((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, ...updates } : item)),
+    );
+  };
+
+  // const handleUpload = async (
+  //   file: File,
+  //   onProgress: (progress: number) => void
+  // ) => {
+  //   // Simulate upload with progress
+  //   for (let progress = 0; progress <= 100; progress += 10) {
+  //     await new Promise((resolve) => setTimeout(resolve, 200));
+  //     onProgress(progress);
+  //   }
+  //   // Return the file URL (in real app, this would be from your API)
+  //   return URL.createObjectURL(file);
+  // };
+
+  const handleUpload = async (
+    file: File,
+    onProgress: (progress: number) => void,
+  ) => {
+    // Simulate progress
+    for (let progress = 0; progress <= 100; progress += 10) {
+      await new Promise((resolve) => setTimeout(resolve, 200));
+      onProgress(progress);
+    }
+
+    // ---- ⚠️ Random failure simulation ----
+    const shouldFail = Math.random() < 0.3; // 30% chance to fail
+    if (shouldFail) {
+      throw new Error("Upload failed. Please try again.");
+    }
+
+    // Success
+    return URL.createObjectURL(file);
+  };
+
+  const handleDelete = (id: string) => {
+    setItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const handlePreview = (id: string) => {
+    const item = items.find((item) => item.id === id);
+    if (item && item.previewUrl) {
+      window.open(item.previewUrl, "_blank");
+    }
+  };
+
   return (
     <div className="bg-light dark:bg-dark">
       {/* <header className="p-4 transition-colors duration-300 flex justify-between items-center sticky top-4 backdrop-blur-md mx-4 rounded-full z-[1000000]">
@@ -438,6 +505,23 @@ const Test = () => {
           </button>
         </div>
       </header> */}
+
+       {/* file upload */}
+        <div className="w-full mx-auto">
+          <h1 className="text-xl font-bold mb-4">File Upload</h1>
+          <FileUploadControl
+            items={items}
+            onAddFiles={handleAddFiles}
+            onUpdateItem={handleUpdateItem}
+            onDelete={handleDelete}
+            onUpload={handleUpload}
+            onPreview={handlePreview}
+            multiple={true}
+            accept="image/*, .pdf, .doc, .docx, .xlsx, .mp3"
+            maxSizeMB={15}
+            hintText="Drag and drop files or click to upload"
+          />
+        </div>
 
       <Typography variant="h6">Top Nav Glass</Typography>
       <div className="px-[30px] mobile:mx-0 tablet:mx-0 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
@@ -1609,10 +1693,17 @@ const Test = () => {
           <Button onClick={() => setIsAllExpanded(!isAllExpanded)}>
             {isAllExpanded ? "Collapse All" : "Expand All"}
           </Button>
-          <Accordion type="single" collapsible defaultOpenValues={["item-1"]} className="w-full">
+          <Accordion
+            type="single"
+            collapsible
+            defaultOpenValues={["item-1"]}
+            className="w-full"
+          >
             <AccordionItem value="item-1">
-              <AccordionTrigger  className="text-yellow-500"
-                triggerIcon={<RiAlertFill />}>
+              <AccordionTrigger
+                className="text-yellow-500"
+                triggerIcon={<RiAlertFill />}
+              >
                 What is your favorite template from BRIX Templates?
               </AccordionTrigger>
               <AccordionContent>
@@ -1640,7 +1731,12 @@ const Test = () => {
         </section>
         <section className="my-5">
           <Typography variant={"h6"}>Accordion Multiple</Typography>
-          <Accordion expanded={isAllExpanded} type="multiple" collapsible className="w-full">
+          <Accordion
+            expanded={isAllExpanded}
+            type="multiple"
+            collapsible
+            className="w-full"
+          >
             <AccordionItem value="item-1">
               <AccordionTrigger>
                 What is your favorite template from BRIX Templates?

@@ -1,11 +1,10 @@
 "use client";
 import { cn } from "@/utils/util";
 import React, { useState, useEffect, KeyboardEvent } from "react";
-import { FiChevronDown } from "react-icons/fi";
+import { HiChevronDown } from "react-icons/hi";
 
-/* =========================================================
-   Accordion Root
-========================================================= */
+//  Accordion Root
+
 type AccordionProps = {
   type?: "single" | "multiple";
   collapsible?: boolean;
@@ -86,9 +85,8 @@ export default function Accordion({
   );
 }
 
-/* =========================================================
-   Accordion Item
-========================================================= */
+// Accordion Item
+
 interface AccordionItemProps {
   value: string;
   disabled?: boolean;
@@ -145,9 +143,8 @@ export function AccordionItem({
   );
 }
 
-/* =========================================================
-   Accordion Trigger
-========================================================= */
+// Accordion Trigger
+
 interface AccordionTriggerProps {
   isOpen?: boolean;
   children: React.ReactNode;
@@ -173,7 +170,7 @@ export function AccordionTrigger({
   totalItems,
   value,
   className,
-  triggerIcon = <FiChevronDown size={16} />,
+  triggerIcon = <HiChevronDown size={18} />,
 }: AccordionTriggerProps) {
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (disabled) return;
@@ -255,9 +252,8 @@ export function AccordionTrigger({
   );
 }
 
-/* =========================================================
-   Accordion Content
-========================================================= */
+// Accordion Content
+
 interface AccordionContentProps {
   isOpen?: boolean;
   children: React.ReactNode;
