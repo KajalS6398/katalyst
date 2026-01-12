@@ -16,7 +16,7 @@ const Progress = ({
   progressColor,
   progressTextPosition,
   rounded,
-  height = "3px",
+  height = "4px",
 }: ProgressProps) => {
   const _progress = Math?.min(Math?.max(0, progress), 100);
   return (

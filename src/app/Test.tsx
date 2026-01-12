@@ -48,10 +48,7 @@ import {
   RiCheckboxCircleFill,
   RiCheckLine,
   RiCloseLine,
-  RiEditLine,
   RiFacebookLine,
-  RiFileLine,
-  RiFolderOpenFill,
   RiGlobalLine,
   RiHexagonLine,
   RiInformationLine,
@@ -1623,10 +1620,17 @@ const Test = () => {
           <Button onClick={() => setIsAllExpanded(!isAllExpanded)}>
             {isAllExpanded ? "Collapse All" : "Expand All"}
           </Button>
-          <Accordion type="single" collapsible defaultOpenValues={["item-1"]} className="w-full">
+          <Accordion
+            type="single"
+            collapsible
+            defaultOpenValues={["item-1"]}
+            className="w-full"
+          >
             <AccordionItem value="item-1">
-              <AccordionTrigger  className="text-yellow-500"
-                triggerIcon={<RiAlertFill />}>
+              <AccordionTrigger
+                className="text-yellow-500"
+                triggerIcon={<RiAlertFill />}
+              >
                 What is your favorite template from BRIX Templates?
               </AccordionTrigger>
               <AccordionContent>
@@ -1654,7 +1658,12 @@ const Test = () => {
         </section>
         <section className="my-5">
           <Typography variant={"h6"}>Accordion Multiple</Typography>
-          <Accordion expanded={isAllExpanded} type="multiple" collapsible className="w-full">
+          <Accordion
+            expanded={isAllExpanded}
+            type="multiple"
+            collapsible
+            className="w-full"
+          >
             <AccordionItem value="item-1">
               <AccordionTrigger>
                 What is your favorite template from BRIX Templates?
@@ -2188,13 +2197,25 @@ const Test = () => {
         <section className="my-5">
           <Typography variant={"h6"}>Circular Progress:</Typography>
           <div className="flex items-center gap-5 py-10">
-            <CircularProgress size={50} strokeWidth={4} percentage={50} />
-            <CircularProgress size={90} strokeWidth={10} percentage={70} />
+            <CircularProgress
+              strokeLinecap="square"
+              size={50}
+              strokeWidth={4}
+              percentage={50}
+            />
+            <CircularProgress
+              strokeLinecap="butt"
+              size={90}
+              strokeWidth={10}
+              strokeColor="var(--success)"
+              percentage={70}
+            />
             <CircularProgress
               size={120}
               strokeWidth={8}
               percentage={60}
               text="60%"
+              strokeLinecap="round"
               textClassName="text-primary-600 font-semibold"
             />
           </div>
