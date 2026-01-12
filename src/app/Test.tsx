@@ -48,13 +48,19 @@ import {
   RiCheckboxCircleFill,
   RiCheckLine,
   RiCloseLine,
+  RiEditLine,
   RiFacebookLine,
+  RiFileLine,
+  RiFileTextFill,
+  RiFolderFill,
+  RiFolderOpenFill,
   RiGlobalLine,
   RiHexagonLine,
   RiInformationLine,
   RiInstagramLine,
   RiLinkedinLine,
   RiSearch2Line,
+  RiSettings4Line,
   RiTwitterLine,
 } from "react-icons/ri";
 import Button from "@/components/Button";
@@ -83,10 +89,13 @@ import DropdownMenu, {
 } from "@/components/DropdownMenu";
 import FillButton from "@/components/FillButton";
 import FloatingButton from "@/components/FloatingButton";
-import FileUploadControl, { type UploadItem } from "@/components/FileUploadControl";
+import FileUploadControl, {
+  type UploadItem,
+} from "@/components/FileUploadControl";
 import Notice from "@/components/Notice";
 import Progress from "@/components/Progress";
 import CircularProgress from "@/components/CircularProgress";
+import TreeView from "@/components/TreeView";
 
 interface Option {
   label: string | number;
@@ -416,6 +425,9 @@ const Test = () => {
   // popover
   const [isOpen, setIsOpen] = useState(false);
 
+  // treeview
+  const [selected, setSelected] = useState<string | null>(null);
+
   // floating button
   const [showButton, setShowButton] = useState(false);
 
@@ -515,23 +527,6 @@ const Test = () => {
           </button>
         </div>
       </header> */}
-
-       {/* file upload */}
-        <div className="w-full mx-auto">
-          <h1 className="text-xl font-bold mb-4">File Upload</h1>
-          <FileUploadControl
-            items={items}
-            onAddFiles={handleAddFiles}
-            onUpdateItem={handleUpdateItem}
-            onDelete={handleDelete}
-            onUpload={handleUpload}
-            onPreview={handlePreview}
-            multiple={true}
-            accept="image/*, .pdf, .doc, .docx, .xlsx, .mp3"
-            maxSizeMB={15}
-            hintText="Drag and drop files or click to upload"
-          />
-        </div>
 
       <Typography variant="h6">Top Nav Glass</Typography>
       <div className="px-[30px] mobile:mx-0 tablet:mx-0 rounded-radius-md transition-colors duration-300 sticky top-2 backdrop-blur-md z-[100] border-t border-b border-b-[#0707071F] border-[#FFFFFF29]">
@@ -1033,6 +1028,25 @@ const Test = () => {
           />
         </div>
 
+        {/* file upload */}
+        <div className="w-full mx-auto">
+          <Typography variant="h5" className="mb-4">
+            File Upload
+          </Typography>
+          <FileUploadControl
+            items={items}
+            onAddFiles={handleAddFiles}
+            onUpdateItem={handleUpdateItem}
+            onDelete={handleDelete}
+            onUpload={handleUpload}
+            onPreview={handlePreview}
+            multiple={true}
+            accept="image/*, .pdf, .doc, .docx, .xlsx, .mp3"
+            maxSizeMB={15}
+            hintText="Drag and drop files or click to upload"
+          />
+        </div>
+
         <section className="p-5">
           <h1 className="text-display-sm text-primary-600">
             Dropdown Examples:
@@ -1313,6 +1327,337 @@ const Test = () => {
             </DropdownMenu>
           </div>
         </div>
+        {/* tree view */}
+        <section className="my-5 w-1/2 border p-5">
+          <h1 className="text-display-sm text-primary-600">Tree View:</h1>
+          <TreeView
+            aria-label="Project files"
+            defaultExpandedIds={["frontend"]}
+          >
+            {/* FRONTEND SECTION */}
+            <TreeView.Item
+              id="frontend"
+              onSelect={setSelected}
+              selected={selected === "frontend"}
+            >
+              <TreeView.LeadingVisual>
+                <RiAlertFill />{" "}
+              </TreeView.LeadingVisual>{" "}
+              Frontend
+              <TreeView.SubTree>
+                <TreeView.Item
+                  id="frontend-react"
+                  onSelect={setSelected}
+                  selected={selected === "frontend-react"}
+                >
+                  React App
+                  <TreeView.SubTree>
+                    <TreeView.Item
+                      id="frontend-react-components"
+                      onSelect={setSelected}
+                      selected={selected === "frontend-react-components"}
+                    >
+                      <TreeView.LeadingVisual>
+                        <RiAlertFill />{" "}
+                      </TreeView.LeadingVisual>{" "}
+                      Components
+                      <TreeView.SubTree>
+                        <TreeView.Item
+                          id="frontend-react-components-button"
+                          onSelect={setSelected}
+                          selected={
+                            selected === "frontend-react-components-button"
+                          }
+                        >
+                          <Button
+                            onClick={() => {
+                              alert("clicked");
+                            }}
+                          >
+                            Click
+                          </Button>
+                        </TreeView.Item>
+                        <TreeView.Item
+                          id="frontend-react-components-modal"
+                          onSelect={setSelected}
+                          selected={
+                            selected === "frontend-react-components-modal"
+                          }
+                        >
+                          Modal
+                        </TreeView.Item>
+                      </TreeView.SubTree>
+                    </TreeView.Item>
+
+                    <TreeView.Item
+                      id="frontend-react-hooks"
+                      onSelect={setSelected}
+                      selected={selected === "frontend-react-hooks"}
+                    >
+                      Hooks
+                    </TreeView.Item>
+                    <TreeView.Item
+                      id="frontend-react-context"
+                      onSelect={setSelected}
+                      selected={selected === "frontend-react-context"}
+                    >
+                      Context
+                    </TreeView.Item>
+                  </TreeView.SubTree>
+                </TreeView.Item>
+
+                <TreeView.Item
+                  id="frontend-next"
+                  onSelect={setSelected}
+                  selected={selected === "frontend-next"}
+                >
+                  Next.js App
+                  <TreeView.SubTree>
+                    <TreeView.Item
+                      id="frontend-next-pages"
+                      onSelect={setSelected}
+                      selected={selected === "frontend-next-pages"}
+                    >
+                      Pages
+                    </TreeView.Item>
+                    <TreeView.Item
+                      id="frontend-next-api"
+                      onSelect={setSelected}
+                      selected={selected === "frontend-next-api"}
+                    >
+                      API Routes
+                    </TreeView.Item>
+                  </TreeView.SubTree>
+                </TreeView.Item>
+              </TreeView.SubTree>
+            </TreeView.Item>
+
+            {/* BACKEND SECTION */}
+            <TreeView.Item
+              id="backend"
+              onSelect={setSelected}
+              selected={selected === "backend"}
+            >
+              Backend
+              <TreeView.SubTree>
+                <TreeView.Item
+                  id="backend-api"
+                  onSelect={setSelected}
+                  selected={selected === "backend-api"}
+                >
+                  API Routes
+                  <TreeView.SubTree>
+                    <TreeView.Item
+                      id="backend-api-auth"
+                      onSelect={setSelected}
+                      selected={selected === "backend-api-auth"}
+                    >
+                      Auth
+                    </TreeView.Item>
+                    <TreeView.Item
+                      id="backend-api-users"
+                      onSelect={setSelected}
+                      selected={selected === "backend-api-users"}
+                    >
+                      Users
+                    </TreeView.Item>
+                    <TreeView.Item
+                      id="backend-api-products"
+                      onSelect={setSelected}
+                      selected={selected === "backend-api-products"}
+                    >
+                      Products
+                    </TreeView.Item>
+                  </TreeView.SubTree>
+                </TreeView.Item>
+
+                <TreeView.Item
+                  id="backend-database"
+                  onSelect={setSelected}
+                  selected={selected === "backend-database"}
+                >
+                  Database
+                  <TreeView.SubTree>
+                    <TreeView.Item
+                      id="backend-database-models"
+                      onSelect={setSelected}
+                      selected={selected === "backend-database-models"}
+                    >
+                      Models
+                    </TreeView.Item>
+                    <TreeView.Item
+                      id="backend-database-migrations"
+                      onSelect={setSelected}
+                      selected={selected === "backend-database-migrations"}
+                    >
+                      Migrations
+                    </TreeView.Item>
+                    <TreeView.Item
+                      id="backend-database-seeds"
+                      onSelect={setSelected}
+                      selected={selected === "backend-database-seeds"}
+                    >
+                      Seeds
+                    </TreeView.Item>
+                  </TreeView.SubTree>
+                </TreeView.Item>
+              </TreeView.SubTree>
+            </TreeView.Item>
+          </TreeView>
+        </section>
+        <div className="border rounded-lg p-2 bg-white dark:bg-gray-950">
+          <TreeView
+            aria-label="Project files"
+            defaultExpandedIds={["frontend"]}
+          >
+            {/* FRONTEND */}
+            <TreeView.Item id="frontend">
+              <TreeView.LeadingVisual>
+                <RiFolderFill className="text-blue-500" />
+              </TreeView.LeadingVisual>
+              Frontend
+              <TreeView.SubTree>
+                <TreeView.Item id="frontend-react">
+                  <TreeView.LeadingVisual>
+                    <RiFolderFill className="text-blue-400" />
+                  </TreeView.LeadingVisual>
+                  React App
+                  <TreeView.SubTree>
+                    <TreeView.Item id="frontend-react-components">
+                      Components
+                      <TreeView.SubTree>
+                        <TreeView.Item id="btn-js">
+                          <TreeView.LeadingVisual>
+                            <RiFileTextFill />
+                          </TreeView.LeadingVisual>
+                          Button.tsx
+                        </TreeView.Item>
+                      </TreeView.SubTree>
+                    </TreeView.Item>
+                  </TreeView.SubTree>
+                </TreeView.Item>
+              </TreeView.SubTree>
+            </TreeView.Item>
+
+            {/* BACKEND */}
+            <TreeView.Item id="backend">
+              <TreeView.LeadingVisual>
+                <RiFolderFill className="text-amber-500" />
+              </TreeView.LeadingVisual>
+              Backend
+              <TreeView.SubTree>
+                <TreeView.Item id="backend-api">API Routes</TreeView.Item>
+              </TreeView.SubTree>
+            </TreeView.Item>
+
+            {/* SETTINGS (No SubTree) */}
+            <TreeView.Item id="settings">
+              <TreeView.LeadingVisual>
+                <RiSettings4Line />
+              </TreeView.LeadingVisual>
+              Settings
+            </TreeView.Item>
+          </TreeView>
+
+          <div className="mt-4 text-xs text-gray-500 px-2">
+            Selected: {selected || "None"}
+          </div>
+        </div>
+        <section>
+          <TreeView aria-label="Files changed" defaultExpandedIds={["src"]}>
+            <TreeView.Item
+              id="src"
+              onSelect={setSelected}
+              selected={selected === "src"}
+            >
+              <TreeView.LeadingVisual>
+                <RiFolderOpenFill color="#1765dc" size={16} />
+              </TreeView.LeadingVisual>
+              src
+              <TreeView.SubTree>
+                <TreeView.Item
+                  id="src/Avatar.tsx"
+                  onSelect={setSelected}
+                  selected={selected === "src/Avatar.tsx"}
+                >
+                  <TreeView.LeadingVisual>
+                    <RiFileLine size={16} />
+                  </TreeView.LeadingVisual>
+                  Avatar.tsx
+                  <TreeView.TrailingVisual label="Added">
+                    <RiAddLine size={16} />
+                  </TreeView.TrailingVisual>
+                </TreeView.Item>
+
+                <TreeView.Item
+                  id="src/Button.tsx"
+                  onSelect={setSelected}
+                  selected={selected === "src/Button.tsx"}
+                >
+                  <TreeView.LeadingVisual>
+                    <RiFileLine size={16} />
+                  </TreeView.LeadingVisual>
+                  Button.tsx
+                  <TreeView.TrailingVisual label="Modified">
+                    <RiEditLine size={16} />
+                  </TreeView.TrailingVisual>
+                </TreeView.Item>
+              </TreeView.SubTree>
+            </TreeView.Item>
+
+            <TreeView.Item
+              id="package.json"
+              onSelect={setSelected}
+              selected={selected === "package.json"}
+            >
+              <TreeView.LeadingVisual>
+                <RiFileLine size={16} />
+              </TreeView.LeadingVisual>
+              package.json
+              <TreeView.TrailingVisual label="Modified">
+                <RiEditLine size={16} />
+              </TreeView.TrailingVisual>
+            </TreeView.Item>
+          </TreeView>
+        </section>
+        <section className="my-5">
+          <h1>Allow multiple expanded (default)</h1>
+          {/* <TreeView aria-label="Example Tree" expandTopLevelByDefault> */}
+          <TreeView aria-label="Example Tree">
+            <TreeView.Item id="1">
+              Parent 1
+              <TreeView.SubTree>
+                <TreeView.Item id="1.1">Child 1</TreeView.Item>
+                <TreeView.Item id="1.2">Child 2</TreeView.Item>
+              </TreeView.SubTree>
+            </TreeView.Item>
+
+            <TreeView.Item id="2">
+              Parent 2
+              <TreeView.SubTree>
+                <TreeView.Item id="2.1">Child A</TreeView.Item>
+                <TreeView.Item id="2.2">Child B</TreeView.Item>
+              </TreeView.SubTree>
+            </TreeView.Item>
+          </TreeView>
+        </section>
+        <section className="my-5">
+          <h1>Treeview Mode (only one expanded)</h1>
+          <TreeView aria-label="Accordion Tree" allowMultiple={false}>
+            <TreeView.Item id="1">
+              Section 1
+              <TreeView.SubTree>
+                <TreeView.Item id="1.1">Item A</TreeView.Item>
+              </TreeView.SubTree>
+            </TreeView.Item>
+            <TreeView.Item id="2">
+              Section 2
+              <TreeView.SubTree>
+                <TreeView.Item id="2.1">Item B</TreeView.Item>
+              </TreeView.SubTree>
+            </TreeView.Item>
+          </TreeView>
+        </section>
         <section className="space-y-4">
           <Typography variant={"h6"}>Pricing Cards</Typography>
           <div className="flex flex-wrap items-center gap-spacing-lg">
