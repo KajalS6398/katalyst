@@ -570,17 +570,121 @@ const Test = () => {
         </header>
       </div>
 
-      <div className="my-10 mx-10 flex items-center flex-wrap gap-5">
-        <NestedDropdown
-          data={industryList?.data || []}
-          onSelect={(_, path) => {
-            const pathIds = path?.map((p) => p?._id);
-            console.log("Selected Path IDs:", pathIds);
-          }}
-          placeholder="Select Parent"
-        />
+      <main className="space-y-5 p-4">
+        <section className="space-y-3">
+          <Typography variant="h6">Typography</Typography>
+          <Typography variant="h1">H1 Headline</Typography>
+          <Typography variant="h2">H2 Headline</Typography>
+          <Typography variant="h3">H3 Headline</Typography>
+          <Typography variant="h4">H4 Headline</Typography>
+          <Typography variant="h5">H5 Headline</Typography>
+          <Typography variant="h6">H6 Headline</Typography>
+        </section>
+        <section className="space-y-3">
+          <Typography variant="h6">Paragraph</Typography>
+          <Paragraph>The quick brown fox jumps over the lazy dog</Paragraph>
+          <Paragraph variant="b2">
+            The quick brown fox jumps over the lazy dog
+          </Paragraph>
+          <Paragraph variant="b3">
+            The quick brown fox jumps over the lazy dog
+          </Paragraph>
+          <Paragraph variant="b4">
+            The quick brown fox jumps over the lazy dog
+          </Paragraph>
+        </section>
+        <section className="space-y-3">
+          <Typography variant="h6">Caption</Typography>
+          <br />
+          <Caption variant="md">
+            The quick brown fox jumps over the lazy dog
+          </Caption>
+          <br />
+          <Caption>The quick brown fox jumps over the lazy dog</Caption>
+        </section>
+        <section className="space-y-3">
+          <Typography variant="h6">Label</Typography>
+          <Label size={"sm"}>This is a Label</Label>
+          <br />
+          <Label size={"md"}>This is a Label</Label>
+          <br />
+          <Label size={"lg"} required>
+            This is a Label
+          </Label>
+        </section>
+        <section className="space-y-5 min-h-[200px]">
+          <Typography variant="h6">Input</Typography>
+          <Input
+            type="text"
+            startIcon={<RiAddCircleLine />}
+            placeholder="Enter your text here"
+            endIcon={<RiAddCircleLine />}
+          />
+          <Input
+            type="text"
+            disabled
+            placeholder="Enter your text here"
+            startIcon={<RiAddCircleLine />}
+            endIcon={<RiAddCircleLine />}
+          />
+          <Textarea
+            placeholder="Enter your text here"
+            className="resize-none"
+            rows={4}
+          />
+          <Textarea
+            disabled
+            placeholder="Enter your text here"
+            className="resize-none"
+            rows={4}
+          />
+          <div
+            className="space-y-5 min-h-[200px] p-10 div-glass"
+            style={{ backgroundImage: `url(${nature.src})` }}
+          >
+            <Input
+              type="text"
+              variant={"glass"}
+              startIcon={<RiAddCircleLine />}
+              placeholder="Enter your text here"
+              endIcon={<RiAddCircleLine />}
+            />
+            <Input
+              type="text"
+              variant={"glass"}
+              disabled
+              startIcon={<RiAddCircleLine />}
+              placeholder="Enter your text here"
+              endIcon={<RiAddCircleLine />}
+            />
+            <Textarea
+              variant={"glass"}
+              placeholder="Enter your text here"
+              className="resize-none"
+              rows={4}
+            />
+            <Textarea
+              variant={"glass"}
+              disabled
+              placeholder="Enter your text here"
+              className="resize-none"
+              rows={4}
+            />
+          </div>
+        </section>
 
-        {/* <section>
+        <div className="my-10 flex items-center flex-wrap gap-5">
+          <Typography variant="h6">Nested Dropdown</Typography>
+          <NestedDropdown
+            data={industryList?.data || []}
+            onSelect={(_, path) => {
+              const pathIds = path?.map((p) => p?._id);
+              console.log("Selected Path IDs:", pathIds);
+            }}
+            placeholder="Select Parent"
+          />
+
+          {/* <section>
           <h1>Custom Width and Height</h1>
           <NestedDropdown
             data={industryList?.data || []}
@@ -704,110 +808,7 @@ const Test = () => {
             noResultsText="No industries found. Try another search."
           />
         </section> */}
-      </div>
-
-      <main className="space-y-5 p-4">
-        <section className="space-y-3">
-          <Typography variant="h6">Typography</Typography>
-          <Typography variant="h1">H1 Headline</Typography>
-          <Typography variant="h2">H2 Headline</Typography>
-          <Typography variant="h3">H3 Headline</Typography>
-          <Typography variant="h4">H4 Headline</Typography>
-          <Typography variant="h5">H5 Headline</Typography>
-          <Typography variant="h6">H6 Headline</Typography>
-        </section>
-        <section className="space-y-3">
-          <Typography variant="h6">Paragraph</Typography>
-          <Paragraph>The quick brown fox jumps over the lazy dog</Paragraph>
-          <Paragraph variant="b2">
-            The quick brown fox jumps over the lazy dog
-          </Paragraph>
-          <Paragraph variant="b3">
-            The quick brown fox jumps over the lazy dog
-          </Paragraph>
-          <Paragraph variant="b4">
-            The quick brown fox jumps over the lazy dog
-          </Paragraph>
-        </section>
-        <section className="space-y-3">
-          <Typography variant="h6">Caption</Typography>
-          <br />
-          <Caption variant="md">
-            The quick brown fox jumps over the lazy dog
-          </Caption>
-          <br />
-          <Caption>The quick brown fox jumps over the lazy dog</Caption>
-        </section>
-        <section className="space-y-3">
-          <Typography variant="h6">Label</Typography>
-          <Label size={"sm"}>This is a Label</Label>
-          <br />
-          <Label size={"md"}>This is a Label</Label>
-          <br />
-          <Label size={"lg"} required>
-            This is a Label
-          </Label>
-        </section>
-        <section className="space-y-5 min-h-[200px]">
-          <Typography variant="h6">Input</Typography>
-          <Input
-            type="text"
-            startIcon={<RiAddCircleLine />}
-            placeholder="Enter your text here"
-            endIcon={<RiAddCircleLine />}
-          />
-          <Input
-            type="text"
-            disabled
-            placeholder="Enter your text here"
-            startIcon={<RiAddCircleLine />}
-            endIcon={<RiAddCircleLine />}
-          />
-          <Textarea
-            placeholder="Enter your text here"
-            className="resize-none"
-            rows={4}
-          />
-          <Textarea
-            disabled
-            placeholder="Enter your text here"
-            className="resize-none"
-            rows={4}
-          />
-          <div
-            className="space-y-5 min-h-[200px] p-10 div-glass"
-            style={{ backgroundImage: `url(${nature.src})` }}
-          >
-            <Input
-              type="text"
-              variant={"glass"}
-              startIcon={<RiAddCircleLine />}
-              placeholder="Enter your text here"
-              endIcon={<RiAddCircleLine />}
-            />
-            <Input
-              type="text"
-              variant={"glass"}
-              disabled
-              startIcon={<RiAddCircleLine />}
-              placeholder="Enter your text here"
-              endIcon={<RiAddCircleLine />}
-            />
-            <Textarea
-              variant={"glass"}
-              placeholder="Enter your text here"
-              className="resize-none"
-              rows={4}
-            />
-            <Textarea
-              variant={"glass"}
-              disabled
-              placeholder="Enter your text here"
-              className="resize-none"
-              rows={4}
-            />
-          </div>
-        </section>
+        </div>
         <section className="space-y-4">
           <Typography variant="h6">OTP</Typography>
           <div className="space-y-2">
