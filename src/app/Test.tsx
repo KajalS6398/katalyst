@@ -2448,14 +2448,14 @@ const Test = () => {
             open={notice}
             setOpen={setNotice}
             variant="default"
-            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            noticeTitle="Notice on Top Left"
             position="top-left"
           />
           <Notice
             open={notice}
             setOpen={setNotice}
             variant="info"
-            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            noticeTitle="Notice on Top Right"
             position="top-right"
             showIcon={false}
           ></Notice>
@@ -2463,27 +2463,27 @@ const Test = () => {
             open={notice}
             setOpen={setNotice}
             variant="error"
-            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            noticeTitle="Notice on Top Center"
             position="top-center"
           />
           <Notice
             open={notice}
             setOpen={setNotice}
             variant="warning"
-            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            noticeTitle="Notice on Bottom Center"
             position="bottom-center"
           />{" "}
           <Notice
             open={notice}
             setOpen={setNotice}
             variant="success"
-            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            noticeTitle="Notice on Bottom Left"
             position="bottom-left"
           />{" "}
           <Notice
             open={notice}
             setOpen={setNotice}
-            noticeTitle="Tokyo Tokyo Tokyo Tokyo Tokyo"
+            noticeTitle="Notice on Bottom Right"
             position="bottom-right"
           />
         </div>
@@ -2636,6 +2636,7 @@ const Test = () => {
               strokeLinecap="butt"
               size={90}
               strokeWidth={10}
+              text="90%"
               strokeColor="var(--success)"
               percentage={70}
             />
